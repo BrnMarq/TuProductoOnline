@@ -1,0 +1,10 @@
+C:\Users\Usuario\Documents\Carpeta C#\LogIn TuProductoOnline\LogIn TuProductoOnline\bin\Debug\LogIn TuProductoOnline.exe.config
+C:\Users\Usuario\Documents\Carpeta C#\LogIn TuProductoOnline\LogIn TuProductoOnline\bin\Debug\LogIn TuProductoOnline.exe
+C:\Users\Usuario\Documents\Carpeta C#\LogIn TuProductoOnline\LogIn TuProductoOnline\bin\Debug\LogIn TuProductoOnline.pdb
+C:\Users\Usuario\Documents\Carpeta C#\LogIn TuProductoOnline\LogIn TuProductoOnline\obj\Debug\LogIn TuProductoOnline.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\Carpeta C#\LogIn TuProductoOnline\LogIn TuProductoOnline\obj\Debug\LogIn_TuProductoOnline.Form1.resources
+C:\Users\Usuario\Documents\Carpeta C#\LogIn TuProductoOnline\LogIn TuProductoOnline\obj\Debug\LogIn_TuProductoOnline.Properties.Resources.resources
+C:\Users\Usuario\Documents\Carpeta C#\LogIn TuProductoOnline\LogIn TuProductoOnline\obj\Debug\LogIn TuProductoOnline.csproj.GenerateResource.cache
+C:\Users\Usuario\Documents\Carpeta C#\LogIn TuProductoOnline\LogIn TuProductoOnline\obj\Debug\LogIn TuProductoOnline.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\Carpeta C#\LogIn TuProductoOnline\LogIn TuProductoOnline\obj\Debug\LogIn TuProductoOnline.exe
+C:\Users\Usuario\Documents\Carpeta C#\LogIn TuProductoOnline\LogIn TuProductoOnline\obj\Debug\LogIn TuProductoOnline.pdb

@@ -1,0 +1,11 @@
+C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\bin\Debug\TuProductoOnline.exe.config
+C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\bin\Debug\TuProductoOnline.exe
+C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\bin\Debug\TuProductoOnline.pdb
+C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.csproj.AssemblyReference.cache
+C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.csproj.SuggestedBindingRedirects.cache
+C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.LoginForm.resources
+C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.Properties.Resources.resources
+C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.csproj.GenerateResource.cache
+C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.csproj.CoreCompileInputs.cache
+C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.exe
+C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.pdb
