@@ -9,3 +9,4 @@ C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\De
 C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.csproj.CoreCompileInputs.cache
 C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.exe
 C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.pdb
+C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.NavBar.resources

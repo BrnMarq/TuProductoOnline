@@ -37,15 +37,17 @@ namespace TuProductoOnline
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnAcceso = new System.Windows.Forms.Button();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.txtClave = new System.Windows.Forms.TextBox();
+            this.UsernameInput = new System.Windows.Forms.TextBox();
+            this.PasswordInput = new System.Windows.Forms.TextBox();
+            this.ExitButton = new System.Windows.Forms.Button();
+            this.Header = new System.Windows.Forms.Panel();
+            this.EyeButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.btnSalir = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -53,7 +55,7 @@ namespace TuProductoOnline
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 152);
+            this.label1.Location = new System.Drawing.Point(11, 149);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(275, 37);
             this.label1.TabIndex = 1;
@@ -109,6 +111,7 @@ namespace TuProductoOnline
             // btnAcceso
             // 
             this.btnAcceso.BackColor = System.Drawing.Color.White;
+            this.btnAcceso.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAcceso.Enabled = false;
             this.btnAcceso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAcceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -120,31 +123,74 @@ namespace TuProductoOnline
             this.btnAcceso.Text = "Acceder";
             this.btnAcceso.UseVisualStyleBackColor = false;
             // 
-            // txtUsuario
+            // UsernameInput
             // 
-            this.txtUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuario.ForeColor = System.Drawing.Color.White;
-            this.txtUsuario.Location = new System.Drawing.Point(60, 232);
-            this.txtUsuario.Multiline = true;
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(209, 20);
-            this.txtUsuario.TabIndex = 11;
-            this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
+            this.UsernameInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.UsernameInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.UsernameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsernameInput.ForeColor = System.Drawing.Color.White;
+            this.UsernameInput.Location = new System.Drawing.Point(60, 227);
+            this.UsernameInput.Multiline = true;
+            this.UsernameInput.Name = "UsernameInput";
+            this.UsernameInput.Size = new System.Drawing.Size(209, 25);
+            this.UsernameInput.TabIndex = 11;
+            this.UsernameInput.TextChanged += new System.EventHandler(this.UsernameInput_TextChanged);
+            this.UsernameInput.Enter += new System.EventHandler(this.UsernameInput_Enter);
+            this.UsernameInput.Leave += new System.EventHandler(this.UsernameInput_Leave);
             // 
-            // txtClave
+            // PasswordInput
             // 
-            this.txtClave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.txtClave.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClave.ForeColor = System.Drawing.Color.White;
-            this.txtClave.Location = new System.Drawing.Point(60, 291);
-            this.txtClave.Multiline = true;
-            this.txtClave.Name = "txtClave";
-            this.txtClave.Size = new System.Drawing.Size(209, 20);
-            this.txtClave.TabIndex = 11;
-            this.txtClave.TextChanged += new System.EventHandler(this.txtClave_TextChanged);
+            this.PasswordInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.PasswordInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.PasswordInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordInput.ForeColor = System.Drawing.Color.White;
+            this.PasswordInput.Location = new System.Drawing.Point(60, 286);
+            this.PasswordInput.Multiline = true;
+            this.PasswordInput.Name = "PasswordInput";
+            this.PasswordInput.Size = new System.Drawing.Size(183, 25);
+            this.PasswordInput.TabIndex = 11;
+            this.PasswordInput.TextChanged += new System.EventHandler(this.PasswordInput_TextChanged);
+            this.PasswordInput.Enter += new System.EventHandler(this.PasswordInput_Enter);
+            this.PasswordInput.Leave += new System.EventHandler(this.PasswordInput_Leave);
+            // 
+            // ExitButton
+            // 
+            this.ExitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.ExitButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ExitButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExitButton.ForeColor = System.Drawing.Color.White;
+            this.ExitButton.Location = new System.Drawing.Point(108, 397);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(76, 33);
+            this.ExitButton.TabIndex = 9;
+            this.ExitButton.Text = "Salir";
+            this.ExitButton.UseVisualStyleBackColor = false;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
+            // Header
+            // 
+            this.Header.Location = new System.Drawing.Point(0, 0);
+            this.Header.Name = "Header";
+            this.Header.Size = new System.Drawing.Size(296, 34);
+            this.Header.TabIndex = 12;
+            this.Header.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Header_MouseDown);
+            this.Header.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Header_MouseMove);
+            this.Header.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Header_MouseUp);
+            // 
+            // EyeButton
+            // 
+            this.EyeButton.BackgroundImage = global::TuProductoOnline.Properties.Resources.EyeIcon;
+            this.EyeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.EyeButton.FlatAppearance.BorderSize = 0;
+            this.EyeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EyeButton.Location = new System.Drawing.Point(240, 286);
+            this.EyeButton.Name = "EyeButton";
+            this.EyeButton.Size = new System.Drawing.Size(25, 25);
+            this.EyeButton.TabIndex = 13;
+            this.EyeButton.UseVisualStyleBackColor = true;
+            this.EyeButton.Click += new System.EventHandler(this.EyeButton_Click);
             // 
             // pictureBox1
             // 
@@ -156,16 +202,6 @@ namespace TuProductoOnline
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::TuProductoOnline.Properties.Resources.usuario;
-            this.pictureBox2.Location = new System.Drawing.Point(29, 227);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            // 
             // pictureBox3
             // 
             this.pictureBox3.Image = global::TuProductoOnline.Properties.Resources.bloqueo_de_rotacion1;
@@ -176,20 +212,15 @@ namespace TuProductoOnline
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
             // 
-            // btnSalir
+            // pictureBox2
             // 
-            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.btnSalir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.ForeColor = System.Drawing.Color.White;
-            this.btnSalir.Location = new System.Drawing.Point(113, 403);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(76, 33);
-            this.btnSalir.TabIndex = 9;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = false;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            this.pictureBox2.Image = global::TuProductoOnline.Properties.Resources.usuario;
+            this.pictureBox2.Location = new System.Drawing.Point(29, 227);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
             // 
             // LoginForm
             // 
@@ -197,9 +228,12 @@ namespace TuProductoOnline
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
             this.ClientSize = new System.Drawing.Size(292, 448);
-            this.Controls.Add(this.txtClave);
-            this.Controls.Add(this.txtUsuario);
-            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.EyeButton);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.Header);
+            this.Controls.Add(this.PasswordInput);
+            this.Controls.Add(this.UsernameInput);
+            this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.btnAcceso);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
@@ -210,14 +244,14 @@ namespace TuProductoOnline
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,11 +268,13 @@ namespace TuProductoOnline
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button btnAcceso;
-        private System.Windows.Forms.TextBox txtUsuario;
-        private System.Windows.Forms.TextBox txtClave;
+        private System.Windows.Forms.TextBox UsernameInput;
+        private System.Windows.Forms.TextBox PasswordInput;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Panel Header;
+        private System.Windows.Forms.Button EyeButton;
     }
 }
 
