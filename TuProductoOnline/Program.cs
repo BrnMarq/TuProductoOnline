@@ -16,7 +16,7 @@ namespace TuProductoOnline
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new NavBar());
         }
     }
 }

@@ -21,5 +21,15 @@ namespace TuProductoOnline
         {
 
         }
+
+        private void ProductsTab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

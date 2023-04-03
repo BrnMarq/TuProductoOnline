@@ -53,17 +53,17 @@ namespace TuProductoOnline
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(11, 149);
+            this.label1.Location = new System.Drawing.Point(29, 148);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(275, 37);
+            this.label1.Size = new System.Drawing.Size(240, 31);
             this.label1.TabIndex = 1;
             this.label1.Text = "INICIAR SESIÓN";
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(60, 251);
+            this.panel1.Location = new System.Drawing.Point(60, 237);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(236, 1);
             this.panel1.TabIndex = 4;
@@ -86,7 +86,7 @@ namespace TuProductoOnline
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.ForeColor = System.Drawing.Color.White;
-            this.panel4.Location = new System.Drawing.Point(33, 258);
+            this.panel4.Location = new System.Drawing.Point(33, 244);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(236, 1);
             this.panel4.TabIndex = 7;
@@ -95,7 +95,7 @@ namespace TuProductoOnline
             // 
             this.panel5.BackColor = System.Drawing.Color.White;
             this.panel5.ForeColor = System.Drawing.Color.White;
-            this.panel5.Location = new System.Drawing.Point(29, 258);
+            this.panel5.Location = new System.Drawing.Point(29, 244);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(236, 1);
             this.panel5.TabIndex = 8;
@@ -103,7 +103,7 @@ namespace TuProductoOnline
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.Location = new System.Drawing.Point(29, 317);
+            this.panel6.Location = new System.Drawing.Point(29, 313);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(236, 1);
             this.panel6.TabIndex = 8;
@@ -129,7 +129,7 @@ namespace TuProductoOnline
             this.UsernameInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.UsernameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UsernameInput.ForeColor = System.Drawing.Color.White;
-            this.UsernameInput.Location = new System.Drawing.Point(60, 227);
+            this.UsernameInput.Location = new System.Drawing.Point(60, 213);
             this.UsernameInput.Multiline = true;
             this.UsernameInput.Name = "UsernameInput";
             this.UsernameInput.Size = new System.Drawing.Size(209, 25);
@@ -144,7 +144,7 @@ namespace TuProductoOnline
             this.PasswordInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PasswordInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PasswordInput.ForeColor = System.Drawing.Color.White;
-            this.PasswordInput.Location = new System.Drawing.Point(60, 286);
+            this.PasswordInput.Location = new System.Drawing.Point(60, 282);
             this.PasswordInput.Multiline = true;
             this.PasswordInput.Name = "PasswordInput";
             this.PasswordInput.Size = new System.Drawing.Size(183, 25);
@@ -185,7 +185,7 @@ namespace TuProductoOnline
             this.EyeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EyeButton.FlatAppearance.BorderSize = 0;
             this.EyeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EyeButton.Location = new System.Drawing.Point(240, 286);
+            this.EyeButton.Location = new System.Drawing.Point(240, 282);
             this.EyeButton.Name = "EyeButton";
             this.EyeButton.Size = new System.Drawing.Size(25, 25);
             this.EyeButton.TabIndex = 13;
@@ -194,18 +194,18 @@ namespace TuProductoOnline
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Image = global::TuProductoOnline.Properties.Resources.Captura;
-            this.pictureBox1.Location = new System.Drawing.Point(91, 12);
+            this.pictureBox1.Image = global::TuProductoOnline.Properties.Resources.TuProductoOnlineLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(91, 13);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(109, 101);
+            this.pictureBox1.Size = new System.Drawing.Size(110, 110);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::TuProductoOnline.Properties.Resources.bloqueo_de_rotacion1;
-            this.pictureBox3.Location = new System.Drawing.Point(29, 286);
+            this.pictureBox3.Image = global::TuProductoOnline.Properties.Resources.LockIcon;
+            this.pictureBox3.Location = new System.Drawing.Point(29, 282);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(25, 25);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -214,8 +214,8 @@ namespace TuProductoOnline
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::TuProductoOnline.Properties.Resources.usuario;
-            this.pictureBox2.Location = new System.Drawing.Point(29, 227);
+            this.pictureBox2.Image = global::TuProductoOnline.Properties.Resources.UserIcon;
+            this.pictureBox2.Location = new System.Drawing.Point(29, 213);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(25, 25);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

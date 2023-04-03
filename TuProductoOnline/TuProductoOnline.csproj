@@ -46,12 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,16 +90,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Captura.PNG" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\usuario.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bloqueo-de-rotacion1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\EyeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TuProductoOnlineLogo3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UserIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LockIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProductsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClientsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UsersIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BillingIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

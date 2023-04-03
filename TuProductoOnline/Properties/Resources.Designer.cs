@@ -63,9 +63,9 @@ namespace TuProductoOnline.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bloqueo_de_rotacion {
+        internal static System.Drawing.Bitmap BillingIcon {
             get {
-                object obj = ResourceManager.GetObject("bloqueo-de-rotacion", resourceCulture);
+                object obj = ResourceManager.GetObject("BillingIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,19 +73,9 @@ namespace TuProductoOnline.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bloqueo_de_rotacion1 {
+        internal static System.Drawing.Bitmap ClientsIcon {
             get {
-                object obj = ResourceManager.GetObject("bloqueo-de-rotacion1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Captura {
-            get {
-                object obj = ResourceManager.GetObject("Captura", resourceCulture);
+                object obj = ResourceManager.GetObject("ClientsIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +93,9 @@ namespace TuProductoOnline.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pngwing_com {
+        internal static System.Drawing.Bitmap LockIcon {
             get {
-                object obj = ResourceManager.GetObject("pngwing.com", resourceCulture);
+                object obj = ResourceManager.GetObject("LockIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +103,39 @@ namespace TuProductoOnline.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap usuario {
+        internal static System.Drawing.Bitmap ProductsIcon {
             get {
-                object obj = ResourceManager.GetObject("usuario", resourceCulture);
+                object obj = ResourceManager.GetObject("ProductsIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TuProductoOnlineLogo {
+            get {
+                object obj = ResourceManager.GetObject("TuProductoOnlineLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UserIcon {
+            get {
+                object obj = ResourceManager.GetObject("UserIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UsersIcon {
+            get {
+                object obj = ResourceManager.GetObject("UsersIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
