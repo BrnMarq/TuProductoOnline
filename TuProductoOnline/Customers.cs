@@ -27,5 +27,10 @@ namespace TuProductoOnline
             customerProperties customerWindow = new customerProperties();
             customerWindow.Show();
         }
+
+        private void dgvCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

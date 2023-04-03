@@ -1,17 +1,16 @@
-﻿
-namespace TuProductoOnline
+﻿namespace TuProductoOnline.Views
 {
     partial class Customers
     {
         /// <summary>
-        /// Variable del diseñador necesaria.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Limpiar los recursos que se estén usando.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,11 +20,11 @@ namespace TuProductoOnline
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de Windows Forms
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido de este método con el editor de código.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -41,8 +40,8 @@ namespace TuProductoOnline
             this.delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnAddCustomer = new System.Windows.Forms.Button();
             this.btnCheckCustomer = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +70,7 @@ namespace TuProductoOnline
             this.edit,
             this.delete});
             this.dgvCustomers.EnableHeadersVisualStyles = false;
-            this.dgvCustomers.Location = new System.Drawing.Point(176, 22);
+            this.dgvCustomers.Location = new System.Drawing.Point(25, 26);
             this.dgvCustomers.Name = "dgvCustomers";
             this.dgvCustomers.ReadOnly = true;
             this.dgvCustomers.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -90,9 +89,8 @@ namespace TuProductoOnline
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.dgvCustomers.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCustomers.Size = new System.Drawing.Size(612, 351);
-            this.dgvCustomers.TabIndex = 1;
-            this.dgvCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellContentClick);
+            this.dgvCustomers.Size = new System.Drawing.Size(532, 301);
+            this.dgvCustomers.TabIndex = 2;
             // 
             // codigo
             // 
@@ -147,13 +145,12 @@ namespace TuProductoOnline
             this.btnAddCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddCustomer.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnAddCustomer.Location = new System.Drawing.Point(344, 403);
+            this.btnAddCustomer.Location = new System.Drawing.Point(156, 351);
             this.btnAddCustomer.Name = "btnAddCustomer";
             this.btnAddCustomer.Size = new System.Drawing.Size(100, 30);
-            this.btnAddCustomer.TabIndex = 2;
+            this.btnAddCustomer.TabIndex = 3;
             this.btnAddCustomer.Text = "Agregar";
             this.btnAddCustomer.UseVisualStyleBackColor = false;
-            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
             // btnCheckCustomer
             // 
@@ -162,27 +159,12 @@ namespace TuProductoOnline
             this.btnCheckCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCheckCustomer.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCheckCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnCheckCustomer.Location = new System.Drawing.Point(456, 403);
+            this.btnCheckCustomer.Location = new System.Drawing.Point(262, 351);
             this.btnCheckCustomer.Name = "btnCheckCustomer";
             this.btnCheckCustomer.Size = new System.Drawing.Size(100, 30);
-            this.btnCheckCustomer.TabIndex = 3;
+            this.btnCheckCustomer.TabIndex = 4;
             this.btnCheckCustomer.Text = "Consultar";
             this.btnCheckCustomer.UseVisualStyleBackColor = false;
-            this.btnCheckCustomer.Click += new System.EventHandler(this.btnCheckCustomer_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExport.ForeColor = System.Drawing.Color.White;
-            this.btnExport.Location = new System.Drawing.Point(677, 403);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(100, 30);
-            this.btnExport.TabIndex = 4;
-            this.btnExport.Text = "Exportar";
-            this.btnExport.UseVisualStyleBackColor = false;
             // 
             // btnImport
             // 
@@ -191,28 +173,40 @@ namespace TuProductoOnline
             this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImport.ForeColor = System.Drawing.Color.White;
-            this.btnImport.Location = new System.Drawing.Point(566, 403);
+            this.btnImport.Location = new System.Drawing.Point(368, 351);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(100, 30);
-            this.btnImport.TabIndex = 5;
+            this.btnImport.TabIndex = 6;
             this.btnImport.Text = "Importar";
             this.btnImport.UseVisualStyleBackColor = false;
+            // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.ForeColor = System.Drawing.Color.White;
+            this.btnExport.Location = new System.Drawing.Point(474, 351);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(100, 30);
+            this.btnExport.TabIndex = 7;
+            this.btnExport.Text = "Exportar";
+            this.btnExport.UseVisualStyleBackColor = false;
             // 
             // Customers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(800, 451);
-            this.Controls.Add(this.btnImport);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(614, 411);
             this.Controls.Add(this.btnExport);
+            this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnCheckCustomer);
             this.Controls.Add(this.btnAddCustomer);
             this.Controls.Add(this.dgvCustomers);
             this.Name = "Customers";
-            this.Controls.SetChildIndex(this.dgvCustomers, 0);
-            this.Controls.SetChildIndex(this.btnAddCustomer, 0);
-            this.Controls.SetChildIndex(this.btnCheckCustomer, 0);
-            this.Controls.SetChildIndex(this.btnExport, 0);
-            this.Controls.SetChildIndex(this.btnImport, 0);
+            this.Text = "Customers";
+            this.Load += new System.EventHandler(this.Customers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).EndInit();
             this.ResumeLayout(false);
 
@@ -221,15 +215,15 @@ namespace TuProductoOnline
         #endregion
 
         private System.Windows.Forms.DataGridView dgvCustomers;
-        private System.Windows.Forms.Button btnAddCustomer;
-        private System.Windows.Forms.Button btnCheckCustomer;
-        private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn phoneNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn direction;
         private System.Windows.Forms.DataGridViewImageColumn edit;
         private System.Windows.Forms.DataGridViewImageColumn delete;
+        private System.Windows.Forms.Button btnAddCustomer;
+        private System.Windows.Forms.Button btnCheckCustomer;
+        private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.Button btnExport;
     }
 }
