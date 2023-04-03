@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TuProductoOnline.Utils;
 
 namespace TuProductoOnline
 {
@@ -19,7 +20,9 @@ namespace TuProductoOnline
 
         private void NavBar_Load(object sender, EventArgs e)
         {
-
+            List<String> values = new List<String> { "uno", "Brian", "Dos" };
+            DbHandler.EscribirCSV("prueba.csv", values);
+            //MessageBox.Show(linea);
         }
 
         private void ProductsTab_Click(object sender, EventArgs e)
