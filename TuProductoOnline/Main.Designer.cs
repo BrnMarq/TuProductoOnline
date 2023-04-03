@@ -30,15 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.CustomersTab = new System.Windows.Forms.Button();
+            this.BillingTab = new System.Windows.Forms.Button();
+            this.UsersTab = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.ProductsTab = new System.Windows.Forms.Button();
             this.CompanyName = new System.Windows.Forms.Label();
             this.CompanyLogo = new System.Windows.Forms.PictureBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.Container = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CompanyLogo)).BeginInit();
             this.SuspendLayout();
@@ -46,9 +46,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.CustomersTab);
+            this.panel1.Controls.Add(this.BillingTab);
+            this.panel1.Controls.Add(this.UsersTab);
             this.panel1.Controls.Add(this.ExitButton);
             this.panel1.Controls.Add(this.ProductsTab);
             this.panel1.Controls.Add(this.CompanyName);
@@ -60,61 +60,62 @@
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // button4
+            // CustomersTab
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Image = global::TuProductoOnline.Properties.Resources.ClientsIcon;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.Location = new System.Drawing.Point(3, 161);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(0, 0, 25, 0);
-            this.button4.Size = new System.Drawing.Size(167, 36);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "   Clientes";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button4.UseVisualStyleBackColor = false;
+            this.CustomersTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.CustomersTab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CustomersTab.FlatAppearance.BorderSize = 0;
+            this.CustomersTab.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CustomersTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomersTab.ForeColor = System.Drawing.Color.White;
+            this.CustomersTab.Image = global::TuProductoOnline.Properties.Resources.ClientsIcon;
+            this.CustomersTab.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CustomersTab.Location = new System.Drawing.Point(3, 161);
+            this.CustomersTab.Name = "CustomersTab";
+            this.CustomersTab.Padding = new System.Windows.Forms.Padding(0, 0, 25, 0);
+            this.CustomersTab.Size = new System.Drawing.Size(167, 36);
+            this.CustomersTab.TabIndex = 6;
+            this.CustomersTab.Text = "   Clientes";
+            this.CustomersTab.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.CustomersTab.UseVisualStyleBackColor = false;
+            this.CustomersTab.Click += new System.EventHandler(this.CustomersTab_Click);
             // 
-            // button3
+            // BillingTab
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Image = global::TuProductoOnline.Properties.Resources.BillingIcon;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.Location = new System.Drawing.Point(0, 245);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(170, 36);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "   Facturación";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = false;
+            this.BillingTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.BillingTab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BillingTab.FlatAppearance.BorderSize = 0;
+            this.BillingTab.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BillingTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BillingTab.ForeColor = System.Drawing.Color.White;
+            this.BillingTab.Image = global::TuProductoOnline.Properties.Resources.BillingIcon;
+            this.BillingTab.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BillingTab.Location = new System.Drawing.Point(0, 245);
+            this.BillingTab.Name = "BillingTab";
+            this.BillingTab.Size = new System.Drawing.Size(170, 36);
+            this.BillingTab.TabIndex = 5;
+            this.BillingTab.Text = "   Facturación";
+            this.BillingTab.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BillingTab.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // UsersTab
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Image = global::TuProductoOnline.Properties.Resources.UsersIcon;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.Location = new System.Drawing.Point(0, 203);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(0, 0, 25, 0);
-            this.button2.Size = new System.Drawing.Size(170, 36);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "   Usuarios";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = false;
+            this.UsersTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.UsersTab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.UsersTab.FlatAppearance.BorderSize = 0;
+            this.UsersTab.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UsersTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsersTab.ForeColor = System.Drawing.Color.White;
+            this.UsersTab.Image = global::TuProductoOnline.Properties.Resources.UsersIcon;
+            this.UsersTab.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.UsersTab.Location = new System.Drawing.Point(0, 203);
+            this.UsersTab.Name = "UsersTab";
+            this.UsersTab.Padding = new System.Windows.Forms.Padding(0, 0, 25, 0);
+            this.UsersTab.Size = new System.Drawing.Size(170, 36);
+            this.UsersTab.TabIndex = 4;
+            this.UsersTab.Text = "   Usuarios";
+            this.UsersTab.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.UsersTab.UseVisualStyleBackColor = false;
             // 
             // ExitButton
             // 
@@ -176,26 +177,25 @@
             this.CompanyLogo.TabIndex = 1;
             this.CompanyLogo.TabStop = false;
             // 
-            // panel2
+            // Container
             // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(170, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(630, 450);
-            this.panel2.TabIndex = 7;
+            this.Container.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Container.Location = new System.Drawing.Point(170, 0);
+            this.Container.Name = "Container";
+            this.Container.Size = new System.Drawing.Size(630, 450);
+            this.Container.TabIndex = 7;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.Container);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "Main";
             this.Text = "TuProductoOnline";
-            this.Load += new System.EventHandler(this.NavBar_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CompanyLogo)).EndInit();
@@ -210,10 +210,10 @@
         private System.Windows.Forms.Label CompanyName;
         private System.Windows.Forms.PictureBox CompanyLogo;
         private System.Windows.Forms.Button ProductsTab;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button CustomersTab;
+        private System.Windows.Forms.Button BillingTab;
+        private System.Windows.Forms.Button UsersTab;
         private System.Windows.Forms.Button ExitButton;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel Container;
     }
 }
