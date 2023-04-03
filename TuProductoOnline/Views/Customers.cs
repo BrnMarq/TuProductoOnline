@@ -21,5 +21,10 @@ namespace TuProductoOnline.Views
         {
 
         }
+
+        private void dgvCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
