@@ -55,7 +55,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(170, 450);
+            this.panel1.Size = new System.Drawing.Size(170, 451);
             this.panel1.TabIndex = 0;
             // 
             // button4
@@ -76,6 +76,7 @@
             this.button4.Text = "   Clientes";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -124,7 +125,7 @@
             this.ExitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExitButton.ForeColor = System.Drawing.Color.White;
             this.ExitButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ExitButton.Location = new System.Drawing.Point(46, 402);
+            this.ExitButton.Location = new System.Drawing.Point(46, 403);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(63, 36);
             this.ExitButton.TabIndex = 3;
@@ -150,7 +151,7 @@
             this.ProductsTab.TabIndex = 1;
             this.ProductsTab.Text = "   Productos";
             this.ProductsTab.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ProductsTab.UseVisualStyleBackColor = false;
+            this.ProductsTab.UseVisualStyleBackColor = true;
             this.ProductsTab.Click += new System.EventHandler(this.ProductsTab_Click);
             // 
             // CompanyName
@@ -178,7 +179,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 451);
             this.Controls.Add(this.panel1);
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "NavBar";

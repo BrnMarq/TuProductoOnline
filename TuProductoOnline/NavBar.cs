@@ -34,5 +34,11 @@ namespace TuProductoOnline
         {
             this.Close();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Customers miVentana = new Customers();
+            miVentana.Show();
+        }
     }
 }

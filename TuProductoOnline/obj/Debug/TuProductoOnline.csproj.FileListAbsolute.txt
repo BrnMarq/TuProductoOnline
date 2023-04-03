@@ -10,3 +10,16 @@ C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\De
 C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.exe
 C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.pdb
 C:\Users\BrnMa\Documents\BrnCode\CSharp\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.NavBar.resources
+C:\Users\Yasmin\Desktop\examen2\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.csproj.AssemblyReference.cache
+C:\Users\Yasmin\Desktop\examen2\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.customerProperties.resources
+C:\Users\Yasmin\Desktop\examen2\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.LoginForm.resources
+C:\Users\Yasmin\Desktop\examen2\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.NavBar.resources
+C:\Users\Yasmin\Desktop\examen2\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.Properties.Resources.resources
+C:\Users\Yasmin\Desktop\examen2\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.csproj.GenerateResource.cache
+C:\Users\Yasmin\Desktop\examen2\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.csproj.CoreCompileInputs.cache
+C:\Users\Yasmin\Desktop\examen2\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.exe
+C:\Users\Yasmin\Desktop\examen2\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.pdb
+C:\Users\Yasmin\Desktop\examen2\TuProductoOnline\TuProductoOnline\bin\Debug\TuProductoOnline.exe.config
+C:\Users\Yasmin\Desktop\examen2\TuProductoOnline\TuProductoOnline\bin\Debug\TuProductoOnline.exe
+C:\Users\Yasmin\Desktop\examen2\TuProductoOnline\TuProductoOnline\bin\Debug\TuProductoOnline.pdb
+C:\Users\Yasmin\Desktop\examen2\TuProductoOnline\TuProductoOnline\obj\Debug\TuProductoOnline.Customers.resources
