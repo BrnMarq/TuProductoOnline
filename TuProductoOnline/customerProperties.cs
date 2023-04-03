@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TuProductoOnline
 {
-    public partial class customerProperties : Form
+    public partial class CustomerProperties : Form
     {
-        public customerProperties()
+        public CustomerProperties()
         {
             InitializeComponent();
         }

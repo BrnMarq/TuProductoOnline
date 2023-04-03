@@ -1,7 +1,7 @@
 ﻿
 namespace TuProductoOnline
 {
-    partial class customerProperties
+    partial class CustomerProperties
     {
         /// <summary>
         /// Required designer variable.
