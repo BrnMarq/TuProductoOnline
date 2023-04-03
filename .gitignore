@@ -17,6 +17,8 @@
 mono_crash.*
 
 # Build results
+TuProductoOnline/[Oo]bj/
+TuProductoOnline/[Bb]in/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
