@@ -20,9 +20,7 @@ namespace TuProductoOnline
 
         private void NavBar_Load(object sender, EventArgs e)
         {
-            List<String> values = new List<String> { "uno", "Brian", "Dos" };
-            DbHandler.EscribirCSV("prueba.csv", values);
-            //MessageBox.Show(linea);
+
         }
 
         private void ProductsTab_Click(object sender, EventArgs e)
@@ -33,6 +31,11 @@ namespace TuProductoOnline
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

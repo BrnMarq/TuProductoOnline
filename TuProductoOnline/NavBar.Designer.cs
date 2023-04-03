@@ -38,6 +38,7 @@
             this.CompanyName = new System.Windows.Forms.Label();
             this.CompanyLogo = new System.Windows.Forms.PictureBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CompanyLogo)).BeginInit();
             this.SuspendLayout();
@@ -57,6 +58,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(170, 450);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button4
             // 
@@ -174,11 +176,20 @@
             this.CompanyLogo.TabIndex = 1;
             this.CompanyLogo.TabStop = false;
             // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(170, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(630, 450);
+            this.panel2.TabIndex = 7;
+            // 
             // NavBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "NavBar";
@@ -202,5 +213,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Panel panel2;
     }
 }
