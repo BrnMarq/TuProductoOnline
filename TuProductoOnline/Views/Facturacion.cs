@@ -10,16 +10,19 @@ using System.Windows.Forms;
 
 namespace TuProductoOnline.Views
 {
+    
     public partial class Facturacion : Form
     {
+        
         public Facturacion()
         {
             InitializeComponent();
+            
         }
 
         private void Facturacion_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -33,4 +36,6 @@ namespace TuProductoOnline.Views
         }
 
     }
+
+    
 }
