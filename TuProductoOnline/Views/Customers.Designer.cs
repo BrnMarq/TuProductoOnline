@@ -32,16 +32,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCustomers = new System.Windows.Forms.DataGridView();
+            this.btnAddCustomer = new System.Windows.Forms.Button();
+            this.btnCheckCustomer = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.direction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.delete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnAddCustomer = new System.Windows.Forms.Button();
-            this.btnCheckCustomer = new System.Windows.Forms.Button();
-            this.btnImport = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,7 +70,7 @@
             this.edit,
             this.delete});
             this.dgvCustomers.EnableHeadersVisualStyles = false;
-            this.dgvCustomers.Location = new System.Drawing.Point(25, 26);
+            this.dgvCustomers.Location = new System.Drawing.Point(12, 12);
             this.dgvCustomers.Name = "dgvCustomers";
             this.dgvCustomers.ReadOnly = true;
             this.dgvCustomers.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -89,54 +89,8 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.dgvCustomers.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCustomers.Size = new System.Drawing.Size(532, 301);
+            this.dgvCustomers.Size = new System.Drawing.Size(590, 333);
             this.dgvCustomers.TabIndex = 2;
-            // 
-            // codigo
-            // 
-            this.codigo.HeaderText = "Código";
-            this.codigo.Name = "codigo";
-            this.codigo.ReadOnly = true;
-            this.codigo.Width = 82;
-            // 
-            // nombre
-            // 
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            this.nombre.Width = 85;
-            // 
-            // phoneNumber
-            // 
-            this.phoneNumber.HeaderText = "Teléfono";
-            this.phoneNumber.Name = "phoneNumber";
-            this.phoneNumber.ReadOnly = true;
-            this.phoneNumber.Width = 86;
-            // 
-            // direction
-            // 
-            this.direction.HeaderText = "Dirección";
-            this.direction.Name = "direction";
-            this.direction.ReadOnly = true;
-            this.direction.Width = 93;
-            // 
-            // edit
-            // 
-            this.edit.HeaderText = "Editar";
-            this.edit.Image = global::TuProductoOnline.Properties.Resources.editIcon;
-            this.edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.edit.Name = "edit";
-            this.edit.ReadOnly = true;
-            this.edit.Width = 50;
-            // 
-            // delete
-            // 
-            this.delete.HeaderText = "Eliminar";
-            this.delete.Image = global::TuProductoOnline.Properties.Resources.deleteIcon1;
-            this.delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.delete.Name = "delete";
-            this.delete.ReadOnly = true;
-            this.delete.Width = 63;
             // 
             // btnAddCustomer
             // 
@@ -145,7 +99,7 @@
             this.btnAddCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddCustomer.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnAddCustomer.Location = new System.Drawing.Point(156, 351);
+            this.btnAddCustomer.Location = new System.Drawing.Point(81, 360);
             this.btnAddCustomer.Name = "btnAddCustomer";
             this.btnAddCustomer.Size = new System.Drawing.Size(100, 30);
             this.btnAddCustomer.TabIndex = 3;
@@ -159,7 +113,7 @@
             this.btnCheckCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCheckCustomer.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCheckCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnCheckCustomer.Location = new System.Drawing.Point(262, 351);
+            this.btnCheckCustomer.Location = new System.Drawing.Point(189, 360);
             this.btnCheckCustomer.Name = "btnCheckCustomer";
             this.btnCheckCustomer.Size = new System.Drawing.Size(100, 30);
             this.btnCheckCustomer.TabIndex = 4;
@@ -173,7 +127,7 @@
             this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImport.ForeColor = System.Drawing.Color.White;
-            this.btnImport.Location = new System.Drawing.Point(368, 351);
+            this.btnImport.Location = new System.Drawing.Point(299, 360);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(100, 30);
             this.btnImport.TabIndex = 6;
@@ -187,18 +141,76 @@
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExport.ForeColor = System.Drawing.Color.White;
-            this.btnExport.Location = new System.Drawing.Point(474, 351);
+            this.btnExport.Location = new System.Drawing.Point(410, 360);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(100, 30);
             this.btnExport.TabIndex = 7;
             this.btnExport.Text = "Exportar";
             this.btnExport.UseVisualStyleBackColor = false;
             // 
+            // codigo
+            // 
+            this.codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.codigo.HeaderText = "Código";
+            this.codigo.Name = "codigo";
+            this.codigo.ReadOnly = true;
+            this.codigo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.codigo.Width = 150;
+            // 
+            // nombre
+            // 
+            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            this.nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.nombre.Width = 150;
+            // 
+            // phoneNumber
+            // 
+            this.phoneNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.phoneNumber.HeaderText = "Teléfono";
+            this.phoneNumber.Name = "phoneNumber";
+            this.phoneNumber.ReadOnly = true;
+            this.phoneNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.phoneNumber.Width = 150;
+            // 
+            // direction
+            // 
+            this.direction.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.direction.HeaderText = "Dirección";
+            this.direction.Name = "direction";
+            this.direction.ReadOnly = true;
+            this.direction.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.direction.Width = 150;
+            // 
+            // edit
+            // 
+            this.edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.edit.HeaderText = "Editar";
+            this.edit.Image = global::TuProductoOnline.Properties.Resources.editIcon;
+            this.edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.edit.Name = "edit";
+            this.edit.ReadOnly = true;
+            this.edit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.edit.Width = 80;
+            // 
+            // delete
+            // 
+            this.delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.delete.HeaderText = "Eliminar";
+            this.delete.Image = global::TuProductoOnline.Properties.Resources.deleteIcon1;
+            this.delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.delete.Name = "delete";
+            this.delete.ReadOnly = true;
+            this.delete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.delete.Width = 80;
+            // 
             // Customers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(614, 411);
+            this.ClientSize = new System.Drawing.Size(614, 412);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnCheckCustomer);
@@ -215,15 +227,15 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvCustomers;
+        private System.Windows.Forms.Button btnAddCustomer;
+        private System.Windows.Forms.Button btnCheckCustomer;
+        private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn phoneNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn direction;
         private System.Windows.Forms.DataGridViewImageColumn edit;
         private System.Windows.Forms.DataGridViewImageColumn delete;
-        private System.Windows.Forms.Button btnAddCustomer;
-        private System.Windows.Forms.Button btnCheckCustomer;
-        private System.Windows.Forms.Button btnImport;
-        private System.Windows.Forms.Button btnExport;
     }
 }

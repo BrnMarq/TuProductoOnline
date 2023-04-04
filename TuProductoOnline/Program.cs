@@ -13,7 +13,7 @@ namespace TuProductoOnline
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new NavBar());
+            Application.Run(new Customers());
         }
     }
 }
