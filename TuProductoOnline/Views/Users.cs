@@ -8,18 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TuProductoOnline
+namespace TuProductoOnline.Views
 {
-    public partial class CustomerProperties : Form
+    public partial class Users : Form
     {
-        public CustomerProperties()
+        public Users()
         {
             InitializeComponent();
         }
 
-        private void btnAccept_Click(object sender, EventArgs e)
+        private void dgvCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.Close(); 
+
+        }
+
+        private void Users_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

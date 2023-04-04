@@ -32,16 +32,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCustomers = new System.Windows.Forms.DataGridView();
-            this.btnAddCustomer = new System.Windows.Forms.Button();
-            this.btnCheckCustomer = new System.Windows.Forms.Button();
-            this.btnImport = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.direction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.delete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnAddCustomer = new System.Windows.Forms.Button();
+            this.btnCheckCustomer = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,62 +91,6 @@
             this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCustomers.Size = new System.Drawing.Size(590, 333);
             this.dgvCustomers.TabIndex = 2;
-            // 
-            // btnAddCustomer
-            // 
-            this.btnAddCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnAddCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddCustomer.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnAddCustomer.Location = new System.Drawing.Point(81, 360);
-            this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Size = new System.Drawing.Size(100, 30);
-            this.btnAddCustomer.TabIndex = 3;
-            this.btnAddCustomer.Text = "Agregar";
-            this.btnAddCustomer.UseVisualStyleBackColor = false;
-            // 
-            // btnCheckCustomer
-            // 
-            this.btnCheckCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnCheckCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCheckCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCheckCustomer.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnCheckCustomer.Location = new System.Drawing.Point(189, 360);
-            this.btnCheckCustomer.Name = "btnCheckCustomer";
-            this.btnCheckCustomer.Size = new System.Drawing.Size(100, 30);
-            this.btnCheckCustomer.TabIndex = 4;
-            this.btnCheckCustomer.Text = "Consultar";
-            this.btnCheckCustomer.UseVisualStyleBackColor = false;
-            // 
-            // btnImport
-            // 
-            this.btnImport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnImport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImport.ForeColor = System.Drawing.Color.White;
-            this.btnImport.Location = new System.Drawing.Point(299, 360);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(100, 30);
-            this.btnImport.TabIndex = 6;
-            this.btnImport.Text = "Importar";
-            this.btnImport.UseVisualStyleBackColor = false;
-            // 
-            // btnExport
-            // 
-            this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExport.ForeColor = System.Drawing.Color.White;
-            this.btnExport.Location = new System.Drawing.Point(410, 360);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(100, 30);
-            this.btnExport.TabIndex = 7;
-            this.btnExport.Text = "Exportar";
-            this.btnExport.UseVisualStyleBackColor = false;
             // 
             // codigo
             // 
@@ -205,6 +149,62 @@
             this.delete.ReadOnly = true;
             this.delete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.delete.Width = 80;
+            // 
+            // btnAddCustomer
+            // 
+            this.btnAddCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnAddCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddCustomer.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddCustomer.ForeColor = System.Drawing.Color.White;
+            this.btnAddCustomer.Location = new System.Drawing.Point(90, 361);
+            this.btnAddCustomer.Name = "btnAddCustomer";
+            this.btnAddCustomer.Size = new System.Drawing.Size(100, 30);
+            this.btnAddCustomer.TabIndex = 3;
+            this.btnAddCustomer.Text = "Agregar";
+            this.btnAddCustomer.UseVisualStyleBackColor = false;
+            // 
+            // btnCheckCustomer
+            // 
+            this.btnCheckCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnCheckCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCheckCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCheckCustomer.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheckCustomer.ForeColor = System.Drawing.Color.White;
+            this.btnCheckCustomer.Location = new System.Drawing.Point(198, 361);
+            this.btnCheckCustomer.Name = "btnCheckCustomer";
+            this.btnCheckCustomer.Size = new System.Drawing.Size(100, 30);
+            this.btnCheckCustomer.TabIndex = 4;
+            this.btnCheckCustomer.Text = "Consultar";
+            this.btnCheckCustomer.UseVisualStyleBackColor = false;
+            // 
+            // btnImport
+            // 
+            this.btnImport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnImport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImport.ForeColor = System.Drawing.Color.White;
+            this.btnImport.Location = new System.Drawing.Point(308, 361);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(100, 30);
+            this.btnImport.TabIndex = 6;
+            this.btnImport.Text = "Importar";
+            this.btnImport.UseVisualStyleBackColor = false;
+            // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.ForeColor = System.Drawing.Color.White;
+            this.btnExport.Location = new System.Drawing.Point(419, 361);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(100, 30);
+            this.btnExport.TabIndex = 7;
+            this.btnExport.Text = "Exportar";
+            this.btnExport.UseVisualStyleBackColor = false;
             // 
             // Customers
             // 
