@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panel1 = new System.Windows.Forms.Panel();
             this.CustomersTab = new System.Windows.Forms.Button();
@@ -184,6 +185,11 @@
             this.Container.Name = "Container";
             this.Container.Size = new System.Drawing.Size(630, 450);
             this.Container.TabIndex = 7;
+            // 
+            // contextMenuStrip1
+            // 
+            //this.contextMenuStrip1.Name = "contextMenuStrip1";
+            //this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // Main
             // 
