@@ -1,7 +1,7 @@
 ﻿
 namespace TuProductoOnline
 {
-    partial class ProductsInterface
+    partial class Products
     {
         /// <summary>
         /// Required designer variable.

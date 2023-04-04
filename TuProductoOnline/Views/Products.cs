@@ -11,9 +11,9 @@ using System.Windows.Forms;
 namespace TuProductoOnline
 {
        
-    public partial class ProductsInterface : Form
+    public partial class Products : Form
     {        
-        public ProductsInterface()
+        public Products()
         {
             InitializeComponent();          
         }

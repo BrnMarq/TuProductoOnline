@@ -36,7 +36,7 @@ namespace TuProductoOnline
 
         private void ProductsTab_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new ProductsInterface());
+            OpenChildForm(new Products());
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
