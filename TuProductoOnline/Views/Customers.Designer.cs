@@ -37,14 +37,14 @@
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.direction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.edit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnAddCustomer = new System.Windows.Forms.Button();
             this.btnCheckCustomer = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.edit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.delete = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,7 +92,7 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.dgvCustomers.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCustomers.Size = new System.Drawing.Size(532, 301);
+            this.dgvCustomers.Size = new System.Drawing.Size(577, 301);
             this.dgvCustomers.TabIndex = 2;
             this.dgvCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellContentClick);
             // 
@@ -125,6 +125,24 @@
             this.direction.Name = "direction";
             this.direction.ReadOnly = true;
             this.direction.Width = 93;
+            // 
+            // edit
+            // 
+            this.edit.HeaderText = "Editar";
+            this.edit.Image = global::TuProductoOnline.Properties.Resources.editIcon;
+            this.edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.edit.Name = "edit";
+            this.edit.ReadOnly = true;
+            this.edit.Width = 50;
+            // 
+            // delete
+            // 
+            this.delete.HeaderText = "Eliminar";
+            this.delete.Image = global::TuProductoOnline.Properties.Resources.deleteIcon1;
+            this.delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.delete.Name = "delete";
+            this.delete.ReadOnly = true;
+            this.delete.Width = 63;
             // 
             // btnAddCustomer
             // 
@@ -197,24 +215,6 @@
             this.dataGridViewImageColumn2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.Width = 63;
-            // 
-            // edit
-            // 
-            this.edit.HeaderText = "Editar";
-            this.edit.Image = global::TuProductoOnline.Properties.Resources.editIcon;
-            this.edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.edit.Name = "edit";
-            this.edit.ReadOnly = true;
-            this.edit.Width = 50;
-            // 
-            // delete
-            // 
-            this.delete.HeaderText = "Eliminar";
-            this.delete.Image = global::TuProductoOnline.Properties.Resources.deleteIcon1;
-            this.delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.delete.Name = "delete";
-            this.delete.ReadOnly = true;
-            this.delete.Width = 63;
             // 
             // Customers
             // 
