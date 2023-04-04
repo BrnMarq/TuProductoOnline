@@ -10,11 +10,15 @@ using System.Windows.Forms;
 
 namespace TuProductoOnline
 {
+       
     public partial class ProductsInterface : Form
-    {
+    {        
         public ProductsInterface()
         {
-            InitializeComponent();
+            InitializeComponent();          
         }
+        
+            
+        
     }
 }

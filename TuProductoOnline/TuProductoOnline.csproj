@@ -52,6 +52,8 @@
     <Compile Include="CustomerProperties.Designer.cs">
       <DependentUpon>CustomerProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Devices.cs" />
+    <Compile Include="Hardware.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +67,7 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Product.cs" />
     <Compile Include="ProductsInterface.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +81,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Software.cs" />
     <Compile Include="Utils\DbHandler.cs" />
     <Compile Include="Views\Customers.cs">
       <SubType>Form</SubType>
