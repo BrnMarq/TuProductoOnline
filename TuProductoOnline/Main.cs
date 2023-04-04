@@ -7,25 +7,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TuProductoOnline.Utils;
+using TuProductoOnline.Views;
 
 namespace TuProductoOnline
 {
     public partial class Main : Form
     {
+        
+        
+        private Form activeForm = null;
+        private void OpenChildForm(Form childForm)
+        {
+            if (activeForm != null)
+                activeForm.Close();
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            Container.Controls.Add(childForm);
+            Container.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
         public Main()
         {
             InitializeComponent();
         }
 
-        private void NavBar_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void ProductsTab_Click(object sender, EventArgs e)
         {
-
+            OpenChildForm(new ProductsInterface());
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -33,9 +44,14 @@ namespace TuProductoOnline
             this.Close();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void CustomersTab_Click(object sender, EventArgs e)
         {
+            OpenChildForm(new Customers());
+        }
 
+        private void UsersTab_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Users());
         }
     }
 }
