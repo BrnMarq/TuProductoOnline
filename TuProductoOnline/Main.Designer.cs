@@ -58,7 +58,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(170, 450);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // CustomersTab
             // 
@@ -116,6 +115,7 @@
             this.UsersTab.Text = "   Usuarios";
             this.UsersTab.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.UsersTab.UseVisualStyleBackColor = false;
+            this.UsersTab.Click += new System.EventHandler(this.UsersTab_Click);
             // 
             // ExitButton
             // 

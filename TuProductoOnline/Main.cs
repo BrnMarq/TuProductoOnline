@@ -42,14 +42,14 @@ namespace TuProductoOnline
             this.Close();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void CustomersTab_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Customers());
+        }
+
+        private void UsersTab_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Users());
         }
     }
 }
