@@ -32,13 +32,13 @@
             this.dgvProductos = new System.Windows.Forms.DataGridView();
             this.ClientBox = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ClientBox1 = new System.Windows.Forms.ComboBox();
             this.ProductBox = new System.Windows.Forms.GroupBox();
             this.txtCantidad = new System.Windows.Forms.Label();
             this.CantidadBox = new System.Windows.Forms.TextBox();
             this.btnAgregarCarrito = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.ProductBox2 = new System.Windows.Forms.ComboBox();
             this.btnFacturar = new System.Windows.Forms.Button();
             this.txtDgv = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
@@ -48,7 +48,9 @@
             // 
             // lblName
             // 
+            this.lblName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblName.AutoSize = true;
+            this.lblName.BackColor = System.Drawing.Color.White;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.Location = new System.Drawing.Point(264, 9);
             this.lblName.Name = "lblName";
@@ -58,6 +60,7 @@
             // 
             // dgvProductos
             // 
+            this.dgvProductos.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.dgvProductos.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductos.Location = new System.Drawing.Point(12, 136);
@@ -68,7 +71,7 @@
             // ClientBox
             // 
             this.ClientBox.Controls.Add(this.button1);
-            this.ClientBox.Controls.Add(this.comboBox1);
+            this.ClientBox.Controls.Add(this.ClientBox1);
             this.ClientBox.Location = new System.Drawing.Point(12, 30);
             this.ClientBox.Name = "ClientBox";
             this.ClientBox.Size = new System.Drawing.Size(213, 57);
@@ -85,21 +88,23 @@
             this.button1.Text = "Añadir";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // ClientBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(7, 20);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 0;
+            this.ClientBox1.FormattingEnabled = true;
+            this.ClientBox1.Location = new System.Drawing.Point(7, 20);
+            this.ClientBox1.Name = "ClientBox1";
+            this.ClientBox1.Size = new System.Drawing.Size(121, 21);
+            this.ClientBox1.TabIndex = 0;
+            this.ClientBox1.Text = "- Seleccionar -";
             // 
             // ProductBox
             // 
+            this.ProductBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductBox.Controls.Add(this.txtCantidad);
             this.ProductBox.Controls.Add(this.CantidadBox);
             this.ProductBox.Controls.Add(this.btnAgregarCarrito);
             this.ProductBox.Controls.Add(this.button2);
-            this.ProductBox.Controls.Add(this.comboBox2);
+            this.ProductBox.Controls.Add(this.ProductBox2);
             this.ProductBox.Location = new System.Drawing.Point(366, 30);
             this.ProductBox.Name = "ProductBox";
             this.ProductBox.Size = new System.Drawing.Size(236, 89);
@@ -126,12 +131,15 @@
             // 
             // btnAgregarCarrito
             // 
+            this.btnAgregarCarrito.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAgregarCarrito.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnAgregarCarrito.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAgregarCarrito.Location = new System.Drawing.Point(132, 57);
             this.btnAgregarCarrito.Name = "btnAgregarCarrito";
             this.btnAgregarCarrito.Size = new System.Drawing.Size(98, 23);
             this.btnAgregarCarrito.TabIndex = 2;
             this.btnAgregarCarrito.Text = "Agregar a factura";
-            this.btnAgregarCarrito.UseVisualStyleBackColor = true;
+            this.btnAgregarCarrito.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
@@ -142,17 +150,19 @@
             this.button2.Text = "Añadir producto";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
+            // ProductBox2
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(7, 20);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(149, 21);
-            this.comboBox2.TabIndex = 0;
+            this.ProductBox2.FormattingEnabled = true;
+            this.ProductBox2.Location = new System.Drawing.Point(7, 20);
+            this.ProductBox2.Name = "ProductBox2";
+            this.ProductBox2.Size = new System.Drawing.Size(149, 21);
+            this.ProductBox2.TabIndex = 0;
+            this.ProductBox2.Text = "- Seleccionar -";
             // 
             // btnFacturar
             // 
-            this.btnFacturar.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnFacturar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFacturar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnFacturar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnFacturar.Location = new System.Drawing.Point(534, 376);
             this.btnFacturar.Name = "btnFacturar";
@@ -200,10 +210,10 @@
         private System.Windows.Forms.DataGridView dgvProductos;
         private System.Windows.Forms.GroupBox ClientBox;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox ClientBox1;
         private System.Windows.Forms.GroupBox ProductBox;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox ProductBox2;
         private System.Windows.Forms.TextBox CantidadBox;
         private System.Windows.Forms.Button btnAgregarCarrito;
         private System.Windows.Forms.Button btnFacturar;
