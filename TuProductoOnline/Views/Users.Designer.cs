@@ -64,8 +64,7 @@
             // 
             this.dgvCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvCustomers.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCustomers.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvCustomers.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvCustomers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -77,8 +76,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvCustomers.ColumnHeadersHeight = 30;
-            this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.name,
@@ -132,72 +130,58 @@
             // 
             // ID
             // 
-            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.ID.DefaultCellStyle = dataGridViewCellStyle2;
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
-            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ID.Width = 150;
+            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // name
             // 
-            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.name.HeaderText = "Nombre";
             this.name.Name = "name";
             this.name.ReadOnly = true;
-            this.name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.name.Width = 150;
+            this.name.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // LastName
             // 
-            this.LastName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.LastName.HeaderText = "Apellido";
             this.LastName.Name = "LastName";
             this.LastName.ReadOnly = true;
-            this.LastName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.LastName.Width = 150;
+            this.LastName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // PhoneNumber
             // 
-            this.PhoneNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.PhoneNumber.HeaderText = "Telefono";
+            this.PhoneNumber.HeaderText = "Teléfono";
             this.PhoneNumber.Name = "PhoneNumber";
             this.PhoneNumber.ReadOnly = true;
-            this.PhoneNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.PhoneNumber.Width = 150;
+            this.PhoneNumber.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Direction
             // 
-            this.Direction.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Direction.HeaderText = "Direccion";
+            this.Direction.HeaderText = "Dirección";
             this.Direction.Name = "Direction";
             this.Direction.ReadOnly = true;
-            this.Direction.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Direction.Width = 150;
+            this.Direction.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // edit
             // 
-            this.edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.edit.HeaderText = "Editar";
             this.edit.Image = global::TuProductoOnline.Properties.Resources.editIcon;
             this.edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.edit.Name = "edit";
             this.edit.ReadOnly = true;
-            this.edit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.edit.Width = 80;
+            this.edit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // delete
             // 
-            this.delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.delete.HeaderText = "Eliminar";
             this.delete.Image = global::TuProductoOnline.Properties.Resources.deleteIcon1;
             this.delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.delete.Name = "delete";
             this.delete.ReadOnly = true;
-            this.delete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.delete.Width = 80;
+            this.delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Users
             // 
