@@ -52,6 +52,7 @@
     <Compile Include="CustomerProperties.Designer.cs">
       <DependentUpon>CustomerProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Devices.cs" />
     <Compile Include="Models\Hardware.cs" />
     <Compile Include="LoginForm.cs">
