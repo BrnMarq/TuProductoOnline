@@ -8,7 +8,7 @@ namespace TuProductoOnline.Models
 {
     class Customer
     {
-        private int _code = 0;
+        private int _code = 1;
         private string _name;
         private string _last_name;
         private string _document;
@@ -31,6 +31,8 @@ namespace TuProductoOnline.Models
             _email = email;
             _type = type;
         }
+
+        public int Code { get { return _code; } }
         public string Name { get { return _name; } set { _name = value; } }
         public string LastName { get { return _last_name; } set { _last_name = value; } }
         public string Document { get { return _document; } set { _document = value; } }

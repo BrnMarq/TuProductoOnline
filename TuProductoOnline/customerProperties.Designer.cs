@@ -113,12 +113,13 @@ namespace TuProductoOnline
             this.txtName.BackColor = System.Drawing.Color.White;
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtName.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtName.Location = new System.Drawing.Point(134, 71);
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(232, 25);
             this.txtName.TabIndex = 6;
+            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
             // txtLastName
             // 
@@ -129,6 +130,7 @@ namespace TuProductoOnline
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(232, 25);
             this.txtLastName.TabIndex = 7;
+            this.txtLastName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
             // txtId
             // 

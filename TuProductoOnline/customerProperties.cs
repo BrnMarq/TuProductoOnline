@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TuProductoOnline.Models;
+using TuProductoOnline.Utils;
 
 namespace TuProductoOnline
 {
@@ -22,6 +23,8 @@ namespace TuProductoOnline
         {
             Customer cliente = new Customer();
 
+            txtCode.Text = cliente.Code.ToString();
+
             cliente.IncrementarCode();
             cliente.Name = txtName.Text;
             cliente.LastName = txtLastName.Text;
@@ -31,7 +34,13 @@ namespace TuProductoOnline
             cliente.Email = txtEmail.Text;
             cliente.Type = cbType.SelectedItem.ToString();
 
+
             this.Close(); 
+        }
+
+        private void txtName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.SoloLetras(e);
         }
     }
 }

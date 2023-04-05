@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="Models\Software.cs" />
     <Compile Include="Utils\DbHandler.cs" />
+    <Compile Include="Utils\Validar.cs" />
     <Compile Include="Views\Customers.cs">
       <SubType>Form</SubType>
     </Compile>
