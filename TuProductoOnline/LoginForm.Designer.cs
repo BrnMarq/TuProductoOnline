@@ -36,7 +36,7 @@ namespace TuProductoOnline
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.btnAcceso = new System.Windows.Forms.Button();
+            this.AccessButton = new System.Windows.Forms.Button();
             this.UsernameInput = new System.Windows.Forms.TextBox();
             this.PasswordInput = new System.Windows.Forms.TextBox();
             this.ExitButton = new System.Windows.Forms.Button();
@@ -108,20 +108,21 @@ namespace TuProductoOnline
             this.panel6.Size = new System.Drawing.Size(236, 1);
             this.panel6.TabIndex = 8;
             // 
-            // btnAcceso
+            // AccessButton
             // 
-            this.btnAcceso.BackColor = System.Drawing.Color.White;
-            this.btnAcceso.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAcceso.Enabled = false;
-            this.btnAcceso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAcceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAcceso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.btnAcceso.Location = new System.Drawing.Point(93, 354);
-            this.btnAcceso.Name = "btnAcceso";
-            this.btnAcceso.Size = new System.Drawing.Size(107, 33);
-            this.btnAcceso.TabIndex = 9;
-            this.btnAcceso.Text = "Acceder";
-            this.btnAcceso.UseVisualStyleBackColor = false;
+            this.AccessButton.BackColor = System.Drawing.Color.White;
+            this.AccessButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AccessButton.Enabled = false;
+            this.AccessButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AccessButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AccessButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.AccessButton.Location = new System.Drawing.Point(93, 354);
+            this.AccessButton.Name = "AccessButton";
+            this.AccessButton.Size = new System.Drawing.Size(107, 33);
+            this.AccessButton.TabIndex = 9;
+            this.AccessButton.Text = "Acceder";
+            this.AccessButton.UseVisualStyleBackColor = false;
+            this.AccessButton.Click += new System.EventHandler(this.AccessButton_Click);
             // 
             // UsernameInput
             // 
@@ -234,7 +235,7 @@ namespace TuProductoOnline
             this.Controls.Add(this.PasswordInput);
             this.Controls.Add(this.UsernameInput);
             this.Controls.Add(this.ExitButton);
-            this.Controls.Add(this.btnAcceso);
+            this.Controls.Add(this.AccessButton);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
@@ -267,7 +268,7 @@ namespace TuProductoOnline
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button btnAcceso;
+        private System.Windows.Forms.Button AccessButton;
         private System.Windows.Forms.TextBox UsernameInput;
         private System.Windows.Forms.TextBox PasswordInput;
         private System.Windows.Forms.PictureBox pictureBox2;
