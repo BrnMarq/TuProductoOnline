@@ -14,6 +14,7 @@ namespace TuProductoOnline
     {
         string NamePlaceholder = "Nombre";
         string LastNamePlaceholder = "Apellido";
+        string EmailPlaceholder = "Email";
         string PhoneNumberPlaceholder = "Teléfono";
         string AddressPlaceholder = "Dirección";
         string PasswordPlaceholder = "Contraseña";
@@ -26,6 +27,7 @@ namespace TuProductoOnline
         {
             NameInput.Text = NamePlaceholder;
             LastNameInput.Text = LastNamePlaceholder;
+            EmailInput.Text = EmailPlaceholder;
             PhoneNumberInput.Text = PhoneNumberPlaceholder;
             AddressInput.Text = AddressPlaceholder;
             PasswordInput.Text = PasswordPlaceholder;
@@ -37,10 +39,11 @@ namespace TuProductoOnline
             //y asi activar el boton de acceso
             bool NameInputIsInvalid = string.IsNullOrEmpty(NameInput.Text) || NameInput.Text == NamePlaceholder;
             bool LastNameIsInvalid = string.IsNullOrEmpty(LastNameInput.Text) || LastNameInput.Text == LastNamePlaceholder;
+            bool EmailIsInvalid = string.IsNullOrEmpty(EmailInput.Text) || EmailInput.Text == EmailPlaceholder;
             bool PhoneNumberInputIsInvalid = string.IsNullOrEmpty(PhoneNumberInput.Text) || PhoneNumberInput.Text == PhoneNumberPlaceholder;
             bool AddressInputIsInvalid = string.IsNullOrEmpty(AddressInput.Text) || AddressInput.Text == AddressPlaceholder;
             bool PasswordInputIsInvalid = string.IsNullOrEmpty(PasswordInput.Text) || PasswordInput.Text == PasswordPlaceholder;
-            if (NameInputIsInvalid || LastNameIsInvalid || PhoneNumberInputIsInvalid || AddressInputIsInvalid || PasswordInputIsInvalid)
+            if (NameInputIsInvalid || LastNameIsInvalid || EmailIsInvalid || PhoneNumberInputIsInvalid || AddressInputIsInvalid || PasswordInputIsInvalid)
             {
                 Accessbutton.Enabled = false;
                 return;
@@ -53,6 +56,10 @@ namespace TuProductoOnline
             VerifyInputs();
         }
         private void LastNameInput_TextChanged(object sender, EventArgs e)
+        {
+            VerifyInputs();
+        }
+        private void EmailInput_TextChanged(object sender, EventArgs e)
         {
             VerifyInputs();
         }
@@ -94,6 +101,19 @@ namespace TuProductoOnline
         {
             if (string.IsNullOrWhiteSpace(LastNameInput.Text))
                 LastNameInput.Text = LastNamePlaceholder;
+        }
+        private void EmailInput_Enter(object sender, EventArgs e)
+        {
+            if (EmailInput.Text == EmailPlaceholder)
+            {
+                EmailInput.Text = "";
+            }
+        }
+
+        private void EmailInput_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(EmailInput.Text))
+                EmailInput.Text = EmailPlaceholder;
         }
         private void PhoneNumberInput_Enter(object sender, EventArgs e)
         {
