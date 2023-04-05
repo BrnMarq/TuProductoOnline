@@ -8,6 +8,7 @@ namespace TuProductoOnline.Models
 {
     internal class User
     {
+
         private int _id;
         private string _name;
         private string _email;
@@ -16,6 +17,7 @@ namespace TuProductoOnline.Models
         private string _address;
         private bool _deleted;
 
+        // ---------------- Getters & Setters ----------------
         public int Id { get { return _id; } }
         public string Name { get { return _name; } set { _name = value; } }
         public string Email { get { return _email; } set { _email = value; } }

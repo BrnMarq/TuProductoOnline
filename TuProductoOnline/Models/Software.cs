@@ -8,6 +8,7 @@ namespace TuProductoOnline
 {
     public class Software: Product
     {
+        // ---------------- Attributes ----------------
         private string _license;
 
         // ---------------- Constructor ----------------

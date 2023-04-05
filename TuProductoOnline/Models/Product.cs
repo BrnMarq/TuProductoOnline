@@ -8,6 +8,7 @@ namespace TuProductoOnline
 {
     public class Product
     {
+        // ---------------- Attributes ----------------
         private int _id;
         private string _name;
         private double _price;

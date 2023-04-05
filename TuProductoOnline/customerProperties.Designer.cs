@@ -228,7 +228,7 @@ namespace TuProductoOnline
             this.lblCode.TabIndex = 15;
             this.lblCode.Text = "Código";
             // 
-            // customerProperties
+            // CustomerProperties
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -251,7 +251,7 @@ namespace TuProductoOnline
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.lblLastName);
             this.Controls.Add(this.lblName);
-            this.Name = "customerProperties";
+            this.Name = "CustomerProperties";
             this.Text = "customerProperties";
             this.ResumeLayout(false);
             this.PerformLayout();
