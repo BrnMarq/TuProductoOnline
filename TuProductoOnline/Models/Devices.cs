@@ -8,6 +8,7 @@ namespace TuProductoOnline
 {
     public class Devices: Product
     {
+        // ---------------- Attributes ----------------
         private string _model;
 
         // ---------------- Constructor ----------------
