@@ -8,15 +8,12 @@ namespace TuProductoOnline
 {
     public class Software: Product
     {
-        private string _license;
 
         // ---------------- Constructor ----------------
-        public Software(string name, double price, string brand, string description, string license) : base(name, price, brand, description)
+        public Software(string name, double price, string brand, string description, string type) : base(name, price, brand, description, type)
         {
-            _license = license;
+            
         }
 
-        // ---------------- Getters & Setters ----------------
-        public string License { get { return _license; } set { _license = value; } }
     }
 }
