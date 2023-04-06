@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TuProductoOnline.Views;
+using TuProductoOnline.Utils;
+using TuProductoOnline.Consts;
+using TuProductoOnline.Models;
 
 namespace TuProductoOnline
 {
@@ -34,9 +37,8 @@ namespace TuProductoOnline
             InitializeComponent();
         }
 
-        private void ProductsTab_Click(object sender, EventArgs e)
+        private void Main_Load(object sender, EventArgs e)
         {
-            OpenChildForm(new Products());
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -52,6 +54,11 @@ namespace TuProductoOnline
         private void UsersTab_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Users());
+        }
+
+        private void ProductsTab_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Products());
         }
     }
 }

@@ -7,23 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TuProductoOnline.Models;
 
 namespace TuProductoOnline.Views
 {
     public partial class Customers : Form
     {
+        CustomerProperties miVentana = new CustomerProperties();
+        private int index = 0;
         public Customers()
         {
             InitializeComponent();
         }
-
-        private void Customers_Load(object sender, EventArgs e)
+        private void btnAddCustomer_Click(object sender, EventArgs e)
         {
+            Customer cliente = new Customer();
+            miVentana.ShowDialog();
 
-        }
-
-        private void dgvCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+            index = dgvCustomers.Rows.Add();
+            
 
         }
     }

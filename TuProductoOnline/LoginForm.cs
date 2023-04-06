@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+using TuProductoOnline.Models;
 
 namespace TuProductoOnline
 {
@@ -63,10 +65,10 @@ namespace TuProductoOnline
             bool passwordInputIsInvalid = string.IsNullOrEmpty(PasswordInput.Text) || PasswordInput.Text == passwordPlaceholder;
             if (usernameInputIsInvalid || passwordInputIsInvalid)
             {
-                btnAcceso.Enabled = false;
+                AccessButton.Enabled = false;
                 return;
             }
-            btnAcceso.Enabled = true;
+            AccessButton.Enabled = true;
         }
 
         private void UsernameInput_TextChanged(object sender, EventArgs e)
@@ -132,6 +134,30 @@ namespace TuProductoOnline
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void AccessButton_Click(object sender, EventArgs e)
+        {
+            List<User> users = User.GetUsers();
+            string username = UsernameInput.Text;
+            string password = PasswordInput.Text;
+            bool isUser = users.Exists(user => user.FirstName == username && user.Password == password);
+            if (isUser)
+            {
+                OpenApp();
+                this.Close();
+                return;
+            }
+            MessageBox.Show("Usuario y contraseña no válidos");
+            UsernameInput.Text = "";
+            PasswordInput.Text = "";
+        }
+        
+        private void OpenApp()
+        {
+            Thread th = new Thread(() => Application.Run(new Main()));
+            th.SetApartmentState(ApartmentState.STA);
+            th.Start();
         }
     }
 }

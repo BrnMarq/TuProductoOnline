@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panel1 = new System.Windows.Forms.Panel();
             this.CustomersTab = new System.Windows.Forms.Button();
@@ -186,11 +185,6 @@
             this.Container.Size = new System.Drawing.Size(630, 450);
             this.Container.TabIndex = 7;
             // 
-            // contextMenuStrip1
-            // 
-            //this.contextMenuStrip1.Name = "contextMenuStrip1";
-            //this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -202,6 +196,7 @@
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "Main";
             this.Text = "TuProductoOnline";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CompanyLogo)).EndInit();

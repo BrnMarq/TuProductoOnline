@@ -113,11 +113,13 @@ namespace TuProductoOnline
             this.txtName.BackColor = System.Drawing.Color.White;
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtName.Location = new System.Drawing.Point(134, 71);
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(232, 25);
             this.txtName.TabIndex = 6;
+            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
             // txtLastName
             // 
@@ -128,6 +130,7 @@ namespace TuProductoOnline
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(232, 25);
             this.txtLastName.TabIndex = 7;
+            this.txtLastName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
             // txtId
             // 
@@ -215,6 +218,7 @@ namespace TuProductoOnline
             this.txtCode.Location = new System.Drawing.Point(133, 28);
             this.txtCode.Multiline = true;
             this.txtCode.Name = "txtCode";
+            this.txtCode.ReadOnly = true;
             this.txtCode.Size = new System.Drawing.Size(232, 25);
             this.txtCode.TabIndex = 16;
             // 
@@ -228,7 +232,7 @@ namespace TuProductoOnline
             this.lblCode.TabIndex = 15;
             this.lblCode.Text = "Código";
             // 
-            // customerProperties
+            // CustomerProperties
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -251,7 +255,7 @@ namespace TuProductoOnline
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.lblLastName);
             this.Controls.Add(this.lblName);
-            this.Name = "customerProperties";
+            this.Name = "CustomerProperties";
             this.Text = "customerProperties";
             this.ResumeLayout(false);
             this.PerformLayout();

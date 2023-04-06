@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TuProductoOnline.Models;
 
 namespace TuProductoOnline.Views
 {
     public partial class Users : Form
     {
+        AddUsers miVentana = new AddUsers();
         public Users()
         {
             InitializeComponent();
@@ -24,7 +26,16 @@ namespace TuProductoOnline.Views
 
         private void Users_Load(object sender, EventArgs e)
         {
+            List<User> users = User.GetUsers();
+            foreach (User user in users)
+            {
+                UsersTable.Rows.Add(user.Id, user.FirstName, user.LastName, user.Email, user.Phone, user.Address);
+            }
+        }
 
+        private void btnAddUsers_Click(object sender, EventArgs e)
+        {
+            miVentana.ShowDialog();
         }
     }
 }
