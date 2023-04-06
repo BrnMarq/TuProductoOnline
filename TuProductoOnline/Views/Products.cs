@@ -30,7 +30,7 @@ namespace TuProductoOnline
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Add add = new Add();
-            add.ShowDialog();
+            add.Show();
         }
 
         public  void  fillOutGrid() 
