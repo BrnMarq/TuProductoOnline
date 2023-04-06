@@ -14,8 +14,8 @@ namespace TuProductoOnline
         int movX;
         int movY;
 
-        string usernamePlaceholder = "Username";
-        string passwordPlaceholder = "Password";
+        string usernamePlaceholder = "Usuario";
+        string passwordPlaceholder = "Contraseña";
         char passwordMask = '*';
 
         public LoginForm()
@@ -29,7 +29,7 @@ namespace TuProductoOnline
             PasswordInput.Text = passwordPlaceholder;
 
             bool usersFileExist = File.Exists(@"" + FileNames.Users);
-            if (!usersFileExist) new User(1, "admin", "admin", "admin", "Admin");
+            if (!usersFileExist) new User("admin", "admin", "admin", "Admin");
         }
 
         // ------------------ Make window movable functionality ------------------
@@ -140,9 +140,10 @@ namespace TuProductoOnline
             List<User> users = User.GetUsers();
             string username = UsernameInput.Text;
             string password = PasswordInput.Text;
-            bool isUser = users.Exists(user => user.FirstName == username && user.Password == password);
-            if (isUser)
+            User user = users.Find(targetUser => targetUser.FirstName == username && targetUser.Password == password);
+            if (user != null)
             {
+                User.Login(user);
                 OpenApp();
                 this.Close();
                 return;

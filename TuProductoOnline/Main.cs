@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TuProductoOnline.Views;
-using TuProductoOnline.Utils;
-using TuProductoOnline.Consts;
 using TuProductoOnline.Models;
 
 namespace TuProductoOnline
@@ -39,6 +30,7 @@ namespace TuProductoOnline
 
         private void Main_Load(object sender, EventArgs e)
         {
+            new User("Brian", "Marquez", "master1");
         }
 
         private void ExitButton_Click(object sender, EventArgs e)

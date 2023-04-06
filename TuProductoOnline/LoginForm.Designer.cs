@@ -128,12 +128,11 @@ namespace TuProductoOnline
             // 
             this.UsernameInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
             this.UsernameInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.UsernameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsernameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UsernameInput.ForeColor = System.Drawing.Color.White;
             this.UsernameInput.Location = new System.Drawing.Point(60, 213);
-            this.UsernameInput.Multiline = true;
             this.UsernameInput.Name = "UsernameInput";
-            this.UsernameInput.Size = new System.Drawing.Size(209, 25);
+            this.UsernameInput.Size = new System.Drawing.Size(209, 22);
             this.UsernameInput.TabIndex = 1;
             this.UsernameInput.TextChanged += new System.EventHandler(this.UsernameInput_TextChanged);
             this.UsernameInput.Enter += new System.EventHandler(this.UsernameInput_Enter);
@@ -143,12 +142,11 @@ namespace TuProductoOnline
             // 
             this.PasswordInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
             this.PasswordInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PasswordInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PasswordInput.ForeColor = System.Drawing.Color.White;
             this.PasswordInput.Location = new System.Drawing.Point(60, 282);
-            this.PasswordInput.Multiline = true;
             this.PasswordInput.Name = "PasswordInput";
-            this.PasswordInput.Size = new System.Drawing.Size(183, 25);
+            this.PasswordInput.Size = new System.Drawing.Size(183, 22);
             this.PasswordInput.TabIndex = 2;
             this.PasswordInput.TextChanged += new System.EventHandler(this.PasswordInput_TextChanged);
             this.PasswordInput.Enter += new System.EventHandler(this.PasswordInput_Enter);
