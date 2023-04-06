@@ -42,5 +42,10 @@ namespace TuProductoOnline
         {
             Validar.SoloLetras(e);
         }
+
+        private void CustomerProperties_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -71,6 +71,7 @@
             this.PhoneNumberInput.TabIndex = 26;
             this.PhoneNumberInput.TextChanged += new System.EventHandler(this.PhoneNumberInput_TextChanged);
             this.PhoneNumberInput.Enter += new System.EventHandler(this.PhoneNumberInput_Enter);
+            this.PhoneNumberInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PhoneNumberInput_KeyPress);
             this.PhoneNumberInput.Leave += new System.EventHandler(this.PhoneNumberInput_Leave);
             // 
             // LastNameInput
@@ -85,6 +86,7 @@
             this.LastNameInput.TabIndex = 24;
             this.LastNameInput.TextChanged += new System.EventHandler(this.LastNameInput_TextChanged);
             this.LastNameInput.Enter += new System.EventHandler(this.LastNameInput_Enter);
+            this.LastNameInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LastNameInput_KeyPress);
             this.LastNameInput.Leave += new System.EventHandler(this.LastNameInput_Leave);
             // 
             // NameInput
@@ -100,6 +102,7 @@
             this.NameInput.TabIndex = 23;
             this.NameInput.TextChanged += new System.EventHandler(this.NameInput_TextChanged);
             this.NameInput.Enter += new System.EventHandler(this.NameInput_Enter);
+            this.NameInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameInput_KeyPress);
             this.NameInput.Leave += new System.EventHandler(this.NameInput_Leave);
             // 
             // Addresslbl

@@ -257,6 +257,7 @@ namespace TuProductoOnline
             this.Controls.Add(this.lblName);
             this.Name = "CustomerProperties";
             this.Text = "customerProperties";
+            this.Load += new System.EventHandler(this.CustomerProperties_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
