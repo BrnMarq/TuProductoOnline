@@ -22,9 +22,9 @@ namespace TuProductoOnline
         string AddressPlaceholder = "Dirección";
         string EmailPlaceholder = "Email";
 
-        List<Customer> clientes = new List<Customer>();
+        //List<Customer> clientes = new List<Customer>();
 
-        internal List<Customer> Clientes { get => clientes; set => clientes = value; }
+        //internal List<Customer> Clientes { get => clientes; set => clientes = value; }
 
         //Customer cliente = new Customer();
 
@@ -37,22 +37,13 @@ namespace TuProductoOnline
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            clientes.Add(crearCliente());
-
+            crearCliente();
             this.Close(); 
         }
 
         private Customer crearCliente()
         {
-            Customer cliente = new Customer();
-
-            cliente.Name = txtName.Text;
-            cliente.LastName = txtLastName.Text;
-            cliente.Document = txtId.Text;
-            cliente.PhoneNumber = txtPhoneNumber.Text;
-            cliente.Direction = txtAddress.Text;
-            cliente.Email = txtEmail.Text;
-            cliente.Type = cbType.SelectedItem.ToString();
+            Customer cliente = new Customer(1,txtName.Text, txtLastName.Text, txtId.Text, txtPhoneNumber.Text, txtAddress.Text, txtEmail.Text, cbType.SelectedItem.ToString());
 
             return cliente;
         }

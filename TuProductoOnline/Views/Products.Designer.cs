@@ -60,6 +60,7 @@ namespace TuProductoOnline
             this.btnAdd.TabIndex = 11;
             this.btnAdd.Text = "Agregar";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnEdit
             // 
@@ -131,7 +132,9 @@ namespace TuProductoOnline
             this.GridPrice});
             this.dgvProducts.EnableHeadersVisualStyles = false;
             this.dgvProducts.Location = new System.Drawing.Point(12, 98);
+            this.dgvProducts.MultiSelect = false;
             this.dgvProducts.Name = "dgvProducts";
+            this.dgvProducts.ReadOnly = true;
             this.dgvProducts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -147,9 +150,11 @@ namespace TuProductoOnline
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.dgvProducts.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvProducts.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProducts.Size = new System.Drawing.Size(660, 352);
             this.dgvProducts.TabIndex = 15;
+            this.dgvProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellContentClick);
             // 
             // GridCode
             // 
@@ -157,31 +162,37 @@ namespace TuProductoOnline
             this.GridCode.DefaultCellStyle = dataGridViewCellStyle2;
             this.GridCode.HeaderText = "Código";
             this.GridCode.Name = "GridCode";
+            this.GridCode.ReadOnly = true;
             // 
             // GridType
             // 
             this.GridType.HeaderText = "Tipo";
             this.GridType.Name = "GridType";
+            this.GridType.ReadOnly = true;
             // 
             // GridName
             // 
             this.GridName.HeaderText = "Nombre";
             this.GridName.Name = "GridName";
+            this.GridName.ReadOnly = true;
             // 
             // GridModel
             // 
-            this.GridModel.HeaderText = "Modelo";
+            this.GridModel.HeaderText = "Marca";
             this.GridModel.Name = "GridModel";
+            this.GridModel.ReadOnly = true;
             // 
             // GridDescription
             // 
             this.GridDescription.HeaderText = "Descripción";
             this.GridDescription.Name = "GridDescription";
+            this.GridDescription.ReadOnly = true;
             // 
             // GridPrice
             // 
             this.GridPrice.HeaderText = "Precio";
             this.GridPrice.Name = "GridPrice";
+            this.GridPrice.ReadOnly = true;
             // 
             // Products
             // 

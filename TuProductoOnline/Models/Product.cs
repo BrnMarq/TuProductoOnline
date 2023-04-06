@@ -14,14 +14,16 @@ namespace TuProductoOnline
         private double _price;
         private string _brand;
         private string _description;
+        private string _type;
 
         // ---------------- Constructor ----------------
-        public Product(string name, double price, string brand, string description)
+        public Product(string name, double price, string brand, string description, string type)
         {
             _name = name;
             _price = price;
             _brand = brand;
             _description = description;
+            _type = type;
         }
 
         // ---------------- Getters & Setters ----------------
@@ -30,5 +32,6 @@ namespace TuProductoOnline
         public double Price { get { return _price; } set { _price = value; } }
         public string Brand { get { return _brand; } set { _brand = value; } }
         public string Description { get { return _description; } set { _description = value; } }
+        public string Type { get { return _type; } }
     }
 }

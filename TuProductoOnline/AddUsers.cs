@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TuProductoOnline.Utils;
 
 namespace TuProductoOnline
 {
@@ -153,6 +154,21 @@ namespace TuProductoOnline
         {
             if (string.IsNullOrWhiteSpace(PasswordInput.Text))
                 PasswordInput.Text = PasswordPlaceholder;
+        }
+
+        private void NameInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.SoloLetras(e);
+        }
+
+        private void LastNameInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.SoloLetras(e);
+        }
+
+        private void PhoneNumberInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.SoloNumeros(e);
         }
     }
 }

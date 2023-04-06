@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using TuProductoOnline.Views;
 using TuProductoOnline.Utils;
 using TuProductoOnline.Consts;
-using System.Diagnostics;
+using TuProductoOnline.Models;
 
 namespace TuProductoOnline
 {

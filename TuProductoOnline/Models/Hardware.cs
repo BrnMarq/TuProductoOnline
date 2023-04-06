@@ -6,18 +6,12 @@ using System.Threading.Tasks;
 
 namespace TuProductoOnline
 {
-    public class Hardware: Product
+    public class Hardware : Product
     {
-        // ---------------- Attributes ----------------
-        private string _dimensions;
 
-        // ---------------- Constructor ----------------
-        public Hardware(string name, double price, string brand, string description, string dimensions) : base(name, price, brand, description)
+        public Hardware(string name, double price, string brand, string description, string type) : base(name, price, brand, description, type)
         {
-            _dimensions = dimensions;
-        }
 
-        // ---------------- Getters & Setters ----------------
-        public string Dimensions { get { return _dimensions; } set { _dimensions = value; } }
+        }
     }
 }
