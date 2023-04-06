@@ -9,6 +9,9 @@ namespace TuProductoOnline
     public class Devices: Product
     {
         
+        // ---------------- Attributes ----------------
+        private string _model;
+
         // ---------------- Constructor ----------------
         public Devices(string name, double price, string brand, string description, string type) : base(name, price, brand, description, type)
         {
