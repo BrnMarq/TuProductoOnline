@@ -20,11 +20,8 @@ namespace TuProductoOnline.Models
         private string _type;
 
         private static List<Customer> customers;
-        public Customer()
-        {
 
-        }
-        public Customer(int code, string name, string last_name, string document,string phone_number,string address, string email, string type, bool isLoad = false)
+        public Customer(int code, string name, string last_name, string document, string phone_number, string address, string email, string type)
         {
             _code = code;
             _name = name;
@@ -35,7 +32,19 @@ namespace TuProductoOnline.Models
             _email = email;
             _type = type;
 
-            if (isLoad) return;
+        }
+        public Customer(string name, string last_name, string document,string phone_number,string address, string email, string type)
+        {
+            int code = DbHandler.GetNewId(FileNames.CustomersId);
+
+            _code = code;
+            _name = name;
+            _last_name = last_name;
+            _document = document;
+            _phone_number = phone_number;
+            _address = address;
+            _email = email;
+            _type = type;
 
             List<string> values = new List<string> {
                 code.ToString(),
@@ -73,7 +82,7 @@ namespace TuProductoOnline.Models
             List<List<string>> entries = DbHandler.LeerCSV(FileNames.Customers);
             foreach (List<string> entry in entries)
             {
-                Customer customer = new Customer(int.Parse(entry[0]), entry[1], entry[2], entry[3], entry[4], entry[5], entry[6], entry[7], true);
+                Customer customer = new Customer(int.Parse(entry[0]), entry[1], entry[2], entry[3], entry[4], entry[5], entry[6], entry[7]);
                 customers.Add(customer);
             }
 

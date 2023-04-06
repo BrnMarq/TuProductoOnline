@@ -43,7 +43,15 @@ namespace TuProductoOnline
 
         private Customer crearCliente()
         {
-            Customer cliente = new Customer(1,txtName.Text, txtLastName.Text, txtId.Text, txtPhoneNumber.Text, txtAddress.Text, txtEmail.Text, cbType.SelectedItem.ToString());
+            Customer cliente = new Customer(
+                txtName.Text, 
+                txtLastName.Text, 
+                txtId.Text, 
+                txtPhoneNumber.Text, 
+                txtAddress.Text, 
+                txtEmail.Text, 
+                cbType.SelectedItem.ToString()
+            );
 
             return cliente;
         }

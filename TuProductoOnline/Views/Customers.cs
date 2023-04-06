@@ -17,11 +17,19 @@ namespace TuProductoOnline.Views
         public Customers()
         {
             InitializeComponent();
+
         }
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             miVentana.ShowDialog();
         }
-
+        private void Customers_Load(object sender, EventArgs e)
+        {
+            List<Customer> customers = Customer.GetCustomers();
+            foreach (Customer customer in customers)
+            {
+                dgvCustomers.Rows.Add(customer.Code, customer.Name, customer.PhoneNumber, customer.Address);
+            }
+        }
     }
 }

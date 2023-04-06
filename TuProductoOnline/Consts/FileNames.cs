@@ -10,5 +10,8 @@ namespace TuProductoOnline.Consts
     {
         public static string Users = "users.csv";
         public static string UsersId = "usersId.csv";
+        public static string Customers = "customers.csv";
+        public static string CustomersId = "customersId.csv";
+
     }
 }

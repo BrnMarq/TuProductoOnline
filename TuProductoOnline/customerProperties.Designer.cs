@@ -274,6 +274,7 @@ namespace TuProductoOnline
             this.Controls.Add(this.lblLastName);
             this.Controls.Add(this.lblName);
             this.Name = "CustomerProperties";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "customerProperties";
             this.Load += new System.EventHandler(this.CustomerProperties_Load);
             this.ResumeLayout(false);
