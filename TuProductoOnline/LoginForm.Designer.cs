@@ -119,7 +119,7 @@ namespace TuProductoOnline
             this.AccessButton.Location = new System.Drawing.Point(93, 354);
             this.AccessButton.Name = "AccessButton";
             this.AccessButton.Size = new System.Drawing.Size(107, 33);
-            this.AccessButton.TabIndex = 9;
+            this.AccessButton.TabIndex = 3;
             this.AccessButton.Text = "Acceder";
             this.AccessButton.UseVisualStyleBackColor = false;
             this.AccessButton.Click += new System.EventHandler(this.AccessButton_Click);
@@ -134,7 +134,7 @@ namespace TuProductoOnline
             this.UsernameInput.Multiline = true;
             this.UsernameInput.Name = "UsernameInput";
             this.UsernameInput.Size = new System.Drawing.Size(209, 25);
-            this.UsernameInput.TabIndex = 11;
+            this.UsernameInput.TabIndex = 1;
             this.UsernameInput.TextChanged += new System.EventHandler(this.UsernameInput_TextChanged);
             this.UsernameInput.Enter += new System.EventHandler(this.UsernameInput_Enter);
             this.UsernameInput.Leave += new System.EventHandler(this.UsernameInput_Leave);
@@ -149,7 +149,7 @@ namespace TuProductoOnline
             this.PasswordInput.Multiline = true;
             this.PasswordInput.Name = "PasswordInput";
             this.PasswordInput.Size = new System.Drawing.Size(183, 25);
-            this.PasswordInput.TabIndex = 11;
+            this.PasswordInput.TabIndex = 2;
             this.PasswordInput.TextChanged += new System.EventHandler(this.PasswordInput_TextChanged);
             this.PasswordInput.Enter += new System.EventHandler(this.PasswordInput_Enter);
             this.PasswordInput.Leave += new System.EventHandler(this.PasswordInput_Leave);
