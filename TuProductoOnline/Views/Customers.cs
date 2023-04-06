@@ -14,19 +14,14 @@ namespace TuProductoOnline.Views
     public partial class Customers : Form
     {
         CustomerProperties miVentana = new CustomerProperties();
-        private int index = 0;
         public Customers()
         {
             InitializeComponent();
         }
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            Customer cliente = new Customer();
             miVentana.ShowDialog();
-
-            index = dgvCustomers.Rows.Add();
-            
-
         }
+
     }
 }

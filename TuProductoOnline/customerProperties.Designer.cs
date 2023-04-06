@@ -39,7 +39,7 @@ namespace TuProductoOnline
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
-            this.txtDirection = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.btnAccept = new System.Windows.Forms.Button();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -119,7 +119,10 @@ namespace TuProductoOnline
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(232, 25);
             this.txtName.TabIndex = 6;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            this.txtName.Enter += new System.EventHandler(this.txtName_Enter);
             this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
+            this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
             // 
             // txtLastName
             // 
@@ -130,7 +133,10 @@ namespace TuProductoOnline
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(232, 25);
             this.txtLastName.TabIndex = 7;
+            this.txtLastName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            this.txtLastName.Enter += new System.EventHandler(this.txtLastName_Enter);
             this.txtLastName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
+            this.txtLastName.Leave += new System.EventHandler(this.txtLastName_Leave);
             // 
             // txtId
             // 
@@ -141,6 +147,9 @@ namespace TuProductoOnline
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(232, 25);
             this.txtId.TabIndex = 8;
+            this.txtId.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            this.txtId.Enter += new System.EventHandler(this.txtId_Enter);
+            this.txtId.Leave += new System.EventHandler(this.txtId_Leave);
             // 
             // txtPhoneNumber
             // 
@@ -151,16 +160,22 @@ namespace TuProductoOnline
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(232, 25);
             this.txtPhoneNumber.TabIndex = 9;
+            this.txtPhoneNumber.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            this.txtPhoneNumber.Enter += new System.EventHandler(this.txtPhoneNumber_Enter);
+            this.txtPhoneNumber.Leave += new System.EventHandler(this.txtPhoneNumber_Leave);
             // 
-            // txtDirection
+            // txtAddress
             // 
-            this.txtDirection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDirection.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDirection.Location = new System.Drawing.Point(134, 230);
-            this.txtDirection.Multiline = true;
-            this.txtDirection.Name = "txtDirection";
-            this.txtDirection.Size = new System.Drawing.Size(232, 25);
-            this.txtDirection.TabIndex = 10;
+            this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddress.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddress.Location = new System.Drawing.Point(134, 230);
+            this.txtAddress.Multiline = true;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(232, 25);
+            this.txtAddress.TabIndex = 10;
+            this.txtAddress.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            this.txtAddress.Enter += new System.EventHandler(this.txtAddress_Enter);
+            this.txtAddress.Leave += new System.EventHandler(this.txtAddress_Leave);
             // 
             // cbType
             // 
@@ -199,6 +214,9 @@ namespace TuProductoOnline
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(232, 25);
             this.txtEmail.TabIndex = 14;
+            this.txtEmail.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            this.txtEmail.Enter += new System.EventHandler(this.txtEmail_Enter);
+            this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
             // lblEmail
             // 
@@ -244,7 +262,7 @@ namespace TuProductoOnline
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.cbType);
-            this.Controls.Add(this.txtDirection);
+            this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.txtPhoneNumber);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.txtLastName);
@@ -257,6 +275,7 @@ namespace TuProductoOnline
             this.Controls.Add(this.lblName);
             this.Name = "CustomerProperties";
             this.Text = "customerProperties";
+            this.Load += new System.EventHandler(this.CustomerProperties_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,7 +293,7 @@ namespace TuProductoOnline
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtPhoneNumber;
-        private System.Windows.Forms.TextBox txtDirection;
+        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.ComboBox cbType;
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.TextBox txtEmail;
