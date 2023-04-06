@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using System.Threading;
 using TuProductoOnline.Models;
+using TuProductoOnline.Consts;
 
 namespace TuProductoOnline
 {
@@ -31,6 +27,9 @@ namespace TuProductoOnline
         {
             UsernameInput.Text = usernamePlaceholder;
             PasswordInput.Text = passwordPlaceholder;
+
+            bool usersFileExist = File.Exists(@"" + FileNames.Users);
+            if (!usersFileExist) new User(1, "admin", "admin", "admin", "Admin");
         }
 
         // ------------------ Make window movable functionality ------------------
