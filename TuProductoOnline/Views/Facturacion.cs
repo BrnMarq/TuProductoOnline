@@ -125,6 +125,21 @@ namespace TuProductoOnline.Views
 
         }
 
+        //Remover fila.
+        private void ListProducTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //asignar variable para remover los datos de la lista que creamos en paralelo.
+            int i = ListProducTable.CurrentRow.Index;
+
+            //Remover la fila seleccionada
+            ListProducTable.Rows.Remove(ListProducTable.CurrentRow);
+
+            ProductosCarrito.RemoveAt(i);
+            contador--;
+            actualizarPrecio();
+
+        }
+
         public void actualizarPrecio()
         {
             double Precio = 0;
@@ -142,20 +157,6 @@ namespace TuProductoOnline.Views
 
         }
 
-        //Remover fila.
-        private void ListProducTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //asignar variable para remover los datos de la lista que creamos en paralelo.
-            int i = ListProducTable.CurrentRow.Index;
-
-            //Remover la fila seleccionada
-            ListProducTable.Rows.Remove(ListProducTable.CurrentRow);
-
-            ProductosCarrito.RemoveAt(i);
-            contador--;
-
-
-        }
     }
 
     

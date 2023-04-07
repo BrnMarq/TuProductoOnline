@@ -113,12 +113,15 @@
     <Compile Include="Views\Users.Designer.cs">
       <DependentUpon>Users.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="WarningDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WarningDialog.Designer.cs">
       <DependentUpon>WarningDialog.cs</DependentUpon>
     </Compile>
+=======
+>>>>>>> de6ca36e1ef521052010bbd5005037bbd811af48
     <EmbeddedResource Include="Add.resx">
       <DependentUpon>Add.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,9 +153,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Users.resx">
       <DependentUpon>Users.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WarningDialog.resx">
-      <DependentUpon>WarningDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\TuProductoOnline.Models.User.datasource" />
     <None Include="Properties\Settings.settings">
