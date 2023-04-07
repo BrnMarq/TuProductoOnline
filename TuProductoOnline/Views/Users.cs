@@ -37,5 +37,19 @@ namespace TuProductoOnline.Views
         {
             miVentana.ShowDialog();
         }
+
+        private void UsersTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == UsersTable.Columns["EditCell"].Index)
+            {
+                MessageBox.Show(UsersTable.Rows[e.RowIndex].Cells[0].Value.ToString());
+                //EditUser()
+            }
+        }
+
+        public void EditUser(string id)
+        {
+
+        }
     }
 }
