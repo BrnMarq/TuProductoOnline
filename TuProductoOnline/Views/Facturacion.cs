@@ -116,7 +116,7 @@ namespace TuProductoOnline.Views
 
                 //Agregar al DataGridView
 
-                ListProducTable.Rows.Add(ProductosCarrito[contador][0], ProductosCarrito[contador][1], ProductosCarrito[contador][2], ProductosCarrito[contador][3],  DataGridViewButtonColumn.);
+                ListProducTable.Rows.Add(ProductosCarrito[contador][0], ProductosCarrito[contador][1], ProductosCarrito[contador][2], ProductosCarrito[contador][3],"Borrar");
             
                 contador++;
             actualizarPrecio();

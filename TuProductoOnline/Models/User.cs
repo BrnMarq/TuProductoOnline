@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using TuProductoOnline.Utils;
 using TuProductoOnline.Consts;
 
@@ -20,9 +21,10 @@ namespace TuProductoOnline.Models
         private string _address;
         private bool _deleted;
 
-        private static List<User> users;
+        private static User _activeUser;
+        private static List<User> _users;
 
-        public User(int id, string firstName, string lastName, string password, string role = "member", string email = "", string phone = "", string address = "", bool isLoad = false)
+        public User(int id, string firstName, string lastName, string password, string role = "member", string email = "", string phone = "", string address = "")
         {
             _id = id;
             _firstName = firstName;
@@ -33,8 +35,21 @@ namespace TuProductoOnline.Models
             _phone = phone;
             _address = address;
             _deleted = false;
+        }
 
-            if (isLoad) return;
+        public User(string firstName, string lastName, string password, string role = "member", string email = "", string phone = "", string address = "", bool isLoad = false)
+        {
+            int id = DbHandler.GetNewId(FileNames.UsersId);
+
+            _id = id;
+            _firstName = firstName;
+            _lastName = lastName;
+            _password = password;
+            _role = role;
+            _email = email;
+            _phone = phone;
+            _address = address;
+            _deleted = false;
 
             List<string> values = new List<string> {
                 id.ToString(),
@@ -50,7 +65,7 @@ namespace TuProductoOnline.Models
             DbHandler.EscribirCSV(FileNames.Users, values);
 
             GetUsers();
-            users.Add(this);
+            _users.Add(this);
         }
 
         // ---------------- Getters & Setters ----------------
@@ -63,20 +78,26 @@ namespace TuProductoOnline.Models
         public string Address { get { return _address; } set { _address = value; } }
         public string Password { get { return _password; } set { _password = value; } }
         public bool Deleted { get { return _deleted; } set { _deleted = value; } }
+        public static User ActiveUser { get { return _activeUser; } }
         
         public static List<User> GetUsers()
         {
-            if (users != null) return users;
+            if (_users != null) return _users;
 
-            users = new List<User>();
+            _users = new List<User>();
             List<List<string>> entries = DbHandler.LeerCSV(FileNames.Users);
             foreach (List<string> entry in entries)
             {
-                User user = new User(int.Parse(entry[0]), entry[1], entry[2], entry[3], entry[4], entry[5], entry[6], entry[7], true);
-                users.Add(user);
+                User user = new User(int.Parse(entry[0]), entry[1], entry[2], entry[3], entry[4], entry[5], entry[6], entry[7]);
+                _users.Add(user);
             }
 
-            return users;
+            return _users;
+        }
+
+        public static void Login(User user)
+        {
+            _activeUser = user;
         }
     }
 }

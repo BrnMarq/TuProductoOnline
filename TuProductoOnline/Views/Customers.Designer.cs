@@ -50,6 +50,8 @@
             // 
             // dgvCustomers
             // 
+            this.dgvCustomers.AllowUserToAddRows = false;
+            this.dgvCustomers.AllowUserToDeleteRows = false;
             this.dgvCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -77,6 +79,7 @@
             this.dgvCustomers.EnableHeadersVisualStyles = false;
             this.dgvCustomers.Location = new System.Drawing.Point(12, 98);
             this.dgvCustomers.Name = "dgvCustomers";
+            this.dgvCustomers.ReadOnly = true;
             this.dgvCustomers.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -102,21 +105,25 @@
             this.Code.DefaultCellStyle = dataGridViewCellStyle2;
             this.Code.HeaderText = "Código";
             this.Code.Name = "Code";
+            this.Code.ReadOnly = true;
             // 
             // Nombre
             // 
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
             // 
             // phoneNumber
             // 
             this.phoneNumber.HeaderText = "Teléfono";
             this.phoneNumber.Name = "phoneNumber";
+            this.phoneNumber.ReadOnly = true;
             // 
             // direction
             // 
             this.direction.HeaderText = "Dirección";
             this.direction.Name = "direction";
+            this.direction.ReadOnly = true;
             // 
             // edit
             // 
@@ -124,6 +131,7 @@
             this.edit.Image = global::TuProductoOnline.Properties.Resources.editIcon;
             this.edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.edit.Name = "edit";
+            this.edit.ReadOnly = true;
             // 
             // delete
             // 
@@ -131,6 +139,7 @@
             this.delete.Image = global::TuProductoOnline.Properties.Resources.deleteIcon1;
             this.delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.delete.Name = "delete";
+            this.delete.ReadOnly = true;
             // 
             // btnAddCustomer
             // 
@@ -160,6 +169,7 @@
             this.btnCheckCustomer.TabIndex = 4;
             this.btnCheckCustomer.Text = "Consultar";
             this.btnCheckCustomer.UseVisualStyleBackColor = false;
+            this.btnCheckCustomer.Click += new System.EventHandler(this.btnCheckCustomer_Click);
             // 
             // btnImport
             // 
@@ -218,6 +228,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Customers";
             this.Text = "Customers";
+            this.Load += new System.EventHandler(this.Customers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).EndInit();
             this.ResumeLayout(false);
 
