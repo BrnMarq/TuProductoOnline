@@ -21,6 +21,11 @@ namespace TuProductoOnline.Models
 
         private static List<Customer> customers;
 
+        public Customer()
+        {
+
+        }
+
         public Customer(int code, string name, string last_name, string document, string phone_number, string address, string email, string type)
         {
             _code = code;
