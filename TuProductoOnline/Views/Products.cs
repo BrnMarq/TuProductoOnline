@@ -40,19 +40,24 @@ namespace TuProductoOnline
                 row.Cells[3].Value = add.Brand;
                 row.Cells[4].Value = add.Description;
                 row.Cells[5].Value = add.Price;
+                
 
             }
             
-        }       
-
-        private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        }            
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            
+            //Delete delete = new Delete();
+            //ConfirmDelete confirm = new ConfirmDelete();
+            //delete.ShowDialog();
+            //for (int i = 0; i < product.Count; i++)
+            //{
+            //    if (delete.Id == product[i].Id) 
+            //    {
+                    
+                
+            //    }
+            //}
         }
     }
 
