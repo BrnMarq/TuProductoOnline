@@ -26,6 +26,7 @@ namespace TuProductoOnline
         public Main()
         {
             InitializeComponent();
+            customizeDesign();
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -52,5 +53,51 @@ namespace TuProductoOnline
         {
             OpenChildForm(new Products());
         }
+
+        private void BillingTab_Click(object sender, EventArgs e)
+        {
+            showSubMenu();
+        }
+
+        private void btnFacturacion_Click(object sender, EventArgs e)
+        {
+            //...
+            //tu código
+            //...
+            hideSubMenu();
+        }
+
+        private void btnRegistros_Click(object sender, EventArgs e)
+        {
+            //...
+            //tu código
+            //...
+            hideSubMenu();
+        }
+
+        private void customizeDesign()
+        {
+            panelSubMenu.Visible = false;
+        }
+
+        private void hideSubMenu()
+        {
+            if (panelSubMenu.Visible == true)
+                panelSubMenu.Visible = false;
+        }
+
+        private void showSubMenu()
+        {
+            if (panelSubMenu.Visible == false)
+            {
+                panelSubMenu.Visible = true;
+            }
+            else
+            {
+                panelSubMenu.Visible = false;
+            }
+
+        }
+
     }
 }

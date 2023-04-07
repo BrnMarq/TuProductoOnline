@@ -15,17 +15,6 @@ namespace TuProductoOnline
 {
     public partial class CustomerProperties : Form
     {       
-        //Getters y setters para los textbox
-        public string Code { get => txtCode.Text; set => txtCode.Text = value; }
-        public string Nombre { get => txtName.Text; set => txtName.Text = value; }
-        public string Last_name { get => txtLastName.Text; set => txtLastName.Text = value; }
-        public string Id { get => txtId.Text; set => txtId.Text = value; }
-        public string Phone_number { get => txtPhoneNumber.Text; set => txtPhoneNumber.Text = value; }
-        public string Address { get => txtAddress.Text; set => txtAddress.Text = value; }
-        public string Email { get => txtEmail.Text; set => txtEmail.Text = value; }
-        public int Type { get => cbType.SelectedIndex; set => cbType.SelectedIndex = value; }
-        public bool BtnActivado { get => btnAccept.Enabled; set => btnAccept.Enabled = value; }
-
         public CustomerProperties()
         {
             InitializeComponent();
@@ -70,6 +59,17 @@ namespace TuProductoOnline
             txtEmail.Text = "";
             cbType.SelectedIndex = 0;
         }
+
+        //Getters y setters para los textbox
+        public string Code { get => txtCode.Text; set => txtCode.Text = value; }
+        public string Nombre { get => txtName.Text; set => txtName.Text = value; }
+        public string Last_name { get => txtLastName.Text; set => txtLastName.Text = value; }
+        public string Id { get => txtId.Text; set => txtId.Text = value; }
+        public string Phone_number { get => txtPhoneNumber.Text; set => txtPhoneNumber.Text = value; }
+        public string Address { get => txtAddress.Text; set => txtAddress.Text = value; }
+        public string Email { get => txtEmail.Text; set => txtEmail.Text = value; }
+        public int Type { get => cbType.SelectedIndex; set => cbType.SelectedIndex = value; }
+        public bool BtnActivado { get => btnAccept.Enabled; set => btnAccept.Enabled = value; }
 
     }
 }

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panelSubMenu = new System.Windows.Forms.Panel();
             this.CustomersTab = new System.Windows.Forms.Button();
             this.BillingTab = new System.Windows.Forms.Button();
             this.UsersTab = new System.Windows.Forms.Button();
@@ -39,13 +40,18 @@
             this.CompanyLogo = new System.Windows.Forms.PictureBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.Container = new System.Windows.Forms.Panel();
+            this.btnFacturacion = new System.Windows.Forms.Button();
+            this.btnRegistros = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            this.panelSubMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CompanyLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.panel1.Controls.Add(this.panelSubMenu);
             this.panel1.Controls.Add(this.CustomersTab);
             this.panel1.Controls.Add(this.BillingTab);
             this.panel1.Controls.Add(this.UsersTab);
@@ -56,8 +62,18 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(170, 450);
+            this.panel1.Size = new System.Drawing.Size(170, 451);
             this.panel1.TabIndex = 0;
+            // 
+            // panelSubMenu
+            // 
+            this.panelSubMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(139)))), ((int)(((byte)(234)))));
+            this.panelSubMenu.Controls.Add(this.btnRegistros);
+            this.panelSubMenu.Controls.Add(this.btnFacturacion);
+            this.panelSubMenu.Location = new System.Drawing.Point(0, 281);
+            this.panelSubMenu.Name = "panelSubMenu";
+            this.panelSubMenu.Size = new System.Drawing.Size(170, 72);
+            this.panelSubMenu.TabIndex = 7;
             // 
             // CustomersTab
             // 
@@ -96,6 +112,7 @@
             this.BillingTab.Text = "   Facturación";
             this.BillingTab.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BillingTab.UseVisualStyleBackColor = false;
+            this.BillingTab.Click += new System.EventHandler(this.BillingTab_Click);
             // 
             // UsersTab
             // 
@@ -127,7 +144,7 @@
             this.ExitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExitButton.ForeColor = System.Drawing.Color.White;
             this.ExitButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ExitButton.Location = new System.Drawing.Point(46, 402);
+            this.ExitButton.Location = new System.Drawing.Point(46, 403);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(63, 36);
             this.ExitButton.TabIndex = 3;
@@ -182,14 +199,48 @@
             this.Container.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Container.Location = new System.Drawing.Point(170, 0);
             this.Container.Name = "Container";
-            this.Container.Size = new System.Drawing.Size(630, 450);
+            this.Container.Size = new System.Drawing.Size(630, 451);
             this.Container.TabIndex = 7;
+            // 
+            // btnFacturacion
+            // 
+            this.btnFacturacion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFacturacion.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnFacturacion.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(139)))), ((int)(((byte)(234)))));
+            this.btnFacturacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFacturacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFacturacion.ForeColor = System.Drawing.Color.White;
+            this.btnFacturacion.Location = new System.Drawing.Point(0, 0);
+            this.btnFacturacion.Name = "btnFacturacion";
+            this.btnFacturacion.Padding = new System.Windows.Forms.Padding(43, 0, 0, 0);
+            this.btnFacturacion.Size = new System.Drawing.Size(170, 36);
+            this.btnFacturacion.TabIndex = 0;
+            this.btnFacturacion.Text = "Facturación";
+            this.btnFacturacion.UseVisualStyleBackColor = true;
+            this.btnFacturacion.Click += new System.EventHandler(this.btnFacturacion_Click);
+            // 
+            // btnRegistros
+            // 
+            this.btnRegistros.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegistros.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnRegistros.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(139)))), ((int)(((byte)(234)))));
+            this.btnRegistros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistros.ForeColor = System.Drawing.Color.White;
+            this.btnRegistros.Location = new System.Drawing.Point(0, 36);
+            this.btnRegistros.Name = "btnRegistros";
+            this.btnRegistros.Padding = new System.Windows.Forms.Padding(43, 0, 0, 0);
+            this.btnRegistros.Size = new System.Drawing.Size(170, 36);
+            this.btnRegistros.TabIndex = 1;
+            this.btnRegistros.Text = "Registros";
+            this.btnRegistros.UseVisualStyleBackColor = true;
+            this.btnRegistros.Click += new System.EventHandler(this.btnRegistros_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 451);
             this.Controls.Add(this.Container);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -199,6 +250,7 @@
             this.Load += new System.EventHandler(this.Main_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panelSubMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CompanyLogo)).EndInit();
             this.ResumeLayout(false);
 
@@ -216,5 +268,8 @@
         private System.Windows.Forms.Button UsersTab;
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Panel Container;
+        private System.Windows.Forms.Panel panelSubMenu;
+        private System.Windows.Forms.Button btnRegistros;
+        private System.Windows.Forms.Button btnFacturacion;
     }
 }
