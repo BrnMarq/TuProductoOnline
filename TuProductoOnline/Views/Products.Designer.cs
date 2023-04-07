@@ -155,7 +155,7 @@ namespace TuProductoOnline
             this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProducts.Size = new System.Drawing.Size(660, 352);
             this.dgvProducts.TabIndex = 15;
-            this.dgvProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellContentClick);
+            
             // 
             // GridCode
             // 
