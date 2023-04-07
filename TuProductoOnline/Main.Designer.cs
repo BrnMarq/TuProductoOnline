@@ -96,6 +96,7 @@
             this.BillingTab.Text = "   Facturación";
             this.BillingTab.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BillingTab.UseVisualStyleBackColor = false;
+            this.BillingTab.Click += new System.EventHandler(this.BillingTab_Click);
             // 
             // UsersTab
             // 

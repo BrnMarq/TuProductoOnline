@@ -52,5 +52,10 @@ namespace TuProductoOnline
         {
             OpenChildForm(new Products());
         }
+
+        private void BillingTab_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Facturacion());
+        }
     }
 }
