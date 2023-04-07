@@ -39,7 +39,7 @@ namespace TuProductoOnline
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
-            this.txtDirection = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.btnAccept = new System.Windows.Forms.Button();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -152,15 +152,15 @@ namespace TuProductoOnline
             this.txtPhoneNumber.Size = new System.Drawing.Size(232, 25);
             this.txtPhoneNumber.TabIndex = 9;
             // 
-            // txtDirection
+            // txtAddress
             // 
-            this.txtDirection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDirection.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDirection.Location = new System.Drawing.Point(134, 230);
-            this.txtDirection.Multiline = true;
-            this.txtDirection.Name = "txtDirection";
-            this.txtDirection.Size = new System.Drawing.Size(232, 25);
-            this.txtDirection.TabIndex = 10;
+            this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddress.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddress.Location = new System.Drawing.Point(134, 230);
+            this.txtAddress.Multiline = true;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(232, 25);
+            this.txtAddress.TabIndex = 10;
             // 
             // cbType
             // 
@@ -230,6 +230,7 @@ namespace TuProductoOnline
             this.lblCode.Name = "lblCode";
             this.lblCode.Size = new System.Drawing.Size(64, 18);
             this.lblCode.TabIndex = 15;
+            this.lblCode.Tag = "";
             this.lblCode.Text = "Código";
             // 
             // CustomerProperties
@@ -244,7 +245,7 @@ namespace TuProductoOnline
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.cbType);
-            this.Controls.Add(this.txtDirection);
+            this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.txtPhoneNumber);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.txtLastName);
@@ -256,8 +257,9 @@ namespace TuProductoOnline
             this.Controls.Add(this.lblLastName);
             this.Controls.Add(this.lblName);
             this.Name = "CustomerProperties";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "customerProperties";
-            this.Load += new System.EventHandler(this.CustomerProperties_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CustomerProperties_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,7 +277,7 @@ namespace TuProductoOnline
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtPhoneNumber;
-        private System.Windows.Forms.TextBox txtDirection;
+        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.ComboBox cbType;
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.TextBox txtEmail;

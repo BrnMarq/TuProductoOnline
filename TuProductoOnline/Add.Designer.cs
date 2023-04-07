@@ -29,7 +29,7 @@ namespace TuProductoOnline
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,13 +46,14 @@ namespace TuProductoOnline
             this.btnAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtId
             // 
-            this.textBox1.Location = new System.Drawing.Point(107, 96);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(173, 20);
-            this.textBox1.TabIndex = 0;
+            this.txtId.Location = new System.Drawing.Point(107, 96);
+            this.txtId.Multiline = true;
+            this.txtId.Name = "txtId";
+            this.txtId.ReadOnly = true;
+            this.txtId.Size = new System.Drawing.Size(173, 20);
+            this.txtId.TabIndex = 0;
             // 
             // label1
             // 
@@ -181,6 +182,8 @@ namespace TuProductoOnline
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(173, 21);
             this.cmbType.TabIndex = 2;
+            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
+            this.cmbType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbType_KeyPress);
             // 
             // btnExit
             // 
@@ -210,6 +213,7 @@ namespace TuProductoOnline
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Agregar";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click_1);
             // 
             // Add
             // 
@@ -231,7 +235,7 @@ namespace TuProductoOnline
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtBrand);
             this.Controls.Add(this.txtName);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtId);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Add";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -243,7 +247,7 @@ namespace TuProductoOnline
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
