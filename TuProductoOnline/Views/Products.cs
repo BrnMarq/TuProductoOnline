@@ -47,17 +47,17 @@ namespace TuProductoOnline
         }            
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            Delete delete = new Delete();
-            ConfirmDelete confirm = new ConfirmDelete();
-            delete.ShowDialog();
-            for (int i = 0; i < product.Count; i++)
-            {
-                if (delete.Id == product[i].Id) 
-                {
+            //Delete delete = new Delete();
+            //ConfirmDelete confirm = new ConfirmDelete();
+            //delete.ShowDialog();
+            //for (int i = 0; i < product.Count; i++)
+            //{
+            //    if (delete.Id == product[i].Id) 
+            //    {
                     
                 
-                }
-            }
+            //    }
+            //}
         }
     }
 
