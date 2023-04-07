@@ -119,10 +119,7 @@ namespace TuProductoOnline
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(232, 25);
             this.txtName.TabIndex = 6;
-            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
-            this.txtName.Enter += new System.EventHandler(this.txtName_Enter);
             this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
-            this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
             // 
             // txtLastName
             // 
@@ -133,10 +130,7 @@ namespace TuProductoOnline
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(232, 25);
             this.txtLastName.TabIndex = 7;
-            this.txtLastName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
-            this.txtLastName.Enter += new System.EventHandler(this.txtLastName_Enter);
             this.txtLastName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
-            this.txtLastName.Leave += new System.EventHandler(this.txtLastName_Leave);
             // 
             // txtId
             // 
@@ -147,9 +141,6 @@ namespace TuProductoOnline
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(232, 25);
             this.txtId.TabIndex = 8;
-            this.txtId.TextChanged += new System.EventHandler(this.txtName_TextChanged);
-            this.txtId.Enter += new System.EventHandler(this.txtId_Enter);
-            this.txtId.Leave += new System.EventHandler(this.txtId_Leave);
             // 
             // txtPhoneNumber
             // 
@@ -160,9 +151,6 @@ namespace TuProductoOnline
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(232, 25);
             this.txtPhoneNumber.TabIndex = 9;
-            this.txtPhoneNumber.TextChanged += new System.EventHandler(this.txtName_TextChanged);
-            this.txtPhoneNumber.Enter += new System.EventHandler(this.txtPhoneNumber_Enter);
-            this.txtPhoneNumber.Leave += new System.EventHandler(this.txtPhoneNumber_Leave);
             // 
             // txtAddress
             // 
@@ -173,9 +161,6 @@ namespace TuProductoOnline
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(232, 25);
             this.txtAddress.TabIndex = 10;
-            this.txtAddress.TextChanged += new System.EventHandler(this.txtName_TextChanged);
-            this.txtAddress.Enter += new System.EventHandler(this.txtAddress_Enter);
-            this.txtAddress.Leave += new System.EventHandler(this.txtAddress_Leave);
             // 
             // cbType
             // 
@@ -214,9 +199,6 @@ namespace TuProductoOnline
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(232, 25);
             this.txtEmail.TabIndex = 14;
-            this.txtEmail.TextChanged += new System.EventHandler(this.txtName_TextChanged);
-            this.txtEmail.Enter += new System.EventHandler(this.txtEmail_Enter);
-            this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
             // lblEmail
             // 
@@ -248,6 +230,7 @@ namespace TuProductoOnline
             this.lblCode.Name = "lblCode";
             this.lblCode.Size = new System.Drawing.Size(64, 18);
             this.lblCode.TabIndex = 15;
+            this.lblCode.Tag = "";
             this.lblCode.Text = "Código";
             // 
             // CustomerProperties
@@ -276,7 +259,7 @@ namespace TuProductoOnline
             this.Name = "CustomerProperties";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "customerProperties";
-            this.Load += new System.EventHandler(this.CustomerProperties_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CustomerProperties_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

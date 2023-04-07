@@ -31,5 +31,39 @@ namespace TuProductoOnline.Views
                 dgvCustomers.Rows.Add(customer.Code, customer.Name, customer.PhoneNumber, customer.Address);
             }
         }
+        private void btnCheckCustomer_Click(object sender, EventArgs e)
+        {
+            miVentana.BtnActivado = false;
+
+            List<Customer> customers = Customer.GetCustomers();
+            
+            int idSeleccionado = int.Parse(dgvCustomers.CurrentRow.Cells[0].Value.ToString());
+
+                foreach (Customer customer in customers)
+                {
+                    if (customer.Code == idSeleccionado)
+                    {
+                        miVentana.Code = customer.Code.ToString();
+                        miVentana.Nombre = customer.Name;
+                        miVentana.Last_name = customer.LastName;
+                        miVentana.Id = customer.Document;
+                        miVentana.Phone_number = customer.PhoneNumber;
+                        miVentana.Address = customer.Address;
+                        miVentana.Email = customer.Email;
+                        if(customer.Type == "Ordinario")
+                        {
+                            miVentana.Type = 0;
+                        }
+                        else
+                        {
+                            miVentana.Type = 1;
+                        }
+                        break;
+                    }
+                }
+            miVentana.ShowDialog();
+        }
+
     }
 }
+
