@@ -116,6 +116,12 @@
     <Compile Include="Views\Users.Designer.cs">
       <DependentUpon>Users.cs</DependentUpon>
     </Compile>
+    <Compile Include="WarningDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WarningDialog.Designer.cs">
+      <DependentUpon>WarningDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddUsers.resx">
       <DependentUpon>AddUsers.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Users.resx">
       <DependentUpon>Users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WarningDialog.resx">
+      <DependentUpon>WarningDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\TuProductoOnline.Models.User.datasource" />
     <None Include="Properties\Settings.settings">
