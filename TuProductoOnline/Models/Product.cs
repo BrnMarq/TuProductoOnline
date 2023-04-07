@@ -17,13 +17,15 @@ namespace TuProductoOnline
         private string _type;
 
         // ---------------- Constructor ----------------
-        public Product(string name, double price, string brand, string description, string type)
+        public Product(string name, double price, string brand, string description, string type, int id)
         {
             _name = name;
             _price = price;
             _brand = brand;
             _description = description;
             _type = type;
+            _id = id;
+            
         }
 
         // ---------------- Getters & Setters ----------------

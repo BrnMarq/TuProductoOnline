@@ -61,9 +61,7 @@ namespace TuProductoOnline
 
         private void btnFacturacion_Click(object sender, EventArgs e)
         {
-            //...
-            //tu código
-            //...
+            OpenChildForm(new Facturacion());
             hideSubMenu();
         }
 
