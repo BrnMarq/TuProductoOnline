@@ -43,6 +43,11 @@
             this.ProductBox2 = new System.Windows.Forms.ComboBox();
             this.txtDgv = new System.Windows.Forms.Label();
             this.ListProducTable = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnFacturar = new System.Windows.Forms.Button();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtTituloSubTotal = new System.Windows.Forms.Label();
@@ -51,11 +56,6 @@
             this.txtTotal = new System.Windows.Forms.Label();
             this.groupBoxSubtotal = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ClientBox.SuspendLayout();
             this.ProductBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListProducTable)).BeginInit();
@@ -96,7 +96,6 @@
             this.ClientBox1.Name = "ClientBox1";
             this.ClientBox1.Size = new System.Drawing.Size(165, 21);
             this.ClientBox1.TabIndex = 0;
-            this.ClientBox1.SelectedIndexChanged += new System.EventHandler(this.ClientBox1_SelectedIndexChanged);
             // 
             // ProductBox
             // 
@@ -228,6 +227,38 @@
             this.ListProducTable.TabIndex = 7;
             this.ListProducTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListProducTable_CellContentClick);
             // 
+            // ID
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Nombre";
+            this.name.Name = "name";
+            this.name.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // precio
+            // 
+            this.precio.HeaderText = "Precio";
+            this.precio.Name = "precio";
+            this.precio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            // 
+            // delete
+            // 
+            this.delete.HeaderText = "Eliminar";
+            this.delete.Name = "delete";
+            this.delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.delete.Text = "Eliminar";
+            // 
             // btnFacturar
             // 
             this.btnFacturar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -272,7 +303,7 @@
             this.txtTituloTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.txtTituloTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTituloTotal.ForeColor = System.Drawing.Color.White;
-            this.txtTituloTotal.Location = new System.Drawing.Point(8, 10);
+            this.txtTituloTotal.Location = new System.Drawing.Point(8, 7);
             this.txtTituloTotal.Name = "txtTituloTotal";
             this.txtTituloTotal.Size = new System.Drawing.Size(54, 20);
             this.txtTituloTotal.TabIndex = 19;
@@ -294,18 +325,18 @@
             this.txtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotal.AutoSize = true;
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(68, 10);
+            this.txtTotal.Location = new System.Drawing.Point(68, 7);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(19, 20);
             this.txtTotal.TabIndex = 21;
             this.txtTotal.Text = "0";
-            this.txtTotal.Click += new System.EventHandler(this.txtTotal_Click);
             // 
             // groupBoxSubtotal
             // 
+            this.groupBoxSubtotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBoxSubtotal.Controls.Add(this.txtTituloSubTotal);
             this.groupBoxSubtotal.Controls.Add(this.txtSubTotal);
-            this.groupBoxSubtotal.Location = new System.Drawing.Point(12, 369);
+            this.groupBoxSubtotal.Location = new System.Drawing.Point(12, 366);
             this.groupBoxSubtotal.Name = "groupBoxSubtotal";
             this.groupBoxSubtotal.Size = new System.Drawing.Size(210, 37);
             this.groupBoxSubtotal.TabIndex = 22;
@@ -313,45 +344,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.txtTituloTotal);
             this.groupBox1.Controls.Add(this.txtTotal);
-            this.groupBox1.Location = new System.Drawing.Point(270, 369);
+            this.groupBox1.Location = new System.Drawing.Point(228, 369);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(192, 37);
+            this.groupBox1.Size = new System.Drawing.Size(192, 34);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
-            // 
-            // ID
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Nombre";
-            this.name.Name = "name";
-            this.name.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // precio
-            // 
-            this.precio.HeaderText = "Precio";
-            this.precio.Name = "precio";
-            this.precio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            // 
-            // delete
-            // 
-            this.delete.HeaderText = "Eliminar";
-            this.delete.Name = "delete";
-            this.delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.delete.Text = "Eliminar";
             // 
             // Facturacion
             // 
@@ -367,7 +367,6 @@
             this.Controls.Add(this.ClientBox);
             this.Name = "Facturacion";
             this.Text = "Facturacion";
-            this.Load += new System.EventHandler(this.Facturacion_Load);
             this.ClientBox.ResumeLayout(false);
             this.ProductBox.ResumeLayout(false);
             this.ProductBox.PerformLayout();

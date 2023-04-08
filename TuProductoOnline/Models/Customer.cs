@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TuProductoOnline.Utils;
 using TuProductoOnline.Consts;
+using TuProductoOnline.Views;
 
 namespace TuProductoOnline.Models
 {
@@ -84,7 +85,7 @@ namespace TuProductoOnline.Models
             if (customers != null) return customers;
 
             customers = new List<Customer>();
-            List<List<string>> entries = DbHandler.LeerCSV(FileNames.Customers);
+            List<List<string>> entries = (DbHandler.LeerCSV("../../bin/Debug/Customers.csv"));
             foreach (List<string> entry in entries)
             {
                 Customer customer = new Customer(int.Parse(entry[0]), entry[1], entry[2], entry[3], entry[4], entry[5], entry[6], entry[7]);

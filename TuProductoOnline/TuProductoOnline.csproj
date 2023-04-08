@@ -154,6 +154,9 @@
     <EmbeddedResource Include="WarningDialog.resx">
       <DependentUpon>WarningDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="bin\Debug\TuProductoOnline.exe.config" />
+    <None Include="bin\Debug\users.csv" />
+    <None Include="bin\Debug\usersId.csv" />
     <None Include="Properties\DataSources\TuProductoOnline.Models.User.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -199,7 +202,13 @@
     <None Include="Resources\deleteIcon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\Release\" />
     <Folder Include="Database\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\TuProductoOnline.exe" />
+    <Content Include="bin\Debug\TuProductoOnline.pdb" />
+    <Content Include="Resources\plantillaFactura.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
