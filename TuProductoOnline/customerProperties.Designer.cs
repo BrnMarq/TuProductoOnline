@@ -55,7 +55,7 @@ namespace TuProductoOnline
             this.lblName.Location = new System.Drawing.Point(28, 73);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(68, 18);
-            this.lblName.TabIndex = 0;
+            this.lblName.TabIndex = 10;
             this.lblName.Text = "Nombre";
             // 
             // lblLastName
@@ -65,7 +65,7 @@ namespace TuProductoOnline
             this.lblLastName.Location = new System.Drawing.Point(28, 112);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(71, 18);
-            this.lblLastName.TabIndex = 1;
+            this.lblLastName.TabIndex = 11;
             this.lblLastName.Text = "Apellido";
             // 
             // lblId
@@ -75,7 +75,7 @@ namespace TuProductoOnline
             this.lblId.Location = new System.Drawing.Point(28, 151);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(90, 18);
-            this.lblId.TabIndex = 2;
+            this.lblId.TabIndex = 12;
             this.lblId.Text = "Cédula/RIF";
             // 
             // lblPhoneNumber
@@ -85,7 +85,7 @@ namespace TuProductoOnline
             this.lblPhoneNumber.Location = new System.Drawing.Point(29, 191);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
             this.lblPhoneNumber.Size = new System.Drawing.Size(71, 18);
-            this.lblPhoneNumber.TabIndex = 3;
+            this.lblPhoneNumber.TabIndex = 13;
             this.lblPhoneNumber.Text = "Teléfono";
             // 
             // lblDirection
@@ -95,7 +95,7 @@ namespace TuProductoOnline
             this.lblDirection.Location = new System.Drawing.Point(29, 233);
             this.lblDirection.Name = "lblDirection";
             this.lblDirection.Size = new System.Drawing.Size(81, 18);
-            this.lblDirection.TabIndex = 4;
+            this.lblDirection.TabIndex = 14;
             this.lblDirection.Text = "Dirección";
             // 
             // lblType
@@ -105,7 +105,7 @@ namespace TuProductoOnline
             this.lblType.Location = new System.Drawing.Point(29, 320);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(38, 18);
-            this.lblType.TabIndex = 5;
+            this.lblType.TabIndex = 16;
             this.lblType.Text = "Tipo";
             // 
             // txtName
@@ -118,7 +118,8 @@ namespace TuProductoOnline
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(232, 25);
-            this.txtName.TabIndex = 6;
+            this.txtName.TabIndex = 0;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
             // txtLastName
@@ -129,7 +130,8 @@ namespace TuProductoOnline
             this.txtLastName.Multiline = true;
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(232, 25);
-            this.txtLastName.TabIndex = 7;
+            this.txtLastName.TabIndex = 1;
+            this.txtLastName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             this.txtLastName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
             // txtId
@@ -140,7 +142,8 @@ namespace TuProductoOnline
             this.txtId.Multiline = true;
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(232, 25);
-            this.txtId.TabIndex = 8;
+            this.txtId.TabIndex = 2;
+            this.txtId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtId_KeyPress);
             // 
             // txtPhoneNumber
             // 
@@ -150,7 +153,8 @@ namespace TuProductoOnline
             this.txtPhoneNumber.Multiline = true;
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(232, 25);
-            this.txtPhoneNumber.TabIndex = 9;
+            this.txtPhoneNumber.TabIndex = 3;
+            this.txtPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhoneNumber_KeyPress);
             // 
             // txtAddress
             // 
@@ -160,7 +164,9 @@ namespace TuProductoOnline
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(232, 25);
-            this.txtAddress.TabIndex = 10;
+            this.txtAddress.TabIndex = 4;
+            this.txtAddress.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            this.txtAddress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAddress_KeyPress);
             // 
             // cbType
             // 
@@ -173,7 +179,7 @@ namespace TuProductoOnline
             this.cbType.Location = new System.Drawing.Point(134, 316);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(232, 25);
-            this.cbType.TabIndex = 11;
+            this.cbType.TabIndex = 6;
             // 
             // btnAccept
             // 
@@ -185,7 +191,7 @@ namespace TuProductoOnline
             this.btnAccept.Location = new System.Drawing.Point(31, 367);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(334, 32);
-            this.btnAccept.TabIndex = 12;
+            this.btnAccept.TabIndex = 7;
             this.btnAccept.Text = "Aceptar";
             this.btnAccept.UseVisualStyleBackColor = false;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
@@ -198,7 +204,9 @@ namespace TuProductoOnline
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(232, 25);
-            this.txtEmail.TabIndex = 14;
+            this.txtEmail.TabIndex = 5;
+            this.txtEmail.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmail_KeyPress);
             // 
             // lblEmail
             // 
@@ -207,7 +215,7 @@ namespace TuProductoOnline
             this.lblEmail.Location = new System.Drawing.Point(29, 275);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(48, 18);
-            this.lblEmail.TabIndex = 13;
+            this.lblEmail.TabIndex = 15;
             this.lblEmail.Text = "Email";
             // 
             // txtCode
@@ -220,7 +228,7 @@ namespace TuProductoOnline
             this.txtCode.Name = "txtCode";
             this.txtCode.ReadOnly = true;
             this.txtCode.Size = new System.Drawing.Size(232, 25);
-            this.txtCode.TabIndex = 16;
+            this.txtCode.TabIndex = 9;
             // 
             // lblCode
             // 
@@ -229,7 +237,7 @@ namespace TuProductoOnline
             this.lblCode.Location = new System.Drawing.Point(27, 29);
             this.lblCode.Name = "lblCode";
             this.lblCode.Size = new System.Drawing.Size(64, 18);
-            this.lblCode.TabIndex = 15;
+            this.lblCode.TabIndex = 8;
             this.lblCode.Tag = "";
             this.lblCode.Text = "Código";
             // 

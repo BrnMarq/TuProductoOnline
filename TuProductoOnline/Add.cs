@@ -40,13 +40,22 @@ namespace TuProductoOnline
         
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
-            Alias = txtName.Text;
-            Brand = txtBrand.Text;
-            Description = txtDescription.Text;
-            Type = cmbType.Text;
-            Price = Convert.ToDouble(txtPrice.Text);
-            Id = Convert.ToInt32(txtId.Text);
-            this.Close();
+           
+            try
+            {
+                Alias = txtName.Text.Trim();
+                Brand = txtBrand.Text.Trim();
+                Description = txtDescription.Text.Trim();
+                Type = cmbType.Text.Trim();
+                Price = Convert.ToDouble(txtPrice.Text.Trim());
+                Id = Convert.ToInt32(txtId.Text.Trim());
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Ingresó un valor NO numérico en la casilla del precio");
+            }
         }
 
         private void cmbType_KeyPress(object sender, KeyPressEventArgs e)
@@ -56,7 +65,70 @@ namespace TuProductoOnline
 
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            if (string.IsNullOrEmpty(txtBrand.Text) || string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrEmpty(cmbType.Text) || string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtPrice.Text))
+            {
+                btnAdd.Enabled = false;
+            }
+            else 
+            {
+                btnAdd.Enabled = true;
+            }
+        }
+        
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtBrand.Text) || string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrEmpty(cmbType.Text) || string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtPrice.Text))
+            {
+                btnAdd.Enabled = false;
+            }
+            else
+            {
+                btnAdd.Enabled = true;
+            }
+        }
+
+        private void txtBrand_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtBrand.Text) || string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrEmpty(cmbType.Text) || string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtPrice.Text))
+            {
+                btnAdd.Enabled = false;
+            }
+            else
+            {
+                btnAdd.Enabled = true;
+            }
+        }
+
+        private void txtDescription_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtBrand.Text) || string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrEmpty(cmbType.Text) || string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtPrice.Text))
+            {
+                btnAdd.Enabled = false;
+            }
+            else
+            {
+                btnAdd.Enabled = true;
+            }
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtBrand.Text) || string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrEmpty(cmbType.Text) || string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtPrice.Text))
+            {
+                btnAdd.Enabled = false;
+            }
+            else
+            {
+                btnAdd.Enabled = true;
+            }
+        }
+
+        private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 32 && e.KeyChar <= 45 && e.KeyChar != 47) || (e.KeyChar >= 58 && e.KeyChar <= 255)) 
+            {
+                e.Handled = true;
+            }
         }
     }
 }
