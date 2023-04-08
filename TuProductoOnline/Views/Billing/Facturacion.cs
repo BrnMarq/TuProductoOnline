@@ -31,7 +31,17 @@ namespace TuProductoOnline.Views
 
         }
 
+        private void Facturacion_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFacturar_Click(object sender, EventArgs e)
         {
 
         }
@@ -119,21 +129,14 @@ namespace TuProductoOnline.Views
         private void ListProducTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //asignar variable para remover los datos de la lista que creamos en paralelo.
-
-      
             int i = ListProducTable.CurrentRow.Index;
-            
+
             //Remover la fila seleccionada
             ListProducTable.Rows.Remove(ListProducTable.CurrentRow);
 
             ProductosCarrito.RemoveAt(i);
             contador--;
             actualizarPrecio();
-               
-            
-
-                
-           
 
         }
 
@@ -147,6 +150,11 @@ namespace TuProductoOnline.Views
 
             txtSubTotal.Text = Precio.ToString();
             txtTotal.Text = ((Precio * double.Parse(Clientes[ClientBox1.SelectedIndex][0])).ToString());
+        }
+
+        private void txtTotal_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

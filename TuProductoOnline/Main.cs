@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using TuProductoOnline.Views;
+using TuProductoOnline.Views.Users;
 using TuProductoOnline.Models;
 
 namespace TuProductoOnline
@@ -31,7 +32,7 @@ namespace TuProductoOnline
 
         private void Main_Load(object sender, EventArgs e)
         {
-            new User("Brian", "Marquez", "master1");
+
         }
 
         private void ExitButton_Click(object sender, EventArgs e)

@@ -53,11 +53,17 @@
       <DependentUpon>ConfirmDelete.cs</DependentUpon>
     </Compile>
     <Compile Include="Consts\FileNames.cs" />
-    <Compile Include="AddUsers.cs">
+    <Compile Include="Views\Users\DeleteModal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddUsers.Designer.cs">
-      <DependentUpon>AddUsers.cs</DependentUpon>
+    <Compile Include="Views\Users\DeleteModal.Designer.cs">
+      <DependentUpon>DeleteModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Users\UserModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Users\UserModal.Designer.cs">
+      <DependentUpon>UserModal.cs</DependentUpon>
     </Compile>
     <Compile Include="Add.cs">
       <SubType>Form</SubType>
@@ -65,10 +71,10 @@
     <Compile Include="Add.Designer.cs">
       <DependentUpon>Add.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomerProperties.cs">
+    <Compile Include="Views\Customers\CustomerProperties.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomerProperties.Designer.cs">
+    <Compile Include="Views\Customers\CustomerProperties.Designer.cs">
       <DependentUpon>CustomerProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="Delete.cs">
@@ -101,16 +107,16 @@
     </Compile>
     <Compile Include="Utils\DbHandler.cs" />
     <Compile Include="Utils\Validar.cs" />
-    <Compile Include="Views\Customers.cs">
+    <Compile Include="Views\Customers\Customers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Customers.Designer.cs">
+    <Compile Include="Views\Customers\Customers.Designer.cs">
       <DependentUpon>Customers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Facturacion.cs">
+    <Compile Include="Views\Billing\Facturacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Facturacion.Designer.cs">
+    <Compile Include="Views\Billing\Facturacion.Designer.cs">
       <DependentUpon>Facturacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Products.cs">
@@ -119,28 +125,31 @@
     <Compile Include="Views\Products.Designer.cs">
       <DependentUpon>Products.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Users.cs">
+    <Compile Include="Views\Users\Users.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Users.Designer.cs">
+    <Compile Include="Views\Users\Users.Designer.cs">
       <DependentUpon>Users.cs</DependentUpon>
     </Compile>
-    <Compile Include="WarningDialog.cs">
+    <Compile Include="Views\Billing\WarningDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WarningDialog.Designer.cs">
+    <Compile Include="Views\Billing\WarningDialog.Designer.cs">
       <DependentUpon>WarningDialog.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Add.resx">
       <DependentUpon>Add.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddUsers.resx">
-      <DependentUpon>AddUsers.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Users\DeleteModal.resx">
+      <DependentUpon>DeleteModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Users\UserModal.resx">
+      <DependentUpon>UserModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConfirmDelete.resx">
       <DependentUpon>ConfirmDelete.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomerProperties.resx">
+    <EmbeddedResource Include="Views\Customers\CustomerProperties.resx">
       <DependentUpon>CustomerProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Delete.resx">
@@ -157,19 +166,19 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Customers.resx">
+    <EmbeddedResource Include="Views\Customers\Customers.resx">
       <DependentUpon>Customers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Facturacion.resx">
+    <EmbeddedResource Include="Views\Billing\Facturacion.resx">
       <DependentUpon>Facturacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Products.resx">
       <DependentUpon>Products.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Users.resx">
+    <EmbeddedResource Include="Views\Users\Users.resx">
       <DependentUpon>Users.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WarningDialog.resx">
+    <EmbeddedResource Include="Views\Billing\WarningDialog.resx">
       <DependentUpon>WarningDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\Debug\TuProductoOnline.exe.config" />

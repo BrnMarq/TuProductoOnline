@@ -7,25 +7,62 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TuProductoOnline.Models;
 using TuProductoOnline.Utils;
 
-namespace TuProductoOnline
+namespace TuProductoOnline.Views.Users
 {
-    public partial class AddUsers : Form
+    public partial class UserModal : Form
     {
-        string NamePlaceholder = "Nombre";
-        string LastNamePlaceholder = "Apellido";
-        string EmailPlaceholder = "Email";
-        string PhoneNumberPlaceholder = "Teléfono";
-        string AddressPlaceholder = "Dirección";
-        string PasswordPlaceholder = "Contraseña";
+        private readonly string NamePlaceholder = "Nombre";
+        private readonly string LastNamePlaceholder = "Apellido";
+        private readonly string EmailPlaceholder = "Email";
+        private readonly string PhoneNumberPlaceholder = "Teléfono";
+        private readonly string AddressPlaceholder = "Dirección";
+        private readonly string PasswordPlaceholder = "Contraseña";
 
-        public AddUsers()
+        private readonly int _id;
+        private readonly string _firstName = "";
+        private readonly string _lastName = "";
+        private readonly string _email = "";
+        private readonly string _phoneNumber = "";
+        private readonly string _address = "";
+        private readonly string _password = "";
+        private readonly bool _isEdit = false;
+
+        private readonly Action<List<string>> acceptFunction;
+
+        public UserModal(Action<List<string>> callback)
         {
             InitializeComponent();
+            acceptFunction = callback;
+        }
+
+        public UserModal(Action<List<string>> callback, User user)
+        {
+            InitializeComponent();
+            _id = user.Id;
+            _firstName = user.FirstName;
+            _lastName = user.LastName;
+            _email = user.Email;
+            _phoneNumber = user.Phone;
+            _address = user.Address;
+            _isEdit = true;
+
+            acceptFunction = callback;
         }
         private void AddUsers_Load(object sender, EventArgs e)
         {
+            if (_isEdit)
+            {
+                NameInput.Text = _firstName;
+                LastNameInput.Text = _lastName;
+                EmailInput.Text = _email;
+                PhoneNumberInput.Text = _phoneNumber;
+                AddressInput.Text = _address;
+                PasswordInput.Text = _password;
+                return;
+            }
             NameInput.Text = NamePlaceholder;
             LastNameInput.Text = LastNamePlaceholder;
             EmailInput.Text = EmailPlaceholder;
@@ -46,10 +83,10 @@ namespace TuProductoOnline
             bool PasswordInputIsInvalid = string.IsNullOrEmpty(PasswordInput.Text) || PasswordInput.Text == PasswordPlaceholder;
             if (NameInputIsInvalid || LastNameIsInvalid || EmailIsInvalid || PhoneNumberInputIsInvalid || AddressInputIsInvalid || PasswordInputIsInvalid)
             {
-                Accessbutton.Enabled = false;
+                AcceptButton.Enabled = false;
                 return;
             }
-            Accessbutton.Enabled = true;
+            AcceptButton.Enabled = true;
         }
 
         private void NameInput_TextChanged(object sender, EventArgs e)
@@ -169,6 +206,22 @@ namespace TuProductoOnline
         private void PhoneNumberInput_KeyPress(object sender, KeyPressEventArgs e)
         {
             Validar.SoloNumeros(e);
+        }
+
+        private void AcceptButton_Click(object sender, EventArgs e)
+        {
+            List<string> values = new List<string>
+            {
+                _id.ToString(),
+                NameInput.Text,
+                LastNameInput.Text,
+                PasswordInput.Text,
+                EmailInput.Text,
+                PhoneNumberInput.Text,
+                AddressInput.Text,
+            };
+            acceptFunction(values);
+            this.Close();
         }
     }
 }
