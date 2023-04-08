@@ -1,4 +1,4 @@
-﻿namespace TuProductoOnline.Views
+﻿namespace TuProductoOnline.Views.Users
 {
     partial class Users
     {

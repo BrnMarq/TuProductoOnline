@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using System.IO;
 using TuProductoOnline.Utils;
 using TuProductoOnline.Consts;
+using System.Windows.Forms;
 
 namespace TuProductoOnline.Models
 {
-    internal class User
+    public class User
     {
         private int _id;
         private string _firstName;
@@ -37,7 +38,21 @@ namespace TuProductoOnline.Models
             _deleted = false;
         }
 
-        public User(string firstName, string lastName, string password, string role = "member", string email = "", string phone = "", string address = "", bool isLoad = false)
+        public User(List<string> userValues)
+        {
+            _id = int.Parse(userValues[0]);
+            _firstName = userValues[1];
+            _lastName = userValues[2];
+            _password = userValues[3];
+            _role = userValues[4];
+            _email = userValues[5];
+            _phone = userValues[6];
+            _address = userValues[7];
+            _deleted = bool.Parse(userValues[8]);
+        }
+
+
+        public User(string firstName, string lastName, string password, string role = "member", string email = "", string phone = "", string address = "")
         {
             int id = DbHandler.GetNewId(FileNames.UsersId);
 
@@ -88,11 +103,34 @@ namespace TuProductoOnline.Models
             List<List<string>> entries = DbHandler.LeerCSV(FileNames.Users);
             foreach (List<string> entry in entries)
             {
-                User user = new User(int.Parse(entry[0]), entry[1], entry[2], entry[3], entry[4], entry[5], entry[6], entry[7]);
+                User user = new User(entry);
                 _users.Add(user);
             }
 
             return _users;
+        }
+
+        public static User GetUserById(int id)
+        {
+            List<User> users = GetUsers();
+            User user = users.Find(targetUser => targetUser.Id == id);
+            return user;
+        }
+
+        public static void UpdateUser(int id, List<string> userValues)
+        {
+            User user = GetUserById(id);
+            user.FirstName = userValues[1];
+            user.LastName = userValues[2];
+            user.Password = userValues[3];
+            user.Role = userValues[4];
+            user.Email = userValues[5];
+            user.Phone = userValues[6];
+            user.Address = userValues[7];
+            user.Deleted = bool.Parse(userValues[8]);
+
+            DbHandler.EditCSV(FileNames.Users, id.ToString(), userValues);
+            
         }
 
         public static void Login(User user)

@@ -1,6 +1,6 @@
-﻿namespace TuProductoOnline
+﻿namespace TuProductoOnline.Views.Users
 {
-    partial class AddUsers
+    partial class UserModal
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@
             this.Namelbl = new System.Windows.Forms.Label();
             this.PasswordInput = new System.Windows.Forms.TextBox();
             this.Passwordlbl = new System.Windows.Forms.Label();
-            this.Accessbutton = new System.Windows.Forms.Button();
+            this.AcceptButton = new System.Windows.Forms.Button();
             this.EmailInput = new System.Windows.Forms.TextBox();
             this.Emaillbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -175,20 +175,21 @@
             this.Passwordlbl.TabIndex = 31;
             this.Passwordlbl.Text = "Contraseña";
             // 
-            // Accessbutton
+            // AcceptButton
             // 
-            this.Accessbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Accessbutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.Accessbutton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Accessbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Accessbutton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Accessbutton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Accessbutton.Location = new System.Drawing.Point(33, 327);
-            this.Accessbutton.Name = "Accessbutton";
-            this.Accessbutton.Size = new System.Drawing.Size(335, 32);
-            this.Accessbutton.TabIndex = 33;
-            this.Accessbutton.Text = "Aceptar";
-            this.Accessbutton.UseVisualStyleBackColor = false;
+            this.AcceptButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.AcceptButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.AcceptButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AcceptButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AcceptButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AcceptButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.AcceptButton.Location = new System.Drawing.Point(33, 327);
+            this.AcceptButton.Name = "AcceptButton";
+            this.AcceptButton.Size = new System.Drawing.Size(335, 32);
+            this.AcceptButton.TabIndex = 33;
+            this.AcceptButton.Text = "Aceptar";
+            this.AcceptButton.UseVisualStyleBackColor = false;
+            this.AcceptButton.Click += new System.EventHandler(this.AcceptButton_Click);
             // 
             // EmailInput
             // 
@@ -215,14 +216,14 @@
             this.Emaillbl.TabIndex = 34;
             this.Emaillbl.Text = "Correo";
             // 
-            // AddUsers
+            // UserModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(396, 393);
             this.Controls.Add(this.EmailInput);
             this.Controls.Add(this.Emaillbl);
-            this.Controls.Add(this.Accessbutton);
+            this.Controls.Add(this.AcceptButton);
             this.Controls.Add(this.PasswordInput);
             this.Controls.Add(this.Passwordlbl);
             this.Controls.Add(this.AddressInput);
@@ -234,7 +235,7 @@
             this.Controls.Add(this.Lastnamelbl);
             this.Controls.Add(this.Namelbl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "AddUsers";
+            this.Name = "UserModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddUsers";
             this.Load += new System.EventHandler(this.AddUsers_Load);
@@ -254,7 +255,7 @@
         private System.Windows.Forms.Label Namelbl;
         private System.Windows.Forms.TextBox PasswordInput;
         private System.Windows.Forms.Label Passwordlbl;
-        private System.Windows.Forms.Button Accessbutton;
+        private System.Windows.Forms.Button AcceptButton;
         private System.Windows.Forms.TextBox EmailInput;
         private System.Windows.Forms.Label Emaillbl;
     }
