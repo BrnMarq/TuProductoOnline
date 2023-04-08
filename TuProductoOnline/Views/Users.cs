@@ -42,8 +42,7 @@ namespace TuProductoOnline.Views
         {
             if (e.ColumnIndex == UsersTable.Columns["EditCell"].Index)
             {
-                MessageBox.Show(UsersTable.Rows[e.RowIndex].Cells[0].Value.ToString());
-                //EditUser()
+                EditUser(UsersTable.Rows[e.RowIndex].Cells[0].Value.ToString());
             }
         }
 

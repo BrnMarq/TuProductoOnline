@@ -56,6 +56,10 @@ namespace TuProductoOnline.Utils
 
         public static List<List<string>> LeerCSV(String fileName)
         {
+
+            bool fileExists = File.Exists(@"" + fileName);
+            if (!fileExists) EscribirCSV(fileName, new List<string>());
+
             var reader = new StreamReader(File.OpenRead(@"" + fileName));
             List<List<String>> list = new List<List<string>>();
 
