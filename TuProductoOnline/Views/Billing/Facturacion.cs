@@ -26,9 +26,6 @@ namespace TuProductoOnline.Views
         {
             InitializeComponent();
             Refield();
-
-
-
         }
 
         private void Facturacion_Load(object sender, EventArgs e)
@@ -41,8 +38,102 @@ namespace TuProductoOnline.Views
 
         }
 
+        private void ProducTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int i = ProducTable.CurrentCell.RowIndex;
+            
+
+            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index)
+            { 
+                ProducTable.Rows.Remove(ProducTable.CurrentRow);
+
+                ProductosCarrito.RemoveAt(i);
+                contador--;
+                actualizarPrecio();
+            }
+        }
+
         private void btnFacturar_Click(object sender, EventArgs e)
         {
+
+        }
+
+
+        private void ClientBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            actualizarPrecio();
+        }
+
+        private void CantidadBox_KeyPress(object sender, KeyPressEventArgs e)
+        { 
+            //hacer que solo se puedan introducir numeros.
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void btnAgregarAlCarrito_Click(object sender, EventArgs e)
+        {
+            bool verificar = string.IsNullOrEmpty(CantidadBox.Text);
+            
+            //evaluar campos vacios. 
+
+            if (ClientBox1.SelectedItem == null || ProductBox2.SelectedItem == null || verificar == true || int.Parse(CantidadBox.Text) == 0) 
+            {
+                //campo de seleccion de cliente vacio.
+                if (ClientBox1.SelectedItem == null)
+                {
+                    string txtAdvertencia = "Por favor selecciona un cliente.";
+                    WarningDialog advertencia = new WarningDialog(txtAdvertencia);
+
+                    advertencia.ShowDialog();
+                }
+                //campo de seleccion de producto vacio.
+                else if(ProductBox2.SelectedItem == null)
+                {
+                    string txtAdvertencia = "Por favor selecciona un producto.";
+                    WarningDialog advertencia = new WarningDialog(txtAdvertencia);
+
+                    advertencia.ShowDialog();
+                }
+                else
+                {
+                    string txtAdvertencia = "Por favor introduce una cantidad mayor que 0";
+                    WarningDialog advertencia = new WarningDialog(txtAdvertencia);
+
+                    advertencia.ShowDialog();
+                }
+
+            }
+            else
+            {
+                //Agregar a una lista
+
+                ProductosCarrito.Add(new List<string>());
+
+                int iterador = 0;
+                foreach (string item in Productos[ProductBox2.SelectedIndex])
+                {
+                    
+                    ProductosCarrito[contador].Add(item);
+
+                    
+                    iterador++;
+                }
+
+
+                label1.Text = (ProductosCarrito[contador][ProductosCarrito[contador].IndexOf("cantidad")] = CantidadBox.Text);
+
+                //Agregar al DataGridView
+
+                ProducTable.Rows.Add(ProductosCarrito[contador][0], ProductosCarrito[contador][1], ProductosCarrito[contador][5], CantidadBox.Text);
+            
+                contador++;
+            actualizarPrecio();
+            }
+
 
         }
 
@@ -62,84 +153,6 @@ namespace TuProductoOnline.Views
 
         }
 
-        private void ClientBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            actualizarPrecio();
-        }
-
-        private void CantidadBox_KeyPress(object sender, KeyPressEventArgs e)
-        { 
-            //hacer que solo se puedan introducir numeros.
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-
-        }
-
-        private void btnAgregarAlCarrito_Click(object sender, EventArgs e)
-        {
-
-            //evaluar campos vacios.
-
-            if(ClientBox1.SelectedItem == null || ProductBox2.SelectedItem == null) 
-            {
-                //campo de seleccion de cliente vacio.
-                if (ClientBox1.SelectedItem == null)
-                {
-                    string txtAdvertencia = "Por favor selecciona un cliente.";
-                    WarningDialog advertencia = new WarningDialog(txtAdvertencia);
-
-                    advertencia.ShowDialog();
-                }
-                //campo de seleccion de producto vacio.
-                else
-                {
-                    string txtAdvertencia = "Por favor selecciona un producto.";
-                    WarningDialog advertencia = new WarningDialog(txtAdvertencia);
-
-                    advertencia.ShowDialog();
-                }
-
-            }
-            else
-            {
-                //Agregar a una lista
-
-                ProductosCarrito.Add(new List<string>());
-
-                foreach (var item in Productos[ProductBox2.SelectedIndex])
-                {
-                    ProductosCarrito[contador].Add(item);
-                }
-
-
-                //Agregar al DataGridView
-
-                ListProducTable.Rows.Add(ProductosCarrito[contador][0], ProductosCarrito[contador][1], ProductosCarrito[contador][2], ProductosCarrito[contador][3],"Borrar");
-            
-                contador++;
-            actualizarPrecio();
-            }
-
-
-        }
-
-        //Remover fila.
-        private void ListProducTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //asignar variable para remover los datos de la lista que creamos en paralelo.
-            int i = ListProducTable.CurrentRow.Index;
-
-            //Remover la fila seleccionada
-            ListProducTable.Rows.Remove(ListProducTable.CurrentRow);
-
-            ProductosCarrito.RemoveAt(i);
-            contador--;
-            actualizarPrecio();
-
-        }
-
         public void actualizarPrecio()
         {
             double Precio = 0;
@@ -156,7 +169,6 @@ namespace TuProductoOnline.Views
         {
 
         }
-
     }
 
     

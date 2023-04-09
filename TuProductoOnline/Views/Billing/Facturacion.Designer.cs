@@ -42,7 +42,6 @@
             this.CantidadBox = new System.Windows.Forms.TextBox();
             this.ProductBox2 = new System.Windows.Forms.ComboBox();
             this.txtDgv = new System.Windows.Forms.Label();
-            this.ListProducTable = new System.Windows.Forms.DataGridView();
             this.btnFacturar = new System.Windows.Forms.Button();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtTituloSubTotal = new System.Windows.Forms.Label();
@@ -51,16 +50,18 @@
             this.txtTotal = new System.Windows.Forms.Label();
             this.groupBoxSubtotal = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ProducTable = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.DeleteCell = new System.Windows.Forms.DataGridViewImageColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.ClientBox.SuspendLayout();
             this.ProductBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ListProducTable)).BeginInit();
             this.groupBoxSubtotal.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProducTable)).BeginInit();
             this.SuspendLayout();
             // 
             // ClientBox
@@ -179,55 +180,6 @@
             this.txtDgv.TabIndex = 6;
             this.txtDgv.Text = "Lista de productos:";
             // 
-            // ListProducTable
-            // 
-            this.ListProducTable.AllowUserToAddRows = false;
-            this.ListProducTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListProducTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.ListProducTable.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.ListProducTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ListProducTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ListProducTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.ListProducTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListProducTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.name,
-            this.precio,
-            this.Cantidad,
-            this.delete});
-            this.ListProducTable.EnableHeadersVisualStyles = false;
-            this.ListProducTable.Location = new System.Drawing.Point(12, 125);
-            this.ListProducTable.Name = "ListProducTable";
-            this.ListProducTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ListProducTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.ListProducTable.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.ListProducTable.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.ListProducTable.RowTemplate.DefaultCellStyle.NullValue = "1";
-            this.ListProducTable.RowTemplate.DividerHeight = 2;
-            this.ListProducTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ListProducTable.Size = new System.Drawing.Size(584, 235);
-            this.ListProducTable.TabIndex = 7;
-            this.ListProducTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListProducTable_CellContentClick);
-            // 
             // btnFacturar
             // 
             this.btnFacturar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -321,47 +273,113 @@
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             // 
+            // ProducTable
+            // 
+            this.ProducTable.AllowUserToAddRows = false;
+            this.ProducTable.AllowUserToDeleteRows = false;
+            this.ProducTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProducTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ProducTable.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.ProducTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ProducTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProducTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.ProducTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProducTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.name,
+            this.Precio,
+            this.Cantidad,
+            this.DeleteCell});
+            this.ProducTable.EnableHeadersVisualStyles = false;
+            this.ProducTable.Location = new System.Drawing.Point(12, 118);
+            this.ProducTable.Name = "ProducTable";
+            this.ProducTable.ReadOnly = true;
+            this.ProducTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProducTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.ProducTable.RowHeadersVisible = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.ProducTable.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.ProducTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ProducTable.Size = new System.Drawing.Size(575, 236);
+            this.ProducTable.TabIndex = 23;
+            this.ProducTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProducTable_CellClick);
+            // 
             // ID
             // 
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.ID.DefaultCellStyle = dataGridViewCellStyle2;
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
-            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ID.ReadOnly = true;
+            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // name
             // 
             this.name.HeaderText = "Nombre";
             this.name.Name = "name";
-            this.name.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.name.ReadOnly = true;
+            this.name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // precio
+            // Precio
             // 
-            this.precio.HeaderText = "Precio";
-            this.precio.Name = "precio";
-            this.precio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            this.Precio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // Cantidad
             // 
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            this.Cantidad.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // delete
+            // DeleteCell
             // 
-            this.delete.HeaderText = "Eliminar";
-            this.delete.Name = "delete";
-            this.delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.delete.Text = "Eliminar";
+            this.DeleteCell.HeaderText = "Eliminar";
+            this.DeleteCell.Image = global::TuProductoOnline.Properties.Resources.deleteIcon1;
+            this.DeleteCell.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.DeleteCell.Name = "DeleteCell";
+            this.DeleteCell.ReadOnly = true;
+            this.DeleteCell.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(246, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "label1";
             // 
             // Facturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 411);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ProducTable);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxSubtotal);
             this.Controls.Add(this.btnFacturar);
-            this.Controls.Add(this.ListProducTable);
             this.Controls.Add(this.txtDgv);
             this.Controls.Add(this.ProductBox);
             this.Controls.Add(this.ClientBox);
@@ -371,11 +389,11 @@
             this.ClientBox.ResumeLayout(false);
             this.ProductBox.ResumeLayout(false);
             this.ProductBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ListProducTable)).EndInit();
             this.groupBoxSubtotal.ResumeLayout(false);
             this.groupBoxSubtotal.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProducTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -389,7 +407,6 @@
         private System.Windows.Forms.TextBox CantidadBox;
         private System.Windows.Forms.Label txtCantidad;
         private System.Windows.Forms.Label txtDgv;
-        private System.Windows.Forms.DataGridView ListProducTable;
         private System.Windows.Forms.Button btnAñadirClient;
         private System.Windows.Forms.Button btnAgregarAlCarrito;
         private System.Windows.Forms.Button bntAñadirProduct;
@@ -401,10 +418,12 @@
         private System.Windows.Forms.Label txtTotal;
         private System.Windows.Forms.GroupBox groupBoxSubtotal;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridView ProducTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewButtonColumn delete;
+        private System.Windows.Forms.DataGridViewImageColumn DeleteCell;
+        private System.Windows.Forms.Label label1;
     }
 }
