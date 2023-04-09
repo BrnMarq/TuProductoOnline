@@ -13,7 +13,9 @@ namespace TuProductoOnline
     public partial class Delete : Form
     {
         private int _id;
+       
         public int Id { get { return _id; } set { _id = value; } }
+        
         public Delete()
         {
             InitializeComponent();
@@ -29,7 +31,7 @@ namespace TuProductoOnline
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            Id = Convert.ToInt32(txtId.Text);
+            Id = Convert.ToInt32(txtId.Text);            
             this.Close();
         }
 
@@ -37,11 +39,11 @@ namespace TuProductoOnline
         {
             if (string.IsNullOrEmpty(txtId.Text)) 
             {
-                btnDelete.Enabled = false;
+                btnContinue.Enabled = false;
             }
             else 
             {
-                btnDelete.Enabled = true;
+                btnContinue.Enabled = true;
             }
         }
 

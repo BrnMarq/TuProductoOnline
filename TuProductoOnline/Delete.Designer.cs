@@ -31,7 +31,7 @@ namespace TuProductoOnline
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnContinue = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -60,29 +60,31 @@ namespace TuProductoOnline
             this.label2.TabIndex = 2;
             this.label2.Text = "Ingrese el Id del producto a Eliminar";
             // 
-            // btnDelete
+            // btnContinue
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.Enabled = false;
-            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(412, 111);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(79, 33);
-            this.btnDelete.TabIndex = 11;
-            this.btnDelete.Text = "Continuar";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.btnContinue.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnContinue.Enabled = false;
+            this.btnContinue.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.btnContinue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnContinue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnContinue.ForeColor = System.Drawing.Color.White;
+            this.btnContinue.Location = new System.Drawing.Point(412, 111);
+            this.btnContinue.Name = "btnContinue";
+            this.btnContinue.Size = new System.Drawing.Size(79, 33);
+            this.btnContinue.TabIndex = 11;
+            this.btnContinue.Text = "Continuar";
+            this.btnContinue.UseVisualStyleBackColor = false;
+            this.btnContinue.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // txtId
             // 
             this.txtId.Location = new System.Drawing.Point(276, 72);
             this.txtId.Name = "txtId";
+            this.txtId.ShortcutsEnabled = false;
             this.txtId.Size = new System.Drawing.Size(215, 20);
             this.txtId.TabIndex = 12;
+            this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtId.TextChanged += new System.EventHandler(this.txtId_TextChanged);
             this.txtId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtId_KeyPress);
             // 
@@ -107,7 +109,7 @@ namespace TuProductoOnline
             this.ClientSize = new System.Drawing.Size(512, 156);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnContinue);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -123,7 +125,7 @@ namespace TuProductoOnline
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnContinue;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Button btnExit;
     }

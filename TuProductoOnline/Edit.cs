@@ -10,7 +10,8 @@ using System.Windows.Forms;
 
 namespace TuProductoOnline
 {
-    public partial class Add : Form
+
+    public partial class Edit : Form
     {
         private string _name;
         private string _brand;
@@ -26,22 +27,14 @@ namespace TuProductoOnline
         public string Type { get { return _type; } set { _type = value; } }
         public int Id { get { return _id; } set { _id = value; } }
 
-        
-        public Add(int index)
+        public Edit(int index)
         {
             InitializeComponent();
             txtId.Text = index.ToString();
-                        
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-        
-        private void btnAdd_Click_1(object sender, EventArgs e)
-        {
-            
             try
             {
                 Alias = txtName.Text.Trim();
@@ -49,12 +42,11 @@ namespace TuProductoOnline
                 Description = txtDescription.Text.Trim();
                 Type = cmbType.Text.Trim();
                 Price = Convert.ToDouble(txtPrice.Text.Trim());
-                Id = Convert.ToInt32(txtId.Text.Trim());                                
+                Id = Convert.ToInt32(txtId.Text.Trim());
                 this.Close();
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show("Ingresó un valor NO numérico en la casilla del precio");
             }
         }
@@ -70,12 +62,12 @@ namespace TuProductoOnline
             {
                 btnAdd.Enabled = false;
             }
-            else 
+            else
             {
                 btnAdd.Enabled = true;
             }
         }
-        
+
         private void txtName_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtBrand.Text) || string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrEmpty(cmbType.Text) || string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtPrice.Text))
@@ -126,10 +118,15 @@ namespace TuProductoOnline
 
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar >= 32 && e.KeyChar <= 45 && e.KeyChar != 47) || (e.KeyChar >= 58 && e.KeyChar <= 255)) 
+            if ((e.KeyChar >= 32 && e.KeyChar <= 45 && e.KeyChar != 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
             {
                 e.Handled = true;
             }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

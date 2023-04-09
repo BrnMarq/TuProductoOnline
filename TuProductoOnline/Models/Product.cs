@@ -29,11 +29,11 @@ namespace TuProductoOnline
         }
 
         // ---------------- Getters & Setters ----------------
-        public int Id { get { return _id; } }
+        public int Id { get { return _id; } set { _id = value; } }
         public string Name { get { return _name; } set { _name = value; } }
         public double Price { get { return _price; } set { _price = value; } }
         public string Brand { get { return _brand; } set { _brand = value; } }
         public string Description { get { return _description; } set { _description = value; } }
-        public string Type { get { return _type; } }
+        public string Type { get { return _type; } set { _type = value; } }
     }
 }
