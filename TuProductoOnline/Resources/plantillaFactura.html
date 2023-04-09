@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plantilla</title>
+    <style>
+        td.titulo {
+            background-color: #CACACA;
+            width: 63%;
+            padding: 20px;
+            border: 1px solid black;
+        }
+
+        table.border {
+            border-collapse: collapse;
+        }
+
+            table.border th {
+                padding: 15px;
+                border: 01px solid black;
+            }
+
+            table.border td {
+                padding: 5px;
+                border: 1px solid black;
+            }
+    </style>
+</head>
+
+<body>
+    <table style="width:100%">
+        <tr>
+            <!--Caebecera de la factura -->
+            <td style="width:30%"></td>
+            <td style="width:50%" align="center">
+                <table>
+                    <tr><td align="center"><b>@NOMBREEMPRESA</b></td></tr>
+                    <tr><td align="center">@RAZONSOCIAL</td></tr>
+                    <tr><td align="center">Domicilio Fiscal: @DOMICILIOFISCAL</td></tr>
+                    <tr><td align="center">Telefono: @NUMERO</td></tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <hr></hr>
+
+    <table style="width:100%">
+        <tr>
+            <td style="width:50%" align="left"><b>FACTURA Nro:</b> @NRODEFACTURA</td>
+
+            <td style="width:50%" align="right"><b>Fecha de emisión:</b> @FECHA</td>
+        </tr>
+    </table>
+    <hr></hr>
+
+    <!--Datos del cliente -->
+    <table class="border" style="width: 100%">
+        <tr><td><b>Rif, CI o Pasaporte: </b> @IDENTIDAD</td></tr>
+        <tr><td><b>condición:</b> @CONDICION</td></tr>
+        <tr><td><b>Razón social:</b> @RAZONSOCIAL</td></tr>
+        <tr><td><b>Domicilio fiscal:</b> @DOMICILIOFISCAL</td></tr>
+        <tr><td><b>Teléfono: </b>@TELEFONO</td></tr>
+    </table>
+    <hr></hr>
+
+    <!--Tabla de productos -->
+    <table class="border" style="width: 100%">
+
+        <thead style="background-color: #CACACA">
+            <tr>
+                <th>Cant:</th>
+                <th>Descripción:</th>
+                <th>IVA:</th>
+                <th>Prec. Unitario:</th>
+                <th>Monto:</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            
+                @Filas
+            
+        </tbody>
+
+    </table>
+    <hr border="0px"></hr>
+
+    <table class="border" style="width: 100%">
+        <tr><td class="titulo"><b>Monto Total Exento o Exonerado del IVA:</b></td><td>@MONTO1</td></tr>
+        <tr>
+            <td class="titulo">
+                <b>
+                    Monto Total de la Base Imponible según Alicuota 16,00%:
+                </b>
+            </td>
+            <td>@MONTO2</td>
+        </tr>
+        <tr><td class="titulo"><b>Monto Total del Impuesto según Alicuota 16,00%:</b></td><td>@MONTO3</td></tr>
+        <tr><td class="titulo"><b>VALOR TOTAL DE LA VENTA O SERVICIO::</b></td><td>@MONTOTOTAL</td></tr>
+
+    </table>
+
+
+    <!-- https://www.youtube.com/watch?v=Z47eF35t7E8 -->
+</body>
+</html>
