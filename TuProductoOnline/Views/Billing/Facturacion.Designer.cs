@@ -56,7 +56,6 @@
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeleteCell = new System.Windows.Forms.DataGridViewImageColumn();
-            this.label1 = new System.Windows.Forms.Label();
             this.ClientBox.SuspendLayout();
             this.ProductBox.SuspendLayout();
             this.groupBoxSubtotal.SuspendLayout();
@@ -109,7 +108,7 @@
             this.ProductBox.Controls.Add(this.ProductBox2);
             this.ProductBox.Location = new System.Drawing.Point(329, 14);
             this.ProductBox.Name = "ProductBox";
-            this.ProductBox.Size = new System.Drawing.Size(273, 89);
+            this.ProductBox.Size = new System.Drawing.Size(267, 89);
             this.ProductBox.TabIndex = 4;
             this.ProductBox.TabStop = false;
             this.ProductBox.Text = "Producto";
@@ -158,7 +157,6 @@
             this.CantidadBox.Name = "CantidadBox";
             this.CantidadBox.Size = new System.Drawing.Size(126, 20);
             this.CantidadBox.TabIndex = 3;
-            this.CantidadBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.CantidadBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CantidadBox_KeyPress);
             // 
             // ProductBox2
@@ -305,7 +303,7 @@
             this.ProducTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.RoyalBlue;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -318,7 +316,7 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.ProducTable.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.ProducTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ProducTable.Size = new System.Drawing.Size(575, 236);
+            this.ProducTable.Size = new System.Drawing.Size(584, 236);
             this.ProducTable.TabIndex = 23;
             this.ProducTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProducTable_CellClick);
             // 
@@ -361,21 +359,11 @@
             this.DeleteCell.ReadOnly = true;
             this.DeleteCell.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(246, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "label1";
-            // 
             // Facturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 411);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.ProducTable);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxSubtotal);
@@ -385,7 +373,6 @@
             this.Controls.Add(this.ClientBox);
             this.Name = "Facturacion";
             this.Text = "Facturacion";
-            this.Load += new System.EventHandler(this.Facturacion_Load);
             this.ClientBox.ResumeLayout(false);
             this.ProductBox.ResumeLayout(false);
             this.ProductBox.PerformLayout();
@@ -424,6 +411,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewImageColumn DeleteCell;
-        private System.Windows.Forms.Label label1;
     }
 }

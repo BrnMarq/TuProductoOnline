@@ -28,16 +28,6 @@ namespace TuProductoOnline.Views
             Refield();
         }
 
-        private void Facturacion_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void ProducTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int i = ProducTable.CurrentCell.RowIndex;
@@ -124,7 +114,7 @@ namespace TuProductoOnline.Views
                 }
 
 
-                label1.Text = (ProductosCarrito[contador][ProductosCarrito[contador].IndexOf("cantidad")] = CantidadBox.Text);
+                ProductosCarrito[contador][ProductosCarrito[contador].IndexOf("cantidad")] = CantidadBox.Text;
 
                 //Agregar al DataGridView
 
