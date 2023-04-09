@@ -12,6 +12,8 @@ namespace TuProductoOnline.Consts
         public static string UsersId = "usersId.csv";
         public static string Customers = "customers.csv";
         public static string CustomersId = "customersId.csv";
+        public static string BillId = "billId.csv";
+        public static string BillRegister = "../../DataBase/BillsRegister.json";
 
     }
 }

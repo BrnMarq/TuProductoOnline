@@ -56,6 +56,8 @@
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeleteCell = new System.Windows.Forms.DataGridViewImageColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.ClientBox.SuspendLayout();
             this.ProductBox.SuspendLayout();
             this.groupBoxSubtotal.SuspendLayout();
@@ -87,6 +89,7 @@
             this.btnAñadirClient.TabIndex = 14;
             this.btnAñadirClient.Text = "Añadir Nuevo";
             this.btnAñadirClient.UseVisualStyleBackColor = false;
+            this.btnAñadirClient.Click += new System.EventHandler(this.btnAñadirClient_Click);
             // 
             // ClientBox1
             // 
@@ -192,6 +195,7 @@
             this.btnFacturar.TabIndex = 15;
             this.btnFacturar.Text = "Facturar";
             this.btnFacturar.UseVisualStyleBackColor = false;
+            this.btnFacturar.Click += new System.EventHandler(this.btnFacturar_Click_1);
             // 
             // dataGridViewImageColumn1
             // 
@@ -249,7 +253,6 @@
             this.txtTotal.Size = new System.Drawing.Size(19, 20);
             this.txtTotal.TabIndex = 21;
             this.txtTotal.Text = "0";
-            this.txtTotal.Click += new System.EventHandler(this.txtTotal_Click);
             // 
             // groupBoxSubtotal
             // 
@@ -359,11 +362,31 @@
             this.DeleteCell.ReadOnly = true;
             this.DeleteCell.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(250, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "label1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(250, 81);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "label2";
+            // 
             // Facturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 411);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.ProducTable);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxSubtotal);
@@ -411,5 +434,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewImageColumn DeleteCell;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
