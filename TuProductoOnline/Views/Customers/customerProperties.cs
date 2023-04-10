@@ -45,7 +45,10 @@ namespace TuProductoOnline
 
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.SoloLetras(e);
+            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
+            {
+                e.Handled = true;
+            }
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 e.Handled = true;
@@ -133,6 +136,10 @@ namespace TuProductoOnline
         }
         private void txtId_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 if(VerifyLengthCedula() == 1)
@@ -145,6 +152,10 @@ namespace TuProductoOnline
 
         private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 if(VerifyLengthTlf() == 1)

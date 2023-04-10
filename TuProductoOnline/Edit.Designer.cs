@@ -212,6 +212,7 @@ namespace TuProductoOnline
             this.txtName.Size = new System.Drawing.Size(173, 20);
             this.txtName.TabIndex = 14;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
             // txtId
             // 
@@ -247,6 +248,7 @@ namespace TuProductoOnline
             this.Name = "Edit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit";
+            this.Load += new System.EventHandler(this.Edit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

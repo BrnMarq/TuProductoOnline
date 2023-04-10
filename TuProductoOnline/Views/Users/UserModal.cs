@@ -195,17 +195,26 @@ namespace TuProductoOnline.Views.Users
 
         private void NameInput_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.SoloLetras(e);
+            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
+            {
+                e.Handled = true;
+            }
         }
 
         private void LastNameInput_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.SoloLetras(e);
+            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
+            {
+                e.Handled = true;
+            }
         }
 
         private void PhoneNumberInput_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.SoloNumeros(e);
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void AcceptButton_Click(object sender, EventArgs e)

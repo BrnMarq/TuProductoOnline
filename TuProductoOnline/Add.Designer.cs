@@ -99,6 +99,7 @@ namespace TuProductoOnline
             this.txtName.Size = new System.Drawing.Size(173, 20);
             this.txtName.TabIndex = 0;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
+            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
             // label4
             // 

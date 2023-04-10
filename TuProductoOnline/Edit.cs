@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TuProductoOnline.Utils;
 
 namespace TuProductoOnline
 {
@@ -118,7 +119,7 @@ namespace TuProductoOnline
 
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar >= 32 && e.KeyChar <= 45 && e.KeyChar != 47) || (e.KeyChar >= 58 && e.KeyChar <= 255))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -127,6 +128,19 @@ namespace TuProductoOnline
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Edit_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
