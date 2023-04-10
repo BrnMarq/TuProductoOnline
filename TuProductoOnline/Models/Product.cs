@@ -50,7 +50,7 @@ namespace TuProductoOnline
         public double Price { get { return _price; } set { _price = value; } }
         public string Brand { get { return _brand; } set { _brand = value; } }
         public string Description { get { return _description; } set { _description = value; } }
-        public string Type { get { return _type; } }
+        public string Type { get { return _type; } set { _amount = value; } }
         public string Amount { get { return _amount; } set { _amount = value; } }
     }
 }
