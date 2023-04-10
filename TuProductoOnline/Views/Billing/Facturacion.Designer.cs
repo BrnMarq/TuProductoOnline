@@ -144,6 +144,7 @@
             this.bntAñadirProduct.TabIndex = 15;
             this.bntAñadirProduct.Text = "Añadir Nuevo Producto";
             this.bntAñadirProduct.UseVisualStyleBackColor = false;
+            this.bntAñadirProduct.Click += new System.EventHandler(this.bntAñadirProduct_Click);
             // 
             // txtCantidad
             // 

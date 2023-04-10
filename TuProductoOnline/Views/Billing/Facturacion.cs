@@ -19,6 +19,7 @@ using iTextSharp.text.pdf;
 using iTextSharp.text;
 using iTextSharp.tool.xml;
 using System.IO;
+using System.Runtime.InteropServices.ComTypes;
 
 
 //
@@ -55,8 +56,8 @@ namespace TuProductoOnline.Views
             {
                 List<Product> prueba = new List<Product>(TransformarCarritoAProducto(ProductosCarrito));
 
-
-                Bill factura = new Bill("chris")
+                
+                Bill factura = new Bill(User.ActiveUser.Id.ToString())
                 {
                     BillId = DbHandler.GetNewId(FileNames.BillId),
                     Fecha = DateTime.Now.ToString("dd/MM/yyyy. HH:mm:ss"),
@@ -89,11 +90,13 @@ namespace TuProductoOnline.Views
                 File.WriteAllText(fileName, jsonString);
 
                 //Imprimir Pdf
-                ToPfd(factura);
+                ToPdf(factura);
 
-                //Reseteset del carrito y datagridview
+                //Reseteset del carrito, datagridview y contadores.
                 ProductosCarrito.Clear();
                 ProducTable.Rows.Clear();
+                contador = 0; 
+                actualizarPrecio();
             }
 
         }
@@ -178,19 +181,34 @@ namespace TuProductoOnline.Views
 
         }
 
+         // Eliminar producto del data gridview y el carrito al clickear en el simbolo.
         private void ProducTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int i = ProducTable.CurrentCell.RowIndex;
 
-            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index)
+            int i;
+            try
+            {
+                i = ProducTable.CurrentCell.RowIndex;
+            }
+            catch (NullReferenceException)
+            {
+                 i = -1;
+            }
+               
+            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index && i != -1)
             {
                 ProducTable.Rows.Remove(ProducTable.CurrentRow);
-
                 ProductosCarrito.RemoveAt(i);
                 contador--;
                 actualizarPrecio();
             }
+            
         }
+        private void bntAñadirProduct_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //Aqui toca editar los campos de las listas.
         public void Refield()
         {
@@ -235,7 +253,7 @@ namespace TuProductoOnline.Views
             return ListaProductos;
         }
 
-        void ToPfd(Bill factura)
+        void ToPdf(Bill factura)
         {
             
             SaveFileDialog guardarFactura = new SaveFileDialog();
@@ -255,10 +273,10 @@ namespace TuProductoOnline.Views
             //Datos de la factura.
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@NRODEFACTURA", factura.BillId.ToString());
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@FECHA", factura.Fecha);
-            /*
+            
             //Cliente
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@IDENTIDAD",);
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@CONDICION",);
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@IDENTIDAD", User.ActiveUser.Id.ToString());
+            /*FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@CONDICION",);
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@RAZONSOCIAL",);
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@DOMICILIOFISCAL",);
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@TELEFONO",);
@@ -327,7 +345,7 @@ namespace TuProductoOnline.Views
             }
         }
 
-
+        
     }
 
 
