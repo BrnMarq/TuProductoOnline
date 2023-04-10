@@ -89,11 +89,12 @@ namespace TuProductoOnline.Views
                 File.WriteAllText(fileName, jsonString);
 
                 //Imprimir Pdf
-                ToPfd(factura);
+                ToPdf(factura);
 
                 //Reseteset del carrito y datagridview
                 ProductosCarrito.Clear();
                 ProducTable.Rows.Clear();
+                contador = 0;
             }
 
         }
@@ -235,7 +236,7 @@ namespace TuProductoOnline.Views
             return ListaProductos;
         }
 
-        void ToPfd(Bill factura)
+        void ToPdf(Bill factura)
         {
             
             SaveFileDialog guardarFactura = new SaveFileDialog();
