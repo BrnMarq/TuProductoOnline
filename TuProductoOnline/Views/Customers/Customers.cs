@@ -9,12 +9,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TuProductoOnline.Models;
 using TuProductoOnline.Views.Customers;
+using TuProductoOnline.Utils;
+using System.IO;
+using TuProductoOnline.Consts;
+using Microsoft.VisualBasic.Devices;
 
 namespace TuProductoOnline.Views
 { 
     public partial class CustomersView : Form
     {
         CustomerProperties miVentana = new CustomerProperties();
+        Computer myComputer = new Computer();
         public CustomersView()
         {
             InitializeComponent();
@@ -132,6 +137,44 @@ namespace TuProductoOnline.Views
             };
             Customer.UpdateCustomer(customer.Code, values);
             RenderTable();
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string pathCSV = openFileDialog1.FileName;
+                List<List<string>> clientesImportados = DbHandler.LeerCSV(pathCSV);
+
+                for (int i = 1; i < clientesImportados.Count; i++)
+                {
+                    new Customer(
+                        clientesImportados[i][1].ToString(),
+                        clientesImportados[i][2].ToString(),
+                        clientesImportados[i][3].ToString(),
+                        clientesImportados[i][4].ToString(),
+                        clientesImportados[i][5].ToString(),
+                        clientesImportados[i][6].ToString(),
+                        clientesImportados[i][7].ToString()
+                        );
+                }
+                RenderTable();
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ninguún archivo");
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveCustomer = new SaveFileDialog();
+
+            saveCustomer.FileName = "Clientes.csv";
+            string origen = @"" + FileNames.Customers;
+
+            if (saveCustomer.ShowDialog() == DialogResult.OK)
+                myComputer.FileSystem.CopyFile(origen, saveCustomer.FileName);  
         }
     }
 }
