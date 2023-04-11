@@ -42,7 +42,7 @@ namespace TuProductoOnline
 
         private void CustomersTab_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Customers());
+            OpenChildForm(new CustomersView());
         }
 
         private void UsersTab_Click(object sender, EventArgs e)

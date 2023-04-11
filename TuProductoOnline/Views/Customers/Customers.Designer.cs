@@ -1,6 +1,6 @@
 ﻿namespace TuProductoOnline.Views
 {
-    partial class Customers
+    partial class CustomersView
     {
         /// <summary>
         /// Required designer variable.
@@ -98,6 +98,7 @@
             this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCustomers.Size = new System.Drawing.Size(660, 352);
             this.dgvCustomers.TabIndex = 2;
+            this.dgvCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellClick);
             // 
             // Code
             // 
@@ -215,7 +216,7 @@
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.Width = 63;
             // 
-            // Customers
+            // CustomersView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -226,7 +227,7 @@
             this.Controls.Add(this.btnAddCustomer);
             this.Controls.Add(this.dgvCustomers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Customers";
+            this.Name = "CustomersView";
             this.Text = "Customers";
             this.Load += new System.EventHandler(this.Customers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).EndInit();

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace TuProductoOnline.Models
 {
-    class Customer
+    public class Customer
     {
         private int _code;
         private string _name;
@@ -19,12 +19,27 @@ namespace TuProductoOnline.Models
         private string _address;
         private string _email;
         private string _type;
+        private bool _deleted;
+
 
         private static List<Customer> customers;
 
         public Customer()
         {
 
+        }
+
+        public Customer(List<string> customerValues)
+        {
+            _code = int.Parse(customerValues[0]);
+            _name = customerValues[1];
+            _last_name = customerValues[2];
+            _document = customerValues[3];
+            _phone_number = customerValues[4];
+            _address = customerValues[5];
+            _email = customerValues[6];
+            _type = customerValues[7];
+            _deleted = bool.Parse(customerValues[8]);
         }
 
         public Customer(int code, string name, string last_name, string document, string phone_number, string address, string email, string type)
@@ -51,6 +66,7 @@ namespace TuProductoOnline.Models
             _address = address;
             _email = email;
             _type = type;
+            _deleted = false;
 
             List<string> values = new List<string> {
                 code.ToString(),
@@ -61,6 +77,7 @@ namespace TuProductoOnline.Models
                 address,
                 email,
                 type,
+                "false",
             };
 
             DbHandler.EscribirCSV(FileNames.Customers, values);
@@ -69,8 +86,7 @@ namespace TuProductoOnline.Models
             customers.Add(this);
         }
 
-        
-
+        // ---------------- Getters & Setters ----------------
         public int Code { get { return _code; } }
         public string Name { get { return _name; } set { _name = value; } }
         public string LastName { get { return _last_name; } set { _last_name = value; } }
@@ -79,7 +95,9 @@ namespace TuProductoOnline.Models
         public string Address { get { return _address; } set { _address = value; } }
         public string Email { get { return _email; } set { _email = value; } }
         public string Type { get { return _type; } set { _type = value; } }
+        public bool Deleted { get { return _deleted; } set { _deleted = value; } }
 
+        // --------------- Funcionalidades ------------------
         public static List<Customer> GetCustomers()
         {
             if (customers != null) return customers;
@@ -95,6 +113,28 @@ namespace TuProductoOnline.Models
             }
 
             return customers;
+        }
+
+        public static Customer GetCustomerById(int id)
+        {
+            List<Customer> customers = GetCustomers();
+            Customer customer = customers.Find(targetCustomer => targetCustomer.Code == id);
+            return customer;
+        }
+
+        public static void UpdateCustomer(int id, List<string> customerValues)
+        {
+            Customer customer = GetCustomerById(id);
+            customer.Name = customerValues[1];
+            customer.LastName = customerValues[2];
+            customer.Document = customerValues[3];
+            customer.PhoneNumber = customerValues[4];
+            customer.Address = customerValues[5];
+            customer.Email = customerValues[6];
+            customer.Type = customerValues[7];
+            customer.Deleted = bool.Parse(customerValues[8]);
+
+            DbHandler.EditCSV(FileNames.Customers, id.ToString(), customerValues);
         }
     }
 }

@@ -103,6 +103,12 @@
     <Compile Include="Edit_Id_Verification.Designer.cs">
       <DependentUpon>Edit_Id_Verification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Customers\DeleteCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Customers\DeleteCustomer.Designer.cs">
+      <DependentUpon>DeleteCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Users\DeleteModal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Edit_Id_Verification.resx">
       <DependentUpon>Edit_Id_Verification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Customers\DeleteCustomer.resx">
+      <DependentUpon>DeleteCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Users\DeleteModal.resx">
       <DependentUpon>DeleteModal.cs</DependentUpon>
