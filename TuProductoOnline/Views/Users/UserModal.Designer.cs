@@ -53,9 +53,10 @@
             this.AddressInput.Multiline = true;
             this.AddressInput.Name = "AddressInput";
             this.AddressInput.Size = new System.Drawing.Size(232, 25);
-            this.AddressInput.TabIndex = 27;
+            this.AddressInput.TabIndex = 4;
             this.AddressInput.TextChanged += new System.EventHandler(this.AddressInput_TextChanged);
             this.AddressInput.Enter += new System.EventHandler(this.AddressInput_Enter);
+            this.AddressInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AddressInput_KeyPress);
             this.AddressInput.Leave += new System.EventHandler(this.AddressInput_Leave);
             // 
             // PhoneNumberInput
@@ -68,7 +69,7 @@
             this.PhoneNumberInput.Multiline = true;
             this.PhoneNumberInput.Name = "PhoneNumberInput";
             this.PhoneNumberInput.Size = new System.Drawing.Size(232, 25);
-            this.PhoneNumberInput.TabIndex = 26;
+            this.PhoneNumberInput.TabIndex = 3;
             this.PhoneNumberInput.TextChanged += new System.EventHandler(this.PhoneNumberInput_TextChanged);
             this.PhoneNumberInput.Enter += new System.EventHandler(this.PhoneNumberInput_Enter);
             this.PhoneNumberInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PhoneNumberInput_KeyPress);
@@ -83,7 +84,7 @@
             this.LastNameInput.Multiline = true;
             this.LastNameInput.Name = "LastNameInput";
             this.LastNameInput.Size = new System.Drawing.Size(232, 25);
-            this.LastNameInput.TabIndex = 24;
+            this.LastNameInput.TabIndex = 1;
             this.LastNameInput.TextChanged += new System.EventHandler(this.LastNameInput_TextChanged);
             this.LastNameInput.Enter += new System.EventHandler(this.LastNameInput_Enter);
             this.LastNameInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LastNameInput_KeyPress);
@@ -99,7 +100,7 @@
             this.NameInput.Multiline = true;
             this.NameInput.Name = "NameInput";
             this.NameInput.Size = new System.Drawing.Size(232, 25);
-            this.NameInput.TabIndex = 23;
+            this.NameInput.TabIndex = 0;
             this.NameInput.TextChanged += new System.EventHandler(this.NameInput_TextChanged);
             this.NameInput.Enter += new System.EventHandler(this.NameInput_Enter);
             this.NameInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameInput_KeyPress);
@@ -113,7 +114,7 @@
             this.Addresslbl.Location = new System.Drawing.Point(30, 223);
             this.Addresslbl.Name = "Addresslbl";
             this.Addresslbl.Size = new System.Drawing.Size(84, 20);
-            this.Addresslbl.TabIndex = 21;
+            this.Addresslbl.TabIndex = 9;
             this.Addresslbl.Text = "Dirección";
             // 
             // Phonenumberlbl
@@ -124,7 +125,7 @@
             this.Phonenumberlbl.Location = new System.Drawing.Point(30, 173);
             this.Phonenumberlbl.Name = "Phonenumberlbl";
             this.Phonenumberlbl.Size = new System.Drawing.Size(79, 20);
-            this.Phonenumberlbl.TabIndex = 20;
+            this.Phonenumberlbl.TabIndex = 9;
             this.Phonenumberlbl.Text = "Teléfono";
             // 
             // Lastnamelbl
@@ -135,7 +136,7 @@
             this.Lastnamelbl.Location = new System.Drawing.Point(30, 73);
             this.Lastnamelbl.Name = "Lastnamelbl";
             this.Lastnamelbl.Size = new System.Drawing.Size(73, 20);
-            this.Lastnamelbl.TabIndex = 18;
+            this.Lastnamelbl.TabIndex = 9;
             this.Lastnamelbl.Text = "Apellido";
             // 
             // Namelbl
@@ -146,7 +147,7 @@
             this.Namelbl.Location = new System.Drawing.Point(30, 23);
             this.Namelbl.Name = "Namelbl";
             this.Namelbl.Size = new System.Drawing.Size(71, 20);
-            this.Namelbl.TabIndex = 17;
+            this.Namelbl.TabIndex = 9;
             this.Namelbl.Text = "Nombre";
             // 
             // PasswordInput
@@ -158,10 +159,11 @@
             this.PasswordInput.Multiline = true;
             this.PasswordInput.Name = "PasswordInput";
             this.PasswordInput.Size = new System.Drawing.Size(232, 25);
-            this.PasswordInput.TabIndex = 32;
+            this.PasswordInput.TabIndex = 5;
             this.PasswordInput.UseSystemPasswordChar = true;
             this.PasswordInput.TextChanged += new System.EventHandler(this.PasswordInput_TextChanged);
             this.PasswordInput.Enter += new System.EventHandler(this.PasswordInput_Enter);
+            this.PasswordInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PasswordInput_KeyPress);
             this.PasswordInput.Leave += new System.EventHandler(this.PasswordInput_Leave);
             // 
             // Passwordlbl
@@ -172,7 +174,7 @@
             this.Passwordlbl.Location = new System.Drawing.Point(30, 273);
             this.Passwordlbl.Name = "Passwordlbl";
             this.Passwordlbl.Size = new System.Drawing.Size(102, 20);
-            this.Passwordlbl.TabIndex = 31;
+            this.Passwordlbl.TabIndex = 9;
             this.Passwordlbl.Text = "Contraseña";
             // 
             // AcceptButton
@@ -186,7 +188,7 @@
             this.AcceptButton.Location = new System.Drawing.Point(33, 327);
             this.AcceptButton.Name = "AcceptButton";
             this.AcceptButton.Size = new System.Drawing.Size(335, 32);
-            this.AcceptButton.TabIndex = 33;
+            this.AcceptButton.TabIndex = 6;
             this.AcceptButton.Text = "Aceptar";
             this.AcceptButton.UseVisualStyleBackColor = false;
             this.AcceptButton.Click += new System.EventHandler(this.AcceptButton_Click);
@@ -200,9 +202,10 @@
             this.EmailInput.Multiline = true;
             this.EmailInput.Name = "EmailInput";
             this.EmailInput.Size = new System.Drawing.Size(232, 25);
-            this.EmailInput.TabIndex = 35;
+            this.EmailInput.TabIndex = 2;
             this.EmailInput.TextChanged += new System.EventHandler(this.EmailInput_TextChanged);
             this.EmailInput.Enter += new System.EventHandler(this.EmailInput_Enter);
+            this.EmailInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EmailInput_KeyPress);
             this.EmailInput.Leave += new System.EventHandler(this.EmailInput_Leave);
             // 
             // Emaillbl
@@ -213,7 +216,7 @@
             this.Emaillbl.Location = new System.Drawing.Point(30, 123);
             this.Emaillbl.Name = "Emaillbl";
             this.Emaillbl.Size = new System.Drawing.Size(63, 20);
-            this.Emaillbl.TabIndex = 34;
+            this.Emaillbl.TabIndex = 9;
             this.Emaillbl.Text = "Correo";
             // 
             // UserModal

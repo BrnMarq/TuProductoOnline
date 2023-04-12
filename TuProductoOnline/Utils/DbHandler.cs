@@ -58,7 +58,7 @@ namespace TuProductoOnline.Utils
         {
 
             bool fileExists = File.Exists(@"" + fileName);
-            if (!fileExists) EscribirCSV(fileName, new List<string>());
+            if (!fileExists) File.Create(fileName).Close();
 
             var reader = new StreamReader(File.OpenRead(@"" + fileName));
             List<List<String>> list = new List<List<string>>();

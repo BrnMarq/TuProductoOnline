@@ -97,5 +97,10 @@ namespace TuProductoOnline
             }
 
         }
+
+        private void Container_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

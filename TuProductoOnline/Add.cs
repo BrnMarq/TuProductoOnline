@@ -131,6 +131,11 @@ namespace TuProductoOnline
             {
                 e.Handled = true;
             }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
         }
 
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)
@@ -138,6 +143,34 @@ namespace TuProductoOnline
             if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
             {
                 e.Handled = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void Add_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBrand_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtDescription_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
             }
         }
     }

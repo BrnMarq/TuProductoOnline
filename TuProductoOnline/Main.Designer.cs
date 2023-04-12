@@ -235,6 +235,7 @@
             this.Container.Name = "Container";
             this.Container.Size = new System.Drawing.Size(630, 451);
             this.Container.TabIndex = 7;
+            this.Container.Paint += new System.Windows.Forms.PaintEventHandler(this.Container_Paint);
             // 
             // Main
             // 

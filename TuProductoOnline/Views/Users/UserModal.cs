@@ -53,7 +53,7 @@ namespace TuProductoOnline.Views.Users
         }
         private void AddUsers_Load(object sender, EventArgs e)
         {
-            if (_isEdit)
+            if (_isEdit) 
             {
                 NameInput.Text = _firstName;
                 LastNameInput.Text = _lastName;
@@ -88,10 +88,31 @@ namespace TuProductoOnline.Views.Users
             }
             AcceptButton.Enabled = true;
         }
+        private int VerifyLengthTlf()
+        {
+            string telefono = PhoneNumberInput.Text;
+            int control = 0;
+
+            if (telefono.Length < 11)
+            {
+                MessageBox.Show("El número mínimo de caracteres para el teléfono es 12");
+            }
+            else if (telefono.Length > 20)
+            {
+                MessageBox.Show("El número máximo de caracteres para el teléfono es 20");
+            }
+            else
+            {
+                control = 1;
+            }
+
+            return control;
+        }
 
         private void NameInput_TextChanged(object sender, EventArgs e)
         {
             VerifyInputs();
+
         }
         private void LastNameInput_TextChanged(object sender, EventArgs e)
         {
@@ -195,18 +216,14 @@ namespace TuProductoOnline.Views.Users
 
         private void NameInput_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
-            {
-                e.Handled = true;
-            }
+            Validar.SoloLetras(e);
+            Validar.Tab_Enter(e);
         }
 
         private void LastNameInput_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
-            {
-                e.Handled = true;
-            }
+            Validar.SoloLetras(e);
+            Validar.Tab_Enter(e);
         }
 
         private void PhoneNumberInput_KeyPress(object sender, KeyPressEventArgs e)
@@ -214,6 +231,14 @@ namespace TuProductoOnline.Views.Users
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                if (VerifyLengthTlf() == 1)
+                {
+                    e.Handled = true;
+                    SendKeys.Send("{TAB}");
+                }
             }
         }
 
@@ -231,6 +256,21 @@ namespace TuProductoOnline.Views.Users
             };
             acceptFunction(values);
             this.Close();
+        }
+
+        private void EmailInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.Tab_Enter(e);
+        }
+
+        private void AddressInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.Tab_Enter(e);
+        }
+
+        private void PasswordInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.Tab_Enter(e);
         }
     }
 }

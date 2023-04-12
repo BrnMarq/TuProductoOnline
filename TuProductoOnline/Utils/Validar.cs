@@ -9,45 +9,27 @@ namespace TuProductoOnline.Utils
 {
     class Validar
     {
-        public static void SoloLetras(KeyPressEventArgs v)
+        public static void SoloLetras(KeyPressEventArgs e)
         {
-            if (Char.IsLetter(v.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
             {
-                v.Handled = false;
+                e.Handled = true;
             }
-            else if (Char.IsSeparator(v.KeyChar))
+
+        }
+         public static void Tab_Enter(KeyPressEventArgs e) 
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                v.Handled = false;
-            }
-            else if (Char.IsControl(v.KeyChar))
-            {
-                v.Handled = false;
-            }
-            else
-            {
-                v.Handled = true;
-                MessageBox.Show("Ingrese sólo letras");
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
             }
         }
-
-        public static void SoloNumeros(KeyPressEventArgs v)
+        public static void SoloNumeros(KeyPressEventArgs e)
         {
-            if (Char.IsDigit(v.KeyChar))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                v.Handled = false;
-            }
-            else if (Char.IsSeparator(v.KeyChar))
-            {
-                v.Handled = false;
-            }
-            else if (Char.IsControl(v.KeyChar))
-            {
-                v.Handled = false;
-            }
-            else
-            {
-                v.Handled = true;
-                MessageBox.Show("Ingrese sólo números");
+                e.Handled = true;
             }
         }
     }

@@ -7,6 +7,7 @@ using System.IO;
 using TuProductoOnline.Utils;
 using TuProductoOnline.Consts;
 using System.Windows.Forms;
+using TuProductoOnline.Views;
 
 namespace TuProductoOnline.Models
 {
@@ -25,19 +26,6 @@ namespace TuProductoOnline.Models
         private static User _activeUser;
         private static List<User> _users;
 
-        public User(int id, string firstName, string lastName, string password, string role = "member", string email = "", string phone = "", string address = "")
-        {
-            _id = id;
-            _firstName = firstName;
-            _lastName = lastName;
-            _password = password;
-            _role = role;
-            _email = email;
-            _phone = phone;
-            _address = address;
-            _deleted = false;
-        }
-
         public User(List<string> userValues)
         {
             _id = int.Parse(userValues[0]);
@@ -50,7 +38,6 @@ namespace TuProductoOnline.Models
             _address = userValues[7];
             _deleted = bool.Parse(userValues[8]);
         }
-
 
         public User(string firstName, string lastName, string password, string role = "member", string email = "", string phone = "", string address = "")
         {
@@ -66,6 +53,8 @@ namespace TuProductoOnline.Models
             _address = address;
             _deleted = false;
 
+            GetUsers();
+
             List<string> values = new List<string> {
                 id.ToString(),
                 firstName,
@@ -79,7 +68,6 @@ namespace TuProductoOnline.Models
             };
             DbHandler.EscribirCSV(FileNames.Users, values);
 
-            GetUsers();
             _users.Add(this);
         }
 
