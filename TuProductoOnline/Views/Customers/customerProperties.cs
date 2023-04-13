@@ -54,6 +54,10 @@ namespace TuProductoOnline
 
             acceptFunction = callback;
         }
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            VerifyInputs();
+        }
         private void CustomerProperties_Load(object sender, EventArgs e)
         {
             if (_isEdit)
@@ -76,6 +80,19 @@ namespace TuProductoOnline
                 return;
             }
         }
+        private void CustomerProperties_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            txtCode.Text = "";
+            txtName.Text = "";
+            txtLastName.Text = "";
+            txtId.Text = "";
+            txtPhoneNumber.Text = "";
+            txtAddress.Text = "";
+            txtEmail.Text = "";
+            cbType.SelectedIndex = 0;
+
+            txtName.Select();
+        }
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
@@ -95,30 +112,6 @@ namespace TuProductoOnline
             this.Close();
         }
 
-        private void txtName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Validar.SoloLetras(e);
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        private void CustomerProperties_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            txtCode.Text = "";
-            txtName.Text = "";
-            txtLastName.Text = "";
-            txtId.Text = "";
-            txtPhoneNumber.Text = "";
-            txtAddress.Text = "";
-            txtEmail.Text = "";
-            cbType.SelectedIndex = 0;
-
-            txtName.Select();
-        }
-
         private void VerifyInputs()
         {
             if (txtName.Text != "" && txtLastName.Text != "" && txtId.Text != "" && txtPhoneNumber.Text != "" && txtAddress.Text != "" && txtEmail.Text != "")
@@ -129,10 +122,6 @@ namespace TuProductoOnline
             {
                 btnAccept.Enabled = false;
             }
-        }
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
-            VerifyInputs();
         }
 
         private int VerifyLengthTlf()
@@ -168,46 +157,43 @@ namespace TuProductoOnline
 
             return control;
         }
+        private void txtName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.SoloLetras(e);
+            Validar.Tab_Enter(e);
+        }
         private void txtId_KeyPress(object sender, KeyPressEventArgs e)
         {
+            Validar.SoloNumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 if (VerifyLengthCedula() == 1)
                 {
-                    e.Handled = true;
-                    SendKeys.Send("{TAB}");
+                    Validar.Tab_Enter(e); 
                 }
             }
         }
 
         private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
+            Validar.SoloNumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 if (VerifyLengthTlf() == 1)
                 {
-                    e.Handled = true;
-                    SendKeys.Send("{TAB}");
+                    Validar.Tab_Enter(e);
                 }
             }
         }
 
         private void txtAddress_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
+            Validar.Tab_Enter(e);
         }
 
         private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
+            Validar.Tab_Enter(e);
         }
 
         //Getters y setters para los textbox

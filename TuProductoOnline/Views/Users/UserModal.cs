@@ -228,16 +228,12 @@ namespace TuProductoOnline.Views.Users
 
         private void PhoneNumberInput_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            Validar.SoloNumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 if (VerifyLengthTlf() == 1)
                 {
-                    e.Handled = true;
-                    SendKeys.Send("{TAB}");
+                    Validar.Tab_Enter(e);
                 }
             }
         }

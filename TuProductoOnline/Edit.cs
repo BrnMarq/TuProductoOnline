@@ -117,19 +117,6 @@ namespace TuProductoOnline
             }
         }
 
-        private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-        }
-
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -140,35 +127,26 @@ namespace TuProductoOnline
 
         }
 
+        private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.SoloLetras(e);
+            Validar.Tab_Enter(e);
+        }
+
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
-            {
-                e.Handled = true;
-            }
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
+            Validar.SoloLetras(e);
+            Validar.Tab_Enter(e);
         }
 
         private void txtBrand_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
+            Validar.Tab_Enter(e);
         }
 
         private void txtDescription_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
+            Validar.Tab_Enter(e);
         }
     }
 }
