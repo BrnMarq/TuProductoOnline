@@ -162,7 +162,7 @@ namespace TuProductoOnline.Views
             }
             else
             {
-                MessageBox.Show("No se ha seleccionado ninguún archivo");
+                MessageBox.Show("No se ha seleccionado ningún archivo");
             }
         }
 
