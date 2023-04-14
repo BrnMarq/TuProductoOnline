@@ -49,7 +49,7 @@ namespace TuProductoOnline.Utils
 
         public static bool ValidarTelefono(string telefono)
         {
-            string patron = @"^[+]*[(]?[0-9]{1,4}[)]?[0-9-\s\.]+$";
+            string patron = @"^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$";
 
             if (Regex.IsMatch(telefono,patron))
                 return true;

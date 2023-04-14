@@ -125,24 +125,6 @@ namespace TuProductoOnline
             }
         }
 
-        private int VerifyLengthTlf()
-        {
-            string telefono = txtPhoneNumber.Text;
-            int control = 0;
-
-            if (telefono.Length < 11)
-            {
-                MessageBox.Show("El número mínimo de caracteres para el teléfono es 11");
-                txtPhoneNumber.Text = "";
-            }
-            else
-            {
-                control = 1;
-            }
-
-            return control;
-        }
-
         private int VerifyLengthCedula()
         {
             string cedula = txtId.Text;
@@ -181,10 +163,15 @@ namespace TuProductoOnline
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                if (VerifyLengthTlf()==1)
+                if (Validar.ValidarTelefono(txtPhoneNumber.Text.TrimStart(eliminar)))
                 {
                     e.Handled = true;
                     SendKeys.Send("{TAB}");
+                }
+                else
+                {
+                    MessageBox.Show("Número de teléfono inválido");
+                    txtPhoneNumber.Text = "";
                 }
             }
         }
