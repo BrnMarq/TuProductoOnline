@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace TuProductoOnline
 {
@@ -124,6 +125,46 @@ namespace TuProductoOnline
         private void Products_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+
+            SaveFileDialog sfd = new SaveFileDialog() { Filter = "Archivo CSV|*.csv" };
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                List<string> filas = new List<string>();
+                List<string> cabeceras = new List<string>();
+
+                foreach (DataGridViewColumn col in dgvProducts.Columns)
+                {
+                    cabeceras.Add(col.HeaderText);
+                }
+                string SEP = ",";
+                filas.Add(string.Join(SEP, cabeceras));
+
+                foreach (DataGridViewRow fila in dgvProducts.Rows)
+                {
+
+                    try
+                    {
+                        List<string> celdas = new List<string>();
+                        foreach (DataGridViewCell c in fila.Cells)
+                            celdas.Add(c.Value.ToString());
+
+
+                        filas.Add(string.Join(SEP, celdas));
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+
+                }
+                File.WriteAllLines(sfd.FileName, filas);
+
+            }
         }
     }
 
