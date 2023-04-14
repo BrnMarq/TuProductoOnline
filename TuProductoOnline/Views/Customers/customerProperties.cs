@@ -24,12 +24,13 @@ namespace TuProductoOnline
         private readonly string _email = "";
         private readonly string _type = "";
         private readonly bool _isEdit = false;
+        private readonly char[] eliminar= { '\n', '\r' };
 
         private readonly Action<List<string>> acceptFunction;
 
         public CustomerProperties()
         {
-            InitializeComponent();
+            InitializeComponent();        
         }
         public CustomerProperties(Action<List<string>> callback)
         {
@@ -84,8 +85,8 @@ namespace TuProductoOnline
                 _id.ToString(),
                 txtName.Text,
                 txtLastName.Text,
-                txtId.Text,
-                txtPhoneNumber.Text,
+                txtId.Text.TrimStart(eliminar),
+                txtPhoneNumber.Text.TrimStart(eliminar),
                 txtAddress.Text,
                 txtEmail.Text,
                 cbType.SelectedItem.ToString(),
@@ -143,6 +144,7 @@ namespace TuProductoOnline
             if (telefono.Length < 11)
             {
                 MessageBox.Show("El número mínimo de caracteres para el teléfono es 11");
+                txtPhoneNumber.Text = "";
             }
             else
             {
@@ -160,6 +162,7 @@ namespace TuProductoOnline
             if (cedula.Length < 7)
             {
                 MessageBox.Show("El número mínimo de caracteres para cédula/RIF es 7");
+                txtId.Text = "";
             }
             else
             {
