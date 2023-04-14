@@ -105,7 +105,7 @@ namespace TuProductoOnline
                 txtId.Text.TrimStart(eliminar),
                 txtPhoneNumber.Text.TrimStart(eliminar),
                 txtAddress.Text,
-                txtEmail.Text,
+                txtEmail.Text.TrimStart(eliminar),
                 cbType.SelectedItem.ToString(),
 
             };
@@ -167,24 +167,29 @@ namespace TuProductoOnline
         }
         private void txtId_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.SoloNumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 if (VerifyLengthCedula() == 1)
                 {
-                    Validar.Tab_Enter(e); 
+                    e.Handled = true;
+                    SendKeys.Send("{TAB}");
                 }
             }
         }
 
         private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.SoloNumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                if (VerifyLengthTlf() == 1)
+                if (Validar.ValidarTelefono(txtPhoneNumber.Text.TrimStart(eliminar)))
                 {
-                    Validar.Tab_Enter(e);
+                    e.Handled = true;
+                    SendKeys.Send("{TAB}");
+                }
+                else
+                {
+                    MessageBox.Show("Número de teléfono inválido");
+                    txtPhoneNumber.Text = "";
                 }
             }
         }
@@ -196,7 +201,19 @@ namespace TuProductoOnline
 
         private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.Tab_Enter(e);
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            { 
+                if (Validar.ValidarEmail(txtEmail.Text.TrimStart(eliminar)))
+                {
+                    e.Handled = true;
+                    SendKeys.Send("{TAB}");
+                }
+                else
+                {
+                    MessageBox.Show("Dirección de correo inválida");
+                    txtEmail.Text = "";
+                }
+            }
         }
 
         //Getters y setters para los textbox
