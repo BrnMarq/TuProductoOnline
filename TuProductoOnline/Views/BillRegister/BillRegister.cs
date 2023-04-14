@@ -12,6 +12,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.IO;
 using TuProductoOnline.Consts;
+using TuProductoOnline.Utils;
 
 namespace TuProductoOnline.Views.BillRegister
 {
@@ -57,6 +58,28 @@ namespace TuProductoOnline.Views.BillRegister
             }
 
             return productsAddedUp;
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            //"F" means for.
+            List<Bill> billFAdd = JsonHandler.openJsonFile();
+            addBillsTRegister(billFAdd);
+            renderTable();
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            JsonHandler.saveJsonFile(register);
+        }
+
+        //"T" means to.
+        public void addBillsTRegister(List<Bill> listOfBills)
+        {
+            foreach (Bill nBill in listOfBills)
+            {
+                register.Add(nBill);
+            }
         }
     }
 }
