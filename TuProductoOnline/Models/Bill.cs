@@ -16,8 +16,8 @@ using TuProductoOnline.Views.Users;
 
 namespace TuProductoOnline.Models
 {
-     class Bill : Customer
-    {
+     public class Bill : Customer
+     {
         // -------- Atributos ---------
         private int _billId;
         private string _fecha;

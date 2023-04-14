@@ -104,6 +104,19 @@
     <Compile Include="Edit_Id_Verification.Designer.cs">
       <DependentUpon>Edit_Id_Verification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\JsonHandler.cs" />
+    <Compile Include="Views\BillRegister\BillRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BillRegister\BillRegister.Designer.cs">
+      <DependentUpon>BillRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillRegister\PrintDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BillRegister\PrintDialog.Designer.cs">
+      <DependentUpon>PrintDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Customers\DeleteCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Edit_Id_Verification.resx">
       <DependentUpon>Edit_Id_Verification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BillRegister\BillRegister.resx">
+      <DependentUpon>BillRegister.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Customers\DeleteCustomer.resx">
       <DependentUpon>DeleteCustomer.cs</DependentUpon>

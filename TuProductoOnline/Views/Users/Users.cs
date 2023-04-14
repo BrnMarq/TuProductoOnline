@@ -9,11 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TuProductoOnline.Models;
+using TuProductoOnline.Utils;
+using Microsoft.VisualBasic.Devices;
+using TuProductoOnline.Consts;
+using TuProductoOnline.Views.Customers;
 
 namespace TuProductoOnline.Views.Users
 {
     public partial class Users : Form
     {
+        Computer myComputer = new Computer();
+
         public Users()
         {
             InitializeComponent();
@@ -114,6 +120,44 @@ namespace TuProductoOnline.Views.Users
                 if (user.Deleted) continue;
                 UsersTable.Rows.Add(user.Id, user.FirstName, user.LastName, user.Email, user.Phone, user.Address);
             }
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog2.ShowDialog() == DialogResult.OK)
+            {
+                string pathCSV = openFileDialog2.FileName;
+                List<List<string>> usuariosImportados = DbHandler.LeerCSV(pathCSV);
+
+                for (int i = 1; i < usuariosImportados.Count; i++)
+                {
+                    new User(
+                        usuariosImportados[i][1].ToString(),
+                        usuariosImportados[i][2].ToString(),
+                        usuariosImportados[i][3].ToString(),
+                        usuariosImportados[i][4].ToString(),
+                        usuariosImportados[i][5].ToString(),
+                        usuariosImportados[i][6].ToString(),
+                        usuariosImportados[i][7].ToString()
+                        );
+                }
+                RenderTable();
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ningún archivo");
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveUsers= new SaveFileDialog();
+
+            saveUsers.FileName = "Usuarios.csv";
+            string origen = @"" + FileNames.Users;
+
+            if (saveUsers.ShowDialog() == DialogResult.OK)
+                myComputer.FileSystem.CopyFile(origen, saveUsers.FileName);
         }
     }
 }

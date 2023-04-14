@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using TuProductoOnline.Views;
 using TuProductoOnline.Views.Users;
 using TuProductoOnline.Models;
+using TuProductoOnline.Views.BillRegister;
 
 namespace TuProductoOnline
 {
@@ -68,9 +69,7 @@ namespace TuProductoOnline
 
         private void btnRegistros_Click(object sender, EventArgs e)
         {
-            //...
-            //tu código
-            //...
+            OpenChildForm(new BillingRegistercs());
             hideSubMenu();
         }
 
