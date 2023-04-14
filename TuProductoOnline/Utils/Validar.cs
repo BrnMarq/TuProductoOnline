@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -31,6 +32,29 @@ namespace TuProductoOnline.Utils
             {
                 e.Handled = true;
             }
+        }
+
+        public static bool ValidarEmail(string email)
+        {
+            try
+            {
+                var compararEmail = new System.Net.Mail.MailAddress(email);
+                return compararEmail.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool ValidarTelefono(string telefono)
+        {
+            string patron = @"^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$";
+
+            if (Regex.IsMatch(telefono,patron))
+                return true;
+            else
+                return false;
         }
     }
 }

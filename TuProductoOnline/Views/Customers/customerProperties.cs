@@ -24,12 +24,13 @@ namespace TuProductoOnline
         private readonly string _email = "";
         private readonly string _type = "";
         private readonly bool _isEdit = false;
+        private readonly char[] eliminar= { '\n', '\r' };
 
         private readonly Action<List<string>> acceptFunction;
 
         public CustomerProperties()
         {
-            InitializeComponent();
+            InitializeComponent();        
         }
         public CustomerProperties(Action<List<string>> callback)
         {
@@ -101,10 +102,10 @@ namespace TuProductoOnline
                 _id.ToString(),
                 txtName.Text,
                 txtLastName.Text,
-                txtId.Text,
-                txtPhoneNumber.Text,
+                txtId.Text.TrimStart(eliminar),
+                txtPhoneNumber.Text.TrimStart(eliminar),
                 txtAddress.Text,
-                txtEmail.Text,
+                txtEmail.Text.TrimStart(eliminar),
                 cbType.SelectedItem.ToString(),
 
             };
@@ -124,23 +125,6 @@ namespace TuProductoOnline
             }
         }
 
-        private int VerifyLengthTlf()
-        {
-            string telefono = txtPhoneNumber.Text;
-            int control = 0;
-
-            if (telefono.Length < 11)
-            {
-                MessageBox.Show("El número mínimo de caracteres para el teléfono es 11");
-            }
-            else
-            {
-                control = 1;
-            }
-
-            return control;
-        }
-
         private int VerifyLengthCedula()
         {
             string cedula = txtId.Text;
@@ -149,6 +133,7 @@ namespace TuProductoOnline
             if (cedula.Length < 7)
             {
                 MessageBox.Show("El número mínimo de caracteres para cédula/RIF es 7");
+                txtId.Text = "";
             }
             else
             {
@@ -164,24 +149,29 @@ namespace TuProductoOnline
         }
         private void txtId_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.SoloNumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 if (VerifyLengthCedula() == 1)
                 {
-                    Validar.Tab_Enter(e); 
+                    e.Handled = true;
+                    SendKeys.Send("{TAB}");
                 }
             }
         }
 
         private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.SoloNumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                if (VerifyLengthTlf() == 1)
+                if (Validar.ValidarTelefono(txtPhoneNumber.Text.TrimStart(eliminar)))
                 {
-                    Validar.Tab_Enter(e);
+                    e.Handled = true;
+                    SendKeys.Send("{TAB}");
+                }
+                else
+                {
+                    MessageBox.Show("Número de teléfono inválido");
+                    txtPhoneNumber.Text = "";
                 }
             }
         }
@@ -193,7 +183,19 @@ namespace TuProductoOnline
 
         private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.Tab_Enter(e);
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            { 
+                if (Validar.ValidarEmail(txtEmail.Text.TrimStart(eliminar)))
+                {
+                    e.Handled = true;
+                    SendKeys.Send("{TAB}");
+                }
+                else
+                {
+                    MessageBox.Show("Dirección de correo inválida");
+                    txtEmail.Text = "";
+                }
+            }
         }
 
         //Getters y setters para los textbox

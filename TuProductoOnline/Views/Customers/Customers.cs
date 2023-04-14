@@ -34,30 +34,35 @@ namespace TuProductoOnline.Views
         }
         private void btnCheckCustomer_Click(object sender, EventArgs e)
         {
-            miVentana.BtnActivado = false;
-            
-           int idSeleccionado = int.Parse(dgvCustomers.CurrentRow.Cells[0].Value.ToString());
-           Customer customer = Customer.GetCustomerById(idSeleccionado); 
-          
-            miVentana.Code = customer.Code.ToString();
-            miVentana.Nombre = customer.Name;
-            miVentana.Last_name = customer.LastName;
-            miVentana.Id = customer.Document;
-            miVentana.Phone_number = customer.PhoneNumber;
-            miVentana.Address = customer.Address;
-            miVentana.Email = customer.Email;
-            if (customer.Type == "Ordinario")
+            try
             {
-                miVentana.Type = 0;
-            }
-            else
-            {
-                miVentana.Type = 1;
-            }
+                int idSeleccionado = int.Parse(dgvCustomers.CurrentRow.Cells[0].Value.ToString());
+                Customer customer = Customer.GetCustomerById(idSeleccionado);
 
-            miVentana.ShowDialog();
+                miVentana.Code = customer.Code.ToString();
+                miVentana.Nombre = customer.Name;
+                miVentana.Last_name = customer.LastName;
+                miVentana.Id = customer.Document;
+                miVentana.Phone_number = customer.PhoneNumber;
+                miVentana.Address = customer.Address;
+                miVentana.Email = customer.Email;
+                if (customer.Type == "Ordinario")
+                {
+                    miVentana.Type = 0;
+                }
+                else
+                {
+                    miVentana.Type = 1;
+                }
+
+                miVentana.BtnActivado = false;
+                miVentana.ShowDialog();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No hay clientes agregados","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }     
         }
-
         public void RenderTable()
         {
             dgvCustomers.Rows.Clear();
@@ -165,7 +170,6 @@ namespace TuProductoOnline.Views
                 MessageBox.Show("No se ha seleccionado ningún archivo");
             }
         }
-
         private void btnExport_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveCustomer = new SaveFileDialog();
