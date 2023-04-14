@@ -87,7 +87,7 @@ namespace TuProductoOnline
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
             this.label2.Location = new System.Drawing.Point(150, 225);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(258, 16);
+            this.label2.Size = new System.Drawing.Size(257, 16);
             this.label2.TabIndex = 14;
             this.label2.Text = "Ingrese el Id del producto a Eliminar";
             // 
@@ -109,7 +109,7 @@ namespace TuProductoOnline
             this.txtCode.Name = "txtCode";
             this.txtCode.ShortcutsEnabled = false;
             this.txtCode.Size = new System.Drawing.Size(238, 20);
-            this.txtCode.TabIndex = 22;
+            this.txtCode.TabIndex = 0;
             this.txtCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCode.TextChanged += new System.EventHandler(this.txtCode_TextChanged);
             this.txtCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCode_KeyPress);
@@ -139,7 +139,7 @@ namespace TuProductoOnline
             this.btnNext.Location = new System.Drawing.Point(409, 112);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(79, 33);
-            this.btnNext.TabIndex = 21;
+            this.btnNext.TabIndex = 1;
             this.btnNext.Text = "Continuar";
             this.btnNext.UseVisualStyleBackColor = false;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
@@ -152,7 +152,7 @@ namespace TuProductoOnline
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
             this.label3.Location = new System.Drawing.Point(12, 73);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(243, 16);
+            this.label3.Size = new System.Drawing.Size(242, 16);
             this.label3.TabIndex = 19;
             this.label3.Text = "Ingrese el Id del producto a Editar";
             // 
@@ -187,6 +187,7 @@ namespace TuProductoOnline
             this.Name = "Edit_Id_Verification";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit_Id_Verification";
+            this.Load += new System.EventHandler(this.Edit_Id_Verification_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
