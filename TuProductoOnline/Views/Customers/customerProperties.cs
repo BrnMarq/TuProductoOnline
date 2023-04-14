@@ -181,15 +181,10 @@ namespace TuProductoOnline
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                if (Validar.ValidarTelefono(txtPhoneNumber.Text.TrimStart(eliminar)))
+                if (VerifyLengthTlf()==1)
                 {
                     e.Handled = true;
                     SendKeys.Send("{TAB}");
-                }
-                else
-                {
-                    MessageBox.Show("Número de teléfono inválido");
-                    txtPhoneNumber.Text = "";
                 }
             }
         }
