@@ -51,15 +51,22 @@
             <td style="width:50%" align="right"><b>Fecha de emisión:</b> @FECHA</td>
         </tr>
     </table>
+    <table style="width:100%">
+        <tr>
+            <td style="width:50%" align="left"><b>Id de Cajero:</b> @IDCAJERO</td>
+
+            <td style="width:50%" align="right"><b>Fecha de vencimiento:</b> @DATE</td>
+        </tr>
+    </table>
     <hr></hr>
 
     <!--Datos del cliente -->
     <table class="border" style="width: 100%">
         <tr><td><b>Rif, CI o Pasaporte: </b> @IDENTIDAD</td></tr>
-        <tr><td><b>condición:</b> @CONDICION</td></tr>
-        <tr><td><b>Razón social:</b> @RAZONSOCIAL</td></tr>
-        <tr><td><b>Domicilio fiscal:</b> @DOMICILIOFISCAL</td></tr>
-        <tr><td><b>Teléfono: </b>@TELEFONO</td></tr>
+        <tr><td><b>Condición:</b> @CONDICION</td></tr>
+        <tr><td><b>Razón social:</b> @REASON</td></tr>
+        <tr><td><b>Domicilio fiscal:</b> @ADDRES</td></tr>
+        <tr><td><b>Teléfono: </b>@PHONE</td></tr>
     </table>
     <hr></hr>
 
@@ -77,9 +84,9 @@
         </thead>
 
         <tbody>
-            
-                @Filas
-            
+
+            @Filas
+
         </tbody>
 
     </table>
