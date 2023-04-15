@@ -15,10 +15,10 @@ namespace TuProductoOnline
         private bool _clic = false;
         public bool Clic { get { return _clic; } set { _clic = value; } }
         
-        public ConfirmDelete(string nombre)
+        public ConfirmDelete()
         {
             InitializeComponent();
-            label1.Text = $"{nombre}?";
+            
         }
 
         private void btnExit_Click(object sender, EventArgs e)

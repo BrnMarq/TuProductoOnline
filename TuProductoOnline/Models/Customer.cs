@@ -87,7 +87,7 @@ namespace TuProductoOnline.Models
         }
 
         // ---------------- Getters & Setters ----------------
-        public int Code { get { return _code; } }
+        public int Code { get { return _code; } set { _code = Code; } }
         public string Name { get { return _name; } set { _name = value; } }
         public string LastName { get { return _last_name; } set { _last_name = value; } }
         public string Document { get { return _document; } set { _document = value; } }

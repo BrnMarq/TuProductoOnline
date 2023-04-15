@@ -20,7 +20,9 @@ namespace TuProductoOnline
         private double _price;
         private string _type;
         private int _id;
+        private bool _clic = false;
 
+        public bool Clic { get { return _clic; } set { _clic = value; } }
         public string Alias { get { return _name; } set { _name = value; } }
         public string Brand { get { return _brand; } set { _brand = value; } }
         public string Description { get { return _description; } set { _description = value; } }
@@ -28,10 +30,17 @@ namespace TuProductoOnline
         public string Type { get { return _type; } set { _type = value; } }
         public int Id { get { return _id; } set { _id = value; } }
 
-        public Edit(int index)
+        public Edit(string id, string type, string name, string brand, string description, string price)
         {
             InitializeComponent();
-            txtId.Text = index.ToString();
+            txtId.Text = id;
+            cmbType.Text = type;
+            txtName.Text = name;
+            txtBrand.Text = brand;
+            txtDescription.Text = description;
+            txtPrice.Text = price;
+
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -42,8 +51,8 @@ namespace TuProductoOnline
                 Brand = txtBrand.Text.Trim();
                 Description = txtDescription.Text.Trim();
                 Type = cmbType.Text.Trim();
-                Price = Convert.ToDouble(txtPrice.Text.Trim());
-                Id = Convert.ToInt32(txtId.Text.Trim());
+                Price = Convert.ToDouble(txtPrice.Text);
+                Id = Convert.ToInt32(txtId.Text);
                 this.Close();
             }
             catch (Exception ex)
@@ -119,6 +128,7 @@ namespace TuProductoOnline
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            Clic = true;
             this.Close();
         }
 
@@ -129,24 +139,10 @@ namespace TuProductoOnline
 
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.SoloLetras(e);
-            Validar.Tab_Enter(e);
-        }
-
-        private void txtName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Validar.SoloLetras(e);
-            Validar.Tab_Enter(e);
-        }
-
-        private void txtBrand_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Validar.Tab_Enter(e);
-        }
-
-        private void txtDescription_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Validar.Tab_Enter(e);
+            if ((e.KeyChar >= 32 && e.KeyChar <= 47 && e.KeyChar != 44)||(e.KeyChar >= 58 && e.KeyChar <= 255)) 
+            {
+                e.Handled = true;
+            }
         }
     }
 }

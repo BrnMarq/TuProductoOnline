@@ -19,6 +19,7 @@ using iTextSharp.text.pdf;
 using iTextSharp.text;
 using iTextSharp.tool.xml;
 using System.IO;
+using System.Runtime.InteropServices.ComTypes;
 
 
 //
@@ -28,7 +29,7 @@ namespace TuProductoOnline.Views
 
     public partial class Facturacion : Form
     {
-        List<List<string>> Clientes = new List<List<string>>(DbHandler.LeerCSV("../../Database/Client.csv"));
+        List<List<string>> Clientes = new List<List<string>>(DbHandler.LeerCSV(FileNames.Customers));
         List<List<string>> Productos = new List<List<string>>(DbHandler.LeerCSV("../../Database/Products.csv"));
         List<List<string>> ProductosCarrito = new List<List<string>>();
         public int contador = 0;
@@ -46,7 +47,7 @@ namespace TuProductoOnline.Views
             Refield();
         }
 
-        
+
         private void btnFacturar_Click_1(object sender, EventArgs e)
         {
             if (ProducTable.Rows.Count == 0) { }
@@ -56,13 +57,15 @@ namespace TuProductoOnline.Views
                 List<Product> prueba = new List<Product>(TransformarCarritoAProducto(ProductosCarrito));
 
 
-                Bill factura = new Bill("chris")
+                Bill factura = new Bill(User.ActiveUser.Id.ToString())
                 {
                     BillId = DbHandler.GetNewId(FileNames.BillId),
                     Fecha = DateTime.Now.ToString("dd/MM/yyyy. HH:mm:ss"),
+                    FechaDeVencimiento = DateTime.Now.AddDays(15).ToString("dd/MM/yyyy. HH:mm:ss"),
 
-                    ListaProductos = new List<Product>(TransformarCarritoAProducto(ProductosCarrito)) { }
-                   
+                    Cliente = TransformarSeleccionACliente(Clientes[ClientBox1.SelectedIndex]),
+                    ListaProductos = new List<Product>(TransformarCarritoAProducto(ProductosCarrito)) { },
+
                 };
 
                 string fileName = FileNames.BillRegister;
@@ -91,10 +94,11 @@ namespace TuProductoOnline.Views
                 //Imprimir Pdf
                 ToPdf(factura);
 
-                //Reseteset del carrito y datagridview
+                //Reseteset del carrito, datagridview y contadores.
                 ProductosCarrito.Clear();
                 ProducTable.Rows.Clear();
                 contador = 0;
+                actualizarPrecio();
             }
 
         }
@@ -105,7 +109,7 @@ namespace TuProductoOnline.Views
         }
 
         private void CantidadBox_KeyPress(object sender, KeyPressEventArgs e)
-        { 
+        {
             //hacer que solo se puedan introducir numeros.
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -118,10 +122,10 @@ namespace TuProductoOnline.Views
         private void btnAgregarAlCarrito_Click(object sender, EventArgs e)
         {
             bool verificar = string.IsNullOrEmpty(CantidadBox.Text);
-            
+
             //evaluar campos vacios. 
 
-            if (ClientBox1.SelectedItem == null || ProductBox2.SelectedItem == null || verificar == true || int.Parse(CantidadBox.Text) == 0) 
+            if (ClientBox1.SelectedItem == null || ProductBox2.SelectedItem == null || verificar == true || int.Parse(CantidadBox.Text) == 0)
             {
                 //campo de seleccion de cliente vacio.
                 if (ClientBox1.SelectedItem == null)
@@ -132,7 +136,7 @@ namespace TuProductoOnline.Views
                     advertencia.ShowDialog();
                 }
                 //campo de seleccion de producto vacio.
-                else if(ProductBox2.SelectedItem == null)
+                else if (ProductBox2.SelectedItem == null)
                 {
                     string txtAdvertencia = "Por favor selecciona un producto.";
                     WarningDialog advertencia = new WarningDialog(txtAdvertencia);
@@ -158,10 +162,10 @@ namespace TuProductoOnline.Views
                 int iterador = 0;
                 foreach (string item in Productos[ProductBox2.SelectedIndex])
                 {
-                    
+
                     ProductosCarrito[contador].Add(item);
 
-                    
+
                     iterador++;
                 }
 
@@ -171,27 +175,42 @@ namespace TuProductoOnline.Views
                 //Agregar al DataGridView
 
                 ProducTable.Rows.Add(ProductosCarrito[contador][0], ProductosCarrito[contador][1], ProductosCarrito[contador][3], CantidadBox.Text);
-            
+
                 contador++;
-            actualizarPrecio();
+                actualizarPrecio();
             }
 
 
         }
 
+        // Eliminar producto del data gridview y el carrito al clickear en el simbolo.
         private void ProducTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int i = ProducTable.CurrentCell.RowIndex;
 
-            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index)
+            int i;
+            try
+            {
+                i = ProducTable.CurrentCell.RowIndex;
+            }
+            catch (NullReferenceException)
+            {
+                i = -1;
+            }
+
+            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index && i != -1)
             {
                 ProducTable.Rows.Remove(ProducTable.CurrentRow);
-
                 ProductosCarrito.RemoveAt(i);
                 contador--;
                 actualizarPrecio();
             }
+
         }
+        private void bntAñadirProduct_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //Aqui toca editar los campos de las listas.
         public void Refield()
         {
@@ -199,7 +218,11 @@ namespace TuProductoOnline.Views
             //La excepcion controla el caso en que no hayan clientes en el csv.
             foreach (List<string> subList in Clientes)
             {
-                try{ClientBox1.Items.Add(subList[1]);} catch (Exception){}
+                if (subList[8] != "true")
+                {
+                    try { ClientBox1.Items.Add(subList[1]); } catch (Exception) { }
+                }
+                
             }
             //llenar combobox productos
             foreach (List<string> subList in Productos)
@@ -219,7 +242,9 @@ namespace TuProductoOnline.Views
             }
 
             txtSubTotal.Text = Precio.ToString();
-            txtTotal.Text = ((Precio * double.Parse(Clientes[ClientBox1.SelectedIndex][0])).ToString());
+
+            
+            txtTotal.Text = ((Precio * 16/100) + Precio).ToString();
         }
         //Aqui toca editar los campos de las listas.
         public List<Product> TransformarCarritoAProducto(List<List<string>> list)
@@ -228,13 +253,21 @@ namespace TuProductoOnline.Views
             int i = 0;
             foreach (var producto in list)
             {
-                ListaProductos.Add(new Product(){ Id = int.Parse(list[i][0]), Price = double.Parse(list[i][3]), Amount = list[i][4], Name = list[i][1]});
+                ListaProductos.Add(new Product() { Id = int.Parse(list[i][0]), Price = double.Parse(list[i][3]), Amount = list[i][4], Name = list[i][1] });
                 i++;
-               
+
             }
 
             return ListaProductos;
         }
+
+        public Customer TransformarSeleccionACliente(List<string> List)
+        {
+            Customer Cliente = new Customer() { Code = int.Parse(List[0]), Name = List[1], LastName = List[2], Document = List[3], PhoneNumber = List[4], Address = List[5], Email = List[6], Type = List[7]};
+            
+            return Cliente;
+         }
+
 
         void ToPdf(Bill factura)
         {
@@ -255,24 +288,24 @@ namespace TuProductoOnline.Views
 
             //Datos de la factura.
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@NRODEFACTURA", factura.BillId.ToString());
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@IDCAJERO", factura.Cajero);
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@FECHA", factura.Fecha);
-            /*
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@DATE", factura.FechaDeVencimiento);
+
+
             //Cliente
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@IDENTIDAD",);
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@CONDICION",);
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@RAZONSOCIAL",);
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@DOMICILIOFISCAL",);
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@TELEFONO",);
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@IVA",);
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@IDENTIDAD", factura.Cliente.Document.ToString());
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@CONDICION", factura.Cliente.Type);
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@REASON", factura.Cliente.Name);
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@ADDRES", factura.Cliente.Address);
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@PHONE", factura.Cliente.PhoneNumber);
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@IVA", "16 %");
 
             //Producto
-            FacturaHtlml_Texto.Replace("@CLIENTE",);
-
-        */
             string filas = string.Empty;
             double iva = 16;
             double Total = 0;
-            if (factura.Type == ""){ iva = 16; }
+            if (factura.Cliente.Type == "Ordinario"){ iva = 16; }
             
             foreach (var item in factura.ListaProductos)
             {
@@ -328,7 +361,7 @@ namespace TuProductoOnline.Views
             }
         }
 
-
+        
     }
 
 
