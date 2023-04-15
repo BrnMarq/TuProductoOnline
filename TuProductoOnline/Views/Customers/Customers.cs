@@ -15,7 +15,7 @@ using TuProductoOnline.Consts;
 using Microsoft.VisualBasic.Devices;
 
 namespace TuProductoOnline.Views
-{ 
+{
     public partial class CustomersView : Form
     {
         CustomerProperties miVentana = new CustomerProperties();
@@ -72,15 +72,22 @@ namespace TuProductoOnline.Views
 
         private void dgvCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string id = dgvCustomers.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if(e.ColumnIndex == dgvCustomers.Columns["edit"].Index)
-                ShowEditModal(id);
-            if (e.ColumnIndex == dgvCustomers.Columns["delete"].Index)
-                ShowDeleteCustomer(id);
-            if (e.ColumnIndex == dgvCustomers.Columns["Consultar"].Index)
-                ConsultarCliente();
-        }
+            try
+            {
+                string id = dgvCustomers.Rows[e.RowIndex].Cells[0].Value.ToString();
+                if (e.ColumnIndex == dgvCustomers.Columns["edit"].Index)
+                    ShowEditModal(id);
+                if (e.ColumnIndex == dgvCustomers.Columns["delete"].Index)
+                    ShowDeleteCustomer(id);
+                if (e.ColumnIndex == dgvCustomers.Columns["Consultar"].Index)
+                    ConsultarCliente();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
 
+            }
+              
+        }
         public void ShowEditModal(string id)
         {
             Customer customer = Customer.GetCustomerById(int.Parse(id));
@@ -117,7 +124,7 @@ namespace TuProductoOnline.Views
                 customerValues[5],
                 customerValues[6],
                 customerValues[7],
-                customer.Deleted.ToString(),             
+                customer.Deleted.ToString(),
             };
             Customer.UpdateCustomer(customer.Code, values);
             RenderTable();
@@ -162,20 +169,14 @@ namespace TuProductoOnline.Views
                 }
                 RenderTable();
             }
-            else
-            {
-                MessageBox.Show("No se ha seleccionado ningún archivo");
-            }
         }
         private void btnExport_Click(object sender, EventArgs e)
-        {
+        {    
             SaveFileDialog saveCustomer = new SaveFileDialog();
-
-            saveCustomer.FileName = "Clientes.csv";
             string origen = @"" + FileNames.Customers;
 
             if (saveCustomer.ShowDialog() == DialogResult.OK)
-                myComputer.FileSystem.CopyFile(origen, saveCustomer.FileName);  
+                myComputer.FileSystem.CopyFile(origen, saveCustomer.FileName + ".csv");
         }
     }
 }
