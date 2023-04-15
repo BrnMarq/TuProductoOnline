@@ -75,9 +75,9 @@ namespace TuProductoOnline.Views
             try
             {
                 string id = dgvCustomers.Rows[e.RowIndex].Cells[0].Value.ToString();
-                if (e.ColumnIndex == dgvCustomers.Columns["edit"].Index)
+                if (e.ColumnIndex == dgvCustomers.Columns["Edit"].Index)
                     ShowEditModal(id);
-                if (e.ColumnIndex == dgvCustomers.Columns["delete"].Index)
+                if (e.ColumnIndex == dgvCustomers.Columns["Delete"].Index)
                     ShowDeleteCustomer(id);
                 if (e.ColumnIndex == dgvCustomers.Columns["Consultar"].Index)
                     ConsultarCliente();
@@ -177,6 +177,8 @@ namespace TuProductoOnline.Views
 
             if (saveCustomer.ShowDialog() == DialogResult.OK)
                 myComputer.FileSystem.CopyFile(origen, saveCustomer.FileName + ".csv");
+
+            MessageBox.Show("Clientes exportados con éxito");
         }
     }
 }
