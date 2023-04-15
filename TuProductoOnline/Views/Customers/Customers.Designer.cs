@@ -40,12 +40,12 @@
             this.edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnAddCustomer = new System.Windows.Forms.Button();
-            this.btnCheckCustomer = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.Consultar = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +76,8 @@
             this.phoneNumber,
             this.direction,
             this.edit,
-            this.delete});
+            this.delete,
+            this.Consultar});
             this.dgvCustomers.EnableHeadersVisualStyles = false;
             this.dgvCustomers.Location = new System.Drawing.Point(12, 98);
             this.dgvCustomers.Name = "dgvCustomers";
@@ -158,21 +159,6 @@
             this.btnAddCustomer.UseVisualStyleBackColor = false;
             this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
-            // btnCheckCustomer
-            // 
-            this.btnCheckCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnCheckCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCheckCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCheckCustomer.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnCheckCustomer.Location = new System.Drawing.Point(122, 38);
-            this.btnCheckCustomer.Name = "btnCheckCustomer";
-            this.btnCheckCustomer.Size = new System.Drawing.Size(100, 30);
-            this.btnCheckCustomer.TabIndex = 4;
-            this.btnCheckCustomer.Text = "Consultar";
-            this.btnCheckCustomer.UseVisualStyleBackColor = false;
-            this.btnCheckCustomer.Click += new System.EventHandler(this.btnCheckCustomer_Click);
-            // 
             // btnImport
             // 
             this.btnImport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -180,7 +166,7 @@
             this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImport.ForeColor = System.Drawing.Color.White;
-            this.btnImport.Location = new System.Drawing.Point(230, 38);
+            this.btnImport.Location = new System.Drawing.Point(119, 38);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(100, 30);
             this.btnImport.TabIndex = 6;
@@ -195,7 +181,7 @@
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExport.ForeColor = System.Drawing.Color.White;
-            this.btnExport.Location = new System.Drawing.Point(340, 38);
+            this.btnExport.Location = new System.Drawing.Point(229, 38);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(100, 30);
             this.btnExport.TabIndex = 7;
@@ -223,6 +209,12 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // Consultar
+            // 
+            this.Consultar.HeaderText = "Consultar";
+            this.Consultar.Name = "Consultar";
+            this.Consultar.ReadOnly = true;
+            // 
             // CustomersView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,7 +222,6 @@
             this.ClientSize = new System.Drawing.Size(684, 462);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnImport);
-            this.Controls.Add(this.btnCheckCustomer);
             this.Controls.Add(this.btnAddCustomer);
             this.Controls.Add(this.dgvCustomers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -246,7 +237,6 @@
 
         private System.Windows.Forms.DataGridView dgvCustomers;
         private System.Windows.Forms.Button btnAddCustomer;
-        private System.Windows.Forms.Button btnCheckCustomer;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
@@ -262,5 +252,6 @@
         private System.Windows.Forms.DataGridViewImageColumn edit;
         private System.Windows.Forms.DataGridViewImageColumn delete;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.DataGridViewImageColumn Consultar;
     }
 }

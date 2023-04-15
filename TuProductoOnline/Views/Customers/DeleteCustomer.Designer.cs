@@ -83,6 +83,7 @@ namespace TuProductoOnline.Views.Customers
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAccept);
             this.Name = "DeleteCustomer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DeleteCustomer";
             this.Load += new System.EventHandler(this.DeleteCustomer_Load);
             this.ResumeLayout(false);

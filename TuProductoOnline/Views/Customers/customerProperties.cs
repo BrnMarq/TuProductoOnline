@@ -208,6 +208,8 @@ namespace TuProductoOnline
         public string Email { get => txtEmail.Text; set => txtEmail.Text = value; }
         public int Type { get => cbType.SelectedIndex; set => cbType.SelectedIndex = value; }
         public bool BtnActivado { get => btnAccept.Enabled; set => btnAccept.Enabled = value; }
+        public bool LblCode { get => lblCode.Visible; set => lblCode.Visible = value; }
+        public bool TxtCode { get => txtCode.Visible; set => txtCode.Visible = value; }
 
     }
 }

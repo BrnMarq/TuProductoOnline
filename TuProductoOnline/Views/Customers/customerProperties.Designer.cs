@@ -233,6 +233,7 @@ namespace TuProductoOnline
             this.txtCode.ReadOnly = true;
             this.txtCode.Size = new System.Drawing.Size(232, 25);
             this.txtCode.TabIndex = 9;
+            this.txtCode.Visible = false;
             // 
             // lblCode
             // 
@@ -244,6 +245,7 @@ namespace TuProductoOnline
             this.lblCode.TabIndex = 8;
             this.lblCode.Tag = "";
             this.lblCode.Text = "Código";
+            this.lblCode.Visible = false;
             // 
             // CustomerProperties
             // 
