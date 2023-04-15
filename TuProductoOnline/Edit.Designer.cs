@@ -194,7 +194,6 @@ namespace TuProductoOnline
             this.txtDescription.Size = new System.Drawing.Size(141, 20);
             this.txtDescription.TabIndex = 3;
             this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
-            this.txtDescription.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescription_KeyPress);
             // 
             // txtBrand
             // 
@@ -204,7 +203,6 @@ namespace TuProductoOnline
             this.txtBrand.Size = new System.Drawing.Size(173, 20);
             this.txtBrand.TabIndex = 2;
             this.txtBrand.TextChanged += new System.EventHandler(this.txtBrand_TextChanged);
-            this.txtBrand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBrand_KeyPress);
             // 
             // txtName
             // 
@@ -214,7 +212,6 @@ namespace TuProductoOnline
             this.txtName.Size = new System.Drawing.Size(173, 20);
             this.txtName.TabIndex = 1;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
-            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
             // txtId
             // 

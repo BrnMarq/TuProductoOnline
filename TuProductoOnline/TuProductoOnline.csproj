@@ -98,12 +98,6 @@
     <Compile Include="Edit.Designer.cs">
       <DependentUpon>Edit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Edit_Id_Verification.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Edit_Id_Verification.Designer.cs">
-      <DependentUpon>Edit_Id_Verification.cs</DependentUpon>
-    </Compile>
     <Compile Include="Utils\JsonHandler.cs" />
     <Compile Include="Views\BillRegister\BillRegister.cs">
       <SubType>Form</SubType>
@@ -146,12 +140,6 @@
     </Compile>
     <Compile Include="Views\Customers\CustomerProperties.Designer.cs">
       <DependentUpon>CustomerProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Delete.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Delete.Designer.cs">
-      <DependentUpon>Delete.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="LoginForm.cs">
@@ -213,9 +201,6 @@
     <EmbeddedResource Include="Edit.resx">
       <DependentUpon>Edit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Edit_Id_Verification.resx">
-      <DependentUpon>Edit_Id_Verification.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\BillRegister\BillRegister.resx">
       <DependentUpon>BillRegister.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,9 +218,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Customers\CustomerProperties.resx">
       <DependentUpon>CustomerProperties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Delete.resx">
-      <DependentUpon>Delete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
