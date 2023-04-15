@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TuProductoOnline.Utils;
 
 namespace TuProductoOnline
 {
@@ -19,9 +20,6 @@ namespace TuProductoOnline
         {
             InitializeComponent();
         }
-
-        
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -32,20 +30,18 @@ namespace TuProductoOnline
             Id = Convert.ToInt32(txtCode.Text);
             this.Close();
         }
-
-       
-
         private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            Validar.SoloNumeros(e);
+            Validar.Tab_Enter(e);
         }
-
         private void txtCode_TextChanged(object sender, EventArgs e)
         {
             
+        }
+        private void Edit_Id_Verification_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

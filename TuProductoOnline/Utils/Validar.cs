@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -9,46 +10,51 @@ namespace TuProductoOnline.Utils
 {
     class Validar
     {
-        public static void SoloLetras(KeyPressEventArgs v)
+        public static void SoloLetras(KeyPressEventArgs e)
         {
-            if (Char.IsLetter(v.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
             {
-                v.Handled = false;
+                e.Handled = true;
             }
-            else if (Char.IsSeparator(v.KeyChar))
+
+        }
+         public static void Tab_Enter(KeyPressEventArgs e) 
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                v.Handled = false;
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
             }
-            else if (Char.IsControl(v.KeyChar))
+        }
+        public static void SoloNumeros(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                v.Handled = false;
-            }
-            else
-            {
-                v.Handled = true;
-                MessageBox.Show("Ingrese sólo letras");
+                e.Handled = true;
             }
         }
 
-        public static void SoloNumeros(KeyPressEventArgs v)
+        public static bool ValidarEmail(string email)
         {
-            if (Char.IsDigit(v.KeyChar))
+            try
             {
-                v.Handled = false;
+                var compararEmail = new System.Net.Mail.MailAddress(email);
+                return compararEmail.Address == email;
             }
-            else if (Char.IsSeparator(v.KeyChar))
+            catch
             {
-                v.Handled = false;
+                return false;
             }
-            else if (Char.IsControl(v.KeyChar))
-            {
-                v.Handled = false;
-            }
+        }
+
+        public static bool ValidarTelefono(string telefono)
+        {
+            string patron = @"^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$";
+
+            if (Regex.IsMatch(telefono,patron))
+                return true;
             else
-            {
-                v.Handled = true;
-                MessageBox.Show("Ingrese sólo números");
-            }
+                return false;
         }
     }
 }

@@ -58,7 +58,7 @@ namespace TuProductoOnline
             this.btnAdd.Location = new System.Drawing.Point(90, 476);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(94, 33);
-            this.btnAdd.TabIndex = 25;
+            this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Agregar";
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -87,7 +87,7 @@ namespace TuProductoOnline
             this.cmbType.Location = new System.Drawing.Point(108, 146);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(173, 21);
-            this.cmbType.TabIndex = 23;
+            this.cmbType.TabIndex = 0;
             this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
             this.cmbType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbType_KeyPress);
             // 
@@ -182,7 +182,7 @@ namespace TuProductoOnline
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.ShortcutsEnabled = false;
             this.txtPrice.Size = new System.Drawing.Size(173, 20);
-            this.txtPrice.TabIndex = 11;
+            this.txtPrice.TabIndex = 4;
             this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             this.txtPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrice_KeyPress);
             // 
@@ -192,8 +192,9 @@ namespace TuProductoOnline
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(141, 20);
-            this.txtDescription.TabIndex = 12;
+            this.txtDescription.TabIndex = 3;
             this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
+            this.txtDescription.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescription_KeyPress);
             // 
             // txtBrand
             // 
@@ -201,8 +202,9 @@ namespace TuProductoOnline
             this.txtBrand.Multiline = true;
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(173, 20);
-            this.txtBrand.TabIndex = 13;
+            this.txtBrand.TabIndex = 2;
             this.txtBrand.TextChanged += new System.EventHandler(this.txtBrand_TextChanged);
+            this.txtBrand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBrand_KeyPress);
             // 
             // txtName
             // 
@@ -210,7 +212,7 @@ namespace TuProductoOnline
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(173, 20);
-            this.txtName.TabIndex = 14;
+            this.txtName.TabIndex = 1;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 

@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Threading;
 using TuProductoOnline.Models;
 using TuProductoOnline.Consts;
+using TuProductoOnline.Utils;
 
 namespace TuProductoOnline
 {
@@ -68,11 +69,13 @@ namespace TuProductoOnline
                 return;
             }
             AccessButton.Enabled = true;
+
         }
 
         private void UsernameInput_TextChanged(object sender, EventArgs e)
         {
             VerifyInputs();
+
         }
 
         private void PasswordInput_TextChanged(object sender, EventArgs e)
@@ -140,7 +143,11 @@ namespace TuProductoOnline
             List<User> users = User.GetUsers();
             string username = UsernameInput.Text;
             string password = PasswordInput.Text;
-            User user = users.Find(targetUser => targetUser.FirstName == username && targetUser.Password == password);
+            User user = users.Find(targetUser => 
+                targetUser.FirstName == username &&
+                targetUser.Password == password &&
+                !targetUser.Deleted
+            );
             if (user != null)
             {
                 User.Login(user);
@@ -158,6 +165,16 @@ namespace TuProductoOnline
             Thread th = new Thread(() => Application.Run(new Main()));
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
+        }
+
+        private void UsernameInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.Tab_Enter(e);
+        }
+
+        private void PasswordInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.Tab_Enter(e);
         }
     }
 }

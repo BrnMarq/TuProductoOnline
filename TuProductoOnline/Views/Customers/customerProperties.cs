@@ -14,49 +14,73 @@ using TuProductoOnline.Views;
 namespace TuProductoOnline
 {
     public partial class CustomerProperties : Form
-    {       
+    {
+        private readonly int _id;
+        private readonly string _name = "";
+        private readonly string _last_name = "";
+        private readonly string _document = "";
+        private readonly string _phone_number = "";
+        private readonly string _address = "";
+        private readonly string _email = "";
+        private readonly string _type = "";
+        private readonly bool _isEdit = false;
+        private readonly char[] eliminar= { '\n', '\r' };
+
+        private readonly Action<List<string>> acceptFunction;
+
         public CustomerProperties()
+        {
+            InitializeComponent();        
+        }
+        public CustomerProperties(Action<List<string>> callback)
         {
             InitializeComponent();
             cbType.SelectedIndex = 0;
             btnAccept.Enabled = false;
+            acceptFunction = callback;
         }
 
-        private void btnAccept_Click(object sender, EventArgs e)
+        public CustomerProperties(Action<List<string>> callback, Customer customer)
         {
-            crearCliente();
-            this.Close();
+            InitializeComponent();
+            _id = customer.Code;
+            _name = customer.Name;
+            _last_name = customer.LastName;
+            _document = customer.Document;
+            _phone_number = customer.PhoneNumber;
+            _address = customer.Address;
+            _email = customer.Email;
+            _type = customer.Type;
+            _isEdit = true;
+
+            acceptFunction = callback;
         }
-
-        private Customer crearCliente()
+        private void txtName_TextChanged(object sender, EventArgs e)
         {
-            Customer cliente = new Customer(
-               txtName.Text,
-               txtLastName.Text,
-               txtId.Text,
-               txtPhoneNumber.Text,
-               txtAddress.Text,
-               txtEmail.Text,
-               cbType.SelectedItem.ToString()
-            );
-
-            return cliente;
+            VerifyInputs();
         }
-
-        private void txtName_KeyPress(object sender, KeyPressEventArgs e)
+        private void CustomerProperties_Load(object sender, EventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
+            if (_isEdit)
             {
-                e.Handled = true;
+                txtCode.Text = _id.ToString();
+                txtName.Text = _name;
+                txtLastName.Text = _last_name;
+                txtId.Text = _document;
+                txtPhoneNumber.Text = _phone_number;
+                txtAddress.Text = _address;
+                txtEmail.Text = _email;
+                if (_type == "Ordinario")
+                {
+                    cbType.SelectedIndex = 0;
+                }
+                else
+                {
+                    cbType.SelectedIndex = 1;
+                }
+                return;
             }
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
-                
         }
-
         private void CustomerProperties_FormClosed(object sender, FormClosedEventArgs e)
         {
             txtCode.Text = "";
@@ -68,18 +92,30 @@ namespace TuProductoOnline
             txtEmail.Text = "";
             cbType.SelectedIndex = 0;
 
-            txtName.TabIndex = 0;
-            txtLastName.TabIndex = 1;
-            txtId.TabIndex = 2;
-            txtPhoneNumber.TabIndex = 3;
-            txtAddress.TabIndex = 4;
-            txtEmail.TabIndex = 5;
-            cbType.TabIndex = 6;
+            txtName.Select();
+        }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            List<string> values = new List<string>
+            {
+                _id.ToString(),
+                txtName.Text,
+                txtLastName.Text,
+                txtId.Text.TrimStart(eliminar),
+                txtPhoneNumber.Text.TrimStart(eliminar),
+                txtAddress.Text,
+                txtEmail.Text.TrimStart(eliminar),
+                cbType.SelectedItem.ToString(),
+
+            };
+            acceptFunction(values);
+            this.Close();
         }
 
         private void VerifyInputs()
         {
-           if(txtName.Text != "" && txtLastName.Text != "" && txtId.Text != "" && txtPhoneNumber.Text != "" && txtAddress.Text != "" && txtEmail.Text != "")
+            if (txtName.Text != "" && txtLastName.Text != "" && txtId.Text != "" && txtPhoneNumber.Text != "" && txtAddress.Text != "" && txtEmail.Text != "")
             {
                 btnAccept.Enabled = true;
             }
@@ -88,44 +124,16 @@ namespace TuProductoOnline
                 btnAccept.Enabled = false;
             }
         }
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
-            VerifyInputs();
-        }
-
-        private int VerifyLengthTlf()
-        {
-            string telefono = txtPhoneNumber.Text;
-            int control = 0;
-
-            if(telefono.Length < 11)
-            {
-                MessageBox.Show("El número mínimo de caracteres para el teléfono es 12");
-            }
-            else if(telefono.Length > 20)
-            {
-                MessageBox.Show("El número máximo de caracteres para el teléfono es 20");
-            }
-            else
-            {
-                control = 1;
-            }
-
-            return control;
-        }
 
         private int VerifyLengthCedula()
         {
             string cedula = txtId.Text;
             int control = 0;
 
-            if (cedula.Length < 8)
+            if (cedula.Length < 7)
             {
-                MessageBox.Show("El número mínimo de caracteres para cédula/RIF es 8");
-            }
-            else if (cedula.Length > 20)
-            {
-                MessageBox.Show("El número máximo de caracteres para cédula/RIF es 20");
+                MessageBox.Show("El número mínimo de caracteres para cédula/RIF es 7");
+                txtId.Text = "";
             }
             else
             {
@@ -134,15 +142,16 @@ namespace TuProductoOnline
 
             return control;
         }
+        private void txtName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.SoloLetras(e);
+            Validar.Tab_Enter(e);
+        }
         private void txtId_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                if(VerifyLengthCedula() == 1)
+                if (VerifyLengthCedula() == 1)
                 {
                     e.Handled = true;
                     SendKeys.Send("{TAB}");
@@ -152,35 +161,40 @@ namespace TuProductoOnline
 
         private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                if(VerifyLengthTlf() == 1)
+                if (Validar.ValidarTelefono(txtPhoneNumber.Text.TrimStart(eliminar)))
                 {
                     e.Handled = true;
                     SendKeys.Send("{TAB}");
+                }
+                else
+                {
+                    MessageBox.Show("Número de teléfono inválido");
+                    txtPhoneNumber.Text = "";
                 }
             }
         }
 
         private void txtAddress_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
+            Validar.Tab_Enter(e);
         }
 
         private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
+            { 
+                if (Validar.ValidarEmail(txtEmail.Text.TrimStart(eliminar)))
+                {
+                    e.Handled = true;
+                    SendKeys.Send("{TAB}");
+                }
+                else
+                {
+                    MessageBox.Show("Dirección de correo inválida");
+                    txtEmail.Text = "";
+                }
             }
         }
 

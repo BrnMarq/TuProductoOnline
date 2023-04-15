@@ -136,6 +136,7 @@ namespace TuProductoOnline
             this.UsernameInput.TabIndex = 1;
             this.UsernameInput.TextChanged += new System.EventHandler(this.UsernameInput_TextChanged);
             this.UsernameInput.Enter += new System.EventHandler(this.UsernameInput_Enter);
+            this.UsernameInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UsernameInput_KeyPress);
             this.UsernameInput.Leave += new System.EventHandler(this.UsernameInput_Leave);
             // 
             // PasswordInput
@@ -150,6 +151,7 @@ namespace TuProductoOnline
             this.PasswordInput.TabIndex = 2;
             this.PasswordInput.TextChanged += new System.EventHandler(this.PasswordInput_TextChanged);
             this.PasswordInput.Enter += new System.EventHandler(this.PasswordInput_Enter);
+            this.PasswordInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PasswordInput_KeyPress);
             this.PasswordInput.Leave += new System.EventHandler(this.PasswordInput_Leave);
             // 
             // ExitButton

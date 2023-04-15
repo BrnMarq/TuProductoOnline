@@ -235,6 +235,7 @@
             this.Container.Name = "Container";
             this.Container.Size = new System.Drawing.Size(630, 451);
             this.Container.TabIndex = 7;
+            this.Container.Paint += new System.Windows.Forms.PaintEventHandler(this.Container_Paint);
             // 
             // Main
             // 
@@ -246,6 +247,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TuProductoOnline";
             this.Load += new System.EventHandler(this.Main_Load);
             this.panel1.ResumeLayout(false);

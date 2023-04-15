@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using TuProductoOnline.Views;
 using TuProductoOnline.Views.Users;
 using TuProductoOnline.Models;
+using TuProductoOnline.Views.BillRegister;
 
 namespace TuProductoOnline
 {
@@ -42,7 +43,7 @@ namespace TuProductoOnline
 
         private void CustomersTab_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Customers());
+            OpenChildForm(new CustomersView());
         }
 
         private void UsersTab_Click(object sender, EventArgs e)
@@ -68,9 +69,7 @@ namespace TuProductoOnline
 
         private void btnRegistros_Click(object sender, EventArgs e)
         {
-            //...
-            //tu código
-            //...
+            OpenChildForm(new BillingRegistercs());
             hideSubMenu();
         }
 
@@ -95,6 +94,11 @@ namespace TuProductoOnline
             {
                 panelSubMenu.Visible = false;
             }
+
+        }
+
+        private void Container_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

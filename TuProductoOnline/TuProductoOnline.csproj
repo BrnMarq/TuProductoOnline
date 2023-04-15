@@ -45,6 +45,7 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -102,6 +103,25 @@
     </Compile>
     <Compile Include="Edit_Id_Verification.Designer.cs">
       <DependentUpon>Edit_Id_Verification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\JsonHandler.cs" />
+    <Compile Include="Views\BillRegister\BillRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BillRegister\BillRegister.Designer.cs">
+      <DependentUpon>BillRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillRegister\PrintDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BillRegister\PrintDialog.Designer.cs">
+      <DependentUpon>PrintDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customers\DeleteCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Customers\DeleteCustomer.Designer.cs">
+      <DependentUpon>DeleteCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Users\DeleteModal.cs">
       <SubType>Form</SubType>
@@ -195,6 +215,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Edit_Id_Verification.resx">
       <DependentUpon>Edit_Id_Verification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BillRegister\BillRegister.resx">
+      <DependentUpon>BillRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Customers\DeleteCustomer.resx">
+      <DependentUpon>DeleteCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Users\DeleteModal.resx">
       <DependentUpon>DeleteModal.cs</DependentUpon>

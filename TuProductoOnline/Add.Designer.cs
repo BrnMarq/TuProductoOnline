@@ -53,7 +53,7 @@ namespace TuProductoOnline
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(173, 20);
-            this.txtId.TabIndex = 0;
+            this.txtId.TabIndex = 6;
             // 
             // label1
             // 
@@ -64,7 +64,7 @@ namespace TuProductoOnline
             this.label1.Location = new System.Drawing.Point(84, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(127, 29);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 6;
             this.label1.Text = "Agregado";
             // 
             // label2
@@ -76,7 +76,7 @@ namespace TuProductoOnline
             this.label2.Location = new System.Drawing.Point(12, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 24);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 6;
             this.label2.Text = "Codigo";
             // 
             // label3
@@ -88,7 +88,7 @@ namespace TuProductoOnline
             this.label3.Location = new System.Drawing.Point(12, 144);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 24);
-            this.label3.TabIndex = 1;
+            this.label3.TabIndex = 6;
             this.label3.Text = "Tipo";
             // 
             // txtName
@@ -97,7 +97,7 @@ namespace TuProductoOnline
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(173, 20);
-            this.txtName.TabIndex = 0;
+            this.txtName.TabIndex = 1;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
@@ -110,7 +110,7 @@ namespace TuProductoOnline
             this.label4.Location = new System.Drawing.Point(12, 203);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 24);
-            this.label4.TabIndex = 1;
+            this.label4.TabIndex = 6;
             this.label4.Text = "Nombre";
             // 
             // txtBrand
@@ -119,8 +119,9 @@ namespace TuProductoOnline
             this.txtBrand.Multiline = true;
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(173, 20);
-            this.txtBrand.TabIndex = 0;
+            this.txtBrand.TabIndex = 2;
             this.txtBrand.TextChanged += new System.EventHandler(this.txtBrand_TextChanged);
+            this.txtBrand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBrand_KeyPress);
             // 
             // label5
             // 
@@ -131,7 +132,7 @@ namespace TuProductoOnline
             this.label5.Location = new System.Drawing.Point(12, 265);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 24);
-            this.label5.TabIndex = 1;
+            this.label5.TabIndex = 6;
             this.label5.Text = "Marca";
             // 
             // txtDescription
@@ -140,8 +141,9 @@ namespace TuProductoOnline
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(141, 20);
-            this.txtDescription.TabIndex = 0;
+            this.txtDescription.TabIndex = 3;
             this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
+            this.txtDescription.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescription_KeyPress);
             // 
             // label6
             // 
@@ -152,7 +154,7 @@ namespace TuProductoOnline
             this.label6.Location = new System.Drawing.Point(12, 329);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(121, 24);
-            this.label6.TabIndex = 1;
+            this.label6.TabIndex = 6;
             this.label6.Text = "Descripcion";
             // 
             // txtPrice
@@ -162,7 +164,7 @@ namespace TuProductoOnline
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.ShortcutsEnabled = false;
             this.txtPrice.Size = new System.Drawing.Size(173, 20);
-            this.txtPrice.TabIndex = 0;
+            this.txtPrice.TabIndex = 4;
             this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             this.txtPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrice_KeyPress);
             // 
@@ -175,7 +177,7 @@ namespace TuProductoOnline
             this.label7.Location = new System.Drawing.Point(12, 398);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(70, 24);
-            this.label7.TabIndex = 1;
+            this.label7.TabIndex = 6;
             this.label7.Text = "Precio";
             // 
             // cmbType
@@ -188,7 +190,7 @@ namespace TuProductoOnline
             this.cmbType.Location = new System.Drawing.Point(107, 144);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(173, 21);
-            this.cmbType.TabIndex = 2;
+            this.cmbType.TabIndex = 0;
             this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
             this.cmbType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbType_KeyPress);
             // 
@@ -201,7 +203,7 @@ namespace TuProductoOnline
             this.btnExit.Location = new System.Drawing.Point(0, 0);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(26, 29);
-            this.btnExit.TabIndex = 3;
+            this.btnExit.TabIndex = 8;
             this.btnExit.Text = "X";
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -218,7 +220,7 @@ namespace TuProductoOnline
             this.btnAdd.Location = new System.Drawing.Point(89, 474);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(94, 33);
-            this.btnAdd.TabIndex = 10;
+            this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Agregar";
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click_1);
@@ -248,6 +250,7 @@ namespace TuProductoOnline
             this.Name = "Add";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add";
+            this.Load += new System.EventHandler(this.Add_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
