@@ -16,13 +16,16 @@ using TuProductoOnline.Views.Users;
 
 namespace TuProductoOnline.Models
 {
-     public class Bill : Customer
+     public class Bill
      {
         // -------- Atributos ---------
         private int _billId;
-        private string _fecha;
         private string _cajero;
+        private string _fecha;
+        private string _fechadevencimiento;
+        
 
+        public Customer Cliente { get; set; }
         public List<Product> ListaProductos { get; set; }
 
         //--------- constructores -----------
@@ -51,6 +54,8 @@ namespace TuProductoOnline.Models
         public int BillId { get { return _billId; } set { _billId = value; } }
         public string Fecha { get { return _fecha; } set { _fecha = value; } }
         public string Cajero { get { return _cajero; } set { _cajero = value; } }
+        public string FechaDeVencimiento { get { return _fechadevencimiento; } set { _fechadevencimiento = value; } }
+
 
 
         //Metodos.
