@@ -20,10 +20,8 @@ namespace TuProductoOnline
 
     public partial class Products : Form
     {
-        Computer myComputer = new Computer();
         public List<Product> product = new List<Product>();
-        public List<int> Ids = new List<int>();
-
+        public int maxId = 0;
 
         public Products()
         {
@@ -31,36 +29,23 @@ namespace TuProductoOnline
 
         }
 
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
-            Add add = new Add(Ids.Count + 1);
+            Add add = new Add(maxId + 1);
             add.ShowDialog();
             if (add.Id != 0)
             {
-                product.Add(new Product(add.Alias, add.Price, add.Brand, add.Description, add.Type, add.Id));
-                Ids.Add(add.Id);
-                int rowIndex = dgvProducts.Rows.Add();
-                DataGridViewRow row = dgvProducts.Rows[rowIndex];
-                row.Cells[0].Value = add.Id;
-                row.Cells[1].Value = add.Type;
-                row.Cells[2].Value = add.Alias;
-                row.Cells[3].Value = add.Brand;
-                row.Cells[4].Value = add.Description;
-                row.Cells[5].Value = add.Price;
-
-
+                new Product(add.Alias, add.Price, add.Brand, add.Description, add.Type);
+                RenderTable();
+                maxId++;
             }
-
         }
-
-
-
 
         private void Products_Load(object sender, EventArgs e)
         {
-
+            product = Product.GetProducts();
+            maxId = product.Count();
+            RenderTable();
         }
 
         private void btnExport_Click(object sender, EventArgs e)
@@ -127,26 +112,19 @@ namespace TuProductoOnline
                 confirm.ShowDialog();
                 if (confirm.Clic == true)
                 {
-
-                    for (int i = 0; i < product.Count; i++)
+                    Product pro = Product.GetProductById(int.Parse(id));
+                    List<string> productValues = new List<string>
                     {
-                        if (product[i].Id.ToString() == id)
-                        {
-                            product.RemoveAt(i);
-                        }
-                    }
-                    dgvProducts.Rows.Clear();
-                    foreach (Product p in product)
-                    {
-                        int rowIndex = dgvProducts.Rows.Add();
-                        DataGridViewRow row = dgvProducts.Rows[rowIndex];
-                        row.Cells[0].Value = p.Id;
-                        row.Cells[1].Value = p.Type;
-                        row.Cells[2].Value = p.Name;
-                        row.Cells[3].Value = p.Brand;
-                        row.Cells[4].Value = p.Description;
-                        row.Cells[5].Value = p.Price;
-                    }
+                        id,
+                        pro.Name,
+                        pro.Price.ToString(),
+                        pro.Brand,
+                        pro.Description,
+                        pro.Type,
+                        "true"
+                    };
+                    Product.UpdateProduct(int.Parse(id), productValues);
+                    RenderTable();
                 }
 
             }
@@ -156,30 +134,18 @@ namespace TuProductoOnline
                 edit.ShowDialog();
                 if (edit.Clic != true)
                 {
-                    for (int i = 0; i < product.Count; i++)
+                    List<string> productValues = new List<string>
                     {
-                        if (product[i].Id.ToString() == id)
-                        {
-                            product[i].Name = edit.Alias;
-                            product[i].Price = Convert.ToDouble(edit.Price);
-                            product[i].Brand = edit.Brand;
-                            product[i].Description = edit.Description;
-                            product[i].Type = edit.Type;
-                            product[i].Id = edit.Id;
-                        }
-                    }
-                    dgvProducts.Rows.Clear();
-                    foreach (Product p in product)
-                    {
-                        int rowIndex = dgvProducts.Rows.Add();
-                        DataGridViewRow row = dgvProducts.Rows[rowIndex];
-                        row.Cells[0].Value = p.Id;
-                        row.Cells[1].Value = p.Type;
-                        row.Cells[2].Value = p.Name;
-                        row.Cells[3].Value = p.Brand;
-                        row.Cells[4].Value = p.Description;
-                        row.Cells[5].Value = p.Price;
-                    }
+                        id,
+                        edit.Alias,
+                        edit.Price.ToString(),
+                        edit.Brand,
+                        edit.Description,
+                        edit.Type,
+                        "false"
+                    };
+                    Product.UpdateProduct(int.Parse(id), productValues);
+                    RenderTable();
                 }
 
             }
@@ -207,6 +173,18 @@ namespace TuProductoOnline
                     string[] celdas = lineas[i].Split(new[] { SEP }, StringSplitOptions.None);
                     dgvProducts.Rows.Add(celdas);
                 }
+            }
+        }
+
+        public void RenderTable()
+        {
+            dgvProducts.Rows.Clear();
+            dgvProducts.Refresh();
+            List<Product> products = Product.GetProducts();
+            foreach (Product product in products)
+            {
+                if (product.Deleted) continue;
+                dgvProducts.Rows.Add(product.Id, product.Type, product.Name, product.Brand, product.Description, product.Price);
             }
         }
     }
