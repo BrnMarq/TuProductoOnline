@@ -70,8 +70,8 @@ namespace TuProductoOnline
                 {
                     cabeceras.Add(col.HeaderText);
                 }
-                string SEP = ",";
-                filas.Add(string.Join(SEP, cabeceras));
+                string SEP = ";";
+                filas.Add(string.Join(SEP, cabeceras.GetRange(0,6)));
 
                 foreach (DataGridViewRow fila in dgvProducts.Rows)
                 {
@@ -83,7 +83,7 @@ namespace TuProductoOnline
                             celdas.Add(c.Value.ToString());
 
 
-                        filas.Add(string.Join(SEP, celdas));
+                        filas.Add(string.Join(SEP, celdas.GetRange(0,6)));
                     }
                     catch (Exception ex)
                     {
@@ -172,6 +172,14 @@ namespace TuProductoOnline
                 {
                     string[] celdas = lineas[i].Split(new[] { SEP }, StringSplitOptions.None);
                     dgvProducts.Rows.Add(celdas);
+                    Product pro = new Product();
+                    pro.Id = Convert.ToInt32(celdas[0]);
+                    pro.Type = celdas[1];
+                    pro.Name = celdas[2];
+                    pro.Brand = celdas[3];
+                    pro.Description = celdas[4];
+                    pro.Price = Convert.ToDouble(celdas[5]);
+                    product.Add(new Product(pro.Name, pro.Price, pro.Brand, pro.Description, pro.Type, pro.Id));
                 }
             }
         }
