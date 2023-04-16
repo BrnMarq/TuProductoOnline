@@ -34,7 +34,15 @@ namespace TuProductoOnline.Utils
                 }
             }
 
-            returnBooks = JsonSerializer.Deserialize<List<Bill>>(fileContent);
+            try
+            {
+                returnBooks = JsonSerializer.Deserialize<List<Bill>>(fileContent);
+            }
+            catch (JsonException e)
+            {
+                returnBooks = null; 
+            }
+
             return returnBooks;
         }
 
@@ -43,6 +51,7 @@ namespace TuProductoOnline.Utils
             string jsonString = JsonSerializer.Serialize(stockBooks);
             SaveFileDialog saveJson = new SaveFileDialog();
 
+            saveJson.InitialDirectory = @"c:\";
             saveJson.Filter = "JSON files  (*.json)|*.json";
             saveJson.RestoreDirectory = true;
 
