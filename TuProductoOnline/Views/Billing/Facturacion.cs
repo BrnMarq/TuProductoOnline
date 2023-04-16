@@ -23,6 +23,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Reflection;
 using static iTextSharp.text.pdf.hyphenation.TernaryTree;
 using com.itextpdf.text.pdf;
+using Org.BouncyCastle.Asn1;
 
 namespace TuProductoOnline.Views
 {
@@ -59,7 +60,6 @@ namespace TuProductoOnline.Views
                 List<Product> prueba = new List<Product>(TransformarCarritoAProducto(ProductosCarrito));
                 int iterador = -1;
                 int Verificadorfalse = 0;
-                int PosicionEnLista;
                 foreach (List<string> item in Clientes)
                 {
                     iterador++;
@@ -110,6 +110,9 @@ namespace TuProductoOnline.Views
                 ProducTable.Rows.Clear();
                 contador = 0;
                 actualizarPrecio();
+                ClientBox1.SelectedIndex = -1;
+                ProductBox2.SelectedIndex = -1;
+                CantidadBox.Text = "0";
             }
 
         }
@@ -293,6 +296,7 @@ namespace TuProductoOnline.Views
         {
             
             SaveFileDialog guardarFactura = new SaveFileDialog();
+            guardarFactura.Filter = "PDF files  (.pdf)|.pdf";
             guardarFactura.FileName = DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";
 
             //Leer plantilla y pasar a string.
@@ -301,10 +305,10 @@ namespace TuProductoOnline.Views
             //Replace de la factura y otros calculos.
 
             //Empresa
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@NOMBREEMPRESA", "TuProductOnline");
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@RAZONSOCIAL", "TuProductOnline C.A.");
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@DOMICILIOFISCAL", "Narnia");
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@NUMERO", "0800-NoJuegenLolYBañese");
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@NOMBREEMPRESA", "TuProductoOnline");
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@RAZONSOCIAL", "TuProductoOnline C.A.");
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@DOMICILIOFISCAL", "Caracas, Venezuela");
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@NUMERO", "0800-12345678");
 
             //Datos de la factura.
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@NRODEFACTURA", factura.BillId.ToString());
@@ -402,8 +406,6 @@ namespace TuProductoOnline.Views
                 customerValues[7]
                 );
         }
-
-
     }
 
 
