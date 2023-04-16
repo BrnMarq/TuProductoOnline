@@ -17,7 +17,7 @@ namespace TuProductoOnline
         private string _brand;
         private string _description;
         private string _type;
-        private string _amount = "Amount";
+        private string _amount;
         private bool _deleted = false;
 
         private static List<Product> _products;
@@ -39,6 +39,7 @@ namespace TuProductoOnline
             _brand = brand;
             _description = description;
             _type = type;
+            _amount = "Amount";
 
             GetProducts();
 
@@ -50,6 +51,7 @@ namespace TuProductoOnline
                 description,
                 type,
                 "false",
+                "Amount"
             };
             DbHandler.EscribirCSV(FileNames.Products, values);
 
@@ -75,6 +77,8 @@ namespace TuProductoOnline
             _amount = Amount;
 
         }
+
+
 
         // ---------------- Getters & Setters ----------------
         public int Id { get { return _id; } set { _id = value; } }

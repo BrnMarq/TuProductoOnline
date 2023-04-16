@@ -35,7 +35,7 @@ namespace TuProductoOnline
             add.ShowDialog();
             if (add.Id != 0)
             {
-                new Product(add.Alias, add.Price, add.Brand, add.Description, add.Type);
+                new Product(add.Alias, add.Price, add.Brand, add.Description, add.Type) { Amount = "Amount" };
                 RenderTable();
                 maxId++;
             }
@@ -121,7 +121,8 @@ namespace TuProductoOnline
                         pro.Brand,
                         pro.Description,
                         pro.Type,
-                        "true"
+                        "true",
+                        "Amount"
                     };
                     Product.UpdateProduct(int.Parse(id), productValues);
                     RenderTable();
@@ -142,7 +143,8 @@ namespace TuProductoOnline
                         edit.Brand,
                         edit.Description,
                         edit.Type,
-                        "false"
+                        "false",
+                        "Amount"
                     };
                     Product.UpdateProduct(int.Parse(id), productValues);
                     RenderTable();
