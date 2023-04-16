@@ -35,7 +35,7 @@ namespace TuProductoOnline
             add.ShowDialog();
             if (add.Id != 0)
             {
-                new Product(add.Alias, add.Price, add.Brand, add.Description, add.Type);
+                new Product(add.Alias, add.Price, add.Brand, add.Description, add.Type) { Amount = "Amount" };
                 RenderTable();
                 maxId++;
             }
