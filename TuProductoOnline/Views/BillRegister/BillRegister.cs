@@ -33,8 +33,15 @@ namespace TuProductoOnline.Views.BillRegister
 
         private void BillingRegistercs_Load(object sender, EventArgs e)
         {
-            string jsonString = File.ReadAllText(FileNames.BillRegister);
-            register = JsonSerializer.Deserialize<List<Bill>>(jsonString);
+            try
+            {
+                string jsonString = File.ReadAllText(FileNames.BillRegister);
+                register = JsonSerializer.Deserialize<List<Bill>>(jsonString);
+            }
+            catch (FileNotFoundException)
+            {
+                ;
+            }
             renderTable();
         }
 
@@ -42,9 +49,12 @@ namespace TuProductoOnline.Views.BillRegister
         {
             dgvBillRegister.Rows.Clear();
             dgvBillRegister.Refresh();
-            foreach (Bill billn in register)
+            if (register != null)
             {
-                dgvBillRegister.Rows.Add(billn.BillId, billn.Fecha, billn.Cajero, sumProducts(billn.ListaProductos));
+                foreach (Bill billn in register)
+                {
+                    dgvBillRegister.Rows.Add(billn.BillId, billn.Fecha, billn.Cajero, sumProducts(billn.ListaProductos));
+                }
             }
         }
 
@@ -78,9 +88,16 @@ namespace TuProductoOnline.Views.BillRegister
         {
             if (listOfBills != null) 
             {
-                foreach (Bill nBill in listOfBills)
+                if (register == null)
                 {
-                    register.Add(nBill);
+                    register = listOfBills;
+                }
+                else
+                {
+                    foreach (Bill nBill in listOfBills)
+                    {
+                        register.Add(nBill);
+                    }
                 }
             }
         }
