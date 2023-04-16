@@ -132,8 +132,12 @@ namespace TuProductoOnline
 
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.SoloNumeros(e);
-            Validar.Tab_Enter(e);
+            if ((e.KeyChar >= 32 && e.KeyChar <= 47 && e.KeyChar != 44) || (e.KeyChar >= 58 && e.KeyChar <= 255))
+            {
+                e.Handled = true;
+            }
+            //Validar.SoloNumeros(e);
+            //Validar.Tab_Enter(e);
         }
 
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)

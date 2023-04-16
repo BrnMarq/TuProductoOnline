@@ -70,8 +70,8 @@ namespace TuProductoOnline
                 {
                     cabeceras.Add(col.HeaderText);
                 }
-                string SEP = ",";
-                filas.Add(string.Join(SEP, cabeceras));
+                string SEP = ";";
+                filas.Add(string.Join(SEP, cabeceras.GetRange(0, 6)));
 
                 foreach (DataGridViewRow fila in dgvProducts.Rows)
                 {
@@ -83,7 +83,7 @@ namespace TuProductoOnline
                             celdas.Add(c.Value.ToString());
 
 
-                        filas.Add(string.Join(SEP, celdas));
+                        filas.Add(string.Join(SEP, celdas.GetRange(0, 6)));
                     }
                     catch (Exception ex)
                     {
@@ -92,6 +92,7 @@ namespace TuProductoOnline
 
 
                 }
+                File.WriteAllLines(sfd.FileName, filas);
                 File.WriteAllLines(sfd.FileName, filas);
 
             }
@@ -151,6 +152,11 @@ namespace TuProductoOnline
                 }
 
             }
+            if (dgvProducts.Columns[e.ColumnIndex].Name == "Consultar") 
+            {
+                Consult consult = new Consult(id, type, name, brand, description, price);
+                consult.ShowDialog();
+            }
         }
 
         private void btnImport_Click(object sender, EventArgs e)
@@ -159,21 +165,23 @@ namespace TuProductoOnline
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                string SEP = ",";
+                string SEP = ";";
 
                 string[] lineas = File.ReadAllLines(ofd.FileName);
                 string[] cabeceras = lineas[0].Split(new[] { SEP }, StringSplitOptions.None);
 
-                dgvProducts.Columns.Clear();
-                foreach (string c in cabeceras)
-                {
-                    dgvProducts.Columns.Add(c, c);
-                }
 
-                for (int i = 0; i < lineas.Length; i++)
+                for (int i = 1; i < lineas.Length; i++)
                 {
                     string[] celdas = lineas[i].Split(new[] { SEP }, StringSplitOptions.None);
                     dgvProducts.Rows.Add(celdas);
+                    Product pro = new Product();
+                    pro.Type = celdas[1];
+                    pro.Name = celdas[2];
+                    pro.Brand = celdas[3];
+                    pro.Description = celdas[4];
+                    pro.Price = Convert.ToDouble(celdas[5]);
+                    product.Add(new Product(pro.Name, pro.Price, pro.Brand, pro.Description, pro.Type));
                 }
             }
         }

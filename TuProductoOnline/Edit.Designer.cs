@@ -59,7 +59,7 @@ namespace TuProductoOnline
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(94, 33);
             this.btnAdd.TabIndex = 5;
-            this.btnAdd.Text = "Agregar";
+            this.btnAdd.Text = "Editar";
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
