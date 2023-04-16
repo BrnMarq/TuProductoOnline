@@ -34,7 +34,15 @@ namespace TuProductoOnline.Utils
                 }
             }
 
-            returnBooks = JsonSerializer.Deserialize<List<Bill>>(fileContent);
+            try
+            {
+                returnBooks = JsonSerializer.Deserialize<List<Bill>>(fileContent);
+            }
+            catch (JsonException e)
+            {
+                returnBooks = null; 
+            }
+
             return returnBooks;
         }
 

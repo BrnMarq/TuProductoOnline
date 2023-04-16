@@ -76,9 +76,12 @@ namespace TuProductoOnline.Views.BillRegister
         //"T" means to.
         public void addBillsTRegister(List<Bill> listOfBills)
         {
-            foreach (Bill nBill in listOfBills)
+            if (listOfBills != null) 
             {
-                register.Add(nBill);
+                foreach (Bill nBill in listOfBills)
+                {
+                    register.Add(nBill);
+                }
             }
         }
     }
