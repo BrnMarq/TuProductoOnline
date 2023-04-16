@@ -13,6 +13,8 @@ namespace TuProductoOnline
 {
     public partial class Add : Form
     {
+        //Atributos
+
         private string _name;
         private string _brand;
         private string _description;
@@ -20,6 +22,7 @@ namespace TuProductoOnline
         private string _type;
         private int _id;
 
+        //Getters y Setters
         public string Alias { get { return _name; } set { _name = value; } }
         public string Brand { get { return _brand; } set { _brand = value; } }
         public string Description { get { return _description; } set { _description = value; } }
@@ -40,6 +43,7 @@ namespace TuProductoOnline
             this.Close();
         }
         
+        //Función que regresará al Form Products lo que el usuario haya añadido.
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
             
@@ -59,7 +63,7 @@ namespace TuProductoOnline
                 MessageBox.Show("Ingresó un valor NO numérico en la casilla del precio");
             }
         }
-
+        //Funciones que bloquean el botón de agregado si no tiene todos sus campos llenos.
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtBrand.Text) || string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrEmpty(cmbType.Text) || string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtPrice.Text))
@@ -125,21 +129,23 @@ namespace TuProductoOnline
 
         }
 
+        //Función que inhabilita las teclas para la opción de Tipo.
         private void cmbType_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
 
+        //Función que solo valida el ingreso de números y la coma. 
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar >= 32 && e.KeyChar <= 47 && e.KeyChar != 44) || (e.KeyChar >= 58 && e.KeyChar <= 255))
             {
                 e.Handled = true;
             }
-            //Validar.SoloNumeros(e);
-            //Validar.Tab_Enter(e);
+
         }
 
+        //Funciones que habilitan solo el ingreso de letras 
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)
         {
             Validar.SoloLetras(e);
