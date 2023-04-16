@@ -46,6 +46,15 @@ namespace TuProductoOnline
             product = Product.GetProducts();
             maxId = product.Count();
             RenderTable();
+            User activeUser = User.ActiveUser;
+            if (activeUser.Role == "Admin") return;
+            btnAdd.Visible = false;
+            btnExport.Visible = false;
+            btnImport.Visible = false;
+            dgvProducts.Location = new Point(3, 20);
+            dgvProducts.Size = new Size(678, 422);
+            dgvProducts.Columns["Edit"].Visible = false;
+            dgvProducts.Columns["Eliminar"].Visible = false;
         }
 
         private void btnExport_Click(object sender, EventArgs e)
