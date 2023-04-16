@@ -52,13 +52,6 @@ namespace TuProductoOnline
         {
 
             SaveFileDialog sfd = new SaveFileDialog() { Filter = "Archivo CSV|*.csv" };
-            //saveProducts.FileName = "Productos.csv";
-            //string origen = @"" + FileNames.Products;
-            //if (saveProducts.ShowDialog() == DialogResult.OK)
-            //{
-            //    myComputer.FileSystem.CopyFile(origen, saveProducts.FileName);
-
-            //}
 
 
             if (sfd.ShowDialog() == DialogResult.OK)

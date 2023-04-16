@@ -18,7 +18,7 @@ namespace TuProductoOnline
             txtId.Text = id;
             txtName.Text = name;
             txtType.Text = type;
-            txtPrice.Text = price;
+            txtPrice.Text = price + "Bs";
             txtDescription.Text = description;
             txtBrand.Text = brand;
         }
