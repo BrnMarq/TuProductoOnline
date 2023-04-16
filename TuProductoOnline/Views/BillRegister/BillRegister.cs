@@ -64,7 +64,7 @@ namespace TuProductoOnline.Views.BillRegister
 
             foreach (Product product in listaProductos)
             {
-                productsAddedUp += product.Price;
+                productsAddedUp += product.Price * int.Parse(product.Amount);
             }
 
             return productsAddedUp;

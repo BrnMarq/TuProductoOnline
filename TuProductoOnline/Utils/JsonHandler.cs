@@ -51,6 +51,7 @@ namespace TuProductoOnline.Utils
             string jsonString = JsonSerializer.Serialize(stockBooks);
             SaveFileDialog saveJson = new SaveFileDialog();
 
+            saveJson.InitialDirectory = @"c:\";
             saveJson.Filter = "JSON files  (*.json)|*.json";
             saveJson.RestoreDirectory = true;
 
