@@ -22,6 +22,7 @@ using System.IO;
 using System.Runtime.InteropServices.ComTypes;
 using System.Reflection;
 using static iTextSharp.text.pdf.hyphenation.TernaryTree;
+using com.itextpdf.text.pdf;
 
 namespace TuProductoOnline.Views
 {
@@ -42,8 +43,9 @@ namespace TuProductoOnline.Views
 
         private void btnAñadirClient_Click(object sender, EventArgs e)
         {
-            CustomerProperties miVentana = new CustomerProperties();
-            miVentana.ShowDialog();
+            new CustomerProperties(CreateCustomer).ShowDialog();
+            Clientes.Clear();
+            Clientes = DbHandler.LeerCSV(FileNames.Customers);
             Refield();
         }
 
@@ -227,6 +229,7 @@ namespace TuProductoOnline.Views
         {
             //Llenar combobox clientes.
             //La excepcion controla el caso en que no hayan clientes en el csv.
+            ClientBox1.Items.Clear();
             foreach (List<string> subList in Clientes)
             {
                 if (subList[8] != "true")
@@ -236,6 +239,7 @@ namespace TuProductoOnline.Views
                 
             }
             //llenar combobox productos
+            ProductBox2.Items.Clear();
             foreach (List<string> subList in Productos)
             {
 
@@ -386,7 +390,20 @@ namespace TuProductoOnline.Views
             }
         }
 
-     
+        public void CreateCustomer(List<string> customerValues)
+        {
+            new Customer(
+                customerValues[1],
+                customerValues[2],
+                customerValues[3],
+                customerValues[4],
+                customerValues[5],
+                customerValues[6],
+                customerValues[7]
+                );
+        }
+
+
     }
 
 
