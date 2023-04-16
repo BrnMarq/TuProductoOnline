@@ -312,7 +312,7 @@ namespace TuProductoOnline.Views
             foreach (var item in factura.ListaProductos)
             {
                 double priceProduct = 0;
-                priceProduct = ((iva * item.Price / 100) + item.Price)*double.Parse(item.Amount);
+                priceProduct = item.Price * double.Parse(item.Amount);
                 filas += "<tr>";
                 filas += "<td>" + item.Amount + "</td>" ;
                 filas += "<td>" + item.Name + "</td>";
