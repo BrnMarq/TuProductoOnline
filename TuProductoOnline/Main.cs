@@ -33,7 +33,13 @@ namespace TuProductoOnline
 
         private void Main_Load(object sender, EventArgs e)
         {
-
+            User activeUser = User.ActiveUser;
+            if (activeUser.Role != "Admin")
+            {
+                UsersTab.Visible = false;
+                BillingTab.Location = new System.Drawing.Point(0, 203);
+                panelSubMenu.Location = new System.Drawing.Point(0, 239);
+            }
         }
 
         private void ExitButton_Click(object sender, EventArgs e)

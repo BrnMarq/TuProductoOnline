@@ -21,6 +21,8 @@ using iTextSharp.tool.xml;
 using System.IO;
 using System.Runtime.InteropServices.ComTypes;
 using System.Reflection;
+using static iTextSharp.text.pdf.hyphenation.TernaryTree;
+using com.itextpdf.text.pdf;
 
 namespace TuProductoOnline.Views
 {
@@ -41,8 +43,9 @@ namespace TuProductoOnline.Views
 
         private void btnAñadirClient_Click(object sender, EventArgs e)
         {
-            CustomerProperties miVentana = new CustomerProperties();
-            miVentana.ShowDialog();
+            new CustomerProperties(CreateCustomer).ShowDialog();
+            Clientes.Clear();
+            Clientes = DbHandler.LeerCSV(FileNames.Customers);
             Refield();
         }
 
@@ -54,6 +57,15 @@ namespace TuProductoOnline.Views
             else
             {
                 List<Product> prueba = new List<Product>(TransformarCarritoAProducto(ProductosCarrito));
+                int iterador = -1;
+                int Verificadorfalse = 0;
+                int PosicionEnLista;
+                foreach (List<string> item in Clientes)
+                {
+                    iterador++;
+                    if (Clientes[iterador][8] == "true") { Verificadorfalse++; }
+                    if (ClientBox1.SelectedIndex == iterador - Verificadorfalse && Clientes[iterador][8] == "false") { break; }
+                }
 
 
                 Bill factura = new Bill(User.ActiveUser.Id.ToString())
@@ -62,7 +74,7 @@ namespace TuProductoOnline.Views
                     Fecha = DateTime.Now.ToString("dd/MM/yyyy. HH:mm:ss"),
                     FechaDeVencimiento = DateTime.Now.AddDays(15).ToString("dd/MM/yyyy."),
 
-                    Cliente = TransformarSeleccionACliente(Clientes[ClientBox1.SelectedIndex]),
+                    Cliente = TransformarSeleccionACliente(Clientes[iterador]),
                     ListaProductos = new List<Product>(TransformarCarritoAProducto(ProductosCarrito)) { },
 
                 };
@@ -154,15 +166,19 @@ namespace TuProductoOnline.Views
                 //Agregar a una lista
 
                 ProductosCarrito.Add(new List<string>());
-
-                int iterador = 0;
-                foreach (string item in Productos[ProductBox2.SelectedIndex])
+                int Verificadorfalse = 0;
+                int iterador = -1;
+                foreach (List<string> item in Productos)
                 {
-
-                    ProductosCarrito[contador].Add(item);
-
-
                     iterador++;
+                    foreach (var sublist in item)
+                    {
+                        //Compaginar el index del combobox con la posicion de la lista de lista
+                        if (ProductBox2.SelectedIndex == iterador - Verificadorfalse && Productos[iterador][6] == "false") { ProductosCarrito[contador].Add(sublist); }
+             
+                    }
+                    if (Productos[iterador][6] == "true") { Verificadorfalse++; }
+                    if (ProductBox2.SelectedIndex == iterador - Verificadorfalse && Productos[iterador][6] == "false") { break; }
                 }
 
 
@@ -213,6 +229,7 @@ namespace TuProductoOnline.Views
         {
             //Llenar combobox clientes.
             //La excepcion controla el caso en que no hayan clientes en el csv.
+            ClientBox1.Items.Clear();
             foreach (List<string> subList in Clientes)
             {
                 if (subList[8] != "true")
@@ -222,6 +239,7 @@ namespace TuProductoOnline.Views
                 
             }
             //llenar combobox productos
+            ProductBox2.Items.Clear();
             foreach (List<string> subList in Productos)
             {
 
@@ -248,6 +266,7 @@ namespace TuProductoOnline.Views
             txtTotal.Text = ((Precio * 16/100) + Precio).ToString() + " Bs.S";
         }
         //Aqui toca editar los campos de las listas.
+
         public List<Product> TransformarCarritoAProducto(List<List<string>> list)
         {
             List<Product> ListaProductos = new List<Product>();
@@ -371,7 +390,20 @@ namespace TuProductoOnline.Views
             }
         }
 
-     
+        public void CreateCustomer(List<string> customerValues)
+        {
+            new Customer(
+                customerValues[1],
+                customerValues[2],
+                customerValues[3],
+                customerValues[4],
+                customerValues[5],
+                customerValues[6],
+                customerValues[7]
+                );
+        }
+
+
     }
 
 
