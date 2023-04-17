@@ -309,6 +309,7 @@
   <ItemGroup>
     <Content Include="bin\Debug\TuProductoOnline.exe" />
     <Content Include="bin\Debug\TuProductoOnline.pdb" />
+    <Content Include="Resources\impresora.png" />
     <None Include="Resources\buscar.png" />
     <None Include="Resources\plantillaFactura.html" />
   </ItemGroup>

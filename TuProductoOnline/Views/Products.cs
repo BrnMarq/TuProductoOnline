@@ -61,13 +61,7 @@ namespace TuProductoOnline
         {
 
             SaveFileDialog sfd = new SaveFileDialog() { Filter = "Archivo CSV|*.csv" };
-            //saveProducts.FileName = "Productos.csv";
-            //string origen = @"" + FileNames.Products;
-            //if (saveProducts.ShowDialog() == DialogResult.OK)
-            //{
-            //    myComputer.FileSystem.CopyFile(origen, saveProducts.FileName);
 
-            //}
 
 
             if (sfd.ShowDialog() == DialogResult.OK)
@@ -79,8 +73,8 @@ namespace TuProductoOnline
                 {
                     cabeceras.Add(col.HeaderText);
                 }
-                string SEP = ",";
-                filas.Add(string.Join(SEP, cabeceras));
+                string SEP = ";";
+                filas.Add(string.Join(SEP, cabeceras.GetRange(0,6)));
 
                 foreach (DataGridViewRow fila in dgvProducts.Rows)
                 {
@@ -92,7 +86,7 @@ namespace TuProductoOnline
                             celdas.Add(c.Value.ToString());
 
 
-                        filas.Add(string.Join(SEP, celdas));
+                        filas.Add(string.Join(SEP, celdas.GetRange(0, 6)));
                     }
                     catch (Exception ex)
                     {
@@ -108,6 +102,7 @@ namespace TuProductoOnline
 
         private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             string id = dgvProducts.Rows[e.RowIndex].Cells[0].Value.ToString();
             string type = dgvProducts.Rows[e.RowIndex].Cells[1].Value.ToString();
             string name = dgvProducts.Rows[e.RowIndex].Cells[2].Value.ToString();
@@ -130,7 +125,8 @@ namespace TuProductoOnline
                         pro.Brand,
                         pro.Description,
                         pro.Type,
-                        "true"
+                        "true",
+                        "Amount"
                     };
                     Product.UpdateProduct(int.Parse(id), productValues);
                     RenderTable();
@@ -151,11 +147,17 @@ namespace TuProductoOnline
                         edit.Brand,
                         edit.Description,
                         edit.Type,
-                        "false"
+                        "false",
+                        "Amount"
                     };
                     Product.UpdateProduct(int.Parse(id), productValues);
                     RenderTable();
                 }
+            }
+            if (dgvProducts.Columns[e.ColumnIndex].Name == "Consultar") 
+            {
+                Consult consultar = new Consult(id, type, name, brand, description, price);
+                consultar.ShowDialog();
             }
         }
 
