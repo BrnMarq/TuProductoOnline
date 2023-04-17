@@ -44,8 +44,6 @@ namespace TuProductoOnline
             this.btnAccept = new System.Windows.Forms.Button();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
-            this.txtCode = new System.Windows.Forms.TextBox();
-            this.lblCode = new System.Windows.Forms.Label();
             this.TitleCustomers = new System.Windows.Forms.Label();
             this.TxtNameErrorlbl = new System.Windows.Forms.Label();
             this.TxtLastNameErrorlbl = new System.Windows.Forms.Label();
@@ -59,7 +57,7 @@ namespace TuProductoOnline
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(28, 97);
+            this.lblName.Location = new System.Drawing.Point(32, 66);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(68, 18);
             this.lblName.TabIndex = 10;
@@ -121,11 +119,11 @@ namespace TuProductoOnline
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtName.Location = new System.Drawing.Point(134, 95);
+            this.txtName.Location = new System.Drawing.Point(32, 91);
             this.txtName.MaxLength = 100;
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(232, 25);
+            this.txtName.Size = new System.Drawing.Size(334, 25);
             this.txtName.TabIndex = 0;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
@@ -229,31 +227,6 @@ namespace TuProductoOnline
             this.lblEmail.TabIndex = 15;
             this.lblEmail.Text = "Email";
             // 
-            // txtCode
-            // 
-            this.txtCode.BackColor = System.Drawing.Color.White;
-            this.txtCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCode.Location = new System.Drawing.Point(133, 59);
-            this.txtCode.Multiline = true;
-            this.txtCode.Name = "txtCode";
-            this.txtCode.ReadOnly = true;
-            this.txtCode.Size = new System.Drawing.Size(232, 25);
-            this.txtCode.TabIndex = 9;
-            this.txtCode.Visible = false;
-            // 
-            // lblCode
-            // 
-            this.lblCode.AutoSize = true;
-            this.lblCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCode.Location = new System.Drawing.Point(27, 60);
-            this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(62, 18);
-            this.lblCode.TabIndex = 8;
-            this.lblCode.Tag = "";
-            this.lblCode.Text = "Código";
-            this.lblCode.Visible = false;
-            // 
             // TitleCustomers
             // 
             this.TitleCustomers.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -272,7 +245,7 @@ namespace TuProductoOnline
             this.TxtNameErrorlbl.AutoSize = true;
             this.TxtNameErrorlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtNameErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TxtNameErrorlbl.Location = new System.Drawing.Point(29, 125);
+            this.TxtNameErrorlbl.Location = new System.Drawing.Point(30, 119);
             this.TxtNameErrorlbl.Name = "TxtNameErrorlbl";
             this.TxtNameErrorlbl.Size = new System.Drawing.Size(269, 16);
             this.TxtNameErrorlbl.TabIndex = 18;
@@ -285,7 +258,7 @@ namespace TuProductoOnline
             this.TxtLastNameErrorlbl.AutoSize = true;
             this.TxtLastNameErrorlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtLastNameErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TxtLastNameErrorlbl.Location = new System.Drawing.Point(29, 173);
+            this.TxtLastNameErrorlbl.Location = new System.Drawing.Point(29, 203);
             this.TxtLastNameErrorlbl.Name = "TxtLastNameErrorlbl";
             this.TxtLastNameErrorlbl.Size = new System.Drawing.Size(270, 16);
             this.TxtLastNameErrorlbl.TabIndex = 19;
@@ -298,7 +271,7 @@ namespace TuProductoOnline
             this.TxtIdErrorlbl.AutoSize = true;
             this.TxtIdErrorlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtIdErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TxtIdErrorlbl.Location = new System.Drawing.Point(29, 222);
+            this.TxtIdErrorlbl.Location = new System.Drawing.Point(29, 252);
             this.TxtIdErrorlbl.Name = "TxtIdErrorlbl";
             this.TxtIdErrorlbl.Size = new System.Drawing.Size(261, 16);
             this.TxtIdErrorlbl.TabIndex = 20;
@@ -311,7 +284,7 @@ namespace TuProductoOnline
             this.TxtPhoneNumberErrorlbl.AutoSize = true;
             this.TxtPhoneNumberErrorlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPhoneNumberErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TxtPhoneNumberErrorlbl.Location = new System.Drawing.Point(29, 270);
+            this.TxtPhoneNumberErrorlbl.Location = new System.Drawing.Point(29, 300);
             this.TxtPhoneNumberErrorlbl.Name = "TxtPhoneNumberErrorlbl";
             this.TxtPhoneNumberErrorlbl.Size = new System.Drawing.Size(267, 16);
             this.TxtPhoneNumberErrorlbl.TabIndex = 21;
@@ -324,7 +297,7 @@ namespace TuProductoOnline
             this.TxtAddressErrorlbl.AutoSize = true;
             this.TxtAddressErrorlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtAddressErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TxtAddressErrorlbl.Location = new System.Drawing.Point(29, 318);
+            this.TxtAddressErrorlbl.Location = new System.Drawing.Point(29, 348);
             this.TxtAddressErrorlbl.Name = "TxtAddressErrorlbl";
             this.TxtAddressErrorlbl.Size = new System.Drawing.Size(277, 16);
             this.TxtAddressErrorlbl.TabIndex = 22;
@@ -337,7 +310,7 @@ namespace TuProductoOnline
             this.TxtEmailErrorlbl.AutoSize = true;
             this.TxtEmailErrorlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtEmailErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TxtEmailErrorlbl.Location = new System.Drawing.Point(28, 368);
+            this.TxtEmailErrorlbl.Location = new System.Drawing.Point(28, 398);
             this.TxtEmailErrorlbl.Name = "TxtEmailErrorlbl";
             this.TxtEmailErrorlbl.Size = new System.Drawing.Size(261, 16);
             this.TxtEmailErrorlbl.TabIndex = 23;
@@ -349,7 +322,7 @@ namespace TuProductoOnline
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(396, 492);
+            this.ClientSize = new System.Drawing.Size(396, 552);
             this.Controls.Add(this.TxtEmailErrorlbl);
             this.Controls.Add(this.TxtAddressErrorlbl);
             this.Controls.Add(this.TxtPhoneNumberErrorlbl);
@@ -357,8 +330,6 @@ namespace TuProductoOnline
             this.Controls.Add(this.TxtLastNameErrorlbl);
             this.Controls.Add(this.TxtNameErrorlbl);
             this.Controls.Add(this.TitleCustomers);
-            this.Controls.Add(this.txtCode);
-            this.Controls.Add(this.lblCode);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.btnAccept);
@@ -402,8 +373,6 @@ namespace TuProductoOnline
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.TextBox txtCode;
-        private System.Windows.Forms.Label lblCode;
         private System.Windows.Forms.Label TitleCustomers;
         private System.Windows.Forms.Label TxtNameErrorlbl;
         private System.Windows.Forms.Label TxtLastNameErrorlbl;
