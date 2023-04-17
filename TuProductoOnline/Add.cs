@@ -13,7 +13,7 @@ namespace TuProductoOnline
 {
     public partial class Add : Form
     {
-        //Atributos
+        //Atributos.
 
         private string _name;
         private string _brand;

@@ -114,7 +114,7 @@ namespace TuProductoOnline
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.dgvProducts.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvProducts.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.dgvProducts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProducts.Size = new System.Drawing.Size(680, 352);
             this.dgvProducts.TabIndex = 15;

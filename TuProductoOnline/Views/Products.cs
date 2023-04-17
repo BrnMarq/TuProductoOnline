@@ -35,7 +35,7 @@ namespace TuProductoOnline
             add.ShowDialog();
             if (add.Id != 0)
             {
-                new Product(add.Alias, add.Price, add.Brand, add.Description, add.Type) { Amount = "Amount" };
+                new Product(add.Alias, add.Price, add.Brand, add.Description, add.Type);
                 RenderTable();
                 maxId++;
             }
@@ -46,12 +46,22 @@ namespace TuProductoOnline
             product = Product.GetProducts();
             maxId = product.Count();
             RenderTable();
+            User activeUser = User.ActiveUser;
+            if (activeUser.Role == "Admin") return;
+            btnAdd.Visible = false;
+            btnExport.Visible = false;
+            btnImport.Visible = false;
+            dgvProducts.Location = new Point(3, 20);
+            dgvProducts.Size = new Size(678, 422);
+            dgvProducts.Columns["Edit"].Visible = false;
+            dgvProducts.Columns["Eliminar"].Visible = false;
         }
 
         private void btnExport_Click(object sender, EventArgs e)
         {
 
             SaveFileDialog sfd = new SaveFileDialog() { Filter = "Archivo CSV|*.csv" };
+
 
 
             if (sfd.ShowDialog() == DialogResult.OK)
@@ -64,7 +74,7 @@ namespace TuProductoOnline
                     cabeceras.Add(col.HeaderText);
                 }
                 string SEP = ";";
-                filas.Add(string.Join(SEP, cabeceras.GetRange(0, 6)));
+                filas.Add(string.Join(SEP, cabeceras.GetRange(0,6)));
 
                 foreach (DataGridViewRow fila in dgvProducts.Rows)
                 {
@@ -86,13 +96,13 @@ namespace TuProductoOnline
 
                 }
                 File.WriteAllLines(sfd.FileName, filas);
-                File.WriteAllLines(sfd.FileName, filas);
 
             }
         }
 
         private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             string id = dgvProducts.Rows[e.RowIndex].Cells[0].Value.ToString();
             string type = dgvProducts.Rows[e.RowIndex].Cells[1].Value.ToString();
             string name = dgvProducts.Rows[e.RowIndex].Cells[2].Value.ToString();
@@ -115,8 +125,7 @@ namespace TuProductoOnline
                         pro.Brand,
                         pro.Description,
                         pro.Type,
-                        "true",
-                        "Amount"
+                        "true"
                     };
                     Product.UpdateProduct(int.Parse(id), productValues);
                     RenderTable();
@@ -137,18 +146,16 @@ namespace TuProductoOnline
                         edit.Brand,
                         edit.Description,
                         edit.Type,
-                        "false",
-                        "Amount"
+                        "false"
                     };
                     Product.UpdateProduct(int.Parse(id), productValues);
                     RenderTable();
                 }
-
             }
             if (dgvProducts.Columns[e.ColumnIndex].Name == "Consultar") 
             {
-                Consult consult = new Consult(id, type, name, brand, description, price);
-                consult.ShowDialog();
+                Consult consultar = new Consult(id, type, name, brand, description, price);
+                consultar.ShowDialog();
             }
         }
 
@@ -158,24 +165,20 @@ namespace TuProductoOnline
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                string SEP = ";";
+                string pathCSV = ofd.FileName;
+                List<List<string>> importedProducts = DbHandler.LeerCSV(pathCSV);
 
-                string[] lineas = File.ReadAllLines(ofd.FileName);
-                string[] cabeceras = lineas[0].Split(new[] { SEP }, StringSplitOptions.None);
-
-
-                for (int i = 1; i < lineas.Length; i++)
+                foreach (List<string> iProduct in importedProducts)
                 {
-                    string[] celdas = lineas[i].Split(new[] { SEP }, StringSplitOptions.None);
-                    dgvProducts.Rows.Add(celdas);
-                    Product pro = new Product();
-                    pro.Type = celdas[1];
-                    pro.Name = celdas[2];
-                    pro.Brand = celdas[3];
-                    pro.Description = celdas[4];
-                    pro.Price = Convert.ToDouble(celdas[5]);
-                    product.Add(new Product(pro.Name, pro.Price, pro.Brand, pro.Description, pro.Type));
+                    new Product(
+                        iProduct[1],
+                        Convert.ToDouble(iProduct[2]),
+                        iProduct[3],
+                        iProduct[4],
+                        iProduct[5]
+                    );
                 }
+                RenderTable();
             }
         }
 

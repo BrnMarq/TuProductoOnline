@@ -53,10 +53,26 @@ namespace TuProductoOnline.Views
                 miVentana.Type = 1;
             }
 
+            ConfigurarCustomerProperties();  
+            miVentana.ShowDialog();
+        }
+
+        public void ConfigurarCustomerProperties()
+        {
             miVentana.LblCode = true;
             miVentana.TxtCode = true;
+            miVentana.Nombre1 = true;
+            miVentana.Apellido = true;
+            miVentana.Cedula = true;
+            miVentana.Telefono = true;
+            miVentana.Direccion = true;
+            miVentana.Correo = true;
+            miVentana.ApellidoColor = Color.White;
+            miVentana.CedulaColor = Color.White;
+            miVentana.TelefonoColor = Color.White;
+            miVentana.DireccionColor = Color.White;
+            miVentana.CorreoColor = Color.White;
             miVentana.BtnActivado = false;
-            miVentana.ShowDialog();
         }
         public void RenderTable()
         {
@@ -155,7 +171,7 @@ namespace TuProductoOnline.Views
                 string pathCSV = openFileDialog1.FileName;
                 List<List<string>> clientesImportados = DbHandler.LeerCSV(pathCSV);
 
-                for (int i = 1; i < clientesImportados.Count; i++)
+                for (int i = 0; i < clientesImportados.Count; i++)
                 {
                     new Customer(
                         clientesImportados[i][1].ToString(),
@@ -165,20 +181,30 @@ namespace TuProductoOnline.Views
                         clientesImportados[i][5].ToString(),
                         clientesImportados[i][6].ToString(),
                         clientesImportados[i][7].ToString()
-                        );
+                    );
                 }
                 RenderTable();
             }
         }
         private void btnExport_Click(object sender, EventArgs e)
-        {    
-            SaveFileDialog saveCustomer = new SaveFileDialog();
-            string origen = @"" + FileNames.Customers;
+        {
+            try
+            {
+                SaveFileDialog saveCustomer = new SaveFileDialog();
+                saveCustomer.FileName = "Clientes";
+                string origen = @"" + FileNames.Customers;
 
-            if (saveCustomer.ShowDialog() == DialogResult.OK)
-                myComputer.FileSystem.CopyFile(origen, saveCustomer.FileName + ".csv");
-
-            MessageBox.Show("Clientes exportados con éxito");
+                if (saveCustomer.ShowDialog() == DialogResult.OK)
+                {
+                    myComputer.FileSystem.CopyFile(origen, saveCustomer.FileName + ".csv");
+                    MessageBox.Show("Clientes exportados con éxito");
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ya existe un archivo con este nombre");
+            }
+           
         }
     }
 }

@@ -68,7 +68,7 @@ namespace TuProductoOnline.Views.Customers
             // 
             this.lblWarning.AutoSize = true;
             this.lblWarning.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWarning.Location = new System.Drawing.Point(61, 63);
+            this.lblWarning.Location = new System.Drawing.Point(12, 63);
             this.lblWarning.Name = "lblWarning";
             this.lblWarning.Size = new System.Drawing.Size(302, 20);
             this.lblWarning.TabIndex = 7;
