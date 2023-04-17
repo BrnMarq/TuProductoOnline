@@ -257,7 +257,6 @@
     <None Include="bin\Debug\TuProductoOnline.exe.config" />
     <None Include="bin\Debug\users.csv" />
     <None Include="bin\Debug\usersId.csv" />
-    <None Include="Database\BillsRegister.json" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\TuProductoOnline.Models.User.datasource" />
     <None Include="Properties\Settings.settings">
@@ -305,6 +304,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
+    <Folder Include="Database\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\TuProductoOnline.exe" />
