@@ -140,7 +140,7 @@ namespace TuProductoOnline.Views
                 customerValues[5],
                 customerValues[6],
                 customerValues[7],
-                customer.Deleted.ToString(),
+                customer.Deleted.ToString().ToLower(),
             };
             Customer.UpdateCustomer(customer.Code, values);
             RenderTable();
