@@ -161,6 +161,7 @@ namespace TuProductoOnline.Views
                 "true",
             };
             Customer.UpdateCustomer(customer.Code, values);
+            MessageBox.Show("Cliente borrado con exito");
             RenderTable();
         }
 

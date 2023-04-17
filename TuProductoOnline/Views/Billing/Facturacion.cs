@@ -218,6 +218,7 @@ namespace TuProductoOnline.Views
                 ProducTable.Rows.Remove(ProducTable.CurrentRow);
                 ProductosCarrito.RemoveAt(i);
                 contador--;
+                MessageBox.Show("Producto eliminado con exito");
                 actualizarPrecio(); 
             }
             
@@ -415,6 +416,8 @@ namespace TuProductoOnline.Views
                 customerValues[7]
                 );
         }
+
+
     }
 
 

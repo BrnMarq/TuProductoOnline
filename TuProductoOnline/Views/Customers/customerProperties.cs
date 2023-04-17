@@ -144,11 +144,20 @@ namespace TuProductoOnline
         }
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtName.Text == "")
+            {
+                TxtNameErrorlbl.Visible = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtName.Text != "")
+            {
+                TxtNameErrorlbl.Visible = false;
+            }
             Validar.SoloLetras(e);
             Validar.Tab_Enter(e);
         }
         private void txtId_KeyPress(object sender, KeyPressEventArgs e)
         {
+            Validar.SoloNumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 if (VerifyLengthCedula() == 1)
@@ -161,6 +170,7 @@ namespace TuProductoOnline
 
         private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
+            Validar.SoloNumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 if (Validar.ValidarTelefono(txtPhoneNumber.Text.TrimStart(eliminar)))
