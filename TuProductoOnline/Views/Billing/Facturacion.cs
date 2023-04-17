@@ -109,16 +109,17 @@ namespace TuProductoOnline.Views
                 ProductosCarrito.Clear();
                 ProducTable.Rows.Clear();
                 contador = 0;
-                actualizarPrecio();
+                CantidadBox.Text = "0 Bs.S";
                 ClientBox1.SelectedIndex = -1;
                 ProductBox2.SelectedIndex = -1;
-                CantidadBox.Text = "0";
+                CantidadBox.Text = "";
             }
 
         }
 
         private void ClientBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             actualizarPrecio();
         }
 
@@ -193,7 +194,7 @@ namespace TuProductoOnline.Views
 
                 contador++;
                 actualizarPrecio();
-                CantidadBox.Text = "0";
+                CantidadBox.Text = "";
             }
 
 
@@ -260,6 +261,7 @@ namespace TuProductoOnline.Views
         public void actualizarPrecio()
         {
             double Precio = 0;
+            double PrecioFinal;
             foreach (var item in ProductosCarrito)
             {
                 Precio += (double.Parse(item[2]) * double.Parse(item[7]));
@@ -267,8 +269,19 @@ namespace TuProductoOnline.Views
 
             txtSubTotal.Text = Precio.ToString() + " Bs.S";
 
+            double PrecioIva = 16 * Precio / 100;
+            int Verificadorfalse = 0;
+            int iterador = -1;
+            foreach (List<string> item in Clientes)
+            {
+                iterador++;
+                if (Clientes[iterador][8] == "true") { Verificadorfalse++; }
+                if (ClientBox1.SelectedIndex == iterador - Verificadorfalse && Clientes[iterador][8] == "false") { break; }
+            }
+            PrecioFinal = PrecioIva + Precio;
+            if (Clientes[iterador][7] == "Contribuyente especial") { PrecioFinal = (PrecioIva * 75 / 100) + Precio; }
             
-            txtTotal.Text = ((Precio * 16/100) + Precio).ToString() + " Bs.S";
+            txtTotal.Text = PrecioFinal.ToString() + " Bs.S";
         }
         //Aqui toca editar los campos de las listas.
 
@@ -359,10 +372,10 @@ namespace TuProductoOnline.Views
                 MontoExentoDelIVA = (TotalDelIVA * 75 / 100);
             }
 
-            double PrecioFinal = Total - MontoExentoDelIVA;
+            double PrecioFinal = (TotalSinIVA + TotalDelIVA) - MontoExentoDelIVA;
 
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@MONTO1", MontoExentoDelIVA.ToString());
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@MONTO2", Total.ToString());
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@MONTO2", TotalSinIVA.ToString());
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@MONTO3", TotalDelIVA.ToString());
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@MONTOTOTAL", PrecioFinal.ToString());
 
