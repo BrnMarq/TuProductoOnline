@@ -163,7 +163,6 @@ namespace TuProductoOnline.Views
             Customer.UpdateCustomer(customer.Code, values);
             RenderTable();
         }
-
         private void btnImport_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -171,18 +170,26 @@ namespace TuProductoOnline.Views
                 string pathCSV = openFileDialog1.FileName;
                 List<List<string>> clientesImportados = DbHandler.LeerCSV(pathCSV);
 
-                for (int i = 0; i < clientesImportados.Count; i++)
+                try
                 {
-                    new Customer(
-                        clientesImportados[i][1].ToString(),
-                        clientesImportados[i][2].ToString(),
-                        clientesImportados[i][3].ToString(),
-                        clientesImportados[i][4].ToString(),
-                        clientesImportados[i][5].ToString(),
-                        clientesImportados[i][6].ToString(),
-                        clientesImportados[i][7].ToString()
-                    );
+                    for (int i = 0; i < clientesImportados.Count; i++)
+                    {
+                        if (clientesImportados[i][8] == "true") continue;
+                        new Customer(
+                            clientesImportados[i][1].ToString(),
+                            clientesImportados[i][2].ToString(),
+                            clientesImportados[i][3].ToString(),
+                            clientesImportados[i][4].ToString(),
+                            clientesImportados[i][5].ToString(),
+                            clientesImportados[i][6].ToString(),
+                            clientesImportados[i][7].ToString()
+                        );
+                    }
                 }
+                catch
+                {
+                    MessageBox.Show("El archivo que quiere importar no tiene el formato correcto");
+                }               
                 RenderTable();
             }
         }
@@ -203,8 +210,7 @@ namespace TuProductoOnline.Views
             catch (Exception)
             {
                 MessageBox.Show("Ya existe un archivo con este nombre");
-            }
-           
+            } 
         }
     }
 }
