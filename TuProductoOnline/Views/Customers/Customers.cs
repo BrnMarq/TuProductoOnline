@@ -172,7 +172,7 @@ namespace TuProductoOnline.Views
 
                 try
                 {
-                    for (int i = 0; i < clientesImportados.Count; i++)
+                    for (int i = 1; i < clientesImportados.Count; i++)
                     {
                         if (clientesImportados[i][8] == "true") continue;
                         new Customer(
@@ -186,7 +186,7 @@ namespace TuProductoOnline.Views
                         );
                     }
                 }
-                catch
+                catch (Exception)
                 {
                     MessageBox.Show("El archivo que quiere importar no tiene el formato correcto");
                 }               
