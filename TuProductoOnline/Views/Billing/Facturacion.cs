@@ -381,7 +381,12 @@ namespace TuProductoOnline.Views
                     facturaPdf.Open();
                     facturaPdf.Add(new Phrase());
 
-                   // iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.)
+                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.LogoCompleto,System.Drawing.Imaging.ImageFormat.Png);
+                    img.ScaleToFit(200, 120);
+                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
+                    img.SetAbsolutePosition(facturaPdf.LeftMargin, facturaPdf.Top - 60);
+                    facturaPdf.Add(img);
+
 
                     //transformar el string para poder usarlo.
                     using (StringReader sr = new StringReader(FacturaHtlml_Texto))
