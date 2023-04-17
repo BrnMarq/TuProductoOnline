@@ -193,6 +193,7 @@ namespace TuProductoOnline.Views
 
                 contador++;
                 actualizarPrecio();
+                CantidadBox.Text = "0";
             }
 
 
@@ -296,7 +297,6 @@ namespace TuProductoOnline.Views
         {
             
             SaveFileDialog guardarFactura = new SaveFileDialog();
-            guardarFactura.Filter = "PDF files  (.pdf)|.pdf";
             guardarFactura.FileName = DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";
 
             //Leer plantilla y pasar a string.
@@ -346,16 +346,20 @@ namespace TuProductoOnline.Views
                 Total += priceProduct;
                 TotalSinIVA += item.Price * double.Parse(item.Amount);
             }
+
+            //Calculos finales.
+
             double TotalDelIVA = Total * iva / 100 ;
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@Filas", filas);
             double MontoExentoDelIVA = 0;
-            double PrecioFinal = Total;
+           
             if(factura.Cliente.Type != "Ordinario")
             {
                 MontoExentoDelIVA = (TotalDelIVA * 75 / 100);
             }
 
-            //Calculos finales
+            double PrecioFinal = Total - MontoExentoDelIVA;
+
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@MONTO1", MontoExentoDelIVA.ToString());
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@MONTO2", Total.ToString());
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@MONTO3", TotalDelIVA.ToString());
@@ -377,7 +381,7 @@ namespace TuProductoOnline.Views
                     facturaPdf.Open();
                     facturaPdf.Add(new Phrase());
 
-                    //iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.)
+                   // iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.)
 
                     //transformar el string para poder usarlo.
                     using (StringReader sr = new StringReader(FacturaHtlml_Texto))
