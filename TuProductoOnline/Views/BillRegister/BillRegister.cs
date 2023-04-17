@@ -47,6 +47,7 @@ namespace TuProductoOnline.Views.BillRegister
 
         private void renderTable()
         {
+            hideImportExportButton();
             dgvBillRegister.Rows.Clear();
             dgvBillRegister.Refresh();
             if (register != null)
@@ -99,6 +100,35 @@ namespace TuProductoOnline.Views.BillRegister
                         register.Add(nBill);
                     }
                 }
+            }
+        }
+
+        public void hideImportExportButton()
+        {
+            if (register == null)
+            {
+                btnExport.Visible = false;
+                btnImport.Visible = true;
+            }
+            else
+            {
+                btnExport.Visible = true;
+                btnImport.Visible = false;
+            }
+        }
+
+        private void dgvBillRegister_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == dgvBillRegister.Columns["print"].Index)
+                {
+                    //Imprimir
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+
             }
         }
     }
