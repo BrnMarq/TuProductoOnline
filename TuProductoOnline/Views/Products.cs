@@ -125,7 +125,8 @@ namespace TuProductoOnline
                         pro.Brand,
                         pro.Description,
                         pro.Type,
-                        "true"
+                        "true",
+                        "Amount"
                     };
                     Product.UpdateProduct(int.Parse(id), productValues);
                     RenderTable();
@@ -146,7 +147,8 @@ namespace TuProductoOnline
                         edit.Brand,
                         edit.Description,
                         edit.Type,
-                        "false"
+                        "false",
+                        "Amount"
                     };
                     Product.UpdateProduct(int.Parse(id), productValues);
                     RenderTable();
