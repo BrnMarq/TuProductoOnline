@@ -76,6 +76,7 @@ namespace TuProductoOnline.Views.BillRegister
             //"F" means for.
             List<Bill> billFAdd = JsonHandler.openJsonFile();
             addBillsTRegister(billFAdd);
+            saveDataBase();
             renderTable();
         }
 
@@ -130,6 +131,13 @@ namespace TuProductoOnline.Views.BillRegister
             {
 
             }
+        }
+
+        public void saveDataBase()
+        {
+            string fileName = FileNames.BillRegister;
+            string jsonString = JsonSerializer.Serialize(register);
+            File.WriteAllText(fileName, jsonString);
         }
     }
 }
