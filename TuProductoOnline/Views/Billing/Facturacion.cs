@@ -23,6 +23,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Reflection;
 using static iTextSharp.text.pdf.hyphenation.TernaryTree;
 using com.itextpdf.text.pdf;
+using Org.BouncyCastle.Asn1;
 
 namespace TuProductoOnline.Views
 {
@@ -59,7 +60,6 @@ namespace TuProductoOnline.Views
                 List<Product> prueba = new List<Product>(TransformarCarritoAProducto(ProductosCarrito));
                 int iterador = -1;
                 int Verificadorfalse = 0;
-                int PosicionEnLista;
                 foreach (List<string> item in Clientes)
                 {
                     iterador++;
@@ -110,6 +110,9 @@ namespace TuProductoOnline.Views
                 ProducTable.Rows.Clear();
                 contador = 0;
                 actualizarPrecio();
+                ClientBox1.SelectedIndex = -1;
+                ProductBox2.SelectedIndex = -1;
+                CantidadBox.Text = "0";
             }
 
         }
@@ -190,6 +193,7 @@ namespace TuProductoOnline.Views
 
                 contador++;
                 actualizarPrecio();
+                CantidadBox.Text = "0";
             }
 
 
@@ -301,10 +305,10 @@ namespace TuProductoOnline.Views
             //Replace de la factura y otros calculos.
 
             //Empresa
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@NOMBREEMPRESA", "TuProductOnline");
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@RAZONSOCIAL", "TuProductOnline C.A.");
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@DOMICILIOFISCAL", "Narnia");
-            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@NUMERO", "0800-NoJuegenLolYBañese");
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@NOMBREEMPRESA", "TuProductoOnline");
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@RAZONSOCIAL", "TuProductoOnline C.A.");
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@DOMICILIOFISCAL", "Caracas, Venezuela");
+            FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@NUMERO", "0800-12345678");
 
             //Datos de la factura.
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@NRODEFACTURA", factura.BillId.ToString());
@@ -342,16 +346,20 @@ namespace TuProductoOnline.Views
                 Total += priceProduct;
                 TotalSinIVA += item.Price * double.Parse(item.Amount);
             }
+
+            //Calculos finales.
+
             double TotalDelIVA = Total * iva / 100 ;
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@Filas", filas);
             double MontoExentoDelIVA = 0;
-            double PrecioFinal = Total;
+           
             if(factura.Cliente.Type != "Ordinario")
             {
                 MontoExentoDelIVA = (TotalDelIVA * 75 / 100);
             }
 
-            //Calculos finales
+            double PrecioFinal = Total - MontoExentoDelIVA;
+
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@MONTO1", MontoExentoDelIVA.ToString());
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@MONTO2", Total.ToString());
             FacturaHtlml_Texto = FacturaHtlml_Texto.Replace("@MONTO3", TotalDelIVA.ToString());
@@ -373,7 +381,12 @@ namespace TuProductoOnline.Views
                     facturaPdf.Open();
                     facturaPdf.Add(new Phrase());
 
-                    //iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.)
+                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.LogoCompleto,System.Drawing.Imaging.ImageFormat.Png);
+                    img.ScaleToFit(200, 120);
+                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
+                    img.SetAbsolutePosition(facturaPdf.LeftMargin, facturaPdf.Top - 60);
+                    facturaPdf.Add(img);
+
 
                     //transformar el string para poder usarlo.
                     using (StringReader sr = new StringReader(FacturaHtlml_Texto))
@@ -402,8 +415,6 @@ namespace TuProductoOnline.Views
                 customerValues[7]
                 );
         }
-
-
     }
 
 

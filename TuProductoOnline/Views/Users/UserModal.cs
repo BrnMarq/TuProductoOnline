@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TuProductoOnline.Models;
@@ -29,6 +30,7 @@ namespace TuProductoOnline.Views.Users
         private readonly string _address = "";
         private readonly string _password = "";
         private readonly bool _isEdit = false;
+        private readonly char[] eliminar = { '\n', '\r' };
 
         private readonly Action<List<string>> acceptFunction;
         public UserModal(Action<List<string>> callback)
@@ -205,22 +207,44 @@ namespace TuProductoOnline.Views.Users
         }
         private void NameInput_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && NameInput.Text == "")
+            {
+                NameErrorlbl.Visible = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && NameInput.Text != "")
+            {
+                NameErrorlbl.Visible = false;
+            }
             Validar.SoloLetras(e);
             Validar.Tab_Enter(e);
         }
         private void LastNameInput_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && LastNameInput.Text == "")
+            {
+                LastNameErrorlbl.Visible = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && LastNameInput.Text != "")
+            {
+                LastNameErrorlbl.Visible = false;
+            }
             Validar.SoloLetras(e);
             Validar.Tab_Enter(e);
         }
         private void PhoneNumberInput_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.SoloNumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                if (VerifyLengthTlf() == 1)
+                if (Validar.ValidarTelefono(PhoneNumberInput.Text.TrimStart(eliminar)))
                 {
-                    Validar.Tab_Enter(e);
+                    e.Handled = true;
+                    SendKeys.Send("{TAB}");
+                    PhoneNumberErrorlbl.Visible = false;
+                }
+                else
+                {
+                    SendKeys.Send("{TAB}");
+                    PhoneNumberErrorlbl.Visible = true;
                 }
             }
         }
@@ -241,10 +265,32 @@ namespace TuProductoOnline.Views.Users
         }
         private void EmailInput_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.Tab_Enter(e);
+
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                if (Validar.ValidarEmail(EmailInput.Text.TrimStart(eliminar)))
+                {
+                    e.Handled = true;
+                    SendKeys.Send("{TAB}");
+                    EmailErrorlbl.Visible = false;
+                }
+                else
+                {
+                    SendKeys.Send("{TAB}");
+                    EmailErrorlbl.Visible = true;
+                }
+            }
         }
         private void AddressInput_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && AddressInput.Text == "")
+            {
+                AddressErrorlbl.Visible = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && AddressInput.Text != "")
+            {
+                AddressErrorlbl.Visible = false;
+            }
             Validar.Tab_Enter(e);
         }
         private void PasswordInput_KeyPress(object sender, KeyPressEventArgs e)
