@@ -63,7 +63,6 @@ namespace TuProductoOnline
         {
             if (_isEdit)
             {
-                txtCode.Text = _id.ToString();
                 txtName.Text = _name;
                 txtLastName.Text = _last_name;
                 txtId.Text = _document;
@@ -83,7 +82,6 @@ namespace TuProductoOnline
         }
         private void CustomerProperties_FormClosed(object sender, FormClosedEventArgs e)
         {
-            txtCode.Text = "";
             txtName.Text = "";
             txtLastName.Text = "";
             txtId.Text = "";
@@ -144,11 +142,20 @@ namespace TuProductoOnline
         }
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtName.Text == "")
+            {
+                TxtNameErrorlbl.Visible = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtName.Text != "")
+            {
+                TxtNameErrorlbl.Visible = false;
+            }
             Validar.SoloLetras(e);
             Validar.Tab_Enter(e);
         }
         private void txtId_KeyPress(object sender, KeyPressEventArgs e)
         {
+            Validar.SoloNumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 if (VerifyLengthCedula() == 1)
@@ -161,6 +168,7 @@ namespace TuProductoOnline
 
         private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
+            Validar.SoloNumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 if (Validar.ValidarTelefono(txtPhoneNumber.Text.TrimStart(eliminar)))
@@ -199,7 +207,6 @@ namespace TuProductoOnline
         }
 
         //Setters para el texto de los textbox
-        public string Code {set => txtCode.Text = value; }
         public string Nombre {  set => txtName.Text = value; }
         public string Last_name {set => txtLastName.Text = value; }
         public string Id { set => txtId.Text = value; }
@@ -208,8 +215,6 @@ namespace TuProductoOnline
         public string Email { set => txtEmail.Text = value; }
         public int Type { set => cbType.SelectedIndex = value; }
         public bool BtnActivado {set => btnAccept.Enabled = value; }
-        public bool LblCode {set => lblCode.Visible = value; }
-        public bool TxtCode { set => txtCode.Visible = value; }
 
         //Setters para ReadOnly de los textBox
 

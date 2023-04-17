@@ -233,6 +233,7 @@ namespace TuProductoOnline.Views.Users
         }
         private void PhoneNumberInput_KeyPress(object sender, KeyPressEventArgs e)
         {
+            Validar.SoloNumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 if (Validar.ValidarTelefono(PhoneNumberInput.Text.TrimStart(eliminar)))
@@ -243,7 +244,7 @@ namespace TuProductoOnline.Views.Users
                 }
                 else
                 {
-                    SendKeys.Send("{TAB}");
+                    MessageBox.Show("Número de teléfono inválido");
                     PhoneNumberErrorlbl.Visible = true;
                 }
             }
@@ -276,7 +277,7 @@ namespace TuProductoOnline.Views.Users
                 }
                 else
                 {
-                    SendKeys.Send("{TAB}");
+                    MessageBox.Show("Correo inválido");
                     EmailErrorlbl.Visible = true;
                 }
             }
@@ -295,6 +296,15 @@ namespace TuProductoOnline.Views.Users
         }
         private void PasswordInput_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && PasswordInput.Text == "")
+            {
+                MessageBox.Show("Contraseña invalida");
+                PasswordErrorlbl.Visible = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && PasswordInput.Text != "")
+            {
+                PasswordErrorlbl.Visible = false;
+            }
             Validar.Tab_Enter(e);
         }
     }

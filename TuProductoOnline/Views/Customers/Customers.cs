@@ -37,7 +37,6 @@ namespace TuProductoOnline.Views
             int idSeleccionado = int.Parse(dgvCustomers.CurrentRow.Cells[0].Value.ToString());
             Customer customer = Customer.GetCustomerById(idSeleccionado);
 
-            miVentana.Code = customer.Code.ToString();
             miVentana.Nombre = customer.Name;
             miVentana.Last_name = customer.LastName;
             miVentana.Id = customer.Document;
@@ -59,8 +58,6 @@ namespace TuProductoOnline.Views
 
         public void ConfigurarCustomerProperties()
         {
-            miVentana.LblCode = true;
-            miVentana.TxtCode = true;
             miVentana.Nombre1 = true;
             miVentana.Apellido = true;
             miVentana.Cedula = true;
@@ -161,6 +158,7 @@ namespace TuProductoOnline.Views
                 "true",
             };
             Customer.UpdateCustomer(customer.Code, values);
+            MessageBox.Show("Cliente borrado con exito");
             RenderTable();
         }
         private void btnImport_Click(object sender, EventArgs e)

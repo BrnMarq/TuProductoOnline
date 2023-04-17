@@ -107,6 +107,7 @@ namespace TuProductoOnline.Views.Users
                 "true",
             };
             User.UpdateUser(user.Id, values);
+            MessageBox.Show("Usuario Borrado con exito");
             RenderTable();
         }
 
