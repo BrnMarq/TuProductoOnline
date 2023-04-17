@@ -171,7 +171,7 @@ namespace TuProductoOnline.Views
                 string pathCSV = openFileDialog1.FileName;
                 List<List<string>> clientesImportados = DbHandler.LeerCSV(pathCSV);
 
-                for (int i = 1; i < clientesImportados.Count; i++)
+                for (int i = 0; i < clientesImportados.Count; i++)
                 {
                     new Customer(
                         clientesImportados[i][1].ToString(),
@@ -181,7 +181,7 @@ namespace TuProductoOnline.Views
                         clientesImportados[i][5].ToString(),
                         clientesImportados[i][6].ToString(),
                         clientesImportados[i][7].ToString()
-                        );
+                    );
                 }
                 RenderTable();
             }

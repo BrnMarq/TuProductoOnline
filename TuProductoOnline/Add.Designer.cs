@@ -184,7 +184,7 @@ namespace TuProductoOnline
             // 
             this.cmbType.FormattingEnabled = true;
             this.cmbType.Items.AddRange(new object[] {
-            "Harware",
+            "Hardware",
             "Software",
             "Devices"});
             this.cmbType.Location = new System.Drawing.Point(107, 144);

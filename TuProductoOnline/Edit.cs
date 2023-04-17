@@ -14,6 +14,8 @@ namespace TuProductoOnline
 
     public partial class Edit : Form
     {
+        //Atributos
+
         private string _name;
         private string _brand;
         private string _description;
@@ -22,6 +24,7 @@ namespace TuProductoOnline
         private int _id;
         private bool _clic = false;
 
+        //Getters y Setters
         public bool Clic { get { return _clic; } set { _clic = value; } }
         public string Alias { get { return _name; } set { _name = value; } }
         public string Brand { get { return _brand; } set { _brand = value; } }
@@ -33,6 +36,7 @@ namespace TuProductoOnline
         public Edit(string id, string type, string name, string brand, string description, string price)
         {
             InitializeComponent();
+            
             txtId.Text = id;
             cmbType.Text = type;
             txtName.Text = name;
@@ -43,6 +47,7 @@ namespace TuProductoOnline
             
         }
 
+        //Función que regresará los cambios que el usuario haya realizado.
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -61,11 +66,12 @@ namespace TuProductoOnline
             }
         }
 
+        //Función que bloqueará las teclas en la opción de Tipo
         private void cmbType_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
-
+        //Funciones que Bloquearán el boton de Editar hasta que todos los campos esten llenos.
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtBrand.Text) || string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrEmpty(cmbType.Text) || string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtPrice.Text))
@@ -126,6 +132,7 @@ namespace TuProductoOnline
             }
         }
 
+        //Funciión que enviará al Form Products si el botón de salir fue pulsado.
         private void btnExit_Click(object sender, EventArgs e)
         {
             Clic = true;
@@ -137,6 +144,7 @@ namespace TuProductoOnline
 
         }
 
+        //Función que habilita solo los números y la coma;
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar >= 32 && e.KeyChar <= 47 && e.KeyChar != 44)||(e.KeyChar >= 58 && e.KeyChar <= 255)) 

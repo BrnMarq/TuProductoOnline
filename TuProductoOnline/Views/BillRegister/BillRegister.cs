@@ -33,8 +33,15 @@ namespace TuProductoOnline.Views.BillRegister
 
         private void BillingRegistercs_Load(object sender, EventArgs e)
         {
-            string jsonString = File.ReadAllText(FileNames.BillRegister);
-            register = JsonSerializer.Deserialize<List<Bill>>(jsonString);
+            try
+            {
+                string jsonString = File.ReadAllText(FileNames.BillRegister);
+                register = JsonSerializer.Deserialize<List<Bill>>(jsonString);
+            }
+            catch (FileNotFoundException)
+            {
+                ;
+            }
             renderTable();
         }
 
@@ -42,9 +49,12 @@ namespace TuProductoOnline.Views.BillRegister
         {
             dgvBillRegister.Rows.Clear();
             dgvBillRegister.Refresh();
-            foreach (Bill billn in register)
+            if (register != null)
             {
-                dgvBillRegister.Rows.Add(billn.BillId, billn.Fecha, billn.Cajero, sumProducts(billn.ListaProductos));
+                foreach (Bill billn in register)
+                {
+                    dgvBillRegister.Rows.Add(billn.BillId, billn.Fecha, billn.Cajero, sumProducts(billn.ListaProductos));
+                }
             }
         }
 
@@ -54,7 +64,7 @@ namespace TuProductoOnline.Views.BillRegister
 
             foreach (Product product in listaProductos)
             {
-                productsAddedUp += product.Price;
+                productsAddedUp += product.Price * int.Parse(product.Amount);
             }
 
             return productsAddedUp;
@@ -76,9 +86,19 @@ namespace TuProductoOnline.Views.BillRegister
         //"T" means to.
         public void addBillsTRegister(List<Bill> listOfBills)
         {
-            foreach (Bill nBill in listOfBills)
+            if (listOfBills != null) 
             {
-                register.Add(nBill);
+                if (register == null)
+                {
+                    register = listOfBills;
+                }
+                else
+                {
+                    foreach (Bill nBill in listOfBills)
+                    {
+                        register.Add(nBill);
+                    }
+                }
             }
         }
     }
