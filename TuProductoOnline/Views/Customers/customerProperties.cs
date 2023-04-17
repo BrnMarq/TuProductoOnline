@@ -198,18 +198,35 @@ namespace TuProductoOnline
             }
         }
 
-        //Getters y setters para los textbox
-        public string Code { get => txtCode.Text; set => txtCode.Text = value; }
-        public string Nombre { get => txtName.Text; set => txtName.Text = value; }
-        public string Last_name { get => txtLastName.Text; set => txtLastName.Text = value; }
-        public string Id { get => txtId.Text; set => txtId.Text = value; }
-        public string Phone_number { get => txtPhoneNumber.Text; set => txtPhoneNumber.Text = value; }
-        public string Address { get => txtAddress.Text; set => txtAddress.Text = value; }
-        public string Email { get => txtEmail.Text; set => txtEmail.Text = value; }
-        public int Type { get => cbType.SelectedIndex; set => cbType.SelectedIndex = value; }
-        public bool BtnActivado { get => btnAccept.Enabled; set => btnAccept.Enabled = value; }
-        public bool LblCode { get => lblCode.Visible; set => lblCode.Visible = value; }
-        public bool TxtCode { get => txtCode.Visible; set => txtCode.Visible = value; }
+        //Setters para el texto de los textbox
+        public string Code {set => txtCode.Text = value; }
+        public string Nombre {  set => txtName.Text = value; }
+        public string Last_name {set => txtLastName.Text = value; }
+        public string Id { set => txtId.Text = value; }
+        public string Phone_number {  set => txtPhoneNumber.Text = value; }
+        public string Address { set => txtAddress.Text = value; }
+        public string Email { set => txtEmail.Text = value; }
+        public int Type { set => cbType.SelectedIndex = value; }
+        public bool BtnActivado {set => btnAccept.Enabled = value; }
+        public bool LblCode {set => lblCode.Visible = value; }
+        public bool TxtCode { set => txtCode.Visible = value; }
+
+        //Setters para ReadOnly de los textBox
+
+        public bool Nombre1 { set => txtName.ReadOnly = value; }
+        public bool Apellido { set => txtLastName.ReadOnly = value; }
+        public bool Cedula { set => txtId.ReadOnly = value; }
+        public bool Telefono { set => txtPhoneNumber.ReadOnly = value; }
+        public bool Direccion { set => txtAddress.ReadOnly = value; }
+        public bool Correo { set => txtEmail.ReadOnly = value; }
+
+        //Setters para Color de los textBox
+        public Color ApellidoColor { set => txtLastName.BackColor = value; }
+        public Color CedulaColor { set => txtId.BackColor = value; }
+        public Color TelefonoColor { set => txtPhoneNumber.BackColor = value; }
+        public Color DireccionColor { set => txtAddress.BackColor = value; }
+        public Color CorreoColor { set => txtEmail.BackColor = value; }
+
 
     }
 }
