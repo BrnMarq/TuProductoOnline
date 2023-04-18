@@ -64,6 +64,11 @@ namespace TuProductoOnline
 
         private void BillingTab_Click(object sender, EventArgs e)
         {
+            if (User.ActiveUser.Role != "Admin") 
+            {
+                OpenChildForm(new Facturacion());
+                return;
+            }
             showSubMenu();
         }
 

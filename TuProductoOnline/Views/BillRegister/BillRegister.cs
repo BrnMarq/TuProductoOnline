@@ -107,6 +107,7 @@ namespace TuProductoOnline.Views.BillRegister
             }
         }
 
+        //Oculta y/o muestra los botones de importar y exportar, dependiendo de si hay datos en register o no.
         public void hideImportExportButton()
         {
             if (register == null)
@@ -136,6 +137,7 @@ namespace TuProductoOnline.Views.BillRegister
             }
         }
 
+        //Crear el archivo para guardar la base de datos de registro de facturas.
         public void saveDataBase()
         {
             string fileName = FileNames.BillRegister;

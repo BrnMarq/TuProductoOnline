@@ -43,6 +43,7 @@ namespace TuProductoOnline
 
         private void Products_Load(object sender, EventArgs e)
         {
+            // Se Habilitan o deshabilitan los botones según el rol que tenga el usuario.
             product = Product.GetProducts();
             maxId = product.Count();
             RenderTable();
@@ -71,10 +72,10 @@ namespace TuProductoOnline
 
                 foreach (DataGridViewColumn col in dgvProducts.Columns)
                 {
-                    cabeceras.Add(col.HeaderText);
+                    cabeceras.Add(col.HeaderText); // Se guardan Las cabeceras.
                 }
                 string SEP = ";";
-                filas.Add(string.Join(SEP, cabeceras.GetRange(0,6)));
+                filas.Add(string.Join(SEP, cabeceras.GetRange(0,6))); // Se agregan en  la primera fila el valor de las cabeceras
 
                 foreach (DataGridViewRow fila in dgvProducts.Rows)
                 {
@@ -83,10 +84,10 @@ namespace TuProductoOnline
                     {
 
                         foreach (DataGridViewCell c in fila.Cells)
-                            celdas.Add(c.Value.ToString());
+                            celdas.Add(c.Value.ToString()); //Se almacena  el valor de las celdas
 
 
-                        filas.Add(string.Join(SEP, celdas.GetRange(0, 6)));
+                        filas.Add(string.Join(SEP, celdas.GetRange(0, 6))); //se agrega el valor de las celdas al resto de filas
                     }
                     catch (Exception ex)
                     {
@@ -102,22 +103,24 @@ namespace TuProductoOnline
 
         private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            string id = dgvProducts.Rows[e.RowIndex].Cells[0].Value.ToString();
-            string type = dgvProducts.Rows[e.RowIndex].Cells[1].Value.ToString();
-            string name = dgvProducts.Rows[e.RowIndex].Cells[2].Value.ToString();
-            string brand = dgvProducts.Rows[e.RowIndex].Cells[3].Value.ToString();
-            string description = dgvProducts.Rows[e.RowIndex].Cells[4].Value.ToString();
-            string price = dgvProducts.Rows[e.RowIndex].Cells[5].Value.ToString();
-
-            if (dgvProducts.Columns[e.ColumnIndex].Name == "Eliminar")
+            try
             {
-                ConfirmDelete confirm = new ConfirmDelete();
-                confirm.ShowDialog();
-                if (confirm.Clic == true)
+                //Se le asignan a las variables el valor de la celda seleccionada.
+                string id = dgvProducts.Rows[e.RowIndex].Cells[0].Value.ToString();
+                string type = dgvProducts.Rows[e.RowIndex].Cells[1].Value.ToString();
+                string name = dgvProducts.Rows[e.RowIndex].Cells[2].Value.ToString();
+                string brand = dgvProducts.Rows[e.RowIndex].Cells[3].Value.ToString();
+                string description = dgvProducts.Rows[e.RowIndex].Cells[4].Value.ToString();
+                string price = dgvProducts.Rows[e.RowIndex].Cells[5].Value.ToString();
+
+                if (dgvProducts.Columns[e.ColumnIndex].Name == "Eliminar")
                 {
-                    Product pro = Product.GetProductById(int.Parse(id));
-                    List<string> productValues = new List<string>
+                    ConfirmDelete confirm = new ConfirmDelete();
+                    confirm.ShowDialog();
+                    if (confirm.Clic == true)
+                    {
+                        Product pro = Product.GetProductById(int.Parse(id));
+                        List<string> productValues = new List<string>
                     {
                         id,
                         pro.Name,
@@ -128,18 +131,19 @@ namespace TuProductoOnline
                         "true",
                         "Amount"
                     };
-                    Product.UpdateProduct(int.Parse(id), productValues);
-                    RenderTable();
-                }
+                        Product.UpdateProduct(int.Parse(id), productValues);
+                        MessageBox.Show("Producto borrado con exito");
+                        RenderTable();
+                    }
 
-            }
-            if (dgvProducts.Columns[e.ColumnIndex].Name == "Edit")
-            {
-                Edit edit = new Edit(id, type, name, brand, description, price);
-                edit.ShowDialog();
-                if (edit.Clic != true)
+                }
+                if (dgvProducts.Columns[e.ColumnIndex].Name == "Edit")
                 {
-                    List<string> productValues = new List<string>
+                    Edit edit = new Edit(id, type, name, brand, description, price);
+                    edit.ShowDialog();
+                    if (edit.Clic != true)
+                    {
+                        List<string> productValues = new List<string>
                     {
                         id,
                         edit.Alias,
@@ -150,14 +154,20 @@ namespace TuProductoOnline
                         "false",
                         "Amount"
                     };
-                    Product.UpdateProduct(int.Parse(id), productValues);
-                    RenderTable();
+                        Product.UpdateProduct(int.Parse(id), productValues);
+                        MessageBox.Show("Producto editado con exito");
+                        RenderTable();
+                    }
+                }
+                if (dgvProducts.Columns[e.ColumnIndex].Name == "Consultar")
+                {
+                    Consult consultar = new Consult(id, type, name, brand, description, price);
+                    consultar.ShowDialog();
                 }
             }
-            if (dgvProducts.Columns[e.ColumnIndex].Name == "Consultar") 
+            catch (ArgumentOutOfRangeException)
             {
-                Consult consultar = new Consult(id, type, name, brand, description, price);
-                consultar.ShowDialog();
+                Console.WriteLine("Error en la funcionalidad de la tabla");
             }
         }
 
@@ -170,14 +180,15 @@ namespace TuProductoOnline
                 string pathCSV = ofd.FileName;
                 List<List<string>> importedProducts = DbHandler.LeerCSV(pathCSV);
 
+                importedProducts.RemoveAt(0);
                 foreach (List<string> iProduct in importedProducts)
                 {
                     new Product(
-                        iProduct[1],
-                        Convert.ToDouble(iProduct[2]),
+                        iProduct[2],
+                        Convert.ToDouble(iProduct[5]),
                         iProduct[3],
                         iProduct[4],
-                        iProduct[5]
+                        iProduct[1]
                     );
                 }
                 RenderTable();

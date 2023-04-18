@@ -37,11 +37,6 @@ namespace TuProductoOnline
             txtId.Text = index.ToString();
                         
         }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
         
         //Función que regresará al Form Products lo que el usuario haya añadido.
         private void btnAdd_Click_1(object sender, EventArgs e)
@@ -124,10 +119,7 @@ namespace TuProductoOnline
             }
         }
 
-        private void Add_Load(object sender, EventArgs e)
-        {
 
-        }
 
         //Función que inhabilita las teclas para la opción de Tipo.
         private void cmbType_KeyPress(object sender, KeyPressEventArgs e)
@@ -138,6 +130,14 @@ namespace TuProductoOnline
         //Función que solo valida el ingreso de números y la coma. 
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtPrice.Text == "")
+            {
+                TxtPriceErrorlbl.Visible = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtPrice.Text != "")
+            {
+                TxtPriceErrorlbl.Visible = false;
+            }
             if ((e.KeyChar >= 32 && e.KeyChar <= 47 && e.KeyChar != 44) || (e.KeyChar >= 58 && e.KeyChar <= 255))
             {
                 e.Handled = true;
@@ -145,20 +145,43 @@ namespace TuProductoOnline
 
         }
 
-        //Funciones que habilitan solo el ingreso de letras 
+        //Funciones que habilitan solo el ingreso de letras y numeros
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.SoloLetras(e);
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtName.Text == "")
+            {
+                TxtNameErrorlbl.Visible = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtName.Text != "")
+            {
+                TxtNameErrorlbl.Visible = false;
+            }
             Validar.Tab_Enter(e);
         }
 
         private void txtBrand_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtBrand.Text == "")
+            {
+                TxtBrandErrorlbl.Visible = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtBrand.Text != "")
+            {
+                TxtBrandErrorlbl.Visible = false;
+            }
             Validar.Tab_Enter(e);
         }
 
         private void txtDescription_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtDescription.Text == "")
+            {
+                TxtDescriptionErrorlbl.Visible = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtDescription.Text != "")
+            {
+                TxtDescriptionErrorlbl.Visible = false;
+            }
             Validar.Tab_Enter(e);
         }
     }

@@ -36,14 +36,14 @@ namespace TuProductoOnline.Views
         {
             int idSeleccionado = int.Parse(dgvCustomers.CurrentRow.Cells[0].Value.ToString());
             Customer customer = Customer.GetCustomerById(idSeleccionado);
-
-            miVentana.Code = customer.Code.ToString();
+            
             miVentana.Nombre = customer.Name;
             miVentana.Last_name = customer.LastName;
             miVentana.Id = customer.Document;
             miVentana.Phone_number = customer.PhoneNumber;
             miVentana.Address = customer.Address;
             miVentana.Email = customer.Email;
+            miVentana.Title = "Consultar Cliente";
             if (customer.Type == "Ordinario")
             {
                 miVentana.Type = 0;
@@ -59,8 +59,6 @@ namespace TuProductoOnline.Views
 
         public void ConfigurarCustomerProperties()
         {
-            miVentana.LblCode = true;
-            miVentana.TxtCode = true;
             miVentana.Nombre1 = true;
             miVentana.Apellido = true;
             miVentana.Cedula = true;
@@ -108,6 +106,7 @@ namespace TuProductoOnline.Views
         {
             Customer customer = Customer.GetCustomerById(int.Parse(id));
             new CustomerProperties(EditCustomer, customer).ShowDialog();
+
         }
 
         public void ShowDeleteCustomer(string id)
@@ -143,6 +142,7 @@ namespace TuProductoOnline.Views
                 customer.Deleted.ToString().ToLower(),
             };
             Customer.UpdateCustomer(customer.Code, values);
+            MessageBox.Show("Cliente editado con exito");
             RenderTable();
         }
 
@@ -161,6 +161,7 @@ namespace TuProductoOnline.Views
                 "true",
             };
             Customer.UpdateCustomer(customer.Code, values);
+            MessageBox.Show("Cliente borrado con exito");
             RenderTable();
         }
         private void btnImport_Click(object sender, EventArgs e)
@@ -172,7 +173,7 @@ namespace TuProductoOnline.Views
 
                 try
                 {
-                    for (int i = 0; i < clientesImportados.Count; i++)
+                    for (int i = 1; i < clientesImportados.Count; i++)
                     {
                         if (clientesImportados[i][8] == "true") continue;
                         new Customer(
@@ -186,7 +187,7 @@ namespace TuProductoOnline.Views
                         );
                     }
                 }
-                catch
+                catch (Exception)
                 {
                     MessageBox.Show("El archivo que quiere importar no tiene el formato correcto");
                 }               

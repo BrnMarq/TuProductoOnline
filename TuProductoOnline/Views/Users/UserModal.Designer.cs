@@ -100,7 +100,7 @@
             // NameInput
             // 
             this.NameInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.NameInput.BackColor = System.Drawing.Color.White;
+            this.NameInput.BackColor = System.Drawing.SystemColors.Window;
             this.NameInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameInput.Location = new System.Drawing.Point(32, 77);
@@ -118,7 +118,8 @@
             this.Addresslbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Addresslbl.AutoSize = true;
             this.Addresslbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Addresslbl.Location = new System.Drawing.Point(32, 350);
+            this.Addresslbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.Addresslbl.Location = new System.Drawing.Point(28, 350);
             this.Addresslbl.Name = "Addresslbl";
             this.Addresslbl.Size = new System.Drawing.Size(84, 20);
             this.Addresslbl.TabIndex = 9;
@@ -129,7 +130,8 @@
             this.Phonenumberlbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Phonenumberlbl.AutoSize = true;
             this.Phonenumberlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Phonenumberlbl.Location = new System.Drawing.Point(32, 277);
+            this.Phonenumberlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.Phonenumberlbl.Location = new System.Drawing.Point(28, 277);
             this.Phonenumberlbl.Name = "Phonenumberlbl";
             this.Phonenumberlbl.Size = new System.Drawing.Size(79, 20);
             this.Phonenumberlbl.TabIndex = 9;
@@ -140,7 +142,8 @@
             this.Lastnamelbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Lastnamelbl.AutoSize = true;
             this.Lastnamelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lastnamelbl.Location = new System.Drawing.Point(32, 128);
+            this.Lastnamelbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.Lastnamelbl.Location = new System.Drawing.Point(28, 128);
             this.Lastnamelbl.Name = "Lastnamelbl";
             this.Lastnamelbl.Size = new System.Drawing.Size(73, 20);
             this.Lastnamelbl.TabIndex = 9;
@@ -151,7 +154,8 @@
             this.Namelbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Namelbl.AutoSize = true;
             this.Namelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Namelbl.Location = new System.Drawing.Point(32, 54);
+            this.Namelbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.Namelbl.Location = new System.Drawing.Point(28, 54);
             this.Namelbl.Name = "Namelbl";
             this.Namelbl.Size = new System.Drawing.Size(71, 20);
             this.Namelbl.TabIndex = 9;
@@ -178,7 +182,8 @@
             this.Passwordlbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Passwordlbl.AutoSize = true;
             this.Passwordlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Passwordlbl.Location = new System.Drawing.Point(32, 424);
+            this.Passwordlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.Passwordlbl.Location = new System.Drawing.Point(28, 424);
             this.Passwordlbl.Name = "Passwordlbl";
             this.Passwordlbl.Size = new System.Drawing.Size(102, 20);
             this.Passwordlbl.TabIndex = 9;
@@ -220,7 +225,8 @@
             this.Emaillbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Emaillbl.AutoSize = true;
             this.Emaillbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Emaillbl.Location = new System.Drawing.Point(30, 202);
+            this.Emaillbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.Emaillbl.Location = new System.Drawing.Point(28, 202);
             this.Emaillbl.Name = "Emaillbl";
             this.Emaillbl.Size = new System.Drawing.Size(63, 20);
             this.Emaillbl.TabIndex = 9;
@@ -275,7 +281,7 @@
             this.PhoneNumberErrorlbl.Name = "PhoneNumberErrorlbl";
             this.PhoneNumberErrorlbl.Size = new System.Drawing.Size(267, 16);
             this.PhoneNumberErrorlbl.TabIndex = 13;
-            this.PhoneNumberErrorlbl.Text = "Ingrese el Teléfono (Maximo 50 Carácteres)";
+            this.PhoneNumberErrorlbl.Text = "Ingrese el Teléfono (Maximo 20 Carácteres)";
             this.PhoneNumberErrorlbl.Visible = false;
             // 
             // AddressErrorlbl
@@ -308,10 +314,11 @@
             // 
             this.TitleUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.TitleUser.AutoSize = true;
-            this.TitleUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleUser.Location = new System.Drawing.Point(109, 12);
+            this.TitleUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitleUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.TitleUser.Location = new System.Drawing.Point(100, 10);
             this.TitleUser.Name = "TitleUser";
-            this.TitleUser.Size = new System.Drawing.Size(183, 25);
+            this.TitleUser.Size = new System.Drawing.Size(203, 29);
             this.TitleUser.TabIndex = 16;
             this.TitleUser.Text = "Agregar Usuario";
             this.TitleUser.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -320,6 +327,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(396, 558);
             this.Controls.Add(this.TitleUser);
             this.Controls.Add(this.PasswordErrorlbl);
