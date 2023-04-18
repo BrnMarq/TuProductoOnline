@@ -10,8 +10,10 @@ using TuProductoOnline.Models;
 
 namespace TuProductoOnline.Utils
 {
+    //Está clase tiene como propósito, facilitar el manejo de json con las facturas.
     public static class JsonHandler
     {
+        //Abre un archivo de json.
         public static List<Bill> openJsonFile()
         {
             string fileContent = string.Empty;
@@ -46,6 +48,7 @@ namespace TuProductoOnline.Utils
             return returnBooks;
         }
 
+        //Guarda un archivo de json.
         public static void saveJsonFile(List<Bill> stockBooks)
         {
             string jsonString = JsonSerializer.Serialize(stockBooks);
