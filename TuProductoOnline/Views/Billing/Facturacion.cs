@@ -196,7 +196,7 @@ namespace TuProductoOnline.Views
 
                 //Agregar al DataGridView
 
-                ProducTable.Rows.Add(ProductosCarrito[contador][0], ProductosCarrito[contador][1], ProductosCarrito[contador][2], CantidadBox.Text);
+                ProducTable.Rows.Add(ProductosCarrito[contador][0], ProductosCarrito[contador][1], ProductosCarrito[contador][2] + " Bs.S", CantidadBox.Text);
 
                 contador++;
                 actualizarPrecio();
@@ -236,7 +236,6 @@ namespace TuProductoOnline.Views
 
         }
 
-        //Aqui toca editar los campos de las listas.
         public void Refield()
         {
             //Llenar combobox clientes.
@@ -263,7 +262,7 @@ namespace TuProductoOnline.Views
 
 
         }
-        //Aqui toca editar los campos de las listas.
+        
         public void actualizarPrecio()
         {
             double Precio = 0;
@@ -291,7 +290,7 @@ namespace TuProductoOnline.Views
             
             txtTotal.Text = PrecioFinal.ToString() + " Bs.S";
         }
-        //Aqui toca editar los campos de las listas.
+        
 
         public List<Product> TransformarCarritoAProducto(List<List<string>> list)
         {
