@@ -39,7 +39,14 @@ namespace TuProductoOnline.Views.BillRegister
             try
             {
                 string jsonString = File.ReadAllText(FileNames.BillRegister);
-                register = JsonSerializer.Deserialize<List<Bill>>(jsonString);
+                try
+                {
+                    register = JsonSerializer.Deserialize<List<Bill>>(jsonString);
+                }
+                catch (JsonException)
+                {
+                    ;
+                }
             }
             catch (FileNotFoundException)
             {
