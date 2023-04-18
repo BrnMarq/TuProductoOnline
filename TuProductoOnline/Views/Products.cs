@@ -43,6 +43,7 @@ namespace TuProductoOnline
 
         private void Products_Load(object sender, EventArgs e)
         {
+            // Se Habilitan o deshabilitan los botones según el rol que tenga el usuario.
             product = Product.GetProducts();
             maxId = product.Count();
             RenderTable();
@@ -71,10 +72,10 @@ namespace TuProductoOnline
 
                 foreach (DataGridViewColumn col in dgvProducts.Columns)
                 {
-                    cabeceras.Add(col.HeaderText);
+                    cabeceras.Add(col.HeaderText); // Se guardan Las cabeceras.
                 }
                 string SEP = ";";
-                filas.Add(string.Join(SEP, cabeceras.GetRange(0,6)));
+                filas.Add(string.Join(SEP, cabeceras.GetRange(0,6))); // Se agregan en  la primera fila el valor de las cabeceras
 
                 foreach (DataGridViewRow fila in dgvProducts.Rows)
                 {
@@ -83,10 +84,10 @@ namespace TuProductoOnline
                     {
 
                         foreach (DataGridViewCell c in fila.Cells)
-                            celdas.Add(c.Value.ToString());
+                            celdas.Add(c.Value.ToString()); //Se almacena  el valor de las celdas
 
 
-                        filas.Add(string.Join(SEP, celdas.GetRange(0, 6)));
+                        filas.Add(string.Join(SEP, celdas.GetRange(0, 6))); //se agrega el valor de las celdas al resto de filas
                     }
                     catch (Exception ex)
                     {
@@ -104,6 +105,7 @@ namespace TuProductoOnline
         {
             try
             {
+                //Se le asignan a las variables el valor de la celda seleccionada.
                 string id = dgvProducts.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string type = dgvProducts.Rows[e.RowIndex].Cells[1].Value.ToString();
                 string name = dgvProducts.Rows[e.RowIndex].Cells[2].Value.ToString();

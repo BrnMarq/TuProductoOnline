@@ -144,7 +144,7 @@ namespace TuProductoOnline
 
         }
 
-        //Función que habilita solo los números y la coma;
+        //Función que habilita solo los números y la coma.
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar >= 32 && e.KeyChar <= 47 && e.KeyChar != 44)||(e.KeyChar >= 58 && e.KeyChar <= 255)) 
