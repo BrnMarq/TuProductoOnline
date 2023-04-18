@@ -57,19 +57,24 @@ namespace TuProductoOnline.Views.BillRegister
             {
                 foreach (Bill billn in register)
                 {
-                    dgvBillRegister.Rows.Add(billn.BillId, billn.Fecha, billn.Cajero, sumProducts(billn.ListaProductos));
+                    dgvBillRegister.Rows.Add(billn.BillId, billn.Fecha, billn.Cajero, sumProducts(billn.ListaProductos, billn.Cliente));
                 }
             }
         }
 
-        private double sumProducts(List<Product> listaProductos)
+        private double sumProducts(List<Product> listaProductos, Customer randomCustomer)
         {
             double productsAddedUp = 0;
+            double vat = 0;
+            double retention = 0;
 
             foreach (Product product in listaProductos)
             {
                 productsAddedUp += product.Price * int.Parse(product.Amount);
             }
+            vat = (productsAddedUp * 16) / 100;
+            retention = randomCustomer.Type == "Contribuyente especial" ? (vat * 75) / 100 : 0; 
+            productsAddedUp = productsAddedUp + vat - retention;
 
             return productsAddedUp;
         }
