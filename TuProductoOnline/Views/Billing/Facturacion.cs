@@ -24,6 +24,7 @@ using System.Reflection;
 using static iTextSharp.text.pdf.hyphenation.TernaryTree;
 using com.itextpdf.text.pdf;
 using Org.BouncyCastle.Asn1;
+using System.Runtime.InteropServices;
 
 namespace TuProductoOnline.Views
 {
@@ -38,6 +39,9 @@ namespace TuProductoOnline.Views
         public Facturacion()
         {
             InitializeComponent();
+            //Crear Json de registro si no existe.
+            bool fileExists = File.Exists(FileNames.BillRegister);
+            if (!fileExists) File.Create(FileNames.BillRegister).Close();
             Refield();
             
         }
@@ -53,11 +57,13 @@ namespace TuProductoOnline.Views
 
         private void btnFacturar_Click_1(object sender, EventArgs e)
         {
+            
             if (ProducTable.Rows.Count == 0) { }
 
             else
             {
                 List<Product> prueba = new List<Product>(TransformarCarritoAProducto(ProductosCarrito));
+                //compaginar lo obtenido en el selectbox con el index de la lista.
                 int iterador = -1;
                 int Verificadorfalse = 0;
                 foreach (List<string> item in Clientes)
@@ -261,6 +267,7 @@ namespace TuProductoOnline.Views
         {
             double Precio = 0;
             double PrecioFinal;
+            //compaginar lo obtenido en el selectbox con el index de la lista.
             foreach (var item in ProductosCarrito)
             {
                 Precio += (double.Parse(item[2]) * double.Parse(item[7]));
