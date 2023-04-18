@@ -140,6 +140,7 @@
             this.BillingTab.Image = global::TuProductoOnline.Properties.Resources.BillingIcon;
             this.BillingTab.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BillingTab.Location = new System.Drawing.Point(0, 245);
+            this.BillingTab.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.BillingTab.Name = "BillingTab";
             this.BillingTab.Size = new System.Drawing.Size(170, 36);
             this.BillingTab.TabIndex = 5;
@@ -159,8 +160,9 @@
             this.UsersTab.Image = global::TuProductoOnline.Properties.Resources.UsersIcon;
             this.UsersTab.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.UsersTab.Location = new System.Drawing.Point(0, 203);
+            this.UsersTab.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.UsersTab.Name = "UsersTab";
-            this.UsersTab.Padding = new System.Windows.Forms.Padding(0, 0, 25, 0);
+            this.UsersTab.Padding = new System.Windows.Forms.Padding(7, 0, 25, 0);
             this.UsersTab.Size = new System.Drawing.Size(170, 36);
             this.UsersTab.TabIndex = 4;
             this.UsersTab.Text = "   Usuarios";

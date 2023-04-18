@@ -119,7 +119,7 @@
             this.Addresslbl.AutoSize = true;
             this.Addresslbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Addresslbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.Addresslbl.Location = new System.Drawing.Point(32, 350);
+            this.Addresslbl.Location = new System.Drawing.Point(28, 350);
             this.Addresslbl.Name = "Addresslbl";
             this.Addresslbl.Size = new System.Drawing.Size(84, 20);
             this.Addresslbl.TabIndex = 9;
@@ -131,7 +131,7 @@
             this.Phonenumberlbl.AutoSize = true;
             this.Phonenumberlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Phonenumberlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.Phonenumberlbl.Location = new System.Drawing.Point(32, 277);
+            this.Phonenumberlbl.Location = new System.Drawing.Point(28, 277);
             this.Phonenumberlbl.Name = "Phonenumberlbl";
             this.Phonenumberlbl.Size = new System.Drawing.Size(79, 20);
             this.Phonenumberlbl.TabIndex = 9;
@@ -143,7 +143,7 @@
             this.Lastnamelbl.AutoSize = true;
             this.Lastnamelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lastnamelbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.Lastnamelbl.Location = new System.Drawing.Point(32, 128);
+            this.Lastnamelbl.Location = new System.Drawing.Point(28, 128);
             this.Lastnamelbl.Name = "Lastnamelbl";
             this.Lastnamelbl.Size = new System.Drawing.Size(73, 20);
             this.Lastnamelbl.TabIndex = 9;
@@ -155,7 +155,7 @@
             this.Namelbl.AutoSize = true;
             this.Namelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Namelbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.Namelbl.Location = new System.Drawing.Point(32, 54);
+            this.Namelbl.Location = new System.Drawing.Point(28, 54);
             this.Namelbl.Name = "Namelbl";
             this.Namelbl.Size = new System.Drawing.Size(71, 20);
             this.Namelbl.TabIndex = 9;
@@ -183,7 +183,7 @@
             this.Passwordlbl.AutoSize = true;
             this.Passwordlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Passwordlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.Passwordlbl.Location = new System.Drawing.Point(32, 424);
+            this.Passwordlbl.Location = new System.Drawing.Point(28, 424);
             this.Passwordlbl.Name = "Passwordlbl";
             this.Passwordlbl.Size = new System.Drawing.Size(102, 20);
             this.Passwordlbl.TabIndex = 9;
@@ -226,7 +226,7 @@
             this.Emaillbl.AutoSize = true;
             this.Emaillbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Emaillbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.Emaillbl.Location = new System.Drawing.Point(32, 202);
+            this.Emaillbl.Location = new System.Drawing.Point(28, 202);
             this.Emaillbl.Name = "Emaillbl";
             this.Emaillbl.Size = new System.Drawing.Size(63, 20);
             this.Emaillbl.TabIndex = 9;

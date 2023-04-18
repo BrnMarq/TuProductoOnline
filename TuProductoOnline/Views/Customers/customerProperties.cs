@@ -238,6 +238,7 @@ namespace TuProductoOnline
 
         //Setters para el texto de los textbox
         public string Nombre {  set => txtName.Text = value; }
+        public string Title {  set => TitleCustomers.Text = value; }
         public string Last_name {set => txtLastName.Text = value; }
         public string Id { set => txtId.Text = value; }
         public string Phone_number {  set => txtPhoneNumber.Text = value; }

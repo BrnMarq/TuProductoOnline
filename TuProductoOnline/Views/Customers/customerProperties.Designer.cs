@@ -58,7 +58,7 @@ namespace TuProductoOnline
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.lblName.Location = new System.Drawing.Point(32, 36);
+            this.lblName.Location = new System.Drawing.Point(28, 36);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(71, 20);
             this.lblName.TabIndex = 10;
@@ -69,7 +69,7 @@ namespace TuProductoOnline
             this.lblLastName.AutoSize = true;
             this.lblLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLastName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.lblLastName.Location = new System.Drawing.Point(32, 110);
+            this.lblLastName.Location = new System.Drawing.Point(28, 110);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(73, 20);
             this.lblLastName.TabIndex = 11;
@@ -80,7 +80,7 @@ namespace TuProductoOnline
             this.lblId.AutoSize = true;
             this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.lblId.Location = new System.Drawing.Point(32, 184);
+            this.lblId.Location = new System.Drawing.Point(28, 184);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(100, 20);
             this.lblId.TabIndex = 12;
@@ -91,7 +91,7 @@ namespace TuProductoOnline
             this.lblPhoneNumber.AutoSize = true;
             this.lblPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhoneNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.lblPhoneNumber.Location = new System.Drawing.Point(32, 259);
+            this.lblPhoneNumber.Location = new System.Drawing.Point(28, 259);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
             this.lblPhoneNumber.Size = new System.Drawing.Size(79, 20);
             this.lblPhoneNumber.TabIndex = 13;
@@ -102,7 +102,7 @@ namespace TuProductoOnline
             this.lblDirection.AutoSize = true;
             this.lblDirection.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDirection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.lblDirection.Location = new System.Drawing.Point(32, 332);
+            this.lblDirection.Location = new System.Drawing.Point(28, 332);
             this.lblDirection.Name = "lblDirection";
             this.lblDirection.Size = new System.Drawing.Size(84, 20);
             this.lblDirection.TabIndex = 14;
@@ -224,7 +224,7 @@ namespace TuProductoOnline
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.lblEmail.Location = new System.Drawing.Point(32, 406);
+            this.lblEmail.Location = new System.Drawing.Point(28, 406);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(53, 20);
             this.lblEmail.TabIndex = 15;

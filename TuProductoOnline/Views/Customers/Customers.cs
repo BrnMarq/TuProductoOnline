@@ -36,13 +36,14 @@ namespace TuProductoOnline.Views
         {
             int idSeleccionado = int.Parse(dgvCustomers.CurrentRow.Cells[0].Value.ToString());
             Customer customer = Customer.GetCustomerById(idSeleccionado);
-
+            
             miVentana.Nombre = customer.Name;
             miVentana.Last_name = customer.LastName;
             miVentana.Id = customer.Document;
             miVentana.Phone_number = customer.PhoneNumber;
             miVentana.Address = customer.Address;
             miVentana.Email = customer.Email;
+            miVentana.Title = "Consultar Cliente";
             if (customer.Type == "Ordinario")
             {
                 miVentana.Type = 0;

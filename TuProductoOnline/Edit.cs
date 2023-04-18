@@ -133,11 +133,7 @@ namespace TuProductoOnline
         }
 
         //Funciión que enviará al Form Products si el botón de salir fue pulsado.
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Clic = true;
-            this.Close();
-        }
+
 
         private void Edit_Load(object sender, EventArgs e)
         {
@@ -151,6 +147,16 @@ namespace TuProductoOnline
             {
                 e.Handled = true;
             }
+        }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Edit_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Clic = true;
         }
     }
 }
