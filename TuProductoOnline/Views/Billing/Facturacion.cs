@@ -279,14 +279,15 @@ namespace TuProductoOnline.Views
             double PrecioIva = 16 * Precio / 100;
             int Verificadorfalse = 0;
             int iterador = -1;
+            int posicion = 0;
             foreach (List<string> item in Clientes)
             {
                 iterador++;
                 if (Clientes[iterador][8] == "true") { Verificadorfalse++; }
-                if (ClientBox1.SelectedIndex == iterador - Verificadorfalse && Clientes[iterador][8] == "false") { break; }
+                if (ClientBox1.SelectedIndex == iterador - Verificadorfalse && Clientes[iterador][8] == "false"){ posicion = iterador; }
             }
-            PrecioFinal = PrecioIva + Precio;
-            if (Clientes[iterador][7] == "Contribuyente especial") { PrecioFinal = (PrecioIva * 75 / 100) + Precio; }
+            
+            if (Clientes[posicion][7] == "Contribuyente especial") { PrecioFinal = (PrecioIva * 75 / 100) + Precio; } else { PrecioFinal = PrecioIva + Precio;}
             
             txtTotal.Text = PrecioFinal.ToString() + " Bs.S";
         }
