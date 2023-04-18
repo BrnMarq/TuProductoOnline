@@ -38,7 +38,7 @@ namespace TuProductoOnline
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.EditProductlbl = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.txtBrand = new System.Windows.Forms.TextBox();
@@ -79,6 +79,7 @@ namespace TuProductoOnline
             // 
             // cmbType
             // 
+            this.cmbType.BackColor = System.Drawing.Color.White;
             this.cmbType.FormattingEnabled = true;
             this.cmbType.Items.AddRange(new object[] {
             "Hardware",
@@ -163,22 +164,23 @@ namespace TuProductoOnline
             this.label2.TabIndex = 21;
             this.label2.Text = "Codigo";
             // 
-            // label1
+            // EditProductlbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.label1.Location = new System.Drawing.Point(103, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 29);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "Editar";
+            this.EditProductlbl.AutoSize = true;
+            this.EditProductlbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EditProductlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EditProductlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.EditProductlbl.Location = new System.Drawing.Point(59, 27);
+            this.EditProductlbl.Name = "EditProductlbl";
+            this.EditProductlbl.Size = new System.Drawing.Size(194, 29);
+            this.EditProductlbl.TabIndex = 22;
+            this.EditProductlbl.Text = "Editar Producto";
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(108, 404);
-            this.txtPrice.Multiline = true;
+            this.txtPrice.BackColor = System.Drawing.Color.White;
+            this.txtPrice.Location = new System.Drawing.Point(106, 404);
+            this.txtPrice.MaxLength = 50;
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.ShortcutsEnabled = false;
             this.txtPrice.Size = new System.Drawing.Size(173, 20);
@@ -188,8 +190,9 @@ namespace TuProductoOnline
             // 
             // txtDescription
             // 
+            this.txtDescription.BackColor = System.Drawing.Color.White;
             this.txtDescription.Location = new System.Drawing.Point(140, 336);
-            this.txtDescription.Multiline = true;
+            this.txtDescription.MaxLength = 250;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(141, 20);
             this.txtDescription.TabIndex = 3;
@@ -197,8 +200,9 @@ namespace TuProductoOnline
             // 
             // txtBrand
             // 
+            this.txtBrand.BackColor = System.Drawing.Color.White;
             this.txtBrand.Location = new System.Drawing.Point(108, 272);
-            this.txtBrand.Multiline = true;
+            this.txtBrand.MaxLength = 100;
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(173, 20);
             this.txtBrand.TabIndex = 2;
@@ -206,8 +210,9 @@ namespace TuProductoOnline
             // 
             // txtName
             // 
+            this.txtName.BackColor = System.Drawing.Color.White;
             this.txtName.Location = new System.Drawing.Point(108, 210);
-            this.txtName.Multiline = true;
+            this.txtName.MaxLength = 100;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(173, 20);
             this.txtName.TabIndex = 1;
@@ -215,6 +220,7 @@ namespace TuProductoOnline
             // 
             // txtId
             // 
+            this.txtId.BackColor = System.Drawing.Color.White;
             this.txtId.Location = new System.Drawing.Point(108, 98);
             this.txtId.Multiline = true;
             this.txtId.Name = "txtId";
@@ -237,7 +243,7 @@ namespace TuProductoOnline
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.EditProductlbl);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtBrand);
@@ -264,7 +270,7 @@ namespace TuProductoOnline
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label EditProductlbl;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.TextBox txtBrand;

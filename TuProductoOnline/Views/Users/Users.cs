@@ -75,7 +75,7 @@ namespace TuProductoOnline.Views.Users
         }
 
         public void EditUser(List<string> userValues)
-        {
+        { 
             User user = User.GetUserById(int.Parse(userValues[0]));
             List<string> values = new List<string> {
                 user.Id.ToString(),
@@ -89,6 +89,7 @@ namespace TuProductoOnline.Views.Users
                 user.Deleted.ToString(),
             };
             User.UpdateUser(user.Id, values);
+            MessageBox.Show("Usuario editado con exito");
             RenderTable();
         }
 

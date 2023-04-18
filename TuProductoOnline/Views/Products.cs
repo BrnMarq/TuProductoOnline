@@ -130,6 +130,7 @@ namespace TuProductoOnline
                         "Amount"
                     };
                         Product.UpdateProduct(int.Parse(id), productValues);
+                        MessageBox.Show("Producto borrado con exito");
                         RenderTable();
                     }
 
@@ -152,6 +153,7 @@ namespace TuProductoOnline
                         "Amount"
                     };
                         Product.UpdateProduct(int.Parse(id), productValues);
+                        MessageBox.Show("Producto editado con exito");
                         RenderTable();
                     }
                 }

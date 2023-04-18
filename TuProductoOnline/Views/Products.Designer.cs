@@ -35,8 +35,6 @@ namespace TuProductoOnline
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAdd = new System.Windows.Forms.Button();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.btnImport = new System.Windows.Forms.Button();
             this.GridCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GridType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GridName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +44,8 @@ namespace TuProductoOnline
             this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             this.Consultar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,36 +120,6 @@ namespace TuProductoOnline
             this.dgvProducts.TabIndex = 15;
             this.dgvProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellClick);
             // 
-            // btnExport
-            // 
-            this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExport.ForeColor = System.Drawing.Color.White;
-            this.btnExport.Location = new System.Drawing.Point(139, 38);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(100, 30);
-            this.btnExport.TabIndex = 17;
-            this.btnExport.Text = "Exportar";
-            this.btnExport.UseVisualStyleBackColor = false;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // btnImport
-            // 
-            this.btnImport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnImport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImport.ForeColor = System.Drawing.Color.White;
-            this.btnImport.Location = new System.Drawing.Point(269, 38);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(100, 30);
-            this.btnImport.TabIndex = 18;
-            this.btnImport.Text = "Importar";
-            this.btnImport.UseVisualStyleBackColor = false;
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
-            // 
             // GridCode
             // 
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -209,10 +179,41 @@ namespace TuProductoOnline
             this.Consultar.Name = "Consultar";
             this.Consultar.ReadOnly = true;
             // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnExport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.ForeColor = System.Drawing.Color.White;
+            this.btnExport.Location = new System.Drawing.Point(139, 38);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(100, 30);
+            this.btnExport.TabIndex = 17;
+            this.btnExport.Text = "Exportar";
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnImport
+            // 
+            this.btnImport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.btnImport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImport.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImport.ForeColor = System.Drawing.Color.White;
+            this.btnImport.Location = new System.Drawing.Point(269, 38);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(100, 30);
+            this.btnImport.TabIndex = 18;
+            this.btnImport.Text = "Importar";
+            this.btnImport.UseVisualStyleBackColor = false;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
             // Products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(684, 462);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnExport);

@@ -63,6 +63,7 @@ namespace TuProductoOnline
         {
             if (_isEdit)
             {
+                TitleCustomers.Text = "Editar Cliente";
                 txtName.Text = _name;
                 txtLastName.Text = _last_name;
                 txtId.Text = _document;
@@ -131,7 +132,6 @@ namespace TuProductoOnline
             if (cedula.Length < 7)
             {
                 MessageBox.Show("El número mínimo de caracteres para cédula/RIF es 7");
-                txtId.Text = "";
             }
             else
             {
@@ -153,6 +153,19 @@ namespace TuProductoOnline
             Validar.SoloLetras(e);
             Validar.Tab_Enter(e);
         }
+        private void txtLastName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtLastName.Text == "")
+            {
+                TxtLastNameErrorlbl.Visible = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtLastName.Text != "")
+            {
+                TxtLastNameErrorlbl.Visible = false;
+            }
+            Validar.SoloLetras(e);
+            Validar.Tab_Enter(e);
+        }
         private void txtId_KeyPress(object sender, KeyPressEventArgs e)
         {
             Validar.SoloNumeros(e);
@@ -162,6 +175,11 @@ namespace TuProductoOnline
                 {
                     e.Handled = true;
                     SendKeys.Send("{TAB}");
+                    TxtIdErrorlbl.Visible = false;
+                }
+                else 
+                {
+                    TxtIdErrorlbl.Visible = true;
                 }
             }
         }
@@ -175,33 +193,45 @@ namespace TuProductoOnline
                 {
                     e.Handled = true;
                     SendKeys.Send("{TAB}");
+                    TxtPhoneNumberErrorlbl.Visible = false;
                 }
                 else
                 {
                     MessageBox.Show("Número de teléfono inválido");
-                    txtPhoneNumber.Text = "";
+                    TxtPhoneNumberErrorlbl.Visible = true;
                 }
             }
         }
 
         private void txtAddress_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtAddress.Text == "")
+            {
+                TxtAddressErrorlbl.Visible = true;
+            }
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && txtAddress.Text != "")
+            {
+                TxtAddressErrorlbl.Visible = false;
+            }
             Validar.Tab_Enter(e);
         }
 
         private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            { 
+            {
                 if (Validar.ValidarEmail(txtEmail.Text.TrimStart(eliminar)))
                 {
                     e.Handled = true;
                     SendKeys.Send("{TAB}");
+                    TxtEmailErrorlbl.Visible = false;
+                    btnAccept.Enabled = true;
                 }
                 else
                 {
-                    MessageBox.Show("Dirección de correo inválida");
-                    txtEmail.Text = "";
+                    MessageBox.Show("Correo inválido");
+                    TxtEmailErrorlbl.Visible = true;
+                    btnAccept.Enabled = false;
                 }
             }
         }
@@ -231,7 +261,6 @@ namespace TuProductoOnline
         public Color TelefonoColor { set => txtPhoneNumber.BackColor = value; }
         public Color DireccionColor { set => txtAddress.BackColor = value; }
         public Color CorreoColor { set => txtEmail.BackColor = value; }
-
 
     }
 }

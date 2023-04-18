@@ -105,6 +105,7 @@ namespace TuProductoOnline.Views
         {
             Customer customer = Customer.GetCustomerById(int.Parse(id));
             new CustomerProperties(EditCustomer, customer).ShowDialog();
+
         }
 
         public void ShowDeleteCustomer(string id)
@@ -140,6 +141,7 @@ namespace TuProductoOnline.Views
                 customer.Deleted.ToString().ToLower(),
             };
             Customer.UpdateCustomer(customer.Code, values);
+            MessageBox.Show("Cliente editado con exito");
             RenderTable();
         }
 

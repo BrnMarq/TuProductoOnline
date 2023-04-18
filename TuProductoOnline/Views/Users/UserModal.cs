@@ -55,6 +55,7 @@ namespace TuProductoOnline.Views.Users
         {
             if (_isEdit) 
             {
+                TitleUser.Text = "Editar Usuario";
                 NameInput.Text = _firstName;
                 LastNameInput.Text = _lastName;
                 EmailInput.Text = _email;
