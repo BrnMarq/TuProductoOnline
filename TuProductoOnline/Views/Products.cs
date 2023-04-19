@@ -141,7 +141,7 @@ namespace TuProductoOnline
                 {
                     Edit edit = new Edit(id, type, name, brand, description, price);
                     edit.ShowDialog();
-                    if (edit.Clic != true)
+                    if (edit.Clic != false)
                     {
                         List<string> productValues = new List<string>
                     {

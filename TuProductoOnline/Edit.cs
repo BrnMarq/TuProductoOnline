@@ -22,7 +22,7 @@ namespace TuProductoOnline
         private double _price;
         private string _type;
         private int _id;
-        private bool _clic = false;
+        private bool _clic = true;
 
         //Getters y Setters
         public bool Clic { get { return _clic; } set { _clic = value; } }

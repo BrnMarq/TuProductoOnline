@@ -39,27 +39,28 @@
             // 
             // dateTo
             // 
-            this.dateTo.Location = new System.Drawing.Point(126, 96);
+            this.dateTo.Location = new System.Drawing.Point(94, 78);
+            this.dateTo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dateTo.Name = "dateTo";
-            this.dateTo.Size = new System.Drawing.Size(294, 22);
+            this.dateTo.Size = new System.Drawing.Size(222, 20);
             this.dateTo.TabIndex = 9;
             // 
             // dateFrom
             // 
-            this.dateFrom.Location = new System.Drawing.Point(126, 59);
+            this.dateFrom.Location = new System.Drawing.Point(94, 48);
+            this.dateFrom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dateFrom.Name = "dateFrom";
-            this.dateFrom.Size = new System.Drawing.Size(294, 22);
+            this.dateFrom.Size = new System.Drawing.Size(222, 20);
             this.dateFrom.TabIndex = 8;
             this.dateFrom.Value = new System.DateTime(2023, 4, 11, 17, 8, 15, 0);
             // 
             // lblFrom
             // 
             this.lblFrom.AutoSize = true;
-            this.lblFrom.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFrom.Location = new System.Drawing.Point(41, 58);
-            this.lblFrom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFrom.Location = new System.Drawing.Point(31, 47);
             this.lblFrom.Name = "lblFrom";
-            this.lblFrom.Size = new System.Drawing.Size(78, 23);
+            this.lblFrom.Size = new System.Drawing.Size(66, 18);
             this.lblFrom.TabIndex = 10;
             this.lblFrom.Tag = "";
             this.lblFrom.Text = "Desde: ";
@@ -67,11 +68,10 @@
             // lblTo
             // 
             this.lblTo.AutoSize = true;
-            this.lblTo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTo.Location = new System.Drawing.Point(41, 95);
-            this.lblTo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTo.Location = new System.Drawing.Point(31, 77);
             this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(73, 23);
+            this.lblTo.Size = new System.Drawing.Size(62, 18);
             this.lblTo.TabIndex = 11;
             this.lblTo.Tag = "";
             this.lblTo.Text = "Hasta: ";
@@ -79,11 +79,10 @@
             // lblHeader
             // 
             this.lblHeader.AutoSize = true;
-            this.lblHeader.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.Location = new System.Drawing.Point(13, 9);
-            this.lblHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeader.Location = new System.Drawing.Point(10, 7);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(407, 23);
+            this.lblHeader.Size = new System.Drawing.Size(327, 18);
             this.lblHeader.TabIndex = 12;
             this.lblHeader.Tag = "";
             this.lblHeader.Text = "Seleccione el rango el cual desea imprimir";
@@ -93,12 +92,11 @@
             this.btnOk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOk.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.ForeColor = System.Drawing.Color.White;
-            this.btnOk.Location = new System.Drawing.Point(370, 136);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOk.Location = new System.Drawing.Point(278, 110);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(85, 38);
+            this.btnOk.Size = new System.Drawing.Size(64, 31);
             this.btnOk.TabIndex = 14;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = false;
@@ -108,12 +106,11 @@
             this.btnCancel.BackColor = System.Drawing.Color.Red;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(242, 136);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancel.Location = new System.Drawing.Point(182, 110);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(120, 38);
+            this.btnCancel.Size = new System.Drawing.Size(90, 31);
             this.btnCancel.TabIndex = 13;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -121,9 +118,9 @@
             // 
             // PrintDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(468, 188);
+            this.ClientSize = new System.Drawing.Size(351, 153);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblHeader);
@@ -132,6 +129,7 @@
             this.Controls.Add(this.dateTo);
             this.Controls.Add(this.dateFrom);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PrintDialog";
             this.Text = "PrintDialog";
             this.ResumeLayout(false);

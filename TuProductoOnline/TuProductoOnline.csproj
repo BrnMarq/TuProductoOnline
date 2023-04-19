@@ -213,6 +213,9 @@
     <EmbeddedResource Include="Views\BillRegister\BillRegister.resx">
       <DependentUpon>BillRegister.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\BillRegister\PrintDialog.resx">
+      <DependentUpon>PrintDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Customers\DeleteCustomer.resx">
       <DependentUpon>DeleteCustomer.cs</DependentUpon>
     </EmbeddedResource>
