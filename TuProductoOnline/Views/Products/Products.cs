@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TuProductoOnline.Models;
 using TuProductoOnline.Utils;
-using Microsoft.VisualBasic.Devices;
-using TuProductoOnline.Consts;
-using TuProductoOnline.Views.Customers;
 using System.IO;
 
 namespace TuProductoOnline
@@ -141,7 +133,7 @@ namespace TuProductoOnline
                 {
                     Edit edit = new Edit(id, type, name, brand, description, price);
                     edit.ShowDialog();
-                    if (edit.Clic != false)
+                    if (edit.Clic)
                     {
                         List<string> productValues = new List<string>
                     {
@@ -181,17 +173,24 @@ namespace TuProductoOnline
                 List<List<string>> importedProducts = DbHandler.LeerCSV(pathCSV);
 
                 importedProducts.RemoveAt(0);
-                foreach (List<string> iProduct in importedProducts)
+                try
                 {
-                    new Product(
-                        iProduct[2],
-                        Convert.ToDouble(iProduct[5]),
-                        iProduct[3],
-                        iProduct[4],
-                        iProduct[1]
-                    );
+                    foreach (List<string> iProduct in importedProducts)
+                    {
+                        new Product(
+                            iProduct[2],
+                            Convert.ToDouble(iProduct[5]),
+                            iProduct[3],
+                            iProduct[4],
+                            iProduct[1]
+                        );
+                    }
+                    RenderTable();
+                    }
+                catch (Exception ex) 
+                { 
+                    MessageBox.Show("El archivo que quiere importar no tiene el formato correcto");
                 }
-                RenderTable();
             }
         }
 

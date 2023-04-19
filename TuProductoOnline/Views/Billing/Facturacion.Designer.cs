@@ -196,9 +196,9 @@
             // 
             this.txtTituloSubTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtTituloSubTotal.AutoSize = true;
-            this.txtTituloSubTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.txtTituloSubTotal.BackColor = System.Drawing.Color.White;
             this.txtTituloSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTituloSubTotal.ForeColor = System.Drawing.Color.White;
+            this.txtTituloSubTotal.ForeColor = System.Drawing.Color.Black;
             this.txtTituloSubTotal.Location = new System.Drawing.Point(3, 10);
             this.txtTituloSubTotal.Name = "txtTituloSubTotal";
             this.txtTituloSubTotal.Size = new System.Drawing.Size(82, 20);
@@ -209,9 +209,9 @@
             // 
             this.txtTituloTotal.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtTituloTotal.AutoSize = true;
-            this.txtTituloTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.txtTituloTotal.BackColor = System.Drawing.Color.White;
             this.txtTituloTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTituloTotal.ForeColor = System.Drawing.Color.White;
+            this.txtTituloTotal.ForeColor = System.Drawing.Color.Black;
             this.txtTituloTotal.Location = new System.Drawing.Point(8, 10);
             this.txtTituloTotal.Name = "txtTituloTotal";
             this.txtTituloTotal.Size = new System.Drawing.Size(54, 20);
@@ -272,7 +272,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProducTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.ProducTable.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.ProducTable.BackgroundColor = System.Drawing.Color.White;
             this.ProducTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ProducTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -362,6 +362,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(614, 411);
             this.Controls.Add(this.ProducTable);
             this.Controls.Add(this.groupBox1);

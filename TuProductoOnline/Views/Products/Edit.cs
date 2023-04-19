@@ -22,7 +22,7 @@ namespace TuProductoOnline
         private double _price;
         private string _type;
         private int _id;
-        private bool _clic = true;
+        private bool _clic = false;
 
         //Getters y Setters
         public bool Clic { get { return _clic; } set { _clic = value; } }
@@ -58,6 +58,8 @@ namespace TuProductoOnline
                 Type = cmbType.Text.Trim();
                 Price = Convert.ToDouble(txtPrice.Text);
                 Id = Convert.ToInt32(txtId.Text);
+                Clic = true;
+                
                 this.Close();
             }
             catch (Exception ex)
@@ -152,11 +154,6 @@ namespace TuProductoOnline
         private void txtId_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void Edit_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Clic = true;
         }
     }
 }

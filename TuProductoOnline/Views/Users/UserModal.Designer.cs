@@ -73,7 +73,7 @@
             this.PhoneNumberInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PhoneNumberInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PhoneNumberInput.Location = new System.Drawing.Point(32, 299);
-            this.PhoneNumberInput.MaxLength = 50;
+            this.PhoneNumberInput.MaxLength = 20;
             this.PhoneNumberInput.Name = "PhoneNumberInput";
             this.PhoneNumberInput.Size = new System.Drawing.Size(334, 26);
             this.PhoneNumberInput.TabIndex = 3;
@@ -167,7 +167,7 @@
             this.PasswordInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PasswordInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PasswordInput.Location = new System.Drawing.Point(32, 447);
-            this.PasswordInput.MaxLength = 200;
+            this.PasswordInput.MaxLength = 50;
             this.PasswordInput.Name = "PasswordInput";
             this.PasswordInput.Size = new System.Drawing.Size(334, 26);
             this.PasswordInput.TabIndex = 5;
@@ -211,7 +211,7 @@
             this.EmailInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.EmailInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EmailInput.Location = new System.Drawing.Point(32, 225);
-            this.EmailInput.MaxLength = 200;
+            this.EmailInput.MaxLength = 100;
             this.EmailInput.Name = "EmailInput";
             this.EmailInput.Size = new System.Drawing.Size(334, 26);
             this.EmailInput.TabIndex = 2;
@@ -268,7 +268,7 @@
             this.EmailErrorlbl.Name = "EmailErrorlbl";
             this.EmailErrorlbl.Size = new System.Drawing.Size(261, 16);
             this.EmailErrorlbl.TabIndex = 12;
-            this.EmailErrorlbl.Text = "Ingrese el Correo (Maximo 200 Carácteres)";
+            this.EmailErrorlbl.Text = "Ingrese el Correo (Maximo 100 Carácteres)";
             this.EmailErrorlbl.Visible = false;
             // 
             // PhoneNumberErrorlbl
@@ -305,9 +305,9 @@
             this.PasswordErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.PasswordErrorlbl.Location = new System.Drawing.Point(32, 477);
             this.PasswordErrorlbl.Name = "PasswordErrorlbl";
-            this.PasswordErrorlbl.Size = new System.Drawing.Size(289, 16);
+            this.PasswordErrorlbl.Size = new System.Drawing.Size(282, 16);
             this.PasswordErrorlbl.TabIndex = 15;
-            this.PasswordErrorlbl.Text = "Ingrese la Contraseña (Maximo 200 Carácteres)";
+            this.PasswordErrorlbl.Text = "Ingrese la Contraseña (Maximo 50 Carácteres)";
             this.PasswordErrorlbl.Visible = false;
             // 
             // TitleUser

@@ -31,6 +31,11 @@ namespace TuProductoOnline.Views
         private void Customers_Load(object sender, EventArgs e)
         {
             RenderTable();
+            if (User.ActiveUser.Role != "Admin")
+            {
+                btnImport.Visible = false;
+                btnExport.Visible = false;
+            }
         }
         public void ConsultarCliente()
         {

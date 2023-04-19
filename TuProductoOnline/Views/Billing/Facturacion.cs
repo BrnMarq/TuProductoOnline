@@ -436,8 +436,6 @@ namespace TuProductoOnline.Views
                 customerValues[7]
                 );
         }
-
-
     }
 
 

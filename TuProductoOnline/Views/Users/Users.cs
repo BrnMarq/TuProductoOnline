@@ -42,11 +42,16 @@ namespace TuProductoOnline.Views.Users
 
         private void UsersTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string id = UsersTable.Rows[e.RowIndex].Cells[0].Value.ToString();
-            if (e.ColumnIndex == UsersTable.Columns["EditCell"].Index)
-                ShowEditModal(id);
-            if (e.ColumnIndex == UsersTable.Columns["DeleteCell"].Index)
-                ShowDeleteModal(id);
+            try
+            {
+                string id = UsersTable.Rows[e.RowIndex].Cells[0].Value.ToString();
+                if (e.ColumnIndex == UsersTable.Columns["EditCell"].Index)
+                    ShowEditModal(id);
+                if (e.ColumnIndex == UsersTable.Columns["DeleteCell"].Index)
+                    ShowDeleteModal(id);
+            } catch 
+            {
+            }
         }
 
         public void ShowEditModal(string id)
@@ -131,19 +136,26 @@ namespace TuProductoOnline.Views.Users
                 string pathCSV = openFileDialog2.FileName;
                 List<List<string>> usuariosImportados = DbHandler.LeerCSV(pathCSV);
 
-                for (int i = 1; i < usuariosImportados.Count; i++)
+                try
                 {
-                    new User(
-                        usuariosImportados[i][1].ToString(),
-                        usuariosImportados[i][2].ToString(),
-                        usuariosImportados[i][3].ToString(),
-                        usuariosImportados[i][4].ToString(),
-                        usuariosImportados[i][5].ToString(),
-                        usuariosImportados[i][6].ToString(),
-                        usuariosImportados[i][7].ToString()
-                        );
+                    foreach (List<string> user in usuariosImportados)
+                    {
+                        if (bool.Parse(user[8])) continue;
+                        new User(
+                            user[1].ToString(),
+                            user[2].ToString(),
+                            user[3].ToString(),
+                            user[4].ToString(),
+                            user[5].ToString(),
+                            user[6].ToString(),
+                            user[7].ToString()
+                            );
+                    }
+                    RenderTable();
+                } catch (Exception)
+                {
+                    MessageBox.Show("El archivo que quiere importar no tiene el formato correcto");
                 }
-                RenderTable();
             }
             else
             {

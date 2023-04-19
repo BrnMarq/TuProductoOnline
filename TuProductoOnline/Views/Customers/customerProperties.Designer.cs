@@ -212,7 +212,7 @@ namespace TuProductoOnline
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(32, 429);
-            this.txtEmail.MaxLength = 200;
+            this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(337, 22);
             this.txtEmail.TabIndex = 5;
@@ -226,9 +226,9 @@ namespace TuProductoOnline
             this.lblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
             this.lblEmail.Location = new System.Drawing.Point(28, 406);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(53, 20);
+            this.lblEmail.Size = new System.Drawing.Size(63, 20);
             this.lblEmail.TabIndex = 15;
-            this.lblEmail.Text = "Email";
+            this.lblEmail.Text = "Correo";
             // 
             // TitleCustomers
             // 
@@ -318,7 +318,7 @@ namespace TuProductoOnline
             this.TxtEmailErrorlbl.Name = "TxtEmailErrorlbl";
             this.TxtEmailErrorlbl.Size = new System.Drawing.Size(261, 16);
             this.TxtEmailErrorlbl.TabIndex = 23;
-            this.TxtEmailErrorlbl.Text = "Ingrese el Correo (Maximo 200 Carácteres)";
+            this.TxtEmailErrorlbl.Text = "Ingrese el Correo (Maximo 100 Carácteres)";
             this.TxtEmailErrorlbl.Visible = false;
             // 
             // CustomerProperties

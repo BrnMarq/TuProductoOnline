@@ -84,24 +84,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfirmDelete.cs">
+    <Compile Include="Views\Products\ConfirmDelete.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConfirmDelete.Designer.cs">
+    <Compile Include="Views\Products\ConfirmDelete.Designer.cs">
       <DependentUpon>ConfirmDelete.cs</DependentUpon>
     </Compile>
     <Compile Include="Consts\FileNames.cs" />
-    <Compile Include="Consult.cs">
+    <Compile Include="Views\Products\Consult.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Consult.Designer.cs">
+    <Compile Include="Views\Products\Consult.Designer.cs">
       <DependentUpon>Consult.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Bill.cs" />
-    <Compile Include="Edit.cs">
+    <Compile Include="Views\Products\Edit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Edit.Designer.cs">
+    <Compile Include="Views\Products\Edit.Designer.cs">
       <DependentUpon>Edit.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\JsonHandler.cs" />
@@ -135,10 +135,10 @@
     <Compile Include="Views\Users\UserModal.Designer.cs">
       <DependentUpon>UserModal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Add.cs">
+    <Compile Include="Views\Products\Add.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Add.Designer.cs">
+    <Compile Include="Views\Products\Add.Designer.cs">
       <DependentUpon>Add.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Customers\CustomerProperties.cs">
@@ -183,10 +183,10 @@
     <Compile Include="Views\Billing\Facturacion.Designer.cs">
       <DependentUpon>Facturacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Products.cs">
+    <Compile Include="Views\Products\Products.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Products.Designer.cs">
+    <Compile Include="Views\Products\Products.Designer.cs">
       <DependentUpon>Products.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Users\Users.cs">
@@ -201,13 +201,13 @@
     <Compile Include="Views\Billing\WarningDialog.Designer.cs">
       <DependentUpon>WarningDialog.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Add.resx">
+    <EmbeddedResource Include="Views\Products\Add.resx">
       <DependentUpon>Add.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Consult.resx">
+    <EmbeddedResource Include="Views\Products\Consult.resx">
       <DependentUpon>Consult.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Edit.resx">
+    <EmbeddedResource Include="Views\Products\Edit.resx">
       <DependentUpon>Edit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\BillRegister\BillRegister.resx">
@@ -225,7 +225,7 @@
     <EmbeddedResource Include="Views\Users\UserModal.resx">
       <DependentUpon>UserModal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConfirmDelete.resx">
+    <EmbeddedResource Include="Views\Products\ConfirmDelete.resx">
       <DependentUpon>ConfirmDelete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Customers\CustomerProperties.resx">
@@ -248,7 +248,7 @@
     <EmbeddedResource Include="Views\Billing\Facturacion.resx">
       <DependentUpon>Facturacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Products.resx">
+    <EmbeddedResource Include="Views\Products\Products.resx">
       <DependentUpon>Products.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Users\Users.resx">
