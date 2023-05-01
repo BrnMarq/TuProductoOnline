@@ -208,25 +208,43 @@ namespace TuProductoOnline
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            
             dgvProducts.Rows.Clear();
             List<Product> filter = product.Where
                 (x => x.Name.ToLower() == txtSearch.Text.ToLower().Trim()
                 || x.Id.ToString() == txtSearch.Text
                 || x.Description.ToLower().Contains(txtSearch.Text.ToLower().Trim()) == true).ToList();
 
-
-            foreach (Product f in filter)
+            txtSearch.Clear();
+            if (filter.Count != 0)
             {
-                int a = dgvProducts.Rows.Add();
-                DataGridViewRow row = dgvProducts.Rows[a];
-                row.Cells[0].Value = f.Id;
-                row.Cells[1].Value = f.Type;
-                row.Cells[2].Value = f.Name;
-                row.Cells[3].Value = f.Brand;
-                row.Cells[4].Value = f.Description;
-                row.Cells[5].Value = f.Price;
+                btnRefresh.Visible = true;
+                foreach (Product f in filter)
+                {
+                    int a = dgvProducts.Rows.Add();
+                    DataGridViewRow row = dgvProducts.Rows[a];
+                    row.Cells[0].Value = f.Id;
+                    row.Cells[1].Value = f.Type;
+                    row.Cells[2].Value = f.Name;
+                    row.Cells[3].Value = f.Brand;
+                    row.Cells[4].Value = f.Description;
+                    row.Cells[5].Value = f.Price;
+                }
             }
+            else 
+            {
+                MessageBox.Show("Lo que está buscando no se encuentra en el sistema");
+                RenderTable();
+            }
+            
             filter.Clear();
+            
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            btnRefresh.Visible = false;
+            RenderTable();
         }
     }
 }
