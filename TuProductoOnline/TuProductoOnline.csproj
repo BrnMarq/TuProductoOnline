@@ -312,6 +312,11 @@
   <ItemGroup>
     <Content Include="bin\Debug\TuProductoOnline.exe" />
     <Content Include="bin\Debug\TuProductoOnline.pdb" />
+    <None Include="Resources\next.png" />
+    <None Include="Resources\buscar1.png" />
+    <None Include="Resources\girar.png" />
+    <None Include="Resources\girar1.png" />
+    <None Include="Resources\atras.png" />
     <Content Include="Resources\impresora.png" />
     <None Include="Resources\buscar.png" />
     <None Include="Resources\plantillaFactura.html" />

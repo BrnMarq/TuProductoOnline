@@ -62,7 +62,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(170, 451);
+            this.panel1.Size = new System.Drawing.Size(170, 480);
             this.panel1.TabIndex = 0;
             // 
             // panelSubMenu
@@ -180,7 +180,7 @@
             this.ExitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExitButton.ForeColor = System.Drawing.Color.White;
             this.ExitButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ExitButton.Location = new System.Drawing.Point(46, 403);
+            this.ExitButton.Location = new System.Drawing.Point(46, 432);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(63, 36);
             this.ExitButton.TabIndex = 3;
@@ -235,7 +235,7 @@
             this.Container.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Container.Location = new System.Drawing.Point(170, 0);
             this.Container.Name = "Container";
-            this.Container.Size = new System.Drawing.Size(630, 451);
+            this.Container.Size = new System.Drawing.Size(701, 480);
             this.Container.TabIndex = 7;
             this.Container.Paint += new System.Windows.Forms.PaintEventHandler(this.Container_Paint);
             // 
@@ -243,11 +243,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 451);
+            this.ClientSize = new System.Drawing.Size(871, 480);
             this.Controls.Add(this.Container);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(816, 489);
+            this.MinimumSize = new System.Drawing.Size(887, 518);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TuProductoOnline";
@@ -271,9 +271,9 @@
         private System.Windows.Forms.Button BillingTab;
         private System.Windows.Forms.Button UsersTab;
         private System.Windows.Forms.Button ExitButton;
-        private System.Windows.Forms.Panel Container;
         private System.Windows.Forms.Panel panelSubMenu;
         private System.Windows.Forms.Button btnRegistros;
         private System.Windows.Forms.Button btnFacturacion;
+        private System.Windows.Forms.Panel Container;
     }
 }

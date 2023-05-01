@@ -20,6 +20,9 @@ namespace TuProductoOnline.Views
     {
         CustomerProperties miVentana = new CustomerProperties();
         Computer myComputer = new Computer();
+        private readonly List<Customer> GlobalCustomers = Customer.GetCustomers();
+        private List<Customer> CustomersFiltrados;
+        private bool BuscarClick = false;
         public CustomersView()
         {
             InitializeComponent();
@@ -30,7 +33,8 @@ namespace TuProductoOnline.Views
         }
         private void Customers_Load(object sender, EventArgs e)
         {
-            RenderTable();
+            lblPageNum.Text = "1";
+            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
             if (User.ActiveUser.Role != "Admin")
             {
                 btnImport.Visible = false;
@@ -77,11 +81,10 @@ namespace TuProductoOnline.Views
             miVentana.CorreoColor = Color.White;
             miVentana.BtnActivado = false;
         }
-        public void RenderTable()
+        public void RenderTable(List<Customer> customers)
         {
             dgvCustomers.Rows.Clear();
             dgvCustomers.Refresh();
-            List<Customer> customers = Customer.GetCustomers();
             foreach (Customer customer in customers)
             {
                 if (customer.Deleted) continue;
@@ -130,7 +133,7 @@ namespace TuProductoOnline.Views
                 customerValues[6],
                 customerValues[7]
                 );
-            RenderTable();
+            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
         }
         public void EditCustomer(List<string> customerValues)
         {
@@ -148,7 +151,7 @@ namespace TuProductoOnline.Views
             };
             Customer.UpdateCustomer(customer.Code, values);
             MessageBox.Show("Cliente editado con exito");
-            RenderTable();
+            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
         }
 
         public void DeleteCustomer(int id)
@@ -167,7 +170,8 @@ namespace TuProductoOnline.Views
             };
             Customer.UpdateCustomer(customer.Code, values);
             MessageBox.Show("Cliente borrado con exito");
-            RenderTable();
+
+            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
         }
         private void btnImport_Click(object sender, EventArgs e)
         {
@@ -176,27 +180,33 @@ namespace TuProductoOnline.Views
                 string pathCSV = openFileDialog1.FileName;
                 List<List<string>> clientesImportados = DbHandler.LeerCSV(pathCSV);
 
-                try
-                {
-                    for (int i = 1; i < clientesImportados.Count; i++)
+                for(int i = 1; i < clientesImportados.Count; i++)
+                    if(clientesImportados[i].Count < 9)
                     {
-                        if (clientesImportados[i][8] == "true") continue;
-                        new Customer(
-                            clientesImportados[i][1].ToString(),
-                            clientesImportados[i][2].ToString(),
-                            clientesImportados[i][3].ToString(),
-                            clientesImportados[i][4].ToString(),
-                            clientesImportados[i][5].ToString(),
-                            clientesImportados[i][6].ToString(),
-                            clientesImportados[i][7].ToString()
-                        );
-                    }
-                }
-                catch (Exception)
+                        MessageBox.Show("El archivo que quiere importar no tiene el formato correcto");
+                        return;
+                    }                
+                
+                for (int i = 1; i < clientesImportados.Count; i++)
                 {
-                    MessageBox.Show("El archivo que quiere importar no tiene el formato correcto");
-                }               
-                RenderTable();
+                    if (clientesImportados[i][8] == "true") continue;
+                    new Customer(
+                        clientesImportados[i][1].ToString(),
+                        clientesImportados[i][2].ToString(),
+                        clientesImportados[i][3].ToString(),
+                        clientesImportados[i][4].ToString(),
+                        clientesImportados[i][5].ToString(),
+                        clientesImportados[i][6].ToString(),
+                        clientesImportados[i][7].ToString()
+                    );
+                }
+
+                MessageBox.Show("Clientes importados con éxito");
+
+                if (!BuscarClick)
+                    RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
+                else
+                    RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), CustomersFiltrados));
             }
         }
         private void btnExport_Click(object sender, EventArgs e)
@@ -217,6 +227,104 @@ namespace TuProductoOnline.Views
             {
                 MessageBox.Show("Ya existe un archivo con este nombre");
             } 
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            int result;
+            BuscarClick = true;
+            
+
+            if(int.TryParse(txtSearch.Text,out result))
+            {
+                var customer = GlobalCustomers.Where(i => i.Code == result).ToList();
+                if (customer.Count == 0 || customer[0].Deleted)
+                {
+                    MessageBox.Show("No existe un cliente con ese ID");
+                    txtSearch.Text = "";
+                    BuscarClick = false;
+                    return;
+                }
+                else
+                {
+                    lblPageNum.Text = "1";
+                    CustomersFiltrados = customer;
+                    RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), customer));
+                    VerifyButtons();
+                }
+            }
+            else
+            {
+                var customer = GlobalCustomers.Where(i => i.Name == txtSearch.Text && i.Deleted != true).ToList();
+                if (customer.Count == 0)
+                {
+                    MessageBox.Show("No existe un cliente con ese nombre");
+                    txtSearch.Text = "";
+                    BuscarClick = false;
+                    return;
+                }
+                else
+                {
+                    lblPageNum.Text = "1";
+                    CustomersFiltrados = customer;
+                    RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), customer));
+                    VerifyButtons();
+                }
+            }
+
+            btnRefresh.Visible = true;
+            txtSearch.Text = "";          
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            lblPageNum.Text = "1";
+            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
+            VerifyButtons();
+            btnRefresh.Visible = false;
+            BuscarClick = false;
+        }
+
+        private List<Customer> Paginar(int num,List<Customer> customers)
+        {
+            var lista = customers.Where(i => i.Deleted != true).Skip((num - 1) * 10).Take(10).ToList();
+
+            return lista;
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            int numPag = (Convert.ToInt32(lblPageNum.Text) + 1);
+            lblPageNum.Text = numPag.ToString();
+            if (!BuscarClick)
+                RenderTable(Paginar(numPag, GlobalCustomers));
+            else
+                RenderTable(Paginar(numPag, CustomersFiltrados));
+            VerifyButtons();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            int numPag = (Convert.ToInt32(lblPageNum.Text) - 1);
+            lblPageNum.Text = numPag.ToString();
+            if (!BuscarClick)
+                RenderTable(Paginar(numPag, GlobalCustomers));
+            else
+                RenderTable(Paginar(numPag, CustomersFiltrados));
+            VerifyButtons();
+        }
+
+        private void VerifyButtons()
+        {
+            if (dgvCustomers.RowCount < 10)
+                btnNext.Visible = false;
+            else
+                btnNext.Visible = true;
+
+            if (lblPageNum.Text == "1")
+                btnBack.Visible = false;
+            else
+                btnBack.Visible = true;
         }
     }
 }
