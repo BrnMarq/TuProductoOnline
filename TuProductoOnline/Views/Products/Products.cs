@@ -205,6 +205,29 @@ namespace TuProductoOnline
                 dgvProducts.Rows.Add(product.Id, product.Type, product.Name, product.Brand, product.Description, product.Price);
             }
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            dgvProducts.Rows.Clear();
+            List<Product> filter = product.Where
+                (x => x.Name.ToLower() == txtSearch.Text.ToLower().Trim()
+                || x.Id.ToString() == txtSearch.Text
+                || x.Description.ToLower().Contains(txtSearch.Text.ToLower().Trim()) == true).ToList();
+
+
+            foreach (Product f in filter)
+            {
+                int a = dgvProducts.Rows.Add();
+                DataGridViewRow row = dgvProducts.Rows[a];
+                row.Cells[0].Value = f.Id;
+                row.Cells[1].Value = f.Type;
+                row.Cells[2].Value = f.Name;
+                row.Cells[3].Value = f.Brand;
+                row.Cells[4].Value = f.Description;
+                row.Cells[5].Value = f.Price;
+            }
+            filter.Clear();
+        }
     }
 }
 
