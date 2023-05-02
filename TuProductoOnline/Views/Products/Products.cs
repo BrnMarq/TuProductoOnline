@@ -13,7 +13,9 @@ namespace TuProductoOnline
     public partial class Products : Form
     {
         public List<Product> product = new List<Product>();
+        public List<Product> filter = new List<Product>();
         public int maxId = 0;
+        public int num_page = 0;
 
         public Products()
         {
@@ -28,17 +30,38 @@ namespace TuProductoOnline
             if (add.Id != 0)
             {
                 new Product(add.Alias, add.Price, add.Brand, add.Description, add.Type);
-                RenderTable();
+                filter = Paginar(num_page, product);
+                FilterRender();
+                //RenderTable();
                 maxId++;
             }
         }
 
         private void Products_Load(object sender, EventArgs e)
         {
+            lblPageNum.Text = "1";
+            num_page = Convert.ToInt32(lblPageNum.Text);
+            btnBack.Visible = false;
+            
             // Se Habilitan o deshabilitan los botones según el rol que tenga el usuario.
+
             product = Product.GetProducts();
             maxId = product.Count();
-            RenderTable();
+            //RenderTable();
+
+            var filter = Paginar(num_page, product);
+            foreach (Product f in filter)
+            {
+                int a = dgvProducts.Rows.Add();
+                DataGridViewRow row = dgvProducts.Rows[a];
+                row.Cells[0].Value = f.Id;
+                row.Cells[1].Value = f.Type;
+                row.Cells[2].Value = f.Name;
+                row.Cells[3].Value = f.Brand;
+                row.Cells[4].Value = f.Description;
+                row.Cells[5].Value = f.Price;
+            }
+
             User activeUser = User.ActiveUser;
             if (activeUser.Role == "Admin") return;
             btnAdd.Visible = false;
@@ -48,6 +71,9 @@ namespace TuProductoOnline
             dgvProducts.Size = new Size(678, 422);
             dgvProducts.Columns["Edit"].Visible = false;
             dgvProducts.Columns["Eliminar"].Visible = false;
+
+            
+
         }
 
         private void btnExport_Click(object sender, EventArgs e)
@@ -95,8 +121,11 @@ namespace TuProductoOnline
 
         private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            
+           
             try
             {
+                
                 //Se le asignan a las variables el valor de la celda seleccionada.
                 string id = dgvProducts.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string type = dgvProducts.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -107,10 +136,12 @@ namespace TuProductoOnline
 
                 if (dgvProducts.Columns[e.ColumnIndex].Name == "Eliminar")
                 {
+                    
                     ConfirmDelete confirm = new ConfirmDelete();
                     confirm.ShowDialog();
                     if (confirm.Clic == true)
                     {
+                        btnRefresh.Visible = false;
                         Product pro = Product.GetProductById(int.Parse(id));
                         List<string> productValues = new List<string>
                     {
@@ -125,9 +156,11 @@ namespace TuProductoOnline
                     };
                         Product.UpdateProduct(int.Parse(id), productValues);
                         MessageBox.Show("Producto borrado con exito");
-                        RenderTable();
+                        
+                        // RenderTable();
                     }
-
+                    filter = Paginar(num_page, product);
+                    FilterRender();
                 }
                 if (dgvProducts.Columns[e.ColumnIndex].Name == "Edit")
                 {
@@ -135,6 +168,7 @@ namespace TuProductoOnline
                     edit.ShowDialog();
                     if (edit.Clic)
                     {
+                        btnRefresh.Visible = false;
                         List<string> productValues = new List<string>
                     {
                         id,
@@ -147,9 +181,11 @@ namespace TuProductoOnline
                         "Amount"
                     };
                         Product.UpdateProduct(int.Parse(id), productValues);
-                        MessageBox.Show("Producto editado con exito");
-                        RenderTable();
+                        MessageBox.Show("Producto editado con exito");                       
+                        //RenderTable();
                     }
+                    filter = Paginar(num_page, product);
+                    FilterRender();
                 }
                 if (dgvProducts.Columns[e.ColumnIndex].Name == "Consultar")
                 {
@@ -185,8 +221,9 @@ namespace TuProductoOnline
                             iProduct[1]
                         );
                     }
+                    
                     RenderTable();
-                    }
+                }
                 catch (Exception ex) 
                 { 
                     MessageBox.Show("El archivo que quiere importar no tiene el formato correcto");
@@ -208,43 +245,117 @@ namespace TuProductoOnline
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            
-            dgvProducts.Rows.Clear();
-            List<Product> filter = product.Where
-                (x => x.Name.ToLower() == txtSearch.Text.ToLower().Trim()
-                || x.Id.ToString() == txtSearch.Text
-                || x.Description.ToLower().Contains(txtSearch.Text.ToLower().Trim()) == true).ToList();
+            if ( !string.IsNullOrEmpty(txtSearch.Text.Trim()))
+            {
+                dgvProducts.Rows.Clear();
+                filter = product.Where
+                    (x => (x.Name.ToLower() == txtSearch.Text.ToLower().Trim()
+                    || x.Id.ToString() == txtSearch.Text
+                    || x.Description.ToLower().Contains(txtSearch.Text.ToLower().Trim()) == true)
+                    && x.Deleted != true).ToList();
 
-            txtSearch.Clear();
-            if (filter.Count != 0)
-            {
-                btnRefresh.Visible = true;
-                foreach (Product f in filter)
+                txtSearch.Clear();
+                if (filter.Count != 0)
                 {
-                    int a = dgvProducts.Rows.Add();
-                    DataGridViewRow row = dgvProducts.Rows[a];
-                    row.Cells[0].Value = f.Id;
-                    row.Cells[1].Value = f.Type;
-                    row.Cells[2].Value = f.Name;
-                    row.Cells[3].Value = f.Brand;
-                    row.Cells[4].Value = f.Description;
-                    row.Cells[5].Value = f.Price;
+                    btnRefresh.Visible = true;
+                    foreach (Product f in filter)
+                    {
+                        int a = dgvProducts.Rows.Add();
+                        DataGridViewRow row = dgvProducts.Rows[a];
+                        row.Cells[0].Value = f.Id;
+                        row.Cells[1].Value = f.Type;
+                        row.Cells[2].Value = f.Name;
+                        row.Cells[3].Value = f.Brand;
+                        row.Cells[4].Value = f.Description;
+                        row.Cells[5].Value = f.Price;
+                    }
                 }
-            }
-            else 
-            {
-                MessageBox.Show("Lo que está buscando no se encuentra en el sistema");
-                RenderTable();
+                else
+                {
+                    MessageBox.Show("Lo que está buscando no se encuentra en el sistema");
+                    FilterRender();
+                    //RenderTable();
+                }
+
+                filter.Clear();
             }
             
-            filter.Clear();
             
         }
-
+        
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             btnRefresh.Visible = false;
-            RenderTable();
+            lblPageNum.Text = "1";
+            num_page = Convert.ToInt32(lblPageNum.Text);
+            filter = Paginar(num_page, product);
+            FilterRender();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            dgvProducts.Rows.Clear();
+            num_page = num_page + 1;
+            lblPageNum.Text = num_page.ToString();
+            filter = Paginar(num_page, product);
+            foreach (Product f in filter)
+            {
+                int a = dgvProducts.Rows.Add();
+                DataGridViewRow row = dgvProducts.Rows[a];
+                row.Cells[0].Value = f.Id;
+                row.Cells[1].Value = f.Type;
+                row.Cells[2].Value = f.Name;
+                row.Cells[3].Value = f.Brand;
+                row.Cells[4].Value = f.Description;
+                row.Cells[5].Value = f.Price;
+            }
+            btnBack.Visible = true;
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            dgvProducts.Rows.Clear();
+            num_page = num_page - 1;
+            lblPageNum.Text = num_page.ToString();
+            filter = Paginar(num_page, product);
+            foreach (Product f in filter)
+            {
+                int a = dgvProducts.Rows.Add();
+                DataGridViewRow row = dgvProducts.Rows[a];
+                row.Cells[0].Value = f.Id;
+                row.Cells[1].Value = f.Type;
+                row.Cells[2].Value = f.Name;
+                row.Cells[3].Value = f.Brand;
+                row.Cells[4].Value = f.Description;
+                row.Cells[5].Value = f.Price;
+            }
+            if (num_page == 1)
+            {
+                btnBack.Visible = false;
+            }
+        }
+
+        public List<Product> Paginar(int num, List<Product> producto) 
+        { 
+            var paginado = producto.Where(i => i.Deleted != true).Skip((num - 1) * 2).Take(2).ToList();
+            return paginado;
+        }
+
+        public void FilterRender() 
+        {
+            dgvProducts.Rows.Clear();
+            foreach (Product f in filter)
+            {
+                int a = dgvProducts.Rows.Add();
+                DataGridViewRow row = dgvProducts.Rows[a];
+                row.Cells[0].Value = f.Id;
+                row.Cells[1].Value = f.Type;
+                row.Cells[2].Value = f.Name;
+                row.Cells[3].Value = f.Brand;
+                row.Cells[4].Value = f.Description;
+                row.Cells[5].Value = f.Price;
+            }
         }
     }
 }
