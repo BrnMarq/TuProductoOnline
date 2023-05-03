@@ -30,6 +30,7 @@ namespace TuProductoOnline.Views
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             new CustomerProperties(CreateCustomer).ShowDialog();
+            VerifyButtons();
         }
         private void Customers_Load(object sender, EventArgs e)
         {
@@ -40,6 +41,7 @@ namespace TuProductoOnline.Views
                 btnImport.Visible = false;
                 btnExport.Visible = false;
             }
+            VerifyButtons();
         }
         public void ConsultarCliente()
         {
@@ -100,7 +102,10 @@ namespace TuProductoOnline.Views
                 if (e.ColumnIndex == dgvCustomers.Columns["Edit"].Index)
                     ShowEditModal(id);
                 if (e.ColumnIndex == dgvCustomers.Columns["Delete"].Index)
+                {
                     ShowDeleteCustomer(id);
+                    VerifyButtons();
+                }
                 if (e.ColumnIndex == dgvCustomers.Columns["Consultar"].Index)
                     ConsultarCliente();
             }
@@ -208,14 +213,17 @@ namespace TuProductoOnline.Views
                 else
                     RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), CustomersFiltrados));
             }
+
+            VerifyButtons();
         }
         private void btnExport_Click(object sender, EventArgs e)
         {
+            SaveFileDialog saveCustomer = new SaveFileDialog();
+            saveCustomer.FileName = "Clientes";
+            string origen = @"" + FileNames.Customers;
+
             try
             {
-                SaveFileDialog saveCustomer = new SaveFileDialog();
-                saveCustomer.FileName = "Clientes";
-                string origen = @"" + FileNames.Customers;
 
                 if (saveCustomer.ShowDialog() == DialogResult.OK)
                 {
@@ -225,7 +233,14 @@ namespace TuProductoOnline.Views
             }
             catch (Exception)
             {
-                MessageBox.Show("Ya existe un archivo con este nombre");
+                DialogResult replace = MessageBox.Show("Ya existe un archivo con este nombre. ¿Desea reemplazarlo?","Reemplazar",MessageBoxButtons.OKCancel);
+
+                if (replace == DialogResult.OK)
+                {
+                    myComputer.FileSystem.DeleteFile(saveCustomer.FileName + ".csv");
+                    myComputer.FileSystem.CopyFile(origen, saveCustomer.FileName + ".csv");
+                    MessageBox.Show("Clientes exportados con éxito");
+                }
             } 
         }
 
