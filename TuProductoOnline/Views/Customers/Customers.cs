@@ -22,7 +22,9 @@ namespace TuProductoOnline.Views
         Computer myComputer = new Computer();
         private readonly List<Customer> GlobalCustomers = Customer.GetCustomers();
         private List<Customer> CustomersFiltrados;
+        private List<Customer> Ordenado;
         private bool BuscarClick = false;
+        private bool Descendente = true;
         public CustomersView()
         {
             InitializeComponent();
@@ -30,6 +32,7 @@ namespace TuProductoOnline.Views
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             new CustomerProperties(CreateCustomer).ShowDialog();
+            VerifyButtons();
         }
         private void Customers_Load(object sender, EventArgs e)
         {
@@ -40,6 +43,7 @@ namespace TuProductoOnline.Views
                 btnImport.Visible = false;
                 btnExport.Visible = false;
             }
+            VerifyButtons();
         }
         public void ConsultarCliente()
         {
@@ -100,7 +104,10 @@ namespace TuProductoOnline.Views
                 if (e.ColumnIndex == dgvCustomers.Columns["Edit"].Index)
                     ShowEditModal(id);
                 if (e.ColumnIndex == dgvCustomers.Columns["Delete"].Index)
+                {
                     ShowDeleteCustomer(id);
+                    VerifyButtons();
+                }
                 if (e.ColumnIndex == dgvCustomers.Columns["Consultar"].Index)
                     ConsultarCliente();
             }
@@ -208,15 +215,17 @@ namespace TuProductoOnline.Views
                 else
                     RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), CustomersFiltrados));
             }
+
+            VerifyButtons();
         }
         private void btnExport_Click(object sender, EventArgs e)
         {
+            SaveFileDialog saveCustomer = new SaveFileDialog();
+            saveCustomer.FileName = "Clientes";
+            string origen = @"" + FileNames.Customers;
+
             try
             {
-                SaveFileDialog saveCustomer = new SaveFileDialog();
-                saveCustomer.FileName = "Clientes";
-                string origen = @"" + FileNames.Customers;
-
                 if (saveCustomer.ShowDialog() == DialogResult.OK)
                 {
                     myComputer.FileSystem.CopyFile(origen, saveCustomer.FileName + ".csv");
@@ -225,8 +234,15 @@ namespace TuProductoOnline.Views
             }
             catch (Exception)
             {
-                MessageBox.Show("Ya existe un archivo con este nombre");
-            } 
+                DialogResult replace = MessageBox.Show("Ya existe un archivo con este nombre. ¿Desea reemplazarlo?", "Reemplazar", MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+
+                if (replace == DialogResult.OK)
+                {
+                    myComputer.FileSystem.DeleteFile(saveCustomer.FileName + ".csv");
+                    myComputer.FileSystem.CopyFile(origen, saveCustomer.FileName + ".csv");
+                    MessageBox.Show("Clientes exportados con éxito");
+                }
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -314,6 +330,9 @@ namespace TuProductoOnline.Views
             VerifyButtons();
         }
 
+        //Esta función es la que alterna la visibilidad de los botones de la paginación
+        //En la primera página, el botón de volver está oculto
+        //En la última página, el botón de siguiente está oculto
         private void VerifyButtons()
         {
             if (dgvCustomers.RowCount < 10)
@@ -325,6 +344,68 @@ namespace TuProductoOnline.Views
                 btnBack.Visible = false;
             else
                 btnBack.Visible = true;
+        }
+
+        //Ordenamiento 
+
+        public void OrdenarGridAscendente(DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderBy(l => l.Code).ToList();
+                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),Ordenado));
+            }
+            else if (e.ColumnIndex == 1)
+            {
+                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderBy(l => l.Name).ToList();
+                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), Ordenado));
+            }
+            else if (e.ColumnIndex == 2)
+            {
+                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderBy(l => l.PhoneNumber).ToList();
+                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), Ordenado));
+            }
+            else if (e.ColumnIndex == 3)
+            {
+                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderBy(l => l.Address).ToList();
+                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), Ordenado));
+            }
+        }
+
+        public void OrdenarGridDescendente(DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderByDescending(l => l.Code).ToList();
+                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), Ordenado));
+            }
+            else if (e.ColumnIndex == 1)
+            {
+                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderByDescending(l => l.Name).ToList();
+                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), Ordenado));
+            }
+            else if (e.ColumnIndex == 2)
+            {
+                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderByDescending(l => l.PhoneNumber).ToList();
+                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), Ordenado));
+            }
+            else if (e.ColumnIndex == 3)
+            {
+                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderByDescending(l => l.Address).ToList();
+                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), Ordenado));
+            }
+        }
+        private void dgvCustomers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (Descendente)
+            {
+                OrdenarGridAscendente(e);
+            }
+            else
+            {
+                OrdenarGridDescendente(e);
+            }
+            Descendente = !Descendente;
         }
     }
 }
