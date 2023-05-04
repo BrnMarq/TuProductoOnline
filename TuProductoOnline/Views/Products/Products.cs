@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using TuProductoOnline.Models;
 using TuProductoOnline.Utils;
 using System.IO;
+using Microsoft.VisualBasic.Devices;
+using TuProductoOnline.Consts;
 
 namespace TuProductoOnline
 {
@@ -14,6 +16,8 @@ namespace TuProductoOnline
     {
         public List<Product> product = new List<Product>();
         public List<Product> filter = new List<Product>();
+        public List<Product> Searchfilter = new List<Product>();
+        Computer myComputer = new Computer();
         public int maxId = 0;
         public int num_page = 0;
 
@@ -78,7 +82,7 @@ namespace TuProductoOnline
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-
+            RenderTable();
             SaveFileDialog sfd = new SaveFileDialog() { Filter = "Archivo CSV|*.csv" };
 
 
@@ -117,6 +121,8 @@ namespace TuProductoOnline
                 File.WriteAllLines(sfd.FileName, filas);
 
             }
+            filter = Paginar(num_page, product);
+            FilterRender();
         }
 
         private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -201,6 +207,7 @@ namespace TuProductoOnline
 
         private void btnImport_Click(object sender, EventArgs e)
         {
+
             OpenFileDialog ofd = new OpenFileDialog() { Filter = "Archivo CSV|*.csv" };
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -221,8 +228,10 @@ namespace TuProductoOnline
                             iProduct[1]
                         );
                     }
-                    
-                    RenderTable();
+
+                    filter = Paginar(num_page, product);
+                    FilterRender();
+                    // RenderTable();
                 }
                 catch (Exception ex) 
                 { 
@@ -257,27 +266,23 @@ namespace TuProductoOnline
                 txtSearch.Clear();
                 if (filter.Count != 0)
                 {
+                    btnBack.Visible = false;
                     btnRefresh.Visible = true;
-                    foreach (Product f in filter)
-                    {
-                        int a = dgvProducts.Rows.Add();
-                        DataGridViewRow row = dgvProducts.Rows[a];
-                        row.Cells[0].Value = f.Id;
-                        row.Cells[1].Value = f.Type;
-                        row.Cells[2].Value = f.Name;
-                        row.Cells[3].Value = f.Brand;
-                        row.Cells[4].Value = f.Description;
-                        row.Cells[5].Value = f.Price;
-                    }
+                    lblPageNum.Text = "1";
+                    num_page = Convert.ToInt32(lblPageNum.Text);
+                    Searchfilter = Paginar(num_page, filter);
+                    SearchFilterRender();
+                    
                 }
                 else
                 {
                     MessageBox.Show("Lo que está buscando no se encuentra en el sistema");
+                    filter = Paginar(num_page, product);
                     FilterRender();
                     //RenderTable();
                 }
 
-                filter.Clear();
+                
             }
             
             
@@ -285,11 +290,17 @@ namespace TuProductoOnline
         
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            btnRefresh.Visible = false;
+            
             lblPageNum.Text = "1";
             num_page = Convert.ToInt32(lblPageNum.Text);
+            if (num_page == 1)
+            {
+                btnBack.Visible = false;
+            }
             filter = Paginar(num_page, product);
             FilterRender();
+            btnRefresh.Visible = false;
+            btnNext.Visible = true;
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -297,43 +308,54 @@ namespace TuProductoOnline
             dgvProducts.Rows.Clear();
             num_page = num_page + 1;
             lblPageNum.Text = num_page.ToString();
-            filter = Paginar(num_page, product);
-            foreach (Product f in filter)
+            if (btnRefresh.Visible == true)
             {
-                int a = dgvProducts.Rows.Add();
-                DataGridViewRow row = dgvProducts.Rows[a];
-                row.Cells[0].Value = f.Id;
-                row.Cells[1].Value = f.Type;
-                row.Cells[2].Value = f.Name;
-                row.Cells[3].Value = f.Brand;
-                row.Cells[4].Value = f.Description;
-                row.Cells[5].Value = f.Price;
+                Searchfilter = Paginar(num_page, filter);
+                SearchFilterRender();
+            }
+            else
+            {
+                filter = Paginar(num_page, product);
+                FilterRender();
+            }
+            //filter = Paginar(num_page, product);
+            if (num_page == 1)
+            {
+                btnBack.Visible = false;
             }
             btnBack.Visible = true;
-
+            if (dgvProducts.RowCount < 2)
+            {
+                btnNext.Visible = false;
+            }
+            else 
+            {
+                btnNext.Visible = true;
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            btnNext.Visible = true;
             dgvProducts.Rows.Clear();
             num_page = num_page - 1;
             lblPageNum.Text = num_page.ToString();
-            filter = Paginar(num_page, product);
-            foreach (Product f in filter)
+            if (btnRefresh.Visible == true)
             {
-                int a = dgvProducts.Rows.Add();
-                DataGridViewRow row = dgvProducts.Rows[a];
-                row.Cells[0].Value = f.Id;
-                row.Cells[1].Value = f.Type;
-                row.Cells[2].Value = f.Name;
-                row.Cells[3].Value = f.Brand;
-                row.Cells[4].Value = f.Description;
-                row.Cells[5].Value = f.Price;
+                Searchfilter = Paginar(num_page, filter);
+                SearchFilterRender();
+            }
+            else
+            {
+                filter = Paginar(num_page, product);
+                FilterRender();
             }
             if (num_page == 1)
             {
                 btnBack.Visible = false;
             }
+
+            
         }
 
         public List<Product> Paginar(int num, List<Product> producto) 
@@ -346,6 +368,22 @@ namespace TuProductoOnline
         {
             dgvProducts.Rows.Clear();
             foreach (Product f in filter)
+            {
+                int a = dgvProducts.Rows.Add();
+                DataGridViewRow row = dgvProducts.Rows[a];
+                row.Cells[0].Value = f.Id;
+                row.Cells[1].Value = f.Type;
+                row.Cells[2].Value = f.Name;
+                row.Cells[3].Value = f.Brand;
+                row.Cells[4].Value = f.Description;
+                row.Cells[5].Value = f.Price;
+            }
+        }
+
+        public void SearchFilterRender() 
+        {
+            dgvProducts.Rows.Clear();
+            foreach (Product f in Searchfilter)
             {
                 int a = dgvProducts.Rows.Add();
                 DataGridViewRow row = dgvProducts.Rows[a];
