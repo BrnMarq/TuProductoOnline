@@ -24,7 +24,7 @@ namespace TuProductoOnline.Views
         private List<Customer> CustomersFiltrados;
         private List<Customer> Ordenado;
         private bool BuscarClick = false;
-        private bool Descendente = true;
+        private bool Ascendente = true;
         public CustomersView()
         {
             InitializeComponent();
@@ -299,6 +299,7 @@ namespace TuProductoOnline.Views
             VerifyButtons();
             btnRefresh.Visible = false;
             BuscarClick = false;
+            txtSearch.Text = "";
         }
 
         private List<Customer> Paginar(int num,List<Customer> customers)
@@ -316,6 +317,7 @@ namespace TuProductoOnline.Views
                 RenderTable(Paginar(numPag, GlobalCustomers));
             else
                 RenderTable(Paginar(numPag, CustomersFiltrados));
+            Ascendente = true;
             VerifyButtons();
         }
 
@@ -327,6 +329,7 @@ namespace TuProductoOnline.Views
                 RenderTable(Paginar(numPag, GlobalCustomers));
             else
                 RenderTable(Paginar(numPag, CustomersFiltrados));
+            Ascendente = true;
             VerifyButtons();
         }
 
@@ -352,23 +355,23 @@ namespace TuProductoOnline.Views
         {
             if (e.ColumnIndex == 0)
             {
-                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderBy(l => l.Code).ToList();
-                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),Ordenado));
+                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers).OrderBy(l => l.Code).ToList();
+                RenderTable(Ordenado);
             }
             else if (e.ColumnIndex == 1)
             {
-                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderBy(l => l.Name).ToList();
-                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), Ordenado));
+                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers).OrderBy(l => l.Name).ToList();
+                RenderTable(Ordenado);
             }
             else if (e.ColumnIndex == 2)
             {
-                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderBy(l => l.PhoneNumber).ToList();
-                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), Ordenado));
+                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers).OrderBy(l => l.PhoneNumber).ToList();
+                RenderTable(Ordenado);
             }
             else if (e.ColumnIndex == 3)
             {
-                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderBy(l => l.Address).ToList();
-                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), Ordenado));
+                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers).OrderBy(l => l.Address).ToList();
+                RenderTable(Ordenado);
             }
         }
 
@@ -376,36 +379,59 @@ namespace TuProductoOnline.Views
         {
             if (e.ColumnIndex == 0)
             {
-                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderByDescending(l => l.Code).ToList();
-                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), Ordenado));
+                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers).OrderByDescending(l => l.Code).ToList();
+                RenderTable(Ordenado);
             }
             else if (e.ColumnIndex == 1)
             {
-                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderByDescending(l => l.Name).ToList();
-                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), Ordenado));
+                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers).OrderByDescending(l => l.Name).ToList();
+                RenderTable(Ordenado);
             }
             else if (e.ColumnIndex == 2)
             {
-                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderByDescending(l => l.PhoneNumber).ToList();
-                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), Ordenado));
+                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers).OrderByDescending(l => l.PhoneNumber).ToList();
+                RenderTable(Ordenado);
             }
             else if (e.ColumnIndex == 3)
             {
-                Ordenado = GlobalCustomers.Where(l => l.Deleted != true).OrderByDescending(l => l.Address).ToList();
-                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), Ordenado));
+                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers).OrderByDescending(l => l.Address).ToList();
+                RenderTable(Ordenado);
             }
         }
         private void dgvCustomers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (Descendente)
-            {
-                OrdenarGridAscendente(e);
-            }
-            else
+            if (Ascendente)
             {
                 OrdenarGridDescendente(e);
             }
-            Descendente = !Descendente;
+            else
+            {        
+                OrdenarGridAscendente(e);
+            }
+
+            Ascendente = !Ascendente;
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string pattern = txtSearch.Text.ToLower();
+
+            if (pattern.Length != 0)
+            {
+                lblPageNum.Text = "1";
+                btnRefresh.Visible = true;
+            }
+            else
+            {
+                btnRefresh.Visible = false;
+            }
+
+            var filtrado = GlobalCustomers.Where(i => i.Deleted != true && i.Name.ToLower().StartsWith(pattern) || i.Code.ToString().ToLower().StartsWith(pattern)).ToList();
+
+            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), filtrado));
+
+            VerifyButtons();
+
         }
     }
 }
