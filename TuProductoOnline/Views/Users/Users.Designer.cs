@@ -61,6 +61,7 @@
             this.btnultimo = new System.Windows.Forms.Button();
             this.btnprimero = new System.Windows.Forms.Button();
             this.lbl = new System.Windows.Forms.Label();
+            this.lblInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.UsersTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,7 +110,7 @@
             this.EditCell,
             this.DeleteCell});
             this.UsersTable.EnableHeadersVisualStyles = false;
-            this.UsersTable.Location = new System.Drawing.Point(12, 150);
+            this.UsersTable.Location = new System.Drawing.Point(12, 99);
             this.UsersTable.Name = "UsersTable";
             this.UsersTable.ReadOnly = true;
             this.UsersTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -289,10 +290,10 @@
             // 
             // lblPag
             // 
-            this.lblPag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPag.AutoSize = true;
             this.lblPag.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPag.Location = new System.Drawing.Point(641, 116);
+            this.lblPag.Location = new System.Drawing.Point(646, 414);
             this.lblPag.Name = "lblPag";
             this.lblPag.Size = new System.Drawing.Size(16, 18);
             this.lblPag.TabIndex = 21;
@@ -302,14 +303,15 @@
             // 
             this.lblnum.AutoSize = true;
             this.lblnum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblnum.Location = new System.Drawing.Point(524, 110);
+            this.lblnum.Location = new System.Drawing.Point(529, 413);
             this.lblnum.Name = "lblnum";
             this.lblnum.Size = new System.Drawing.Size(0, 20);
             this.lblnum.TabIndex = 22;
             // 
             // btnantes
             // 
-            this.btnantes.Location = new System.Drawing.Point(104, 110);
+            this.btnantes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnantes.Location = new System.Drawing.Point(109, 414);
             this.btnantes.Name = "btnantes";
             this.btnantes.Size = new System.Drawing.Size(75, 23);
             this.btnantes.TabIndex = 23;
@@ -319,7 +321,8 @@
             // 
             // btn1
             // 
-            this.btn1.Location = new System.Drawing.Point(185, 110);
+            this.btn1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn1.Location = new System.Drawing.Point(190, 414);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(35, 23);
             this.btn1.TabIndex = 24;
@@ -328,7 +331,8 @@
             // 
             // btn2
             // 
-            this.btn2.Location = new System.Drawing.Point(225, 111);
+            this.btn2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn2.Location = new System.Drawing.Point(230, 414);
             this.btn2.Name = "btn2";
             this.btn2.Size = new System.Drawing.Size(35, 23);
             this.btn2.TabIndex = 25;
@@ -338,7 +342,8 @@
             // 
             // btn3
             // 
-            this.btn3.Location = new System.Drawing.Point(265, 111);
+            this.btn3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn3.Location = new System.Drawing.Point(270, 414);
             this.btn3.Name = "btn3";
             this.btn3.Size = new System.Drawing.Size(35, 23);
             this.btn3.TabIndex = 26;
@@ -348,7 +353,8 @@
             // 
             // btn4
             // 
-            this.btn4.Location = new System.Drawing.Point(305, 111);
+            this.btn4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn4.Location = new System.Drawing.Point(310, 414);
             this.btn4.Name = "btn4";
             this.btn4.Size = new System.Drawing.Size(35, 23);
             this.btn4.TabIndex = 27;
@@ -358,7 +364,8 @@
             // 
             // btnsiguiente
             // 
-            this.btnsiguiente.Location = new System.Drawing.Point(345, 111);
+            this.btnsiguiente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnsiguiente.Location = new System.Drawing.Point(350, 414);
             this.btnsiguiente.Name = "btnsiguiente";
             this.btnsiguiente.Size = new System.Drawing.Size(75, 23);
             this.btnsiguiente.TabIndex = 28;
@@ -368,7 +375,8 @@
             // 
             // btnultimo
             // 
-            this.btnultimo.Location = new System.Drawing.Point(426, 111);
+            this.btnultimo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnultimo.Location = new System.Drawing.Point(431, 414);
             this.btnultimo.Name = "btnultimo";
             this.btnultimo.Size = new System.Drawing.Size(75, 23);
             this.btnultimo.TabIndex = 29;
@@ -377,7 +385,8 @@
             // 
             // btnprimero
             // 
-            this.btnprimero.Location = new System.Drawing.Point(23, 110);
+            this.btnprimero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnprimero.Location = new System.Drawing.Point(28, 414);
             this.btnprimero.Name = "btnprimero";
             this.btnprimero.Size = new System.Drawing.Size(75, 23);
             this.btnprimero.TabIndex = 30;
@@ -387,14 +396,25 @@
             // 
             // lbl
             // 
-            this.lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl.AutoSize = true;
             this.lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.lbl.Location = new System.Drawing.Point(530, 116);
+            this.lbl.Location = new System.Drawing.Point(535, 414);
             this.lbl.Name = "lbl";
             this.lbl.Size = new System.Drawing.Size(108, 18);
             this.lbl.TabIndex = 31;
             this.lbl.Text = "Pagina actual : ";
+            // 
+            // lblInfo
+            // 
+            this.lblInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblInfo.AutoSize = true;
+            this.lblInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInfo.Location = new System.Drawing.Point(389, 13);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(176, 15);
+            this.lblInfo.TabIndex = 32;
+            this.lblInfo.Text = "Buscar cliente por ID o nombre";
             // 
             // Users
             // 
@@ -402,6 +422,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(701, 480);
+            this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.lbl);
             this.Controls.Add(this.btnprimero);
             this.Controls.Add(this.btnultimo);
@@ -460,5 +481,6 @@
         private System.Windows.Forms.Button btnultimo;
         private System.Windows.Forms.Button btnprimero;
         private System.Windows.Forms.Label lbl;
+        private System.Windows.Forms.Label lblInfo;
     }
 }

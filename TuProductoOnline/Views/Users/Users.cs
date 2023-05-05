@@ -20,7 +20,7 @@ namespace TuProductoOnline.Views.Users
     {
         int acum = 1;
         Computer myComputer = new Computer();
-        private readonly List<User> GlobalUsers= User.GetUsers();
+        private readonly List<User> GlobalUsers = User.GetUsers();
         private bool BuscarClick = false;
 
         public Users()
@@ -39,7 +39,7 @@ namespace TuProductoOnline.Views.Users
         }
         private List<User> Paginar(int num, List<User> users)
         {
-            var lista = users.Where(i => i.Deleted != true).Skip((num - 1) * 10).Take(10).ToList();
+            var lista = users.Where(i => i.Deleted != true).Skip((num - 1) * 25).Take(25).ToList();
 
             return lista;
         }
@@ -213,7 +213,6 @@ namespace TuProductoOnline.Views.Users
             btnantes.Enabled = false;
             if (!BuscarClick)
                 RenderTable(Paginar(acum, GlobalUsers));
-
         }
 
         private void btnantes_Click(object sender, EventArgs e)
@@ -231,7 +230,6 @@ namespace TuProductoOnline.Views.Users
             }
             if (!BuscarClick)
                 RenderTable(Paginar(acum, GlobalUsers));
-
         }
 
         private void btn2_Click(object sender, EventArgs e)
