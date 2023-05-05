@@ -18,6 +18,7 @@ namespace TuProductoOnline.Views
 {
     public partial class CustomersView : Form
     {
+        int acum = 1;
         CustomerProperties miVentana = new CustomerProperties();
         Computer myComputer = new Computer();
         private readonly List<Customer> GlobalCustomers = Customer.GetCustomers();
@@ -32,18 +33,21 @@ namespace TuProductoOnline.Views
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             new CustomerProperties(CreateCustomer).ShowDialog();
-            VerifyButtons();
         }
         private void Customers_Load(object sender, EventArgs e)
         {
             lblPageNum.Text = "1";
-            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
+            if (acum == 1)
+            {
+                btnprimero.Enabled = false;
+                btnantes.Enabled = false;
+            }
+            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers));
             if (User.ActiveUser.Role != "Admin")
             {
                 btnImport.Visible = false;
                 btnExport.Visible = false;
             }
-            VerifyButtons();
         }
         public void ConsultarCliente()
         {
@@ -106,7 +110,6 @@ namespace TuProductoOnline.Views
                 if (e.ColumnIndex == dgvCustomers.Columns["Delete"].Index)
                 {
                     ShowDeleteCustomer(id);
-                    VerifyButtons();
                 }
                 if (e.ColumnIndex == dgvCustomers.Columns["Consultar"].Index)
                     ConsultarCliente();
@@ -216,7 +219,6 @@ namespace TuProductoOnline.Views
                     RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), CustomersFiltrados));
             }
 
-            VerifyButtons();
         }
         private void btnExport_Click(object sender, EventArgs e)
         {
@@ -266,7 +268,6 @@ namespace TuProductoOnline.Views
                     lblPageNum.Text = "1";
                     CustomersFiltrados = customer;
                     RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), customer));
-                    VerifyButtons();
                 }
             }
             else
@@ -284,7 +285,6 @@ namespace TuProductoOnline.Views
                     lblPageNum.Text = "1";
                     CustomersFiltrados = customer;
                     RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), customer));
-                    VerifyButtons();
                 }
             }
 
@@ -296,7 +296,6 @@ namespace TuProductoOnline.Views
         {
             lblPageNum.Text = "1";
             RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
-            VerifyButtons();
             btnRefresh.Visible = false;
             BuscarClick = false;
             txtSearch.Text = "";
@@ -308,47 +307,6 @@ namespace TuProductoOnline.Views
 
             return lista;
         }
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            int numPag = (Convert.ToInt32(lblPageNum.Text) + 1);
-            lblPageNum.Text = numPag.ToString();
-            if (!BuscarClick)
-                RenderTable(Paginar(numPag, GlobalCustomers));
-            else
-                RenderTable(Paginar(numPag, CustomersFiltrados));
-            Ascendente = true;
-            VerifyButtons();
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            int numPag = (Convert.ToInt32(lblPageNum.Text) - 1);
-            lblPageNum.Text = numPag.ToString();
-            if (!BuscarClick)
-                RenderTable(Paginar(numPag, GlobalCustomers));
-            else
-                RenderTable(Paginar(numPag, CustomersFiltrados));
-            Ascendente = true;
-            VerifyButtons();
-        }
-
-        //Esta función es la que alterna la visibilidad de los botones de la paginación
-        //En la primera página, el botón de volver está oculto
-        //En la última página, el botón de siguiente está oculto
-        private void VerifyButtons()
-        {
-            if (dgvCustomers.RowCount < 10)
-                btnNext.Visible = false;
-            else
-                btnNext.Visible = true;
-
-            if (lblPageNum.Text == "1")
-                btnBack.Visible = false;
-            else
-                btnBack.Visible = true;
-        }
-
         //Ordenamiento 
 
         public void OrdenarGridAscendente(DataGridViewCellMouseEventArgs e)
@@ -400,15 +358,8 @@ namespace TuProductoOnline.Views
         }
         private void dgvCustomers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (Ascendente)
-            {
-                OrdenarGridDescendente(e);
-            }
-            else
-            {        
-                OrdenarGridAscendente(e);
-            }
-
+            if (Ascendente){OrdenarGridDescendente(e);}
+            else {OrdenarGridAscendente(e); }
             Ascendente = !Ascendente;
         }
 
@@ -429,9 +380,83 @@ namespace TuProductoOnline.Views
             var filtrado = GlobalCustomers.Where(i => i.Deleted != true && i.Name.ToLower().StartsWith(pattern) || i.Code.ToString().ToLower().StartsWith(pattern)).ToList();
 
             RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), filtrado));
+        }
+        private void btnprimero_Click(object sender, EventArgs e)
+        {
+            lblPageNum.Text = "1";
+            acum = 1;
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = false;
+            btnantes.Enabled = false;
+            if (!BuscarClick)
+                RenderTable(Paginar(acum, GlobalCustomers));
+        }
 
-            VerifyButtons();
+        private void btnantes_Click(object sender, EventArgs e)
+        {
+            acum -= 1;
+            lblPageNum.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            if (acum == 1)
+            {
+                btnprimero.Enabled = false;
+                btnantes.Enabled = false;
+            }
+            if (!BuscarClick)
+                RenderTable(Paginar(acum, GlobalCustomers));
+        }
 
+        private void btn2_Click(object sender, EventArgs e)
+        {
+            btnsiguiente_Click(sender, e);
+        }
+
+        private void btn3_Click(object sender, EventArgs e)
+        {
+            acum += 2;
+            lblPageNum.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            if (!BuscarClick)
+                RenderTable(Paginar(acum, GlobalCustomers));
+        }
+
+        private void btn4_Click(object sender, EventArgs e)
+        {
+            acum += 3;
+            lblPageNum.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            if (!BuscarClick)
+                RenderTable(Paginar(acum, GlobalCustomers));
+        }
+
+        private void btnsiguiente_Click(object sender, EventArgs e)
+        {
+            acum += 1;
+            lblPageNum.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            if (!BuscarClick)
+                RenderTable(Paginar(acum, GlobalCustomers));
         }
     }
 }

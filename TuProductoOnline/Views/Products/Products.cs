@@ -14,7 +14,7 @@ namespace TuProductoOnline
 
     public partial class Products : Form
     {
-        public List<Product> product = new List<Product>();
+        private List<Product> product = new List<Product>();
         public List<Product> filter = new List<Product>();
         public List<Product> Searchfilter = new List<Product>();
         int acum = 1;
@@ -37,22 +37,18 @@ namespace TuProductoOnline
                 new Product(add.Alias, add.Price, add.Brand, add.Description, add.Type);
                 filter = Paginar(num_page, product);
                 FilterRender();
-                //RenderTable();
                 maxId++;
             }
         }
 
         private void Products_Load(object sender, EventArgs e)
         {
-            lblPageNum.Text = "1";
-            num_page = Convert.ToInt32(lblPageNum.Text);
-            btnBack.Visible = false;
-            
+            lblPag.Text = "1";
+            num_page = Convert.ToInt32(lblPag.Text);
             // Se Habilitan o deshabilitan los botones según el rol que tenga el usuario.
 
             product = Product.GetProducts();
             maxId = product.Count();
-            //RenderTable();
             if (acum == 1)
             {
                 btnprimero.Enabled = false;
@@ -229,7 +225,6 @@ namespace TuProductoOnline
 
                     filter = Paginar(Convert.ToInt32(lblPag.Text), product);
                     FilterRender();
-                    // RenderTable();
                 }
                 catch (Exception ex) 
                 { 
@@ -264,96 +259,29 @@ namespace TuProductoOnline
                 txtSearch.Clear();
                 if (filter.Count != 0)
                 {
-                    btnBack.Visible = false;
                     btnRefresh.Visible = true;
-                    lblPageNum.Text = "1";
-                    num_page = Convert.ToInt32(lblPageNum.Text);
+                    lblPag.Text = "1";
+                    num_page = Convert.ToInt32(lblPag.Text);
                     Searchfilter = Paginar(num_page, filter);
                     SearchFilterRender();
-                    
                 }
                 else
                 {
                     MessageBox.Show("Lo que está buscando no se encuentra en el sistema");
                     filter = Paginar(num_page, product);
                     FilterRender();
-                    //RenderTable();
                 }
-
-                
             }
-            
-            
         }
         
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             
-            lblPageNum.Text = "1";
-            num_page = Convert.ToInt32(lblPageNum.Text);
-            if (num_page == 1)
-            {
-                btnBack.Visible = false;
-            }
+            lblPag.Text = "1";
+            num_page = Convert.ToInt32(lblPag.Text);
             filter = Paginar(num_page, product);
             FilterRender();
             btnRefresh.Visible = false;
-            btnNext.Visible = true;
-        }
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            dgvProducts.Rows.Clear();
-            num_page = num_page + 1;
-            lblPageNum.Text = num_page.ToString();
-            if (btnRefresh.Visible == true)
-            {
-                Searchfilter = Paginar(num_page, filter);
-                SearchFilterRender();
-            }
-            else
-            {
-                filter = Paginar(num_page, product);
-                FilterRender();
-            }
-            //filter = Paginar(num_page, product);
-            if (num_page == 1)
-            {
-                btnBack.Visible = false;
-            }
-            btnBack.Visible = true;
-            if (dgvProducts.RowCount < 2)
-            {
-                btnNext.Visible = false;
-            }
-            else 
-            {
-                btnNext.Visible = true;
-            }
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            btnNext.Visible = true;
-            dgvProducts.Rows.Clear();
-            num_page = num_page - 1;
-            lblPageNum.Text = num_page.ToString();
-            if (btnRefresh.Visible == true)
-            {
-                Searchfilter = Paginar(num_page, filter);
-                SearchFilterRender();
-            }
-            else
-            {
-                filter = Paginar(num_page, product);
-                FilterRender();
-            }
-            if (num_page == 1)
-            {
-                btnBack.Visible = false;
-            }
-
-            
         }
 
         public List<Product> Paginar(int num, List<Product> producto) 
