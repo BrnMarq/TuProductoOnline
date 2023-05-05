@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plantilla</title>
+    <style>
+        td.titulo {
+            background-color: #CACACA;
+            width: 63%;
+            padding: 20px;
+            border: 1px solid black;
+        }
+
+        table.border {
+            border-collapse: collapse;
+        }
+
+            table.border th {
+                padding: 15px;
+                border: 01px solid black;
+            }
+
+            table.border td {
+                padding: 5px;
+                border: 1px solid black;
+            }
+    </style>
+</head>
+
+<body>
+    <!--Tabla de productos -->
+    <table class="border" style="width: 100%">
+
+        <thead style="background-color: #CACACA">
+            <tr>
+                <th>Cant:</th>
+                <th>Nombre:</th>
+                <th>Descripción:</th>
+                <th>IVA:</th>
+                <th>Prec. Unitario:</th>
+                <th>Monto:</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @Filas
+
+        </tbody>
+
+    </table>
+    <hr border="0px"></hr>
+
+    <table class="border" style="width: 100%">
+        <tr><td class="titulo"><b>Monto Total Exento o Exonerado del IVA:</b></td><td>@MONTO1  Bs.S</td></tr>
+        <tr><td class="titulo"><b>Monto Total de la Base Imponible según Alicuota 16,00%:</b> </td><td>@MONTO2  Bs.S</td></tr>
+        <tr><td class="titulo"><b>Monto Total del Impuesto según Alicuota 16,00%:</b></td><td>@MONTO3  Bs.S</td></tr>
+        <tr><td class="titulo"><b>VALOR TOTAL DE LA VENTA O SERVICIO:</b></td><td>@MONTOTOTAL  Bs.S</td></tr>
+
+    </table>
+
+
+    <!-- https://www.youtube.com/watch?v=Z47eF35t7E8 -->
+</body>
+</html>

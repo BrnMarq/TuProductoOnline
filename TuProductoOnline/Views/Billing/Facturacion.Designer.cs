@@ -106,7 +106,7 @@
             this.ProductBox.Controls.Add(this.txtCantidad);
             this.ProductBox.Controls.Add(this.CantidadBox);
             this.ProductBox.Controls.Add(this.ProductBox2);
-            this.ProductBox.Location = new System.Drawing.Point(328, 14);
+            this.ProductBox.Location = new System.Drawing.Point(213, 14);
             this.ProductBox.Name = "ProductBox";
             this.ProductBox.Size = new System.Drawing.Size(268, 88);
             this.ProductBox.TabIndex = 4;
