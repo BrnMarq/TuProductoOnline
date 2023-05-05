@@ -58,6 +58,8 @@ namespace TuProductoOnline
                 Type = cmbType.Text.Trim();
                 Price = Convert.ToDouble(txtPrice.Text);
                 Id = Convert.ToInt32(txtId.Text);
+                Clic = true;
+                
                 this.Close();
             }
             catch (Exception ex)
@@ -152,11 +154,6 @@ namespace TuProductoOnline
         private void txtId_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void Edit_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Clic = true;
         }
     }
 }

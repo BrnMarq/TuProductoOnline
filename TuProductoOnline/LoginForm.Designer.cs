@@ -131,6 +131,7 @@ namespace TuProductoOnline
             this.UsernameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UsernameInput.ForeColor = System.Drawing.Color.White;
             this.UsernameInput.Location = new System.Drawing.Point(60, 213);
+            this.UsernameInput.MaxLength = 100;
             this.UsernameInput.Name = "UsernameInput";
             this.UsernameInput.Size = new System.Drawing.Size(209, 22);
             this.UsernameInput.TabIndex = 1;
@@ -146,6 +147,7 @@ namespace TuProductoOnline
             this.PasswordInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PasswordInput.ForeColor = System.Drawing.Color.White;
             this.PasswordInput.Location = new System.Drawing.Point(60, 282);
+            this.PasswordInput.MaxLength = 50;
             this.PasswordInput.Name = "PasswordInput";
             this.PasswordInput.Size = new System.Drawing.Size(183, 22);
             this.PasswordInput.TabIndex = 2;

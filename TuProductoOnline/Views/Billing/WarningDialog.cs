@@ -22,13 +22,12 @@ namespace TuProductoOnline
         {
             this.Close();
         }
-
-        private void txtWarning_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void WarningDialog_Load(object sender, EventArgs e)
         {
 
         }

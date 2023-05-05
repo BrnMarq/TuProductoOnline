@@ -132,6 +132,24 @@ namespace TuProductoOnline
             if (cedula.Length < 7)
             {
                 MessageBox.Show("El número mínimo de caracteres para cédula/RIF es 7");
+                txtId.Text = "";
+            }
+            else
+            {
+                control = 1;
+            }
+
+            return control;
+        }
+
+        private int VerifyLengthTelefono()
+        {
+            string tlf = txtPhoneNumber.Text;
+            int control;
+
+            if (tlf.Length < 11 || tlf.Length > 16)
+            {
+                control = 0;
             }
             else
             {
@@ -186,10 +204,10 @@ namespace TuProductoOnline
 
         private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.SoloNumeros(e);
+            //Validar.SoloNumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                if (Validar.ValidarTelefono(txtPhoneNumber.Text.TrimStart(eliminar)))
+                if (Validar.ValidarTelefono(txtPhoneNumber.Text.TrimStart(eliminar)) && VerifyLengthTelefono() == 1)
                 {
                     e.Handled = true;
                     SendKeys.Send("{TAB}");
@@ -198,6 +216,7 @@ namespace TuProductoOnline
                 else
                 {
                     MessageBox.Show("Número de teléfono inválido");
+                    txtPhoneNumber.Text = "";
                     TxtPhoneNumberErrorlbl.Visible = true;
                 }
             }

@@ -36,14 +36,13 @@ namespace TuProductoOnline.Views.Customers
             // 
             // btnAccept
             // 
-            this.btnAccept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnAccept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnAccept.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAccept.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAccept.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnAccept.ForeColor = System.Drawing.Color.White;
-            this.btnAccept.Location = new System.Drawing.Point(306, 138);
+            this.btnAccept.Location = new System.Drawing.Point(475, 119);
             this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(100, 30);
+            this.btnAccept.Size = new System.Drawing.Size(91, 27);
             this.btnAccept.TabIndex = 5;
             this.btnAccept.Text = "Aceptar";
             this.btnAccept.UseVisualStyleBackColor = false;
@@ -51,14 +50,13 @@ namespace TuProductoOnline.Views.Customers
             // 
             // btnCancel
             // 
-            this.btnCancel.BackColor = System.Drawing.Color.Red;
+            this.btnCancel.BackColor = System.Drawing.Color.Firebrick;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(412, 138);
+            this.btnCancel.Location = new System.Drawing.Point(378, 119);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 30);
+            this.btnCancel.Size = new System.Drawing.Size(91, 27);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -67,21 +65,22 @@ namespace TuProductoOnline.Views.Customers
             // lblWarning
             // 
             this.lblWarning.AutoSize = true;
-            this.lblWarning.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWarning.Location = new System.Drawing.Point(12, 63);
+            this.lblWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.lblWarning.Location = new System.Drawing.Point(42, 43);
             this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(302, 20);
+            this.lblWarning.Size = new System.Drawing.Size(343, 20);
             this.lblWarning.TabIndex = 7;
-            this.lblWarning.Text = "¿Está seguro de querer borrar al cliente ";
+            this.lblWarning.Text = "Estás seguro de querer borrar el usuario?";
             // 
             // DeleteCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 180);
+            this.ClientSize = new System.Drawing.Size(580, 155);
             this.Controls.Add(this.lblWarning);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAccept);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "DeleteCustomer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DeleteCustomer";

@@ -121,7 +121,7 @@ namespace TuProductoOnline
             // 
             this.txtBrand.BackColor = System.Drawing.SystemColors.Window;
             this.txtBrand.Location = new System.Drawing.Point(32, 303);
-            this.txtBrand.MaxLength = 100;
+            this.txtBrand.MaxLength = 500;
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(334, 20);
             this.txtBrand.TabIndex = 2;
@@ -167,7 +167,7 @@ namespace TuProductoOnline
             // 
             this.txtPrice.BackColor = System.Drawing.SystemColors.Window;
             this.txtPrice.Location = new System.Drawing.Point(32, 451);
-            this.txtPrice.MaxLength = 50;
+            this.txtPrice.MaxLength = 8;
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.ShortcutsEnabled = false;
             this.txtPrice.Size = new System.Drawing.Size(334, 20);
@@ -240,9 +240,9 @@ namespace TuProductoOnline
             this.TxtBrandErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TxtBrandErrorlbl.Location = new System.Drawing.Point(32, 333);
             this.TxtBrandErrorlbl.Name = "TxtBrandErrorlbl";
-            this.TxtBrandErrorlbl.Size = new System.Drawing.Size(258, 16);
+            this.TxtBrandErrorlbl.Size = new System.Drawing.Size(251, 16);
             this.TxtBrandErrorlbl.TabIndex = 21;
-            this.TxtBrandErrorlbl.Text = "Ingrese la Marca (Maximo 100 Carácteres)";
+            this.TxtBrandErrorlbl.Text = "Ingrese la Marca (Maximo 50 Carácteres)";
             this.TxtBrandErrorlbl.Visible = false;
             // 
             // TxtDescriptionErrorlbl
@@ -266,9 +266,9 @@ namespace TuProductoOnline
             this.TxtPriceErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TxtPriceErrorlbl.Location = new System.Drawing.Point(32, 481);
             this.TxtPriceErrorlbl.Name = "TxtPriceErrorlbl";
-            this.TxtPriceErrorlbl.Size = new System.Drawing.Size(252, 16);
+            this.TxtPriceErrorlbl.Size = new System.Drawing.Size(245, 16);
             this.TxtPriceErrorlbl.TabIndex = 24;
-            this.TxtPriceErrorlbl.Text = "Ingrese el Precio (Maximo 50 Carácteres)";
+            this.TxtPriceErrorlbl.Text = "Ingrese el Precio (Maximo 8 Carácteres)";
             this.TxtPriceErrorlbl.Visible = false;
             // 
             // Add

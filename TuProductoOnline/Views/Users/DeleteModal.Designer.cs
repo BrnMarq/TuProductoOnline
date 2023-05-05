@@ -41,9 +41,9 @@
             this.WarningText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WarningText.Location = new System.Drawing.Point(42, 43);
             this.WarningText.Name = "WarningText";
-            this.WarningText.Size = new System.Drawing.Size(333, 20);
+            this.WarningText.Size = new System.Drawing.Size(343, 20);
             this.WarningText.TabIndex = 0;
-            this.WarningText.Text = "Estás seguro de querer borrar el usuario";
+            this.WarningText.Text = "Estás seguro de querer borrar el usuario?";
             // 
             // AcceptButton
             // 
