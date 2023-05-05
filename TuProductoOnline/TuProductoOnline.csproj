@@ -105,6 +105,7 @@
       <DependentUpon>Edit.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\JsonHandler.cs" />
+    <Compile Include="Views\Billing\PageEventHelper.cs" />
     <Compile Include="Views\BillRegister\BillRegister.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -309,6 +310,8 @@
   <ItemGroup>
     <Content Include="bin\Debug\TuProductoOnline.exe" />
     <Content Include="bin\Debug\TuProductoOnline.pdb" />
+    <None Include="Resources\Content.html" />
+    <None Include="Resources\Header.html" />
     <Content Include="Resources\impresora.png" />
     <None Include="Resources\buscar.png" />
     <None Include="Resources\plantillaFactura.html" />

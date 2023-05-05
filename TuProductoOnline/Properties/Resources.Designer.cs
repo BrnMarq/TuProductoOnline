@@ -91,6 +91,38 @@ namespace TuProductoOnline.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Plantilla&lt;/title&gt;
+        ///    &lt;style&gt;
+        ///        td.titulo {
+        ///            background-color: #CACACA;
+        ///            width: 63%;
+        ///            padding: 20px;
+        ///            border: 1px solid black;
+        ///        }
+        ///
+        ///        table.border {
+        ///            border-collapse: collapse;
+        ///        }
+        ///
+        ///            table.border th {
+        ///                padding: 15px;
+        ///                border: 01px solid black;
+        ///            }
+        ///
+        ///            table.border td {
+        ///                padding: 5px;
+        ///          [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string Content {
+            get {
+                return ResourceManager.GetString("Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap deleteIcon {
@@ -137,6 +169,38 @@ namespace TuProductoOnline.Properties {
             get {
                 object obj = ResourceManager.GetObject("EyeIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Plantilla&lt;/title&gt;
+        ///    &lt;style&gt;
+        ///        td.titulo {
+        ///            background-color: #CACACA;
+        ///            width: 63%;
+        ///            padding: 20px;
+        ///            border: 1px solid black;
+        ///        }
+        ///
+        ///        table.border {
+        ///            border-collapse: collapse;
+        ///        }
+        ///
+        ///            table.border th {
+        ///                padding: 15px;
+        ///                border: 01px solid black;
+        ///            }
+        ///
+        ///            table.border td {
+        ///                padding: 5px;
+        ///          [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string Header {
+            get {
+                return ResourceManager.GetString("Header", resourceCulture);
             }
         }
         

@@ -23,7 +23,8 @@ namespace TuProductoOnline.Models
         private string _cajero;
         private string _fecha;
         private string _fechadevencimiento;
-        
+        private double _usd;
+
 
         public Customer Cliente { get; set; }
         public List<Product> ListaProductos { get; set; }
@@ -54,6 +55,7 @@ namespace TuProductoOnline.Models
         public int BillId { get { return _billId; } set { _billId = value; } }
         public string Fecha { get { return _fecha; } set { _fecha = value; } }
         public string Cajero { get { return _cajero; } set { _cajero = value; } }
+        public double Usd { get { return _usd; } set { _usd = value; } }
         public string FechaDeVencimiento { get { return _fechadevencimiento; } set { _fechadevencimiento = value; } }
 
 
