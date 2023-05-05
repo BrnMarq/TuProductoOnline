@@ -165,7 +165,7 @@ namespace TuProductoOnline
             // 
             this.txtPrice.BackColor = System.Drawing.Color.White;
             this.txtPrice.Location = new System.Drawing.Point(32, 453);
-            this.txtPrice.MaxLength = 50;
+            this.txtPrice.MaxLength = 8;
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.ShortcutsEnabled = false;
             this.txtPrice.Size = new System.Drawing.Size(334, 20);
@@ -187,7 +187,7 @@ namespace TuProductoOnline
             // 
             this.txtBrand.BackColor = System.Drawing.Color.White;
             this.txtBrand.Location = new System.Drawing.Point(32, 305);
-            this.txtBrand.MaxLength = 100;
+            this.txtBrand.MaxLength = 50;
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(334, 20);
             this.txtBrand.TabIndex = 2;
@@ -237,7 +237,6 @@ namespace TuProductoOnline
             this.Name = "Edit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Edit_FormClosed);
             this.Load += new System.EventHandler(this.Edit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

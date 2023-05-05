@@ -34,6 +34,7 @@ namespace TuProductoOnline
         private void Main_Load(object sender, EventArgs e)
         {
             User activeUser = User.ActiveUser;
+            OpenChildForm(new Facturacion());
             if (activeUser.Role != "Admin")
             {
                 UsersTab.Visible = false;

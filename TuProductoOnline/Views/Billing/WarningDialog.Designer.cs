@@ -111,6 +111,7 @@
             this.Controls.Add(this.mensajeBox);
             this.Name = "WarningDialog";
             this.Text = "WarningDialog";
+            this.Load += new System.EventHandler(this.WarningDialog_Load);
             this.mensajeBox.ResumeLayout(false);
             this.mensajeBox.PerformLayout();
             this.txtbox.ResumeLayout(false);

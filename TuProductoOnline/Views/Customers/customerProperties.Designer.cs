@@ -212,7 +212,7 @@ namespace TuProductoOnline
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(32, 429);
-            this.txtEmail.MaxLength = 200;
+            this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(337, 22);
             this.txtEmail.TabIndex = 5;
@@ -226,9 +226,9 @@ namespace TuProductoOnline
             this.lblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
             this.lblEmail.Location = new System.Drawing.Point(28, 406);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(53, 20);
+            this.lblEmail.Size = new System.Drawing.Size(63, 20);
             this.lblEmail.TabIndex = 15;
-            this.lblEmail.Text = "Email";
+            this.lblEmail.Text = "Correo";
             // 
             // TitleCustomers
             // 
@@ -251,7 +251,7 @@ namespace TuProductoOnline
             this.TxtNameErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TxtNameErrorlbl.Location = new System.Drawing.Point(30, 90);
             this.TxtNameErrorlbl.Name = "TxtNameErrorlbl";
-            this.TxtNameErrorlbl.Size = new System.Drawing.Size(269, 16);
+            this.TxtNameErrorlbl.Size = new System.Drawing.Size(270, 16);
             this.TxtNameErrorlbl.TabIndex = 18;
             this.TxtNameErrorlbl.Text = "Ingrese el Nombre (Maximo 100 Carácteres)";
             this.TxtNameErrorlbl.Visible = false;
@@ -264,7 +264,7 @@ namespace TuProductoOnline
             this.TxtLastNameErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TxtLastNameErrorlbl.Location = new System.Drawing.Point(32, 164);
             this.TxtLastNameErrorlbl.Name = "TxtLastNameErrorlbl";
-            this.TxtLastNameErrorlbl.Size = new System.Drawing.Size(270, 16);
+            this.TxtLastNameErrorlbl.Size = new System.Drawing.Size(271, 16);
             this.TxtLastNameErrorlbl.TabIndex = 19;
             this.TxtLastNameErrorlbl.Text = "Ingrese el Apellido (Maximo 100 Carácteres)";
             this.TxtLastNameErrorlbl.Visible = false;
@@ -277,7 +277,7 @@ namespace TuProductoOnline
             this.TxtIdErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TxtIdErrorlbl.Location = new System.Drawing.Point(32, 238);
             this.TxtIdErrorlbl.Name = "TxtIdErrorlbl";
-            this.TxtIdErrorlbl.Size = new System.Drawing.Size(256, 16);
+            this.TxtIdErrorlbl.Size = new System.Drawing.Size(257, 16);
             this.TxtIdErrorlbl.TabIndex = 20;
             this.TxtIdErrorlbl.Text = "Ingrese la Cedula (Maximo 20 Carácteres)";
             this.TxtIdErrorlbl.Visible = false;
@@ -290,9 +290,9 @@ namespace TuProductoOnline
             this.TxtPhoneNumberErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TxtPhoneNumberErrorlbl.Location = new System.Drawing.Point(32, 312);
             this.TxtPhoneNumberErrorlbl.Name = "TxtPhoneNumberErrorlbl";
-            this.TxtPhoneNumberErrorlbl.Size = new System.Drawing.Size(267, 16);
+            this.TxtPhoneNumberErrorlbl.Size = new System.Drawing.Size(268, 16);
             this.TxtPhoneNumberErrorlbl.TabIndex = 21;
-            this.TxtPhoneNumberErrorlbl.Text = "Ingrese el Teléfono (Maximo 20 Carácteres)";
+            this.TxtPhoneNumberErrorlbl.Text = "Ingrese el Teléfono (Maximo 15 Carácteres)";
             this.TxtPhoneNumberErrorlbl.Visible = false;
             // 
             // TxtAddressErrorlbl
@@ -303,7 +303,7 @@ namespace TuProductoOnline
             this.TxtAddressErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TxtAddressErrorlbl.Location = new System.Drawing.Point(32, 386);
             this.TxtAddressErrorlbl.Name = "TxtAddressErrorlbl";
-            this.TxtAddressErrorlbl.Size = new System.Drawing.Size(277, 16);
+            this.TxtAddressErrorlbl.Size = new System.Drawing.Size(278, 16);
             this.TxtAddressErrorlbl.TabIndex = 22;
             this.TxtAddressErrorlbl.Text = "Ingrese la Direccion (Maximo 250 Carácteres)";
             this.TxtAddressErrorlbl.Visible = false;
@@ -316,9 +316,9 @@ namespace TuProductoOnline
             this.TxtEmailErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TxtEmailErrorlbl.Location = new System.Drawing.Point(31, 460);
             this.TxtEmailErrorlbl.Name = "TxtEmailErrorlbl";
-            this.TxtEmailErrorlbl.Size = new System.Drawing.Size(261, 16);
+            this.TxtEmailErrorlbl.Size = new System.Drawing.Size(262, 16);
             this.TxtEmailErrorlbl.TabIndex = 23;
-            this.TxtEmailErrorlbl.Text = "Ingrese el Correo (Maximo 200 Carácteres)";
+            this.TxtEmailErrorlbl.Text = "Ingrese el Correo (Maximo 100 Carácteres)";
             this.TxtEmailErrorlbl.Visible = false;
             // 
             // CustomerProperties
