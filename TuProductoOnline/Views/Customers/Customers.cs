@@ -431,7 +431,12 @@ namespace TuProductoOnline.Views
             RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), filtrado));
 
             VerifyButtons();
+        }
+        private void UltimaPagina(List<Customer> customer)
+        {
+            var clientes = ((customer.Where(i => i.Deleted != true).ToList()).Count) / 25;
 
+            double cantidad = Math.Ceiling(Convert.ToDouble(clientes));
         }
     }
 }
