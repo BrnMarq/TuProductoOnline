@@ -6,8 +6,7 @@ using System.Windows.Forms;
 using TuProductoOnline.Models;
 using TuProductoOnline.Utils;
 using System.IO;
-using Microsoft.VisualBasic.Devices;
-using TuProductoOnline.Consts;
+
 
 namespace TuProductoOnline
 {
@@ -20,7 +19,8 @@ namespace TuProductoOnline
         int acum = 1;
         public int maxId = 0;
         public int num_page = 0;
-        private bool BuscarClick = false;
+        private List<Product> Ordenado;       
+        private bool Ascendente = true;
 
         public Products()
         {
@@ -158,8 +158,16 @@ namespace TuProductoOnline
                         
                         // RenderTable();
                     }
-                    filter = Paginar(Convert.ToInt32(lblPag.Text), product);
-                    FilterRender();
+                    if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
+                    {
+                        filter = Paginar(acum, product);
+                        FilterRender();
+                    }
+                    else
+                    {
+                        Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                        SearchFilterRender();
+                    }
                 }
                 if (dgvProducts.Columns[e.ColumnIndex].Name == "Edit")
                 {
@@ -182,8 +190,16 @@ namespace TuProductoOnline
                         MessageBox.Show("Producto editado con exito");                       
                         //RenderTable();
                     }
-                    filter = Paginar(Convert.ToInt32(lblPag.Text), product);
-                    FilterRender();
+                    if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
+                    {
+                        filter = Paginar(acum, product);
+                        FilterRender();
+                    }
+                    else
+                    {
+                        Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                        SearchFilterRender();
+                    }
                 }
                 if (dgvProducts.Columns[e.ColumnIndex].Name == "Consultar")
                 {
@@ -249,7 +265,7 @@ namespace TuProductoOnline
 
         public List<Product> Paginar(int num, List<Product> producto) 
         { 
-            var paginado = producto.Where(i => i.Deleted != true).Skip((num - 1) * 2).Take(2).ToList();
+            var paginado = producto.Where(i => i.Deleted != true).Skip((num - 1) * 20).Take(20).ToList();
             return paginado;
         }
 
@@ -408,8 +424,7 @@ namespace TuProductoOnline
         {
             string pattern = txtSearch.Text.ToLower();
 
-            if (pattern.Length != 0)
-            {
+            
                 acum = 1;
                 btn1.Text = Convert.ToString(acum);
                 btn2.Text = Convert.ToString(acum + 1);
@@ -419,7 +434,7 @@ namespace TuProductoOnline
 
                 btnantes.Enabled = false;
                 btnprimero.Enabled = false;
-            }
+            
             
             
             filter = product.Where(i => i.Deleted != true && i.Name.ToLower().StartsWith(pattern) || i.Id.ToString().ToLower().StartsWith(pattern) || i.Description.ToLower().Trim().Contains(pattern) == true).ToList();
@@ -428,6 +443,68 @@ namespace TuProductoOnline
             btnprimero.Enabled = false;
             btnantes.Enabled = false;
             SearchFilterRender();
+        }
+        public void OrdenarGridAscendente(DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex < 1 || e.ColumnIndex > 4) return;
+
+            List<string> searchParams = new List<string> { "Type", "Name", "Brand", "Description" };
+            string searchParam = searchParams[e.ColumnIndex];
+            int pageNum = Convert.ToInt32(lblPag.Text);
+
+            List<Product> paginated = Paginar(pageNum, filter);
+
+            Ordenado = paginated.OrderBy(l => Searcher(l, searchParam)).ToList();
+
+            foreach (Product f in Ordenado)
+            {
+                int a = dgvProducts.Rows.Add();
+                DataGridViewRow row = dgvProducts.Rows[a];
+                row.Cells[0].Value = f.Id;
+                row.Cells[1].Value = f.Type;
+                row.Cells[2].Value = f.Name;
+                row.Cells[3].Value = f.Brand;
+                row.Cells[4].Value = f.Description;
+                row.Cells[5].Value = f.Price;
+            }
+        }
+
+        public void OrdenarGridDescendente(DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex < 1 || e.ColumnIndex > 3) return;
+
+            List<string> searchParams = new List<string> { "Code", "Name", "PhoneNumber", "Address" };
+            string searchParam = searchParams[e.ColumnIndex];
+            int pageNum = Convert.ToInt32(lblPag.Text);
+
+            List<Product> paginated = Paginar(pageNum, filter);
+
+            Ordenado = paginated.OrderByDescending(l => Searcher(l, searchParam)).ToList();
+
+            foreach (Product f in Ordenado)
+            {
+                int a = dgvProducts.Rows.Add();
+                DataGridViewRow row = dgvProducts.Rows[a];
+                row.Cells[0].Value = f.Id;
+                row.Cells[1].Value = f.Type;
+                row.Cells[2].Value = f.Name;
+                row.Cells[3].Value = f.Brand;
+                row.Cells[4].Value = f.Description;
+                row.Cells[5].Value = f.Price;
+            }
+
+        }
+        public object Searcher(Product product, string searchParam)
+        {
+            return product.GetType().GetProperty(searchParam).GetValue(product, null);
+        }
+        private void dgvCustomers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (Ascendente)
+                OrdenarGridDescendente(e);
+            else
+                OrdenarGridAscendente(e);
+            Ascendente = !Ascendente;
         }
     }
 }
