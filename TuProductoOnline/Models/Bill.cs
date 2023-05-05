@@ -23,7 +23,8 @@ namespace TuProductoOnline.Models
         private string _cajero;
         private string _fecha;
         private string _fechadevencimiento;
-        private double _usd;
+        private string _divisa;
+        private double _divisaPrice;
 
 
         public Customer Cliente { get; set; }
@@ -55,14 +56,9 @@ namespace TuProductoOnline.Models
         public int BillId { get { return _billId; } set { _billId = value; } }
         public string Fecha { get { return _fecha; } set { _fecha = value; } }
         public string Cajero { get { return _cajero; } set { _cajero = value; } }
-        public double Usd { get { return _usd; } set { _usd = value; } }
+        public string Divisa { get { return _divisa; } set { _divisa = value; } }
+        public double DivisaPrice { get { return _divisaPrice; } set { _divisaPrice = value; } }
         public string FechaDeVencimiento { get { return _fechadevencimiento; } set { _fechadevencimiento = value; } }
-
-
-
-        //Metodos.
-
-        //imprimir PDF
 
         ~Bill()
         {

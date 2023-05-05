@@ -1,35 +1,18 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TuProductoOnline.Models;
 using TuProductoOnline.Utils;
-using System.Net.Http.Headers;
 using TuProductoOnline.Consts;
-using System.Reflection.Emit;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
-using iTextSharp.tool.xml;
 using System.IO;
-using System.Runtime.InteropServices.ComTypes;
-using System.Reflection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Net.Http;
+using System.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static iTextSharp.text.pdf.hyphenation.TernaryTree;
-using com.itextpdf.text.pdf;
-using Org.BouncyCastle.Asn1;
-using System.Runtime.InteropServices;
-using iTextSharp.tool.xml.html.table;
-using System.Security.Cryptography;
-using System.Threading;
-using System.Xml.Linq;
-
 
 namespace TuProductoOnline.Views
 {
@@ -39,7 +22,15 @@ namespace TuProductoOnline.Views
         List<List<string>> Clientes = new List<List<string>>(DbHandler.LeerCSV(FileNames.Customers));
         List<List<string>> Productos = new List<List<string>>(DbHandler.LeerCSV(FileNames.Products));
         List<List<string>> ProductosCarrito = new List<List<string>>();
+        DolarToDay DolarToDayAPI = new DolarToDay()
+        {
+             Dolar = new DolarToDay.USD(){},
+             Euro = new DolarToDay.EUR(){},
+             PesosCol = new DolarToDay.COL(){},
+        };
+
         public int contador = 0;
+        double DivisaPrice = 1;
 
         public Facturacion()
         {
@@ -47,8 +38,9 @@ namespace TuProductoOnline.Views
             //Crear Json de registro si no existe.
             bool fileExists = File.Exists(FileNames.BillRegister);
             if (!fileExists) File.Create(FileNames.BillRegister).Close();
+            GetPriceDollar();
             Refield();
-            
+            DivisasBox.SelectedIndex = 0;
         }
 
         private void btnAñadirClient_Click(object sender, EventArgs e)
@@ -69,11 +61,13 @@ namespace TuProductoOnline.Views
                 //compaginar lo obtenido en el selectbox con el index de la lista.
                 int iterador = -1;
                 int Verificadorfalse = 0;
+                int seleccion = 0;
+
                 foreach (List<string> item in Clientes)
                 {
                     iterador++;
                     if (Clientes[iterador][8] == "true") { Verificadorfalse++; }
-                    if (ClientBox1.SelectedIndex == iterador - Verificadorfalse && Clientes[iterador][8] == "false") { break; }
+                    if (ClientBox1.SelectedIndex == iterador - Verificadorfalse && Clientes[iterador][8] == "false") { seleccion = iterador; }
                 }
 
 
@@ -82,9 +76,10 @@ namespace TuProductoOnline.Views
                 BillId = DbHandler.GetNewId(FileNames.BillId),
                 Fecha = DateTime.Now.ToString("dd/MM/yyyy. HH:mm:ss"),
                 FechaDeVencimiento = DateTime.Now.AddDays(15).ToString("dd/MM/yyyy."),
-                Usd = 0,
+                Divisa = DivisasBox.Text,
+                DivisaPrice = DivisaPrice,
 
-                    Cliente = TransformarSeleccionACliente(Clientes[iterador]),
+                    Cliente = TransformarSeleccionACliente(Clientes[seleccion]),
                     ListaProductos = new List<Product>(TransformarCarritoAProducto(ProductosCarrito)) { },
 
             };
@@ -95,7 +90,7 @@ namespace TuProductoOnline.Views
                 List<Bill> BillsRegister = new List<Bill>();
                 try //adquirirfactura
                 {
-                    BillsRegister = JsonSerializer.Deserialize<List<Bill>>(jsonString);
+                    BillsRegister = JsonConvert.DeserializeObject<List<Bill>>(jsonString);
                     BillsRegister.Add(factura);
                 }
                 catch (Exception) //Capturar json vacio.
@@ -103,12 +98,12 @@ namespace TuProductoOnline.Views
                     //Crear y agregar primera dactura a la lista 
                     BillsRegister = new List<Bill>();
                     BillsRegister.Add(factura);
-                    jsonString = JsonSerializer.Serialize(BillsRegister);
-                    BillsRegister = JsonSerializer.Deserialize<List<Bill>>(jsonString);
+                    jsonString = JsonConvert.SerializeObject(BillsRegister);
+                    BillsRegister = JsonConvert.DeserializeObject<List<Bill>>(jsonString);
                     File.WriteAllText(fileName, jsonString);
                 }
                 //guardar Json actualizado.
-                jsonString = JsonSerializer.Serialize(BillsRegister);
+                jsonString = JsonConvert.SerializeObject(BillsRegister);
                 File.WriteAllText(fileName, jsonString);
 
                 //Imprimir Pdf
@@ -123,7 +118,6 @@ namespace TuProductoOnline.Views
                 ProductBox2.SelectedIndex = -1;
                 CantidadBox.Text = "";
             
-
         }
 
         private void ClientBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -199,7 +193,7 @@ namespace TuProductoOnline.Views
 
                 //Agregar al DataGridView
 
-                ProducTable.Rows.Add(ProductosCarrito[contador][0], ProductosCarrito[contador][1], ProductosCarrito[contador][2] + " Bs.S", CantidadBox.Text);
+                ProducTable.Rows.Add(ProductosCarrito[contador][0], ProductosCarrito[contador][1], Math.Round(double.Parse(ProductosCarrito[contador][2])/DivisaPrice, 2).ToString() + DivisasBox.Text, CantidadBox.Text);
 
                 contador++;
                 actualizarPrecio();
@@ -297,6 +291,10 @@ namespace TuProductoOnline.Views
                 }
             }
 
+            DivisasBox.Items.Add(" Bs.S");
+            DivisasBox.Items.Add(" .USD"); 
+            DivisasBox.Items.Add(" .EUR");
+            DivisasBox.Items.Add(" .COP");
 
         }
         
@@ -310,7 +308,7 @@ namespace TuProductoOnline.Views
                 Precio += (double.Parse(item[2]) * double.Parse(item[7]));
             }
 
-            txtSubTotal.Text = Precio.ToString() + " Bs.S";
+            txtSubTotal.Text = Math.Round(Precio / DivisaPrice, 2).ToString() + DivisasBox.Text;
 
             double PrecioIva = 16 * Precio / 100;
             int Verificadorfalse = 0;
@@ -325,7 +323,7 @@ namespace TuProductoOnline.Views
             
             if (Clientes[posicion][7] == "Contribuyente especial") { PrecioFinal = (PrecioIva * 75 / 100) + Precio; } else { PrecioFinal = PrecioIva + Precio;}
             
-            txtTotal.Text = PrecioFinal.ToString() + " Bs.S";
+            txtTotal.Text = Math.Round(PrecioFinal / DivisaPrice, 2).ToString() + DivisasBox.Text;
         }
         
 
@@ -411,8 +409,6 @@ namespace TuProductoOnline.Views
                     double iva = 16;
                     double Total = 0;
                     double TotalSinIVA = 0;
-                    string moneda = " Bs.S";
-                    if (factura.Usd != 0){ moneda = " USD"; }
                     
                     if (factura.Cliente.Type == "Ordinario") { iva = 16; }
 
@@ -432,8 +428,8 @@ namespace TuProductoOnline.Views
                         addCell(TablaBody, item.Name, 1);
                         addCell(TablaBody, item.Description, 1);
                         addCell(TablaBody, iva.ToString(), 1);
-                        addCell(TablaBody, item.Price.ToString() + moneda, 1);
-                        addCell(TablaBody, priceProduct.ToString() + moneda, 1);
+                        addCell(TablaBody, Math.Round(item.Price/factura.DivisaPrice,2).ToString() + factura.Divisa, 1);
+                        addCell(TablaBody, priceProduct.ToString() + factura.Divisa, 1);
 
                         Total += priceProduct;
                         TotalSinIVA += item.Price * double.Parse(item.Amount);
@@ -465,13 +461,13 @@ namespace TuProductoOnline.Views
                     double PrecioFinal = (TotalSinIVA + TotalDelIVA) - MontoExentoDelIVA;
 
                     addCellColor(TablaTotal, "Monto Total Exento o Exonerado del IVA:", 1);
-                    addCell(TablaTotal, MontoExentoDelIVA.ToString() + moneda, 1);
+                    addCell(TablaTotal, Math.Round(MontoExentoDelIVA / factura.DivisaPrice,2).ToString() + factura.Divisa, 1);
 
                     addCellColor(TablaTotal, "Monto Total de la Base Imponible según Alicuota 16,00%:", 1);
-                    addCell(TablaTotal, TotalSinIVA.ToString() + moneda, 1);
+                    addCell(TablaTotal, Math.Round(TotalSinIVA / factura.DivisaPrice,2).ToString() + factura.Divisa, 1);
 
                     addCellColor(TablaTotal, "Monto Total del Impuesto según Alicuota 16, 00 %:", 1);
-                    addCell(TablaTotal, PrecioFinal.ToString() + moneda, 1);
+                    addCell(TablaTotal, Math.Round(PrecioFinal/factura.DivisaPrice,2).ToString() + factura.Divisa, 1);
 
                    
                     facturaPdf.Add(TablaTotal);
@@ -509,6 +505,29 @@ namespace TuProductoOnline.Views
                     table.AddCell(cell);
                 }
             }
+
+
+        }
+
+        public void GetPriceDollar()
+        {
+            
+            using (var client = new HttpClient())
+            {
+                string url = "https://s3.amazonaws.com/dolartoday/data.json";
+
+                client.DefaultRequestHeaders.Clear();
+
+                var response = client.GetAsync(url).Result;
+
+                var res = response.Content.ReadAsStringAsync().Result;
+                dynamic r = JObject.Parse(res);
+                
+                DolarToDayAPI.Dolar.sicad2 = r.USD.sicad2;
+                DolarToDayAPI.Euro.sicad2 = r.EUR.sicad2;
+                DolarToDayAPI.PesosCol.compra = r.COL.compra;
+            }
+            
         }
 
         public void CreateCustomer(List<string> customerValues)
@@ -523,7 +542,49 @@ namespace TuProductoOnline.Views
                 customerValues[7]
                 );
         }
-        
+
+        private void DivisasBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            double precio = 1;
+
+            if (DivisasBox.Text == " Bs.S")
+            {
+                precio = 1;
+            } else if(DivisasBox.Text == " .USD")
+            {
+                precio = DolarToDayAPI.Dolar.sicad2;
+            } else if(DivisasBox.Text == " .EUR")
+            {
+                precio = DolarToDayAPI.Euro.sicad2;
+            }
+            else if (DivisasBox.Text == " .COP")
+            {
+                double a = DolarToDayAPI.PesosCol.compra;
+                precio = 1 / a;
+            }
+
+
+            ProducTable.Rows.Clear();
+            try
+            {
+                int i = 0;
+                foreach (var item in ProductosCarrito)
+                {
+                    ProducTable.Rows.Add(ProductosCarrito[i][0], ProductosCarrito[i][1], Math.Round(double.Parse(ProductosCarrito[i][2]) / precio, 2).ToString() + DivisasBox.Text, ProductosCarrito[i][7]);
+                    i++;
+                }
+                
+                DivisaPrice = precio;
+            }
+            catch (Exception)
+            {
+                throw;
+                
+            }
+            
+            actualizarPrecio();
+           
+        }
     }
 
 
