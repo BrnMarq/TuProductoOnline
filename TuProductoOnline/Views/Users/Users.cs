@@ -18,21 +18,30 @@ namespace TuProductoOnline.Views.Users
 {
     public partial class Users : Form
     {
+        int acum = 1;
         Computer myComputer = new Computer();
+        private readonly List<User> GlobalUsers = User.GetUsers();
+        private bool BuscarClick = false;
 
         public Users()
         {
             InitializeComponent();
         }
-
-        private void dgvCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void Users_Load(object sender, EventArgs e)
         {
-            RenderTable();
+            if(acum == 1) 
+            {
+                btnprimero.Enabled = false;
+                btnantes.Enabled = false;
+            }
+            RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
+
+        }
+        private List<User> Paginar(int num, List<User> users)
+        {
+            var lista = users.Where(i => i.Deleted != true).Skip((num - 1) * 25).Take(25).ToList();
+
+            return lista;
         }
 
         private void btnAddUsers_Click(object sender, EventArgs e)
@@ -76,7 +85,7 @@ namespace TuProductoOnline.Views.Users
                 userValues[5],
                 userValues[6]
             );
-            RenderTable();
+            RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
         }
 
         public void EditUser(List<string> userValues)
@@ -95,7 +104,7 @@ namespace TuProductoOnline.Views.Users
             };
             User.UpdateUser(user.Id, values);
             MessageBox.Show("Usuario editado con exito");
-            RenderTable();
+            RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
         }
 
         public void DeleteUser(int id)
@@ -114,14 +123,13 @@ namespace TuProductoOnline.Views.Users
             };
             User.UpdateUser(user.Id, values);
             MessageBox.Show("Usuario Borrado con exito");
-            RenderTable();
+            RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
         }
 
-        public void RenderTable()
+        public void RenderTable(List<User>users)
         {
             UsersTable.Rows.Clear();
             UsersTable.Refresh();
-            List<User> users = User.GetUsers();
             foreach (User user in users)
             {
                 if (user.Deleted) continue;
@@ -151,7 +159,11 @@ namespace TuProductoOnline.Views.Users
                             user[7].ToString()
                             );
                     }
-                    RenderTable();
+                    if (!BuscarClick) 
+                    {
+                        RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
+                    }
+
                 } catch (Exception)
                 {
                     MessageBox.Show("El archivo que quiere importar no tiene el formato correcto");
@@ -172,6 +184,85 @@ namespace TuProductoOnline.Views.Users
 
             if (saveUsers.ShowDialog() == DialogResult.OK)
                 myComputer.FileSystem.CopyFile(origen, saveUsers.FileName);
+        }
+
+        private void btnsiguiente_Click(object sender, EventArgs e)
+        {
+            acum += 1;
+            lblPag.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            if (!BuscarClick)
+                RenderTable(Paginar(acum, GlobalUsers));
+
+        }
+
+        private void btnprimero_Click(object sender, EventArgs e)
+        {
+            lblPag.Text = "1";
+            acum = 1;
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = false;
+            btnantes.Enabled = false;
+            if (!BuscarClick)
+                RenderTable(Paginar(acum, GlobalUsers));
+        }
+
+        private void btnantes_Click(object sender, EventArgs e)
+        {
+            acum -= 1;
+            lblPag.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            if (acum == 1) 
+            {
+                btnprimero.Enabled = false;
+                btnantes.Enabled = false;
+            }
+            if (!BuscarClick)
+                RenderTable(Paginar(acum, GlobalUsers));
+        }
+
+        private void btn2_Click(object sender, EventArgs e)
+        {
+            btnsiguiente_Click(sender, e);
+        }
+
+        private void btn3_Click(object sender, EventArgs e)
+        {
+            acum += 2;
+            lblPag.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            if (!BuscarClick)
+                RenderTable(Paginar(acum, GlobalUsers));
+        }
+
+        private void btn4_Click(object sender, EventArgs e)
+        {
+            acum += 3;
+            lblPag.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            if (!BuscarClick)
+                RenderTable(Paginar(acum, GlobalUsers));
         }
     }
 }

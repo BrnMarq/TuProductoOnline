@@ -429,7 +429,7 @@ namespace TuProductoOnline.Views
                         addCell(TablaBody, item.Description, 1);
                         addCell(TablaBody, iva.ToString(), 1);
                         addCell(TablaBody, Math.Round(item.Price/factura.DivisaPrice,2).ToString() + factura.Divisa, 1);
-                        addCell(TablaBody, priceProduct.ToString() + factura.Divisa, 1);
+                        addCell(TablaBody, Math.Round(priceProduct / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
 
                         Total += priceProduct;
                         TotalSinIVA += item.Price * double.Parse(item.Amount);
