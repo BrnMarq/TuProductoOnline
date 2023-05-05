@@ -141,7 +141,6 @@ namespace TuProductoOnline
                     confirm.ShowDialog();
                     if (confirm.Clic == true)
                     {
-                        btnRefresh.Visible = false;
                         Product pro = Product.GetProductById(int.Parse(id));
                         List<string> productValues = new List<string>
                     {
@@ -168,7 +167,6 @@ namespace TuProductoOnline
                     edit.ShowDialog();
                     if (edit.Clic)
                     {
-                        btnRefresh.Visible = false;
                         List<string> productValues = new List<string>
                     {
                         id,
@@ -245,44 +243,9 @@ namespace TuProductoOnline
             }
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            if ( !string.IsNullOrEmpty(txtSearch.Text.Trim()))
-            {
-                dgvProducts.Rows.Clear();
-                filter = product.Where
-                    (x => (x.Name.ToLower() == txtSearch.Text.ToLower().Trim()
-                    || x.Id.ToString() == txtSearch.Text
-                    || x.Description.ToLower().Contains(txtSearch.Text.ToLower().Trim()) == true)
-                    && x.Deleted != true).ToList();
-
-                txtSearch.Clear();
-                if (filter.Count != 0)
-                {
-                    btnRefresh.Visible = true;
-                    lblPag.Text = "1";
-                    num_page = Convert.ToInt32(lblPag.Text);
-                    Searchfilter = Paginar(num_page, filter);
-                    SearchFilterRender();
-                }
-                else
-                {
-                    MessageBox.Show("Lo que está buscando no se encuentra en el sistema");
-                    filter = Paginar(num_page, product);
-                    FilterRender();
-                }
-            }
-        }
         
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            
-            lblPag.Text = "1";
-            num_page = Convert.ToInt32(lblPag.Text);
-            filter = Paginar(num_page, product);
-            FilterRender();
-            btnRefresh.Visible = false;
-        }
+        
+      
 
         public List<Product> Paginar(int num, List<Product> producto) 
         { 
@@ -332,9 +295,16 @@ namespace TuProductoOnline
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!BuscarClick)
+            if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
+            {
                 filter = Paginar(acum, product);
                 FilterRender();
+            }
+            else
+            {
+                Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                SearchFilterRender();
+            }
         }
 
         private void btnprimero_Click(object sender, EventArgs e)
@@ -347,9 +317,16 @@ namespace TuProductoOnline
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = false;
             btnantes.Enabled = false;
-            if (!BuscarClick)
+            if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
+            {
                 filter = Paginar(acum, product);
                 FilterRender();
+            }
+            else
+            {
+                Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                SearchFilterRender();
+            }
         }
 
         private void btnantes_Click(object sender, EventArgs e)
@@ -365,9 +342,16 @@ namespace TuProductoOnline
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
             }
-            if (!BuscarClick)
+            if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
+            {
                 filter = Paginar(acum, product);
-                 FilterRender();
+                FilterRender();
+            }
+            else
+            {
+                Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                SearchFilterRender();
+            }
         }
 
         private void btn2_Click(object sender, EventArgs e)
@@ -385,9 +369,17 @@ namespace TuProductoOnline
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!BuscarClick)
+            if (string.IsNullOrEmpty(txtSearch.Text.Trim())) 
+            {
                 filter = Paginar(acum, product);
                 FilterRender();
+            }
+            else 
+            {
+                Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                SearchFilterRender();
+            }
+                
         }
 
         private void btn4_Click(object sender, EventArgs e)
@@ -400,9 +392,42 @@ namespace TuProductoOnline
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!BuscarClick)
+            if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
+            {
                 filter = Paginar(acum, product);
                 FilterRender();
+            }
+            else
+            {
+                Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                SearchFilterRender();
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string pattern = txtSearch.Text.ToLower();
+
+            if (pattern.Length != 0)
+            {
+                acum = 1;
+                btn1.Text = Convert.ToString(acum);
+                btn2.Text = Convert.ToString(acum + 1);
+                btn3.Text = Convert.ToString(acum + 2);
+                btn4.Text = Convert.ToString(acum + 3);
+                lblPag.Text = "1";
+
+                btnantes.Enabled = false;
+                btnprimero.Enabled = false;
+            }
+            
+            
+            filter = product.Where(i => i.Deleted != true && i.Name.ToLower().StartsWith(pattern) || i.Id.ToString().ToLower().StartsWith(pattern) || i.Description.ToLower().Trim().Contains(pattern) == true).ToList();
+
+            Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+            btnprimero.Enabled = false;
+            btnantes.Enabled = false;
+            SearchFilterRender();
         }
     }
 }
