@@ -20,8 +20,7 @@ namespace TuProductoOnline.Views.Users
     {
         int acum = 1;
         Computer myComputer = new Computer();
-        private readonly List<User> GlobalUsers = User.GetUsers();
-        private List<User> UsersFiltrados;
+        private readonly List<User> GlobalUsers= User.GetUsers();
         private bool BuscarClick = false;
 
         public Users()
@@ -164,11 +163,7 @@ namespace TuProductoOnline.Views.Users
                     {
                         RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
                     }
-                    else 
-                    {
-                        RenderTable(Paginar(Convert.ToInt32(lblPag.Text), UsersFiltrados));
 
-                    }
                 } catch (Exception)
                 {
                     MessageBox.Show("El archivo que quiere importar no tiene el formato correcto");
@@ -203,8 +198,7 @@ namespace TuProductoOnline.Views.Users
             btnantes.Enabled = true;
             if (!BuscarClick)
                 RenderTable(Paginar(acum, GlobalUsers));
-            else
-                RenderTable(Paginar(acum, UsersFiltrados));
+
         }
 
         private void btnprimero_Click(object sender, EventArgs e)
@@ -219,8 +213,6 @@ namespace TuProductoOnline.Views.Users
             btnantes.Enabled = false;
             if (!BuscarClick)
                 RenderTable(Paginar(acum, GlobalUsers));
-            else
-                RenderTable(Paginar(acum, UsersFiltrados));
 
         }
 
@@ -239,8 +231,6 @@ namespace TuProductoOnline.Views.Users
             }
             if (!BuscarClick)
                 RenderTable(Paginar(acum, GlobalUsers));
-            else
-                RenderTable(Paginar(acum, UsersFiltrados));
 
         }
 
@@ -259,6 +249,8 @@ namespace TuProductoOnline.Views.Users
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
+            if (!BuscarClick)
+                RenderTable(Paginar(acum, GlobalUsers));
         }
 
         private void btn4_Click(object sender, EventArgs e)
@@ -271,6 +263,8 @@ namespace TuProductoOnline.Views.Users
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
+            if (!BuscarClick)
+                RenderTable(Paginar(acum, GlobalUsers));
         }
     }
 }

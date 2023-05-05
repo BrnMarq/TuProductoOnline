@@ -86,7 +86,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Utils\Paginacion.cs" />
     <Compile Include="Views\Billing\PageEventHelper.cs" />
     <Compile Include="Views\Products\ConfirmDelete.cs">
       <SubType>Form</SubType>
