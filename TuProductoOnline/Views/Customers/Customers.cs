@@ -24,8 +24,9 @@ namespace TuProductoOnline.Views
         private readonly List<Customer> GlobalCustomers = Customer.GetCustomers();
         private List<Customer> CustomersFiltrados;
         private List<Customer> Ordenado;
-        private bool BuscarClick = false;
+        private bool Buscar = false;
         private bool Ascendente = true;
+        private int CustomerForPage = 25;
         public CustomersView()
         {
             InitializeComponent();
@@ -213,7 +214,7 @@ namespace TuProductoOnline.Views
 
                 MessageBox.Show("Clientes importados con éxito");
 
-                if (!BuscarClick)
+                if (!Buscar)
                     RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
                 else
                     RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), CustomersFiltrados));
@@ -230,13 +231,13 @@ namespace TuProductoOnline.Views
             {
                 if (saveCustomer.ShowDialog() == DialogResult.OK)
                 {
-                    myComputer.FileSystem.CopyFile(origen, saveCustomer.FileName + ".csv");
+                    myComputer.FileSystem.CopyFile(origen, saveCustomer.FileName + ".csv", true);
                     MessageBox.Show("Clientes exportados con éxito");
                 }
             }
             catch (Exception)
             {
-                DialogResult replace = MessageBox.Show("Ya existe un archivo con este nombre. ¿Desea reemplazarlo?", "Reemplazar", MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+                DialogResult replace = MessageBox.Show("Ya existe un archivo con este nombre. ¿Desea reemplazarlo?", "Reemplazar", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
                 if (replace == DialogResult.OK)
                 {
@@ -247,63 +248,9 @@ namespace TuProductoOnline.Views
             }
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            int result;
-            BuscarClick = true;
-            
-
-            if(int.TryParse(txtSearch.Text,out result))
-            {
-                var customer = GlobalCustomers.Where(i => i.Code == result).ToList();
-                if (customer.Count == 0 || customer[0].Deleted)
-                {
-                    MessageBox.Show("No existe un cliente con ese ID");
-                    txtSearch.Text = "";
-                    BuscarClick = false;
-                    return;
-                }
-                else
-                {
-                    lblPageNum.Text = "1";
-                    CustomersFiltrados = customer;
-                    RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), customer));
-                }
-            }
-            else
-            {
-                var customer = GlobalCustomers.Where(i => i.Name == txtSearch.Text && i.Deleted != true).ToList();
-                if (customer.Count == 0)
-                {
-                    MessageBox.Show("No existe un cliente con ese nombre");
-                    txtSearch.Text = "";
-                    BuscarClick = false;
-                    return;
-                }
-                else
-                {
-                    lblPageNum.Text = "1";
-                    CustomersFiltrados = customer;
-                    RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), customer));
-                }
-            }
-
-            btnRefresh.Visible = true;
-            txtSearch.Text = "";          
-        }
-
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            lblPageNum.Text = "1";
-            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
-            btnRefresh.Visible = false;
-            BuscarClick = false;
-            txtSearch.Text = "";
-        }
-
         private List<Customer> Paginar(int num,List<Customer> customers)
         {
-            var lista = customers.Where(i => i.Deleted != true).Skip((num - 1) * 10).Take(10).ToList();
+            var lista = customers.Where(i => i.Deleted != true).Skip((num - 1) * CustomerForPage).Take(CustomerForPage).ToList();
 
             return lista;
         }
@@ -311,75 +258,68 @@ namespace TuProductoOnline.Views
 
         public void OrdenarGridAscendente(DataGridViewCellMouseEventArgs e)
         {
-            if (e.ColumnIndex == 0)
-            {
-                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers).OrderBy(l => l.Code).ToList();
-                RenderTable(Ordenado);
-            }
-            else if (e.ColumnIndex == 1)
-            {
-                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers).OrderBy(l => l.Name).ToList();
-                RenderTable(Ordenado);
-            }
-            else if (e.ColumnIndex == 2)
-            {
-                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers).OrderBy(l => l.PhoneNumber).ToList();
-                RenderTable(Ordenado);
-            }
-            else if (e.ColumnIndex == 3)
-            {
-                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers).OrderBy(l => l.Address).ToList();
-                RenderTable(Ordenado);
-            }
+            if (e.ColumnIndex < 0 || e.ColumnIndex > 3) return;
+
+            List<string> searchParams = new List<string> { "Code", "Name", "PhoneNumber", "Address" };
+            string searchParam = searchParams[e.ColumnIndex];
+            int pageNum = Convert.ToInt32(lblPageNum.Text);
+
+            List<Customer> paginated = Paginar(pageNum, GlobalCustomers);
+
+            Ordenado = paginated.OrderBy(l => Searcher(l,searchParam)).ToList();
+
+            RenderTable(Ordenado);
         }
 
         public void OrdenarGridDescendente(DataGridViewCellMouseEventArgs e)
         {
-            if (e.ColumnIndex == 0)
-            {
-                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers).OrderByDescending(l => l.Code).ToList();
-                RenderTable(Ordenado);
-            }
-            else if (e.ColumnIndex == 1)
-            {
-                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers).OrderByDescending(l => l.Name).ToList();
-                RenderTable(Ordenado);
-            }
-            else if (e.ColumnIndex == 2)
-            {
-                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers).OrderByDescending(l => l.PhoneNumber).ToList();
-                RenderTable(Ordenado);
-            }
-            else if (e.ColumnIndex == 3)
-            {
-                Ordenado = Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers).OrderByDescending(l => l.Address).ToList();
-                RenderTable(Ordenado);
-            }
+            if (e.ColumnIndex < 0 || e.ColumnIndex > 3) return;
+
+            List<string> searchParams = new List<string> { "Code", "Name", "PhoneNumber", "Address" };
+            string searchParam = searchParams[e.ColumnIndex];
+            int pageNum = Convert.ToInt32(lblPageNum.Text);
+
+            List<Customer> paginated = Paginar(pageNum, GlobalCustomers);
+
+            Ordenado = paginated.OrderByDescending(l => Searcher(l,searchParam)).ToList();
+
+            RenderTable(Ordenado);
+
+        }
+        public object Searcher(Customer customer,string searchParam)
+        {
+            return customer.GetType().GetProperty(searchParam).GetValue(customer, null);
         }
         private void dgvCustomers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (Ascendente){OrdenarGridDescendente(e);}
-            else {OrdenarGridAscendente(e); }
+            if (Ascendente) 
+                OrdenarGridDescendente(e);
+            else 
+                OrdenarGridAscendente(e); 
             Ascendente = !Ascendente;
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string pattern = txtSearch.Text.ToLower();
+            Buscar = true;
 
             if (pattern.Length != 0)
             {
                 lblPageNum.Text = "1";
-                btnRefresh.Visible = true;
+                acum = 1;
+                btn1.Text = Convert.ToString(acum);
+                btn2.Text = Convert.ToString(acum + 1);
+                btn3.Text = Convert.ToString(acum + 2);
+                btn4.Text = Convert.ToString(acum + 3);
+                btnprimero.Enabled = false;
+                btnantes.Enabled = false;
             }
-            else
-            {
-                btnRefresh.Visible = false;
-            }
-
+                
             var filtrado = GlobalCustomers.Where(i => i.Deleted != true && i.Name.ToLower().StartsWith(pattern) || i.Code.ToString().ToLower().StartsWith(pattern)).ToList();
+            CustomersFiltrados = filtrado;
 
-            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), filtrado));
+            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), CustomersFiltrados));
         }
         private void btnprimero_Click(object sender, EventArgs e)
         {
@@ -391,8 +331,10 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = false;
             btnantes.Enabled = false;
-            if (!BuscarClick)
+            if (!Buscar)
                 RenderTable(Paginar(acum, GlobalCustomers));
+            else
+                RenderTable(Paginar(acum, CustomersFiltrados));
         }
 
         private void btnantes_Click(object sender, EventArgs e)
@@ -408,8 +350,10 @@ namespace TuProductoOnline.Views
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
             }
-            if (!BuscarClick)
+            if (!Buscar)
                 RenderTable(Paginar(acum, GlobalCustomers));
+            else
+                RenderTable(Paginar(acum, CustomersFiltrados));
         }
 
         private void btn2_Click(object sender, EventArgs e)
@@ -427,8 +371,10 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!BuscarClick)
+            if (!Buscar)
                 RenderTable(Paginar(acum, GlobalCustomers));
+            else
+                RenderTable(Paginar(acum, CustomersFiltrados));
         }
 
         private void btn4_Click(object sender, EventArgs e)
@@ -441,8 +387,10 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!BuscarClick)
+            if (!Buscar)
                 RenderTable(Paginar(acum, GlobalCustomers));
+            else
+                RenderTable(Paginar(acum, CustomersFiltrados));
         }
 
         private void btnsiguiente_Click(object sender, EventArgs e)
@@ -455,8 +403,29 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!BuscarClick)
+            if (!Buscar)
                 RenderTable(Paginar(acum, GlobalCustomers));
+            else
+                RenderTable(Paginar(acum, CustomersFiltrados));
+        }
+
+        private int LastPage(List<Customer> customers)
+        {
+            var numClientes = (float) (customers.Where(i => i.Deleted != true).ToList().Count)/CustomerForPage;
+
+            double numPaginas = Math.Ceiling(numClientes);
+
+            if (numPaginas < numClientes)
+                numPaginas++;
+
+            return (int) numPaginas;
+        }
+
+        private void btnultimo_Click(object sender, EventArgs e)
+        {
+            int lastPage = LastPage(GlobalCustomers);
+            RenderTable(Paginar(lastPage, GlobalCustomers));
+            lblPageNum.Text = lastPage.ToString();
         }
     }
 }
