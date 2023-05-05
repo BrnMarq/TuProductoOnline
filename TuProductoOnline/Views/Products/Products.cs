@@ -6,20 +6,21 @@ using System.Windows.Forms;
 using TuProductoOnline.Models;
 using TuProductoOnline.Utils;
 using System.IO;
-using Microsoft.VisualBasic.Devices;
-using TuProductoOnline.Consts;
+
 
 namespace TuProductoOnline
 {
 
     public partial class Products : Form
     {
-        public List<Product> product = new List<Product>();
+        private List<Product> product = new List<Product>();
         public List<Product> filter = new List<Product>();
         public List<Product> Searchfilter = new List<Product>();
-        Computer myComputer = new Computer();
+        int acum = 1;
         public int maxId = 0;
         public int num_page = 0;
+        private List<Product> Ordenado;       
+        private bool Ascendente = true;
 
         public Products()
         {
@@ -36,35 +37,28 @@ namespace TuProductoOnline
                 new Product(add.Alias, add.Price, add.Brand, add.Description, add.Type);
                 filter = Paginar(num_page, product);
                 FilterRender();
-                //RenderTable();
                 maxId++;
             }
         }
 
         private void Products_Load(object sender, EventArgs e)
         {
-            lblPageNum.Text = "1";
-            num_page = Convert.ToInt32(lblPageNum.Text);
-            btnBack.Visible = false;
-            
+            lblPag.Text = "1";
+            num_page = Convert.ToInt32(lblPag.Text);
             // Se Habilitan o deshabilitan los botones según el rol que tenga el usuario.
 
             product = Product.GetProducts();
             maxId = product.Count();
-            //RenderTable();
-
-            var filter = Paginar(num_page, product);
-            foreach (Product f in filter)
+            if (acum == 1)
             {
-                int a = dgvProducts.Rows.Add();
-                DataGridViewRow row = dgvProducts.Rows[a];
-                row.Cells[0].Value = f.Id;
-                row.Cells[1].Value = f.Type;
-                row.Cells[2].Value = f.Name;
-                row.Cells[3].Value = f.Brand;
-                row.Cells[4].Value = f.Description;
-                row.Cells[5].Value = f.Price;
+                btnprimero.Enabled = false;
+                btnantes.Enabled = false;
+               
             }
+            filter = Paginar(Convert.ToInt32(lblPag.Text), product);
+            FilterRender();
+
+           
 
             User activeUser = User.ActiveUser;
             if (activeUser.Role == "Admin") return;
@@ -121,7 +115,7 @@ namespace TuProductoOnline
                 File.WriteAllLines(sfd.FileName, filas);
 
             }
-            filter = Paginar(num_page, product);
+            filter = Paginar(Convert.ToInt32(lblPag.Text), product);
             FilterRender();
         }
 
@@ -147,7 +141,6 @@ namespace TuProductoOnline
                     confirm.ShowDialog();
                     if (confirm.Clic == true)
                     {
-                        btnRefresh.Visible = false;
                         Product pro = Product.GetProductById(int.Parse(id));
                         List<string> productValues = new List<string>
                     {
@@ -165,8 +158,16 @@ namespace TuProductoOnline
                         
                         // RenderTable();
                     }
-                    filter = Paginar(num_page, product);
-                    FilterRender();
+                    if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
+                    {
+                        filter = Paginar(acum, product);
+                        FilterRender();
+                    }
+                    else
+                    {
+                        Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                        SearchFilterRender();
+                    }
                 }
                 if (dgvProducts.Columns[e.ColumnIndex].Name == "Edit")
                 {
@@ -174,7 +175,6 @@ namespace TuProductoOnline
                     edit.ShowDialog();
                     if (edit.Clic)
                     {
-                        btnRefresh.Visible = false;
                         List<string> productValues = new List<string>
                     {
                         id,
@@ -190,8 +190,16 @@ namespace TuProductoOnline
                         MessageBox.Show("Producto editado con exito");                       
                         //RenderTable();
                     }
-                    filter = Paginar(num_page, product);
-                    FilterRender();
+                    if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
+                    {
+                        filter = Paginar(acum, product);
+                        FilterRender();
+                    }
+                    else
+                    {
+                        Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                        SearchFilterRender();
+                    }
                 }
                 if (dgvProducts.Columns[e.ColumnIndex].Name == "Consultar")
                 {
@@ -229,9 +237,8 @@ namespace TuProductoOnline
                         );
                     }
 
-                    filter = Paginar(num_page, product);
+                    filter = Paginar(Convert.ToInt32(lblPag.Text), product);
                     FilterRender();
-                    // RenderTable();
                 }
                 catch (Exception ex) 
                 { 
@@ -252,115 +259,13 @@ namespace TuProductoOnline
             }
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            if ( !string.IsNullOrEmpty(txtSearch.Text.Trim()))
-            {
-                dgvProducts.Rows.Clear();
-                filter = product.Where
-                    (x => (x.Name.ToLower() == txtSearch.Text.ToLower().Trim()
-                    || x.Id.ToString() == txtSearch.Text
-                    || x.Description.ToLower().Contains(txtSearch.Text.ToLower().Trim()) == true)
-                    && x.Deleted != true).ToList();
-
-                txtSearch.Clear();
-                if (filter.Count != 0)
-                {
-                    btnBack.Visible = false;
-                    btnRefresh.Visible = true;
-                    lblPageNum.Text = "1";
-                    num_page = Convert.ToInt32(lblPageNum.Text);
-                    Searchfilter = Paginar(num_page, filter);
-                    SearchFilterRender();
-                    
-                }
-                else
-                {
-                    MessageBox.Show("Lo que está buscando no se encuentra en el sistema");
-                    filter = Paginar(num_page, product);
-                    FilterRender();
-                    //RenderTable();
-                }
-
-                
-            }
-            
-            
-        }
         
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            
-            lblPageNum.Text = "1";
-            num_page = Convert.ToInt32(lblPageNum.Text);
-            if (num_page == 1)
-            {
-                btnBack.Visible = false;
-            }
-            filter = Paginar(num_page, product);
-            FilterRender();
-            btnRefresh.Visible = false;
-            btnNext.Visible = true;
-        }
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            dgvProducts.Rows.Clear();
-            num_page = num_page + 1;
-            lblPageNum.Text = num_page.ToString();
-            if (btnRefresh.Visible == true)
-            {
-                Searchfilter = Paginar(num_page, filter);
-                SearchFilterRender();
-            }
-            else
-            {
-                filter = Paginar(num_page, product);
-                FilterRender();
-            }
-            //filter = Paginar(num_page, product);
-            if (num_page == 1)
-            {
-                btnBack.Visible = false;
-            }
-            btnBack.Visible = true;
-            if (dgvProducts.RowCount < 2)
-            {
-                btnNext.Visible = false;
-            }
-            else 
-            {
-                btnNext.Visible = true;
-            }
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            btnNext.Visible = true;
-            dgvProducts.Rows.Clear();
-            num_page = num_page - 1;
-            lblPageNum.Text = num_page.ToString();
-            if (btnRefresh.Visible == true)
-            {
-                Searchfilter = Paginar(num_page, filter);
-                SearchFilterRender();
-            }
-            else
-            {
-                filter = Paginar(num_page, product);
-                FilterRender();
-            }
-            if (num_page == 1)
-            {
-                btnBack.Visible = false;
-            }
-
-            
-        }
+        
+      
 
         public List<Product> Paginar(int num, List<Product> producto) 
         { 
-            var paginado = producto.Where(i => i.Deleted != true).Skip((num - 1) * 2).Take(2).ToList();
+            var paginado = producto.Where(i => i.Deleted != true).Skip((num - 1) * 20).Take(20).ToList();
             return paginado;
         }
 
@@ -394,6 +299,212 @@ namespace TuProductoOnline
                 row.Cells[4].Value = f.Description;
                 row.Cells[5].Value = f.Price;
             }
+        }
+
+        private void btnsiguiente_Click(object sender, EventArgs e)
+        {
+            acum += 1;
+            lblPag.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
+            {
+                filter = Paginar(acum, product);
+                FilterRender();
+            }
+            else
+            {
+                Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                SearchFilterRender();
+            }
+        }
+
+        private void btnprimero_Click(object sender, EventArgs e)
+        {
+            lblPag.Text = "1";
+            acum = 1;
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = false;
+            btnantes.Enabled = false;
+            if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
+            {
+                filter = Paginar(acum, product);
+                FilterRender();
+            }
+            else
+            {
+                Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                SearchFilterRender();
+            }
+        }
+
+        private void btnantes_Click(object sender, EventArgs e)
+        {
+            acum -= 1;
+            lblPag.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            if (acum == 1)
+            {
+                btnprimero.Enabled = false;
+                btnantes.Enabled = false;
+            }
+            if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
+            {
+                filter = Paginar(acum, product);
+                FilterRender();
+            }
+            else
+            {
+                Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                SearchFilterRender();
+            }
+        }
+
+        private void btn2_Click(object sender, EventArgs e)
+        {
+            btnsiguiente_Click(sender, e);
+        }
+
+        private void btn3_Click(object sender, EventArgs e)
+        {
+            acum += 2;
+            lblPag.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            if (string.IsNullOrEmpty(txtSearch.Text.Trim())) 
+            {
+                filter = Paginar(acum, product);
+                FilterRender();
+            }
+            else 
+            {
+                Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                SearchFilterRender();
+            }
+                
+        }
+
+        private void btn4_Click(object sender, EventArgs e)
+        {
+            acum += 3;
+            lblPag.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
+            {
+                filter = Paginar(acum, product);
+                FilterRender();
+            }
+            else
+            {
+                Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                SearchFilterRender();
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string pattern = txtSearch.Text.ToLower();
+
+            
+                acum = 1;
+                btn1.Text = Convert.ToString(acum);
+                btn2.Text = Convert.ToString(acum + 1);
+                btn3.Text = Convert.ToString(acum + 2);
+                btn4.Text = Convert.ToString(acum + 3);
+                lblPag.Text = "1";
+
+                btnantes.Enabled = false;
+                btnprimero.Enabled = false;
+            
+            
+            
+            filter = product.Where(i => i.Deleted != true && i.Name.ToLower().StartsWith(pattern) || i.Id.ToString().ToLower().StartsWith(pattern) || i.Description.ToLower().Trim().Contains(pattern) == true).ToList();
+
+            Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+            btnprimero.Enabled = false;
+            btnantes.Enabled = false;
+            SearchFilterRender();
+        }
+        public void OrdenarGridAscendente(DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex < 1 || e.ColumnIndex > 4) return;
+
+            List<string> searchParams = new List<string> { "Type", "Name", "Brand", "Description" };
+            string searchParam = searchParams[e.ColumnIndex];
+            int pageNum = Convert.ToInt32(lblPag.Text);
+
+            List<Product> paginated = Paginar(pageNum, filter);
+
+            Ordenado = paginated.OrderBy(l => Searcher(l, searchParam)).ToList();
+
+            foreach (Product f in Ordenado)
+            {
+                int a = dgvProducts.Rows.Add();
+                DataGridViewRow row = dgvProducts.Rows[a];
+                row.Cells[0].Value = f.Id;
+                row.Cells[1].Value = f.Type;
+                row.Cells[2].Value = f.Name;
+                row.Cells[3].Value = f.Brand;
+                row.Cells[4].Value = f.Description;
+                row.Cells[5].Value = f.Price;
+            }
+        }
+
+        public void OrdenarGridDescendente(DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex < 1 || e.ColumnIndex > 3) return;
+
+            List<string> searchParams = new List<string> { "Code", "Name", "PhoneNumber", "Address" };
+            string searchParam = searchParams[e.ColumnIndex];
+            int pageNum = Convert.ToInt32(lblPag.Text);
+
+            List<Product> paginated = Paginar(pageNum, filter);
+
+            Ordenado = paginated.OrderByDescending(l => Searcher(l, searchParam)).ToList();
+
+            foreach (Product f in Ordenado)
+            {
+                int a = dgvProducts.Rows.Add();
+                DataGridViewRow row = dgvProducts.Rows[a];
+                row.Cells[0].Value = f.Id;
+                row.Cells[1].Value = f.Type;
+                row.Cells[2].Value = f.Name;
+                row.Cells[3].Value = f.Brand;
+                row.Cells[4].Value = f.Description;
+                row.Cells[5].Value = f.Price;
+            }
+
+        }
+        public object Searcher(Product product, string searchParam)
+        {
+            return product.GetType().GetProperty(searchParam).GetValue(product, null);
+        }
+        private void dgvCustomers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (Ascendente)
+                OrdenarGridDescendente(e);
+            else
+                OrdenarGridAscendente(e);
+            Ascendente = !Ascendente;
         }
     }
 }
