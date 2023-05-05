@@ -17,9 +17,10 @@ namespace TuProductoOnline
         public List<Product> product = new List<Product>();
         public List<Product> filter = new List<Product>();
         public List<Product> Searchfilter = new List<Product>();
-        Computer myComputer = new Computer();
+        int acum = 1;
         public int maxId = 0;
         public int num_page = 0;
+        private bool BuscarClick = false;
 
         public Products()
         {
@@ -52,19 +53,16 @@ namespace TuProductoOnline
             product = Product.GetProducts();
             maxId = product.Count();
             //RenderTable();
-
-            var filter = Paginar(num_page, product);
-            foreach (Product f in filter)
+            if (acum == 1)
             {
-                int a = dgvProducts.Rows.Add();
-                DataGridViewRow row = dgvProducts.Rows[a];
-                row.Cells[0].Value = f.Id;
-                row.Cells[1].Value = f.Type;
-                row.Cells[2].Value = f.Name;
-                row.Cells[3].Value = f.Brand;
-                row.Cells[4].Value = f.Description;
-                row.Cells[5].Value = f.Price;
+                btnprimero.Enabled = false;
+                btnantes.Enabled = false;
+               
             }
+            filter = Paginar(Convert.ToInt32(lblPag.Text), product);
+            FilterRender();
+
+           
 
             User activeUser = User.ActiveUser;
             if (activeUser.Role == "Admin") return;
@@ -121,7 +119,7 @@ namespace TuProductoOnline
                 File.WriteAllLines(sfd.FileName, filas);
 
             }
-            filter = Paginar(num_page, product);
+            filter = Paginar(Convert.ToInt32(lblPag.Text), product);
             FilterRender();
         }
 
@@ -165,7 +163,7 @@ namespace TuProductoOnline
                         
                         // RenderTable();
                     }
-                    filter = Paginar(num_page, product);
+                    filter = Paginar(Convert.ToInt32(lblPag.Text), product);
                     FilterRender();
                 }
                 if (dgvProducts.Columns[e.ColumnIndex].Name == "Edit")
@@ -190,7 +188,7 @@ namespace TuProductoOnline
                         MessageBox.Show("Producto editado con exito");                       
                         //RenderTable();
                     }
-                    filter = Paginar(num_page, product);
+                    filter = Paginar(Convert.ToInt32(lblPag.Text), product);
                     FilterRender();
                 }
                 if (dgvProducts.Columns[e.ColumnIndex].Name == "Consultar")
@@ -229,7 +227,7 @@ namespace TuProductoOnline
                         );
                     }
 
-                    filter = Paginar(num_page, product);
+                    filter = Paginar(Convert.ToInt32(lblPag.Text), product);
                     FilterRender();
                     // RenderTable();
                 }
@@ -394,6 +392,89 @@ namespace TuProductoOnline
                 row.Cells[4].Value = f.Description;
                 row.Cells[5].Value = f.Price;
             }
+        }
+
+        private void btnsiguiente_Click(object sender, EventArgs e)
+        {
+            acum += 1;
+            lblPag.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            if (!BuscarClick)
+                filter = Paginar(acum, product);
+                FilterRender();
+        }
+
+        private void btnprimero_Click(object sender, EventArgs e)
+        {
+            lblPag.Text = "1";
+            acum = 1;
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = false;
+            btnantes.Enabled = false;
+            if (!BuscarClick)
+                filter = Paginar(acum, product);
+                FilterRender();
+        }
+
+        private void btnantes_Click(object sender, EventArgs e)
+        {
+            acum -= 1;
+            lblPag.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            if (acum == 1)
+            {
+                btnprimero.Enabled = false;
+                btnantes.Enabled = false;
+            }
+            if (!BuscarClick)
+                filter = Paginar(acum, product);
+                 FilterRender();
+        }
+
+        private void btn2_Click(object sender, EventArgs e)
+        {
+            btnsiguiente_Click(sender, e);
+        }
+
+        private void btn3_Click(object sender, EventArgs e)
+        {
+            acum += 2;
+            lblPag.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            if (!BuscarClick)
+                filter = Paginar(acum, product);
+                FilterRender();
+        }
+
+        private void btn4_Click(object sender, EventArgs e)
+        {
+            acum += 3;
+            lblPag.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            if (!BuscarClick)
+                filter = Paginar(acum, product);
+                FilterRender();
         }
     }
 }
