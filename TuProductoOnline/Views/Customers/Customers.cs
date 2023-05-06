@@ -35,6 +35,7 @@ namespace TuProductoOnline.Views
         {
             new CustomerProperties(CreateCustomer).ShowDialog();
         }
+        
         private void Customers_Load(object sender, EventArgs e)
         {
             lblPageNum.Text = "1";
@@ -49,6 +50,8 @@ namespace TuProductoOnline.Views
                 btnImport.Visible = false;
                 btnExport.Visible = false;
             }
+            //botones(acum);
+
         }
         public void ConsultarCliente()
         {
@@ -323,28 +326,40 @@ namespace TuProductoOnline.Views
         }
         private void btnprimero_Click(object sender, EventArgs e)
         {
+
             lblPageNum.Text = "1";
             acum = 1;
             btn1.Text = Convert.ToString(acum);
             btn2.Text = Convert.ToString(acum + 1);
             btn3.Text = Convert.ToString(acum + 2);
             btn4.Text = Convert.ToString(acum + 3);
+            btn2.Enabled = true;
+            btn3.Enabled = true;
+            btn4.Enabled = true;
             btnprimero.Enabled = false;
             btnantes.Enabled = false;
+            btnultimo.Enabled = true;
+            btnsiguiente.Enabled = true;
             if (!Buscar)
                 RenderTable(Paginar(acum, GlobalCustomers));
             else
                 RenderTable(Paginar(acum, CustomersFiltrados));
+            //botones(acum);
         }
 
         private void btnantes_Click(object sender, EventArgs e)
         {
+
             acum -= 1;
             lblPageNum.Text = Convert.ToString(acum);
             btn1.Text = Convert.ToString(acum);
             btn2.Text = Convert.ToString(acum + 1);
             btn3.Text = Convert.ToString(acum + 2);
             btn4.Text = Convert.ToString(acum + 3);
+            btnultimo.Enabled = true;
+            btnsiguiente.Enabled = true;
+            btn3.Enabled = true;
+            btn4.Enabled = true;
             if (acum == 1)
             {
                 btnprimero.Enabled = false;
@@ -354,6 +369,32 @@ namespace TuProductoOnline.Views
                 RenderTable(Paginar(acum, GlobalCustomers));
             else
                 RenderTable(Paginar(acum, CustomersFiltrados));
+            botones(acum + 1, btn2);
+            botones(acum + 2, btn3);
+            botones(acum + 3, btn4);
+        }
+        private void btnsiguiente_Click(object sender, EventArgs e)
+        {
+            acum += 1;
+            lblPageNum.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            if (acum == LastPage(GlobalCustomers)) 
+            {
+                btn2.Enabled = false;
+                btnultimo.Enabled = false;
+                btnsiguiente.Enabled = false;
+            }
+            if (!Buscar)
+                RenderTable(Paginar(acum, GlobalCustomers));
+            else
+                RenderTable(Paginar(acum, CustomersFiltrados));
+            botones(acum + 2, btn3);
+            botones(acum + 3, btn4);
         }
 
         private void btn2_Click(object sender, EventArgs e)
@@ -363,6 +404,7 @@ namespace TuProductoOnline.Views
 
         private void btn3_Click(object sender, EventArgs e)
         {
+
             acum += 2;
             lblPageNum.Text = Convert.ToString(acum);
             btn1.Text = Convert.ToString(acum);
@@ -375,6 +417,15 @@ namespace TuProductoOnline.Views
                 RenderTable(Paginar(acum, GlobalCustomers));
             else
                 RenderTable(Paginar(acum, CustomersFiltrados));
+            
+            botones(acum + 1, btn2);
+            botones(acum + 2, btn3);
+            botones(acum + 3, btn4);
+            if(btn2.Enabled == false) 
+            {
+                btnsiguiente.Enabled = false;
+                btnultimo.Enabled = false;
+            }
         }
 
         private void btn4_Click(object sender, EventArgs e)
@@ -391,23 +442,11 @@ namespace TuProductoOnline.Views
                 RenderTable(Paginar(acum, GlobalCustomers));
             else
                 RenderTable(Paginar(acum, CustomersFiltrados));
+            botones(acum + 1, btn2);
+            botones(acum + 2, btn3);
+            botones(acum + 3, btn4);
         }
 
-        private void btnsiguiente_Click(object sender, EventArgs e)
-        {
-            acum += 1;
-            lblPageNum.Text = Convert.ToString(acum);
-            btn1.Text = Convert.ToString(acum);
-            btn2.Text = Convert.ToString(acum + 1);
-            btn3.Text = Convert.ToString(acum + 2);
-            btn4.Text = Convert.ToString(acum + 3);
-            btnprimero.Enabled = true;
-            btnantes.Enabled = true;
-            if (!Buscar)
-                RenderTable(Paginar(acum, GlobalCustomers));
-            else
-                RenderTable(Paginar(acum, CustomersFiltrados));
-        }
 
         private int LastPage(List<Customer> customers)
         {
@@ -424,8 +463,32 @@ namespace TuProductoOnline.Views
         private void btnultimo_Click(object sender, EventArgs e)
         {
             int lastPage = LastPage(GlobalCustomers);
+            acum = lastPage;
             RenderTable(Paginar(lastPage, GlobalCustomers));
             lblPageNum.Text = lastPage.ToString();
+            btnultimo.Enabled = false;
+            btnsiguiente.Enabled = false;
+            btn2.Enabled = false;
+            btn3.Enabled = false;
+            btn4.Enabled = false;
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            btn1.Text = Convert.ToString(LastPage(GlobalCustomers));
+            btn2.Text = Convert.ToString(LastPage(GlobalCustomers)+1);
+            btn3.Text = Convert.ToString(LastPage(GlobalCustomers)+2);
+            btn4.Text = Convert.ToString(LastPage(GlobalCustomers)+3);
+        }
+        public void botones(int acum, Button btn) 
+        {
+            int block = LastPage(GlobalCustomers);
+            if (acum > block ) 
+            {
+                btn.Enabled = false;
+            }
+            else 
+            {
+                btn.Enabled = true;
+            }
         }
     }
 }
