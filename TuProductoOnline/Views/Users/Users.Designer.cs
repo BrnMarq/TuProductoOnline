@@ -34,21 +34,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAddUsers = new System.Windows.Forms.Button();
             this.UsersTable = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Direction = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EditCell = new System.Windows.Forms.DataGridViewImageColumn();
-            this.DeleteCell = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblPag = new System.Windows.Forms.Label();
             this.lblnum = new System.Windows.Forms.Label();
@@ -62,6 +52,14 @@
             this.btnprimero = new System.Windows.Forms.Button();
             this.lbl = new System.Windows.Forms.Label();
             this.lblInfo = new System.Windows.Forms.Label();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Direction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EditCell = new System.Windows.Forms.DataGridViewImageColumn();
+            this.DeleteCell = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.UsersTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,67 +130,7 @@
             this.UsersTable.Size = new System.Drawing.Size(677, 290);
             this.UsersTable.TabIndex = 5;
             this.UsersTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsersTable_CellClick);
-            // 
-            // ID
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Nombre";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            this.name.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // LastName
-            // 
-            this.LastName.HeaderText = "Apellido";
-            this.LastName.Name = "LastName";
-            this.LastName.ReadOnly = true;
-            this.LastName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Email
-            // 
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            // 
-            // PhoneNumber
-            // 
-            this.PhoneNumber.HeaderText = "Teléfono";
-            this.PhoneNumber.Name = "PhoneNumber";
-            this.PhoneNumber.ReadOnly = true;
-            this.PhoneNumber.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Direction
-            // 
-            this.Direction.HeaderText = "Dirección";
-            this.Direction.Name = "Direction";
-            this.Direction.ReadOnly = true;
-            this.Direction.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // EditCell
-            // 
-            this.EditCell.HeaderText = "Editar";
-            this.EditCell.Image = global::TuProductoOnline.Properties.Resources.editIcon;
-            this.EditCell.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.EditCell.Name = "EditCell";
-            this.EditCell.ReadOnly = true;
-            this.EditCell.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // DeleteCell
-            // 
-            this.DeleteCell.HeaderText = "Eliminar";
-            this.DeleteCell.Image = global::TuProductoOnline.Properties.Resources.deleteIcon1;
-            this.DeleteCell.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.DeleteCell.Name = "DeleteCell";
-            this.DeleteCell.ReadOnly = true;
-            this.DeleteCell.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.UsersTable.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.UsersTable_ColumnHeaderMouseClick);
             // 
             // dataGridViewImageColumn1
             // 
@@ -248,45 +186,15 @@
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Image = global::TuProductoOnline.Properties.Resources.girar1;
-            this.btnRefresh.Location = new System.Drawing.Point(644, 40);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(33, 30);
-            this.btnRefresh.TabIndex = 14;
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.Visible = false;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Image = global::TuProductoOnline.Properties.Resources.buscar1;
-            this.btnSearch.Location = new System.Drawing.Point(605, 40);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(33, 30);
-            this.btnSearch.TabIndex = 13;
-            this.btnSearch.UseVisualStyleBackColor = false;
-            // 
             // txtSearch
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(375, 42);
+            this.txtSearch.Location = new System.Drawing.Point(429, 42);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(208, 26);
             this.txtSearch.TabIndex = 12;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // lblPag
             // 
@@ -382,6 +290,7 @@
             this.btnultimo.TabIndex = 29;
             this.btnultimo.Text = "Ultimo";
             this.btnultimo.UseVisualStyleBackColor = true;
+            this.btnultimo.Click += new System.EventHandler(this.btnultimo_Click);
             // 
             // btnprimero
             // 
@@ -410,11 +319,72 @@
             this.lblInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblInfo.AutoSize = true;
             this.lblInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfo.Location = new System.Drawing.Point(389, 13);
+            this.lblInfo.Location = new System.Drawing.Point(442, 13);
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(176, 15);
             this.lblInfo.TabIndex = 32;
             this.lblInfo.Text = "Buscar cliente por ID o nombre";
+            // 
+            // ID
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Nombre";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // LastName
+            // 
+            this.LastName.HeaderText = "Apellido";
+            this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
+            this.LastName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Email
+            // 
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // PhoneNumber
+            // 
+            this.PhoneNumber.HeaderText = "Teléfono";
+            this.PhoneNumber.Name = "PhoneNumber";
+            this.PhoneNumber.ReadOnly = true;
+            this.PhoneNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Direction
+            // 
+            this.Direction.HeaderText = "Dirección";
+            this.Direction.Name = "Direction";
+            this.Direction.ReadOnly = true;
+            this.Direction.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // EditCell
+            // 
+            this.EditCell.HeaderText = "Editar";
+            this.EditCell.Image = global::TuProductoOnline.Properties.Resources.editIcon;
+            this.EditCell.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.EditCell.Name = "EditCell";
+            this.EditCell.ReadOnly = true;
+            this.EditCell.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // DeleteCell
+            // 
+            this.DeleteCell.HeaderText = "Eliminar";
+            this.DeleteCell.Image = global::TuProductoOnline.Properties.Resources.deleteIcon1;
+            this.DeleteCell.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.DeleteCell.Name = "DeleteCell";
+            this.DeleteCell.ReadOnly = true;
+            this.DeleteCell.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Users
             // 
@@ -434,8 +404,6 @@
             this.Controls.Add(this.btnantes);
             this.Controls.Add(this.lblnum);
             this.Controls.Add(this.lblPag);
-            this.Controls.Add(this.btnRefresh);
-            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnImport);
@@ -456,19 +424,9 @@
         private System.Windows.Forms.DataGridView UsersTable;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Direction;
-        private System.Windows.Forms.DataGridViewImageColumn EditCell;
-        private System.Windows.Forms.DataGridViewImageColumn DeleteCell;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
-        private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label lblPag;
         private System.Windows.Forms.Label lblnum;
@@ -482,5 +440,13 @@
         private System.Windows.Forms.Button btnprimero;
         private System.Windows.Forms.Label lbl;
         private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Direction;
+        private System.Windows.Forms.DataGridViewImageColumn EditCell;
+        private System.Windows.Forms.DataGridViewImageColumn DeleteCell;
     }
 }

@@ -76,6 +76,7 @@ namespace TuProductoOnline
 
         private void btnExport_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
             RenderTable();
             SaveFileDialog sfd = new SaveFileDialog() { Filter = "Archivo CSV|*.csv" };
 
@@ -113,8 +114,9 @@ namespace TuProductoOnline
 
                 }
                 File.WriteAllLines(sfd.FileName, filas);
-
+                MessageBox.Show("¡Productos Exportados con exito!");
             }
+            
             filter = Paginar(Convert.ToInt32(lblPag.Text), product);
             FilterRender();
         }
@@ -187,8 +189,9 @@ namespace TuProductoOnline
                         "Amount"
                     };
                         Product.UpdateProduct(int.Parse(id), productValues);
-                        MessageBox.Show("Producto editado con exito");                       
-                        //RenderTable();
+                        MessageBox.Show("Producto editado con exito");
+                        txtSearch.Clear();
+
                     }
                     if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
                     {
@@ -197,7 +200,7 @@ namespace TuProductoOnline
                     }
                     else
                     {
-                        Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
+                        Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), product);
                         SearchFilterRender();
                     }
                 }
@@ -215,7 +218,7 @@ namespace TuProductoOnline
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-
+            txtSearch.Clear();
             OpenFileDialog ofd = new OpenFileDialog() { Filter = "Archivo CSV|*.csv" };
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -239,6 +242,7 @@ namespace TuProductoOnline
 
                     filter = Paginar(Convert.ToInt32(lblPag.Text), product);
                     FilterRender();
+                    MessageBox.Show("¡Archivo importado con exito!");
                 }
                 catch (Exception ex) 
                 { 
@@ -437,7 +441,7 @@ namespace TuProductoOnline
             
             
             
-            filter = product.Where(i => i.Deleted != true && i.Name.ToLower().StartsWith(pattern) || i.Id.ToString().ToLower().StartsWith(pattern) || i.Description.ToLower().Trim().Contains(pattern) == true).ToList();
+            filter = product.Where(i => i.Deleted != true && i.Name.ToLower().Trim().StartsWith(pattern) || i.Id.ToString().ToLower().Trim().Contains(pattern) == true || i.Description.ToLower().Trim().Contains(pattern) == true).ToList();
 
             Searchfilter = Paginar(Convert.ToInt32(lblPag.Text), filter);
             btnprimero.Enabled = false;
