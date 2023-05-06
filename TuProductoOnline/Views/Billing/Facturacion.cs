@@ -41,6 +41,7 @@ namespace TuProductoOnline.Views
             //Crear Json de registro si no existe.
             bool fileExists = File.Exists(FileNames.BillRegister);
             if (!fileExists) File.Create(FileNames.BillRegister).Close();
+            ProductosCarrito.Clear();
             GetPriceDollar();
             Refield();
 
@@ -173,6 +174,7 @@ namespace TuProductoOnline.Views
 
             else
             {
+
                 SetClient(TextBox.Text);
                 SetProduct(ProductBox2.Text, CantidadBox.Text);
                 try
@@ -198,10 +200,10 @@ namespace TuProductoOnline.Views
 
                 } else {
 
-                //Agregar al DataGridView
-
+                        //Agregar al DataGridView
+                
                 ProducTable.Rows.Add(ProductosCarrito[contador].Id, ProductosCarrito[contador].Name, Math.Round(ProductosCarrito[contador].Price/DivisaPrice, 2).ToString() + DivisasBox.Text, ProductosCarrito[contador].Amount);
-
+               
                 contador++;
                 actualizarPrecio();
                 CantidadBox.Text = "";
@@ -672,7 +674,7 @@ namespace TuProductoOnline.Views
 
             }
 
-            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index && i != -1)
+            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index && e.RowIndex != -1 && i != -1)
             {
 
                 ProducTable.Rows.Remove(ProducTable.CurrentRow);
@@ -683,7 +685,7 @@ namespace TuProductoOnline.Views
             }
 
 
-            if (e.ColumnIndex == ProducTable.Columns["Cantidad"].Index && i != -1)
+            if (e.ColumnIndex == ProducTable.Columns["Cantidad"].Index && e.RowIndex != -1)
             {
                 //Asignar cantidad a variable.
                 string cantidad = Microsoft.VisualBasic.Interaction.InputBox("Ingresa cantidad", "Cambio de monto", "1");
