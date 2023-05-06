@@ -33,8 +33,12 @@ namespace TuProductoOnline.Views.Users
         }
         private void Users_Load(object sender, EventArgs e)
         {
+            VerifyButtons();
+        }
+        public void VerifyButtons() 
+        {
             int lastPage;
-            if(acum == 1) 
+            if (acum == 1)
             {
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
@@ -75,7 +79,6 @@ namespace TuProductoOnline.Views.Users
                     btnsiguiente.Enabled = true;
                 }
             }
-
         }
         private List<User> Paginar(int num, List<User> users)
         {
@@ -175,7 +178,6 @@ namespace TuProductoOnline.Views.Users
             {
                 string pathCSV = openFileDialog2.FileName;
                 List<List<string>> usuariosImportados = DbHandler.LeerCSV(pathCSV);
-
                 try
                 {
                     foreach (List<string> user in usuariosImportados)
@@ -191,16 +193,8 @@ namespace TuProductoOnline.Views.Users
                             user[7].ToString()
                             );
                     }
-                    if (!Buscar) 
-                    {
-                        RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
-                    }
-                    else 
-                    {
-                    RenderTable(Paginar(Convert.ToInt32(lblPag.Text), UsersFiltrados));
-
-                    }
-
+                    MessageBox.Show("Usuarios importados con éxito");
+                    VerifyButtons();
                 } catch (Exception)
                 {
                     MessageBox.Show("El archivo que quiere importar no tiene el formato correcto");
@@ -281,9 +275,6 @@ namespace TuProductoOnline.Views.Users
             btn2.Text = Convert.ToString(acum + 1);
             btn3.Text = Convert.ToString(acum + 2);
             btn4.Text = Convert.ToString(acum + 3);
-            btn2.Enabled = true;
-            btn3.Enabled = true;
-            btn4.Enabled = true;
             btnprimero.Enabled = false;
             btnantes.Enabled = false;
             btnultimo.Enabled = true;
