@@ -212,13 +212,29 @@ namespace TuProductoOnline.Views.Users
         }
         private void btnExport_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveUsers= new SaveFileDialog();
-
-            saveUsers.FileName = "Usuarios.csv";
+            SaveFileDialog saveUser = new SaveFileDialog();
+            saveUser.FileName = "Usuarios";
             string origen = @"" + FileNames.Users;
 
-            if (saveUsers.ShowDialog() == DialogResult.OK)
-                myComputer.FileSystem.CopyFile(origen, saveUsers.FileName);
+            try
+            {
+                if (saveUser.ShowDialog() == DialogResult.OK)
+                {
+                    myComputer.FileSystem.CopyFile(origen, saveUser.FileName + ".csv");
+                    MessageBox.Show("Usuarios exportados con éxito");
+                }
+            }
+            catch (Exception)
+            {
+                DialogResult replace = MessageBox.Show("Ya existe un archivo con este nombre. ¿Desea reemplazarlo?", "Reemplazar", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+                if (replace == DialogResult.OK)
+                {
+                    myComputer.FileSystem.DeleteFile(saveUser.FileName + ".csv");
+                    myComputer.FileSystem.CopyFile(origen, saveUser.FileName + ".csv");
+                    MessageBox.Show("Usuarios exportados con éxito");
+                }
+            }
         }
         private void btnsiguiente_Click(object sender, EventArgs e)
         {

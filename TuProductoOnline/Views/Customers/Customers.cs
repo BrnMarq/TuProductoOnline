@@ -38,19 +38,59 @@ namespace TuProductoOnline.Views
         private void Customers_Load(object sender, EventArgs e)
         {
             lblPageNum.Text = "1";
-            if (acum == 1)
-            {
-                btnprimero.Enabled = false;
-                btnantes.Enabled = false;
-            }
-            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers));
+            VerifyButtons();
+
             if (User.ActiveUser.Role != "Admin")
             {
                 btnImport.Visible = false;
                 btnExport.Visible = false;
             }
-            //botones(acum);
 
+        }
+        private void VerifyButtons()
+        {
+            int lastPage;
+            if (acum == 1)
+            {
+                btnprimero.Enabled = false;
+                btnantes.Enabled = false;
+            }
+            if (!Buscar)
+            {
+                botones(acum + 1, btn2, GlobalCustomers);
+                botones(acum + 2, btn3, GlobalCustomers);
+                botones(acum + 3, btn4, GlobalCustomers);
+                lastPage = LastPage(GlobalCustomers);
+                RenderTable(Paginar(acum, GlobalCustomers));
+                if (btn2.Enabled == false)
+                {
+                    btnultimo.Enabled = false;
+                    btnsiguiente.Enabled = false;
+                }
+                else
+                {
+                    btnultimo.Enabled = true;
+                    btnsiguiente.Enabled = true;
+                }
+            }
+            else
+            {
+                botones(acum + 1, btn2, CustomersFiltrados);
+                botones(acum + 2, btn3, CustomersFiltrados);
+                botones(acum + 3, btn4, CustomersFiltrados);
+                lastPage = LastPage(CustomersFiltrados);
+                RenderTable(Paginar(acum, CustomersFiltrados));
+                if (btn2.Enabled == false)
+                {
+                    btnultimo.Enabled = false;
+                    btnsiguiente.Enabled = false;
+                }
+                else
+                {
+                    btnultimo.Enabled = true;
+                    btnsiguiente.Enabled = true;
+                }
+            }
         }
         public void ConsultarCliente()
         {
@@ -183,6 +223,7 @@ namespace TuProductoOnline.Views
         }
         private void btnImport_Click(object sender, EventArgs e)
         {
+
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string pathCSV = openFileDialog1.FileName;
@@ -211,10 +252,7 @@ namespace TuProductoOnline.Views
 
                 MessageBox.Show("Clientes importados con éxito");
 
-                if (!Buscar)
-                    RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
-                else
-                    RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), CustomersFiltrados));
+                VerifyButtons();       
             }
 
         }
@@ -315,6 +353,17 @@ namespace TuProductoOnline.Views
             botones(acum + 2, btn3, CustomersFiltrados);
             botones(acum + 3, btn4, CustomersFiltrados);
 
+            if (btn2.Enabled == false)
+            {
+                btnultimo.Enabled = false;
+                btnsiguiente.Enabled = false;
+            }
+            else
+            {
+                btnultimo.Enabled = true;
+                btnsiguiente.Enabled = true;
+            }
+
             RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), CustomersFiltrados));
         }
         private void btnprimero_Click(object sender, EventArgs e)
@@ -327,6 +376,8 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = false;
             btnantes.Enabled = false;
+            btnultimo.Enabled = true;
+            btnsiguiente.Enabled = true;
 
             if (!Buscar)
             {
