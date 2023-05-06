@@ -52,10 +52,12 @@ namespace TuProductoOnline
             // txtId
             // 
             this.txtId.BackColor = System.Drawing.SystemColors.Window;
+            this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtId.Location = new System.Drawing.Point(32, 81);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(334, 20);
+            this.txtId.Size = new System.Drawing.Size(334, 22);
             this.txtId.TabIndex = 6;
             // 
             // TitleProduct
@@ -80,7 +82,7 @@ namespace TuProductoOnline
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 20);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Codigo";
+            this.label2.Text = "Código";
             // 
             // label3
             // 
@@ -97,10 +99,12 @@ namespace TuProductoOnline
             // txtName
             // 
             this.txtName.BackColor = System.Drawing.SystemColors.Window;
+            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Location = new System.Drawing.Point(32, 229);
             this.txtName.MaxLength = 100;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(334, 20);
+            this.txtName.Size = new System.Drawing.Size(334, 22);
             this.txtName.TabIndex = 1;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
@@ -120,10 +124,12 @@ namespace TuProductoOnline
             // txtBrand
             // 
             this.txtBrand.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBrand.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBrand.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBrand.Location = new System.Drawing.Point(32, 303);
             this.txtBrand.MaxLength = 500;
             this.txtBrand.Name = "txtBrand";
-            this.txtBrand.Size = new System.Drawing.Size(334, 20);
+            this.txtBrand.Size = new System.Drawing.Size(334, 22);
             this.txtBrand.TabIndex = 2;
             this.txtBrand.TextChanged += new System.EventHandler(this.txtBrand_TextChanged);
             this.txtBrand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBrand_KeyPress);
@@ -143,10 +149,12 @@ namespace TuProductoOnline
             // txtDescription
             // 
             this.txtDescription.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescription.Location = new System.Drawing.Point(32, 377);
             this.txtDescription.MaxLength = 250;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(334, 20);
+            this.txtDescription.Size = new System.Drawing.Size(334, 22);
             this.txtDescription.TabIndex = 3;
             this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
             this.txtDescription.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescription_KeyPress);
@@ -161,16 +169,18 @@ namespace TuProductoOnline
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(103, 20);
             this.label6.TabIndex = 6;
-            this.label6.Text = "Descripcion";
+            this.label6.Text = "Descripción";
             // 
             // txtPrice
             // 
             this.txtPrice.BackColor = System.Drawing.SystemColors.Window;
+            this.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrice.Location = new System.Drawing.Point(32, 451);
             this.txtPrice.MaxLength = 8;
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.ShortcutsEnabled = false;
-            this.txtPrice.Size = new System.Drawing.Size(334, 20);
+            this.txtPrice.Size = new System.Drawing.Size(334, 22);
             this.txtPrice.TabIndex = 4;
             this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             this.txtPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrice_KeyPress);
@@ -190,6 +200,7 @@ namespace TuProductoOnline
             // cmbType
             // 
             this.cmbType.BackColor = System.Drawing.SystemColors.Window;
+            this.cmbType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbType.FormattingEnabled = true;
             this.cmbType.Items.AddRange(new object[] {
             "Hardware",
@@ -197,7 +208,7 @@ namespace TuProductoOnline
             "Devices"});
             this.cmbType.Location = new System.Drawing.Point(32, 155);
             this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(334, 21);
+            this.cmbType.Size = new System.Drawing.Size(334, 24);
             this.cmbType.TabIndex = 0;
             this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
             this.cmbType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbType_KeyPress);
@@ -209,11 +220,11 @@ namespace TuProductoOnline
             this.btnAdd.Enabled = false;
             this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(143, 506);
+            this.btnAdd.Location = new System.Drawing.Point(32, 515);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(94, 33);
+            this.btnAdd.Size = new System.Drawing.Size(334, 32);
             this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Agregar";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -227,9 +238,9 @@ namespace TuProductoOnline
             this.TxtNameErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TxtNameErrorlbl.Location = new System.Drawing.Point(32, 259);
             this.TxtNameErrorlbl.Name = "TxtNameErrorlbl";
-            this.TxtNameErrorlbl.Size = new System.Drawing.Size(269, 16);
+            this.TxtNameErrorlbl.Size = new System.Drawing.Size(270, 16);
             this.TxtNameErrorlbl.TabIndex = 19;
-            this.TxtNameErrorlbl.Text = "Ingrese el Nombre (Maximo 100 Carácteres)";
+            this.TxtNameErrorlbl.Text = "Ingrese el Nombre (Máximo 100 Carácteres)";
             this.TxtNameErrorlbl.Visible = false;
             // 
             // TxtBrandErrorlbl
@@ -240,9 +251,9 @@ namespace TuProductoOnline
             this.TxtBrandErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TxtBrandErrorlbl.Location = new System.Drawing.Point(32, 333);
             this.TxtBrandErrorlbl.Name = "TxtBrandErrorlbl";
-            this.TxtBrandErrorlbl.Size = new System.Drawing.Size(251, 16);
+            this.TxtBrandErrorlbl.Size = new System.Drawing.Size(252, 16);
             this.TxtBrandErrorlbl.TabIndex = 21;
-            this.TxtBrandErrorlbl.Text = "Ingrese la Marca (Maximo 50 Carácteres)";
+            this.TxtBrandErrorlbl.Text = "Ingrese la Marca (Máximo 50 Carácteres)";
             this.TxtBrandErrorlbl.Visible = false;
             // 
             // TxtDescriptionErrorlbl
@@ -253,9 +264,9 @@ namespace TuProductoOnline
             this.TxtDescriptionErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TxtDescriptionErrorlbl.Location = new System.Drawing.Point(32, 407);
             this.TxtDescriptionErrorlbl.Name = "TxtDescriptionErrorlbl";
-            this.TxtDescriptionErrorlbl.Size = new System.Drawing.Size(292, 16);
+            this.TxtDescriptionErrorlbl.Size = new System.Drawing.Size(293, 16);
             this.TxtDescriptionErrorlbl.TabIndex = 23;
-            this.TxtDescriptionErrorlbl.Text = "Ingrese la Descripcion (Maximo 250 Carácteres)";
+            this.TxtDescriptionErrorlbl.Text = "Ingrese la Descripción (Máximo 250 Carácteres)";
             this.TxtDescriptionErrorlbl.Visible = false;
             // 
             // TxtPriceErrorlbl
@@ -266,9 +277,9 @@ namespace TuProductoOnline
             this.TxtPriceErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TxtPriceErrorlbl.Location = new System.Drawing.Point(32, 481);
             this.TxtPriceErrorlbl.Name = "TxtPriceErrorlbl";
-            this.TxtPriceErrorlbl.Size = new System.Drawing.Size(245, 16);
+            this.TxtPriceErrorlbl.Size = new System.Drawing.Size(246, 16);
             this.TxtPriceErrorlbl.TabIndex = 24;
-            this.TxtPriceErrorlbl.Text = "Ingrese el Precio (Maximo 8 Carácteres)";
+            this.TxtPriceErrorlbl.Text = "Ingrese el Precio (Máximo 8 Carácteres)";
             this.TxtPriceErrorlbl.Visible = false;
             // 
             // Add
@@ -298,7 +309,7 @@ namespace TuProductoOnline
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Add";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add";
+            this.Text = "Add Product";
             this.ResumeLayout(false);
             this.PerformLayout();
 

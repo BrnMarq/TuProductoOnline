@@ -33,6 +33,11 @@ namespace TuProductoOnline.Views.Users
         private readonly char[] eliminar = { '\n', '\r' };
 
         private readonly Action<List<string>> acceptFunction;
+
+        public UserModal()
+        {
+            InitializeComponent();
+        }
         public UserModal(Action<List<string>> callback)
         {
             InitializeComponent();
