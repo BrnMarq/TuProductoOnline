@@ -13,15 +13,18 @@ using System.Net.Http;
 using System.Text;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static iTextSharp.text.pdf.hyphenation.TernaryTree;
+using System.Linq;
 
 namespace TuProductoOnline.Views
 {
 
     public partial class Facturacion : Form
     {
-        List<List<string>> Clientes = new List<List<string>>(DbHandler.LeerCSV(FileNames.Customers));
-        List<List<string>> Productos = new List<List<string>>(DbHandler.LeerCSV(FileNames.Products));
-        List<List<string>> ProductosCarrito = new List<List<string>>();
+        List<Customer> Clientes = new List<Customer>();
+        List<Product> Productos = new List<Product>();
+        List<Product> ProductosCarrito = new List<Product>();
+        Customer ClienteSelect = new Customer();
+
         DolarToDay DolarToDayAPI = new DolarToDay()
         {
              Dolar = new DolarToDay.USD(){},
@@ -40,14 +43,15 @@ namespace TuProductoOnline.Views
             if (!fileExists) File.Create(FileNames.BillRegister).Close();
             GetPriceDollar();
             Refield();
-            DivisasBox.SelectedIndex = 0;
+            DivisasBox.Text = " Bs.S";
+
+
         }
 
         private void btnAñadirClient_Click(object sender, EventArgs e)
         {
             new CustomerProperties(CreateCustomer).ShowDialog();
             Clientes.Clear();
-            Clientes = DbHandler.LeerCSV(FileNames.Customers);
             Refield();
         }
 
@@ -57,20 +61,6 @@ namespace TuProductoOnline.Views
 
             if (ProducTable.Rows.Count == 0) return;
 
-                List<Product> prueba = new List<Product>(TransformarCarritoAProducto(ProductosCarrito));
-                //compaginar lo obtenido en el selectbox con el index de la lista.
-                int iterador = -1;
-                int Verificadorfalse = 0;
-                int seleccion = 0;
-
-                foreach (List<string> item in Clientes)
-                {
-                    iterador++;
-                    if (Clientes[iterador][8] == "true") { Verificadorfalse++; }
-                    if (ClientBox1.SelectedIndex == iterador - Verificadorfalse && Clientes[iterador][8] == "false") { seleccion = iterador; }
-                }
-
-
             Bill factura = new Bill(User.ActiveUser.Id.ToString())
             {
                 BillId = DbHandler.GetNewId(FileNames.BillId),
@@ -79,8 +69,8 @@ namespace TuProductoOnline.Views
                 Divisa = DivisasBox.Text,
                 DivisaPrice = DivisaPrice,
 
-                    Cliente = TransformarSeleccionACliente(Clientes[seleccion]),
-                    ListaProductos = new List<Product>(TransformarCarritoAProducto(ProductosCarrito)) { },
+                    Cliente = ClienteSelect, 
+                    ListaProductos = ProductosCarrito
 
             };
 
@@ -114,15 +104,14 @@ namespace TuProductoOnline.Views
                 ProducTable.Rows.Clear();
                 contador = 0;
                 CantidadBox.Text = "0 Bs.S";
-                ClientBox1.SelectedIndex = -1;
-                ProductBox2.SelectedIndex = -1;
                 CantidadBox.Text = "";
             
         }
 
         private void ClientBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
+
             actualizarPrecio();
         }
 
@@ -141,63 +130,77 @@ namespace TuProductoOnline.Views
         {
             bool verificar = string.IsNullOrEmpty(CantidadBox.Text);
 
-            //evaluar campos vacios. 
 
-            if (ClientBox1.SelectedItem == null || ProductBox2.SelectedItem == null || verificar == true || int.Parse(CantidadBox.Text) == 0)
+
+            //evaluar campos vacios. 
+            
+            if (TextBox.Text == string.Empty || ProductBox2.Text == string.Empty || verificar == true || int.Parse(CantidadBox.Text) == 0)
             {
                 //campo de seleccion de cliente vacio.
-                if (ClientBox1.SelectedItem == null)
+                if (TextBox.Text == string.Empty)
                 {
 
-                    MessageBox.Show("Por favor selecciona un cliente.");
-                    
+                    MessageBox.Show("Por favor selecciona un cliente valido.");
+
                 }
                 //campo de seleccion de producto vacio.
-                else if (ProductBox2.SelectedItem == null)
+                else if (ProductBox2.Text == string.Empty)
                 {
 
-                    MessageBox.Show("Por favor selecciona un producto.");
-                    
+                    MessageBox.Show("Por favor selecciona un producto valido.");
+
                 }
                 else
                 {
 
                     MessageBox.Show("Por favor introduce una cantidad mayor que 0");
-                  
+
                 }
 
             }
 
             else
             {
-                //Agregar a una lista
-
-                ProductosCarrito.Add(new List<string>());
-                int Verificadorfalse = 0;
-                int iterador = -1;
-                foreach (List<string> item in Productos)
+                SetClient(TextBox.Text);
+                SetProduct(ProductBox2.Text, CantidadBox.Text);
+                try
                 {
-                    iterador++;
-                    foreach (var sublist in item)
+
+                
+
+                if ((ClienteSelect.Document == null) || ProductosCarrito[contador].Name == null)
+                {
+                    //campo de seleccion de cliente vacio.
+                    if (ClienteSelect.Document == null)
                     {
-                        //Compaginar el index del combobox con la posicion de la lista de lista
-                        if (ProductBox2.SelectedIndex == iterador - Verificadorfalse && Productos[iterador][6] == "false") { ProductosCarrito[contador].Add(sublist); }
-             
+
+                        MessageBox.Show("El cliente ingresado no existe.");
+
                     }
-                    if (Productos[iterador][6] == "true") { Verificadorfalse++; }
-                    if (ProductBox2.SelectedIndex == iterador - Verificadorfalse && Productos[iterador][6] == "false") { break; }
-                }
+                    else
+                    {
 
+                        MessageBox.Show("El producto ingresado no existe.");
 
-                ProductosCarrito[contador][7] = CantidadBox.Text;
+                    }
+
+                } else {
 
                 //Agregar al DataGridView
 
-                ProducTable.Rows.Add(ProductosCarrito[contador][0], ProductosCarrito[contador][1], Math.Round(double.Parse(ProductosCarrito[contador][2])/DivisaPrice, 2).ToString() + DivisasBox.Text, CantidadBox.Text);
+                ProducTable.Rows.Add(ProductosCarrito[contador].Id, ProductosCarrito[contador].Name, Math.Round(ProductosCarrito[contador].Price/DivisaPrice, 2).ToString() + DivisasBox.Text, ProductosCarrito[contador].Amount);
 
                 contador++;
                 actualizarPrecio();
                 CantidadBox.Text = "";
+                }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("El producto ingresado no existe.");
+                   // throw;
+                }
+                ProductBox2.Text = "";
             }
 
 
@@ -257,7 +260,7 @@ namespace TuProductoOnline.Views
                     //Modificar cantidad en DataGridView.
                     ProducTable.Rows[e.RowIndex].Cells[3].Value = cantidad;
                     //Modificar cantidad en la lista de listas.
-                    ProductosCarrito[e.RowIndex][7] = cantidad;
+                    ProductosCarrito[e.RowIndex].Amount = cantidad;
                 }
             }
 
@@ -269,27 +272,67 @@ namespace TuProductoOnline.Views
 
         public void Refield()
         {
-            //Llenar combobox clientes.
+            List<List<string>> CsvClientes = new List<List<string>>(DbHandler.LeerCSV(FileNames.Customers));
+            List<List<string>> CsvProductos = new List<List<string>>(DbHandler.LeerCSV(FileNames.Products));
+           
+
+            //Llenar Textbox clientes.
             //La excepcion controla el caso en que no hayan clientes en el csv.
-            ClientBox1.Items.Clear();
-            foreach (List<string> subList in Clientes)
+         
+           
+            foreach (List<string> item in CsvClientes)
             {
-                if (subList[8] != "true")
+                if (item[8] != "true")
                 {
-                    try { ClientBox1.Items.Add(subList[1]); } catch (Exception) { }
+                    Clientes.Add(new Customer() { Code = int.Parse(item[0]), Name = item[1], LastName = item[2], Document = item[3], PhoneNumber = item[4], Address = item[5], Email = item[6], Type = item[7]});
+                    
                 }
                 
             }
-            //llenar combobox productos
-            ProductBox2.Items.Clear();
-            foreach (List<string> subList in Productos)
-            {
+            
 
-                if (subList[6] != "true")
+            //llenar textbox productos.
+            
+            foreach (List<string> item in CsvProductos)
+            {
+                if (item[6] != "true")
                 {
-                    try { ProductBox2.Items.Add(subList[1]); } catch (Exception) { }
+                    Productos.Add(new Product() { Id = int.Parse(item[0]), Price = double.Parse(item[2]), Amount = item[7], Name = item[1], Description = item[4] });
+
                 }
             }
+
+            AutoCompleteStringCollection datosClientes = new AutoCompleteStringCollection();
+            AutoCompleteStringCollection datosProductos = new AutoCompleteStringCollection();
+            //Añadir items de busqueda(Clientes).
+            foreach (var item in Clientes)
+            {
+                datosClientes.Add(item.Document);
+                datosClientes.Add(item.Name);
+
+            }
+
+            TextBox.AutoCompleteCustomSource = datosClientes;
+            TextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+            TextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            
+            //Añadir items de busqueda(Clientes).
+            foreach (var item in Productos)
+            {
+                datosProductos.Add(item.Name);
+                //ProductBox2.DataSource
+
+
+            }
+
+            
+
+            ProductBox2.AutoCompleteCustomSource = datosProductos;
+            ProductBox2.AutoCompleteMode = AutoCompleteMode.Suggest;
+            ProductBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            //Rellenar combobox divisas.
 
             DivisasBox.Items.Add(" Bs.S");
             DivisasBox.Items.Add(" .USD"); 
@@ -305,13 +348,13 @@ namespace TuProductoOnline.Views
             //compaginar lo obtenido en el selectbox con el index de la lista.
             foreach (var item in ProductosCarrito)
             {
-                Precio += (double.Parse(item[2]) * double.Parse(item[7]));
+                Precio += (item.Price * double.Parse(item.Amount));
             }
 
             txtSubTotal.Text = Math.Round(Precio / DivisaPrice, 2).ToString() + DivisasBox.Text;
 
             double PrecioIva = 16 * Precio / 100;
-            int Verificadorfalse = 0;
+            /*int Verificadorfalse = 0;
             int iterador = -1;
             int posicion = 0;
             foreach (List<string> item in Clientes)
@@ -319,15 +362,15 @@ namespace TuProductoOnline.Views
                 iterador++;
                 if (Clientes[iterador][8] == "true") { Verificadorfalse++; }
                 if (ClientBox1.SelectedIndex == iterador - Verificadorfalse && Clientes[iterador][8] == "false"){ posicion = iterador; }
-            }
-            
-            if (Clientes[posicion][7] == "Contribuyente especial") { PrecioFinal = (PrecioIva * 75 / 100) + Precio; } else { PrecioFinal = PrecioIva + Precio;}
+            }*/
+
+            if (ClienteSelect.Type == "Contribuyente especial") { PrecioFinal = (PrecioIva * 75 / 100) + Precio; } else { PrecioFinal = PrecioIva + Precio;}
             
             txtTotal.Text = Math.Round(PrecioFinal / DivisaPrice, 2).ToString() + DivisasBox.Text;
         }
         
 
-        public List<Product> TransformarCarritoAProducto(List<List<string>> list)
+       /* public List<Product> TransformarCarritoAProducto(List<List<string>> list)
         {
             List<Product> ListaProductos = new List<Product>();
             int i = 0;
@@ -346,7 +389,7 @@ namespace TuProductoOnline.Views
             Customer Cliente = new Customer() { Code = int.Parse(List[0]), Name = List[1], LastName = List[2], Document = List[3], PhoneNumber = List[4], Address = List[5], Email = List[6], Type = List[7]};
             
             return Cliente;
-         }
+         }*/
 
 
         void ToPdf(Bill factura)
@@ -530,6 +573,59 @@ namespace TuProductoOnline.Views
             
         }
 
+        public void SetClient(string text)
+        {
+            
+
+            var search = from s in Clientes
+                         where s.Document.ToLower() == text.ToLower() || s.Name.ToLower() == text.ToLower()
+                         select new { s.Document, s.PhoneNumber, s.Address, s.Name, s.Type, s.LastName };
+
+            try
+            {
+                foreach (var item in search)
+                {
+                    ClienteSelect.Document = item.Document;
+                    ClienteSelect.PhoneNumber = item.PhoneNumber;
+                    ClienteSelect.Address = item.Address;
+                    ClienteSelect.Name = item.Name;
+                    ClienteSelect.LastName = item.LastName;
+                    ClienteSelect.Type = item.Type;
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            } 
+        }
+
+        public void SetProduct(string text, string amount)
+        {
+
+            var search = from s in Productos
+                         where s.Name.ToLower() == text.ToLower()
+                         select new { s.Name, s.Price, s.Description, s.Id};
+
+            try
+            {
+                foreach (var item in search)
+                {
+                   
+
+                    ProductosCarrito.Add(new Product() { Id = item.Id, Price = item.Price, Amount = amount, Name = item.Name, Description = item.Description });
+
+                }
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public void CreateCustomer(List<string> customerValues)
         {
             new Customer(
@@ -570,7 +666,7 @@ namespace TuProductoOnline.Views
                 int i = 0;
                 foreach (var item in ProductosCarrito)
                 {
-                    ProducTable.Rows.Add(ProductosCarrito[i][0], ProductosCarrito[i][1], Math.Round(double.Parse(ProductosCarrito[i][2]) / precio, 2).ToString() + DivisasBox.Text, ProductosCarrito[i][7]);
+                    ProducTable.Rows.Add(item.Id, item.Name, Math.Round(item.Price / precio, 2).ToString() + DivisasBox.Text, item.Amount);
                     i++;
                 }
                 
@@ -581,6 +677,8 @@ namespace TuProductoOnline.Views
                 throw;
                 
             }
+
+            AlCambio.Text = DivisaPrice.ToString() + " Bs.S";
             
             actualizarPrecio();
            
