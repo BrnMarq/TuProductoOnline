@@ -33,12 +33,22 @@ namespace TuProductoOnline.Views.Users
         }
         private void Users_Load(object sender, EventArgs e)
         {
+            int lastPage;
             if(acum == 1) 
             {
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
             }
-            RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
+            if (!Buscar)
+            {
+                lastPage = LastPage(GlobalUsers);
+                RenderTable(Paginar(acum, GlobalUsers));
+            }
+            else
+            {
+                lastPage = LastPage(UsersFiltrados);
+                RenderTable(Paginar(acum, UsersFiltrados));
+            }
 
         }
         private List<User> Paginar(int num, List<User> users)
@@ -194,20 +204,26 @@ namespace TuProductoOnline.Views.Users
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (acum == LastPage(GlobalUsers))
-            {
-                btn2.Enabled = false;
-                btnultimo.Enabled = false;
-                btnsiguiente.Enabled = false;
-            }
             if (!Buscar)
             {
+                if (acum == LastPage(GlobalUsers))
+                {
+                    btn2.Enabled = false;
+                    btnultimo.Enabled = false;
+                    btnsiguiente.Enabled = false;
+                }
                 RenderTable(Paginar(acum, GlobalUsers));
                 botones(acum + 2, btn3, GlobalUsers);
                 botones(acum + 3, btn4, GlobalUsers);
             }
             else
             {
+                if (acum == LastPage(UsersFiltrados))
+                {
+                    btn2.Enabled = false;
+                    btnultimo.Enabled = false;
+                    btnsiguiente.Enabled = false;
+                }
                 RenderTable(Paginar(acum, UsersFiltrados));
                 botones(acum + 2, btn3, UsersFiltrados);
                 botones(acum + 3, btn4, UsersFiltrados);
@@ -229,10 +245,21 @@ namespace TuProductoOnline.Views.Users
             btnantes.Enabled = false;
             btnultimo.Enabled = true;
             btnsiguiente.Enabled = true;
-            if (!Buscar)
-                RenderTable(Paginar(acum, GlobalUsers));
-            else
+            if (!Buscar) 
+            {
+                botones(acum + 1, btn2, GlobalUsers);
+                botones(acum + 2, btn3, GlobalUsers);
+                botones(acum + 3, btn4, GlobalUsers);
+                RenderTable(Paginar(acum, GlobalUsers));   
+            }
+            else 
+            {
+                botones(acum + 1, btn2, UsersFiltrados);
+                botones(acum + 2, btn3, UsersFiltrados);
+                botones(acum + 3, btn4, UsersFiltrados);
                 RenderTable(Paginar(acum, UsersFiltrados));
+            
+            }
         }
         private void btnantes_Click(object sender, EventArgs e)
         {
@@ -335,9 +362,17 @@ namespace TuProductoOnline.Views.Users
         private void btnultimo_Click(object sender, EventArgs e)
         {
             int lastPage;
-            if (!Buscar) { lastPage = LastPage(GlobalUsers); }
-            else { lastPage = LastPage(UsersFiltrados); }
-            RenderTable(Paginar(lastPage, GlobalUsers));
+            if (!Buscar) 
+            {
+                lastPage = LastPage(GlobalUsers);
+                RenderTable(Paginar(lastPage, GlobalUsers));
+            }
+            else 
+            { 
+                lastPage = LastPage(UsersFiltrados);
+                RenderTable(Paginar(lastPage, UsersFiltrados));
+            }
+            acum = lastPage;
             lblPag.Text = lastPage.ToString();
             btnultimo.Enabled = false;
             btnsiguiente.Enabled = false;
@@ -346,10 +381,20 @@ namespace TuProductoOnline.Views.Users
             btn4.Enabled = false;
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            btn1.Text = Convert.ToString(LastPage(GlobalUsers));
-            btn2.Text = Convert.ToString(LastPage(GlobalUsers) + 1);
-            btn3.Text = Convert.ToString(LastPage(GlobalUsers) + 2);
-            btn4.Text = Convert.ToString(LastPage(GlobalUsers) + 3);
+            if (!Buscar)
+            {
+                btn1.Text = Convert.ToString(LastPage(GlobalUsers));
+                btn2.Text = Convert.ToString(LastPage(GlobalUsers) + 1);
+                btn3.Text = Convert.ToString(LastPage(GlobalUsers) + 2);
+                btn4.Text = Convert.ToString(LastPage(GlobalUsers) + 3);
+            }
+            else
+            {
+                btn1.Text = Convert.ToString(LastPage(UsersFiltrados));
+                btn2.Text = Convert.ToString(LastPage(UsersFiltrados) + 1);
+                btn3.Text = Convert.ToString(LastPage(UsersFiltrados) + 2);
+                btn4.Text = Convert.ToString(LastPage(UsersFiltrados) + 3);
+            }
         }
         public void botones(int acum, Button btn, List<User> users)
         {
@@ -387,6 +432,15 @@ namespace TuProductoOnline.Views.Users
             var filtrado = GlobalUsers.Where(i => i.Deleted != true && i.FirstName.ToLower().StartsWith(pattern) || i.Id.ToString().ToLower().Contains(pattern)).ToList();
             UsersFiltrados = filtrado;
 
+            botones(acum + 1, btn2, UsersFiltrados);
+            botones(acum + 2, btn3, UsersFiltrados);
+            botones(acum + 3, btn4, UsersFiltrados);
+            if (btn2.Enabled == false)
+            {
+                btnultimo.Enabled = false;
+                btnsiguiente.Enabled = false;
+            }
+
             RenderTable(Paginar(Convert.ToInt32(lblPag.Text), UsersFiltrados));
         }
         public void OrdenarGridAscendente(DataGridViewCellMouseEventArgs e)
@@ -405,7 +459,7 @@ namespace TuProductoOnline.Views.Users
         }
         public void OrdenarGridDescendente(DataGridViewCellMouseEventArgs e)
         {
-            if (e.ColumnIndex < 0 || e.ColumnIndex > 3) return;
+            if (e.ColumnIndex < 0 || e.ColumnIndex > 5) return;
             List<string> searchParams = new List<string> { "Id", "Name", "LastName", "Email", "Phonenumber", "Direction" };
             string searchParam = searchParams[e.ColumnIndex];
             int pageNum = Convert.ToInt32(lblPag.Text);

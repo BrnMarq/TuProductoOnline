@@ -353,8 +353,8 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnultimo.Enabled = true;
             btnsiguiente.Enabled = true;
-            btn3.Enabled = true;
-            btn4.Enabled = true;
+            //btn3.Enabled = true;
+            //btn4.Enabled = true;
             if (acum == 1)
             {
                 btnprimero.Enabled = false;
@@ -386,7 +386,6 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-
             if (!Buscar)
             {
                 if (acum == LastPage(GlobalCustomers))
@@ -395,12 +394,10 @@ namespace TuProductoOnline.Views
                     btnultimo.Enabled = false;
                     btnsiguiente.Enabled = false;
                 }
-
                 RenderTable(Paginar(acum, GlobalCustomers));
                 botones(acum + 2, btn3, GlobalCustomers);
                 botones(acum + 3, btn4, GlobalCustomers);
-            }
-            
+            }         
             else 
             {
                 if (acum == LastPage(CustomersFiltrados))
@@ -409,7 +406,6 @@ namespace TuProductoOnline.Views
                     btnultimo.Enabled = false;
                     btnsiguiente.Enabled = false;
                 }
-
                 RenderTable(Paginar(acum, CustomersFiltrados));
                 botones(acum + 2, btn3, CustomersFiltrados);
                 botones(acum + 3, btn4, CustomersFiltrados);   
@@ -497,7 +493,6 @@ namespace TuProductoOnline.Views
                 lastPage = LastPage(CustomersFiltrados);
                 RenderTable(Paginar(lastPage, CustomersFiltrados));
             }
-
             acum = lastPage; 
             lblPageNum.Text = lastPage.ToString();
             btnultimo.Enabled = false;
