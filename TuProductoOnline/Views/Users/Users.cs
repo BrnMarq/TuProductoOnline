@@ -41,13 +41,39 @@ namespace TuProductoOnline.Views.Users
             }
             if (!Buscar)
             {
+                botones(acum + 1, btn2, GlobalUsers);
+                botones(acum + 2, btn3, GlobalUsers);
+                botones(acum + 3, btn4, GlobalUsers);
                 lastPage = LastPage(GlobalUsers);
                 RenderTable(Paginar(acum, GlobalUsers));
+                if (btn2.Enabled == false)
+                {
+                    btnultimo.Enabled = false;
+                    btnsiguiente.Enabled = false;
+                }
+                else
+                {
+                    btnultimo.Enabled = true;
+                    btnsiguiente.Enabled = true;
+                }
             }
             else
             {
+                botones(acum + 1, btn2, UsersFiltrados);
+                botones(acum + 2, btn3, UsersFiltrados);
+                botones(acum + 3, btn4, UsersFiltrados);
                 lastPage = LastPage(UsersFiltrados);
                 RenderTable(Paginar(acum, UsersFiltrados));
+                if (btn2.Enabled == false)
+                {
+                    btnultimo.Enabled = false;
+                    btnsiguiente.Enabled = false;
+                }
+                else
+                {
+                    btnultimo.Enabled = true;
+                    btnsiguiente.Enabled = true;
+                }
             }
 
         }
@@ -439,6 +465,11 @@ namespace TuProductoOnline.Views.Users
             {
                 btnultimo.Enabled = false;
                 btnsiguiente.Enabled = false;
+            }
+            else 
+            {
+                btnultimo.Enabled = true;
+                btnsiguiente.Enabled = true;
             }
 
             RenderTable(Paginar(Convert.ToInt32(lblPag.Text), UsersFiltrados));
