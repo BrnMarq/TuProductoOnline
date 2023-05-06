@@ -35,7 +35,6 @@ namespace TuProductoOnline.Views
         {
             new CustomerProperties(CreateCustomer).ShowDialog();
         }
-        
         private void Customers_Load(object sender, EventArgs e)
         {
             lblPageNum.Text = "1";
@@ -77,7 +76,6 @@ namespace TuProductoOnline.Views
             ConfigurarCustomerProperties();  
             miVentana.ShowDialog();
         }
-
         public void ConfigurarCustomerProperties()
         {
             miVentana.Nombre1 = true;
@@ -103,7 +101,6 @@ namespace TuProductoOnline.Views
                 dgvCustomers.Rows.Add(customer.Code, customer.Name, customer.PhoneNumber, customer.Address);
             }
         }
-
         private void dgvCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -130,12 +127,10 @@ namespace TuProductoOnline.Views
             new CustomerProperties(EditCustomer, customer).ShowDialog();
 
         }
-
         public void ShowDeleteCustomer(string id)
         {
             new DeleteCustomer(int.Parse(id), DeleteCustomer).ShowDialog();
         }
-
         public void CreateCustomer(List<string> customerValues)
         {
             new Customer(
@@ -167,7 +162,6 @@ namespace TuProductoOnline.Views
             MessageBox.Show("Cliente editado con exito");
             RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
         }
-
         public void DeleteCustomer(int id)
         {
             Customer customer = Customer.GetCustomerById(id);
@@ -250,15 +244,12 @@ namespace TuProductoOnline.Views
                 }
             }
         }
-
         private List<Customer> Paginar(int num,List<Customer> customers)
         {
             var lista = customers.Where(i => i.Deleted != true).Skip((num - 1) * CustomerForPage).Take(CustomerForPage).ToList();
 
             return lista;
         }
-        //Ordenamiento 
-
         public void OrdenarGridAscendente(DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex < 0 || e.ColumnIndex > 3) return;
@@ -273,7 +264,6 @@ namespace TuProductoOnline.Views
 
             RenderTable(Ordenado);
         }
-
         public void OrdenarGridDescendente(DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex < 0 || e.ColumnIndex > 3) return;
@@ -301,7 +291,6 @@ namespace TuProductoOnline.Views
                 OrdenarGridAscendente(e); 
             Ascendente = !Ascendente;
         }
-
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string pattern = txtSearch.Text.ToLower();
@@ -344,12 +333,9 @@ namespace TuProductoOnline.Views
                 RenderTable(Paginar(acum, GlobalCustomers));
             else
                 RenderTable(Paginar(acum, CustomersFiltrados));
-            //botones(acum);
         }
-
         private void btnantes_Click(object sender, EventArgs e)
         {
-
             acum -= 1;
             lblPageNum.Text = Convert.ToString(acum);
             btn1.Text = Convert.ToString(acum);
@@ -365,13 +351,21 @@ namespace TuProductoOnline.Views
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
             }
-            if (!Buscar)
+            if (!Buscar) 
+            {
                 RenderTable(Paginar(acum, GlobalCustomers));
-            else
+                botones(acum + 1, btn2, GlobalCustomers);
+                botones(acum + 2, btn3, GlobalCustomers);
+                botones(acum + 3, btn4, GlobalCustomers);
+            }
+            else 
+            {
                 RenderTable(Paginar(acum, CustomersFiltrados));
-            botones(acum + 1, btn2);
-            botones(acum + 2, btn3);
-            botones(acum + 3, btn4);
+                botones(acum + 1, btn2, CustomersFiltrados);
+                botones(acum + 2, btn3, CustomersFiltrados);
+                botones(acum + 3, btn4, CustomersFiltrados);
+            }
+
         }
         private void btnsiguiente_Click(object sender, EventArgs e)
         {
@@ -389,22 +383,26 @@ namespace TuProductoOnline.Views
                 btnultimo.Enabled = false;
                 btnsiguiente.Enabled = false;
             }
-            if (!Buscar)
+            if (!Buscar) 
+            {
                 RenderTable(Paginar(acum, GlobalCustomers));
-            else
+                botones(acum + 2, btn3, GlobalCustomers);
+                botones(acum + 3, btn4, GlobalCustomers);
+            }
+            else 
+            {
                 RenderTable(Paginar(acum, CustomersFiltrados));
-            botones(acum + 2, btn3);
-            botones(acum + 3, btn4);
-        }
+                botones(acum + 2, btn3, CustomersFiltrados);
+                botones(acum + 3, btn4, CustomersFiltrados);   
+            }
 
+        }
         private void btn2_Click(object sender, EventArgs e)
         {
             btnsiguiente_Click(sender, e);
         }
-
         private void btn3_Click(object sender, EventArgs e)
         {
-
             acum += 2;
             lblPageNum.Text = Convert.ToString(acum);
             btn1.Text = Convert.ToString(acum);
@@ -413,21 +411,26 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!Buscar)
+            if (!Buscar) 
+            {
                 RenderTable(Paginar(acum, GlobalCustomers));
-            else
+                botones(acum + 1, btn2, GlobalCustomers);
+                botones(acum + 2, btn3, GlobalCustomers);
+                botones(acum + 3, btn4, GlobalCustomers);
+            }
+            else 
+            {
                 RenderTable(Paginar(acum, CustomersFiltrados));
-            
-            botones(acum + 1, btn2);
-            botones(acum + 2, btn3);
-            botones(acum + 3, btn4);
-            if(btn2.Enabled == false) 
+                botones(acum + 1, btn2, CustomersFiltrados);
+                botones(acum + 2, btn3, CustomersFiltrados);
+                botones(acum + 3, btn4, CustomersFiltrados);
+            }
+            if (btn2.Enabled == false) 
             {
                 btnsiguiente.Enabled = false;
                 btnultimo.Enabled = false;
             }
         }
-
         private void btn4_Click(object sender, EventArgs e)
         {
             acum += 3;
@@ -438,31 +441,35 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!Buscar)
+            if (!Buscar) 
+            {
                 RenderTable(Paginar(acum, GlobalCustomers));
-            else
+                botones(acum + 1, btn2,GlobalCustomers);
+                botones(acum + 2, btn3,GlobalCustomers);
+                botones(acum + 3, btn4,GlobalCustomers);
+            }
+            else 
+            {
                 RenderTable(Paginar(acum, CustomersFiltrados));
-            botones(acum + 1, btn2);
-            botones(acum + 2, btn3);
-            botones(acum + 3, btn4);
+                botones(acum + 1, btn2, CustomersFiltrados);
+                botones(acum + 2, btn3, CustomersFiltrados);
+                botones(acum + 3, btn4, CustomersFiltrados);
+            }
+
         }
-
-
         private int LastPage(List<Customer> customers)
         {
             var numClientes = (float) (customers.Where(i => i.Deleted != true).ToList().Count)/CustomerForPage;
-
             double numPaginas = Math.Ceiling(numClientes);
-
             if (numPaginas < numClientes)
                 numPaginas++;
-
             return (int) numPaginas;
         }
-
         private void btnultimo_Click(object sender, EventArgs e)
         {
-            int lastPage = LastPage(GlobalCustomers);
+            int lastPage;
+            if (!Buscar) { lastPage = LastPage(GlobalCustomers);} 
+            else {lastPage = LastPage(CustomersFiltrados);}
             acum = lastPage;
             RenderTable(Paginar(lastPage, GlobalCustomers));
             lblPageNum.Text = lastPage.ToString();
@@ -478,9 +485,9 @@ namespace TuProductoOnline.Views
             btn3.Text = Convert.ToString(LastPage(GlobalCustomers)+2);
             btn4.Text = Convert.ToString(LastPage(GlobalCustomers)+3);
         }
-        public void botones(int acum, Button btn) 
+        public void botones(int acum, Button btn, List <Customer> customers) 
         {
-            int block = LastPage(GlobalCustomers);
+            int block = LastPage(customers);
             if (acum > block ) 
             {
                 btn.Enabled = false;
