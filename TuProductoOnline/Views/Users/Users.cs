@@ -33,23 +33,52 @@ namespace TuProductoOnline.Views.Users
         }
         private void Users_Load(object sender, EventArgs e)
         {
+            VerifyButtons();
+        }
+        public void VerifyButtons() 
+        {
             int lastPage;
-            if(acum == 1) 
+            if (acum == 1)
             {
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
             }
             if (!Buscar)
             {
+                botones(acum + 1, btn2, GlobalUsers);
+                botones(acum + 2, btn3, GlobalUsers);
+                botones(acum + 3, btn4, GlobalUsers);
                 lastPage = LastPage(GlobalUsers);
                 RenderTable(Paginar(acum, GlobalUsers));
+                if (btn2.Enabled == false)
+                {
+                    btnultimo.Enabled = false;
+                    btnsiguiente.Enabled = false;
+                }
+                else
+                {
+                    btnultimo.Enabled = true;
+                    btnsiguiente.Enabled = true;
+                }
             }
             else
             {
+                botones(acum + 1, btn2, UsersFiltrados);
+                botones(acum + 2, btn3, UsersFiltrados);
+                botones(acum + 3, btn4, UsersFiltrados);
                 lastPage = LastPage(UsersFiltrados);
                 RenderTable(Paginar(acum, UsersFiltrados));
+                if (btn2.Enabled == false)
+                {
+                    btnultimo.Enabled = false;
+                    btnsiguiente.Enabled = false;
+                }
+                else
+                {
+                    btnultimo.Enabled = true;
+                    btnsiguiente.Enabled = true;
+                }
             }
-
         }
         private List<User> Paginar(int num, List<User> users)
         {
@@ -70,7 +99,8 @@ namespace TuProductoOnline.Views.Users
                     ShowEditModal(id);
                 if (e.ColumnIndex == UsersTable.Columns["DeleteCell"].Index)
                     ShowDeleteModal(id);
-            } catch 
+            } 
+            catch (ArgumentOutOfRangeException)
             {
             }
         }
@@ -148,7 +178,6 @@ namespace TuProductoOnline.Views.Users
             {
                 string pathCSV = openFileDialog2.FileName;
                 List<List<string>> usuariosImportados = DbHandler.LeerCSV(pathCSV);
-
                 try
                 {
                     foreach (List<string> user in usuariosImportados)
@@ -164,16 +193,8 @@ namespace TuProductoOnline.Views.Users
                             user[7].ToString()
                             );
                     }
-                    if (!Buscar) 
-                    {
-                        RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
-                    }
-                    else 
-                    {
-                    RenderTable(Paginar(Convert.ToInt32(lblPag.Text), UsersFiltrados));
-
-                    }
-
+                    MessageBox.Show("Usuarios importados con éxito");
+                    VerifyButtons();
                 } catch (Exception)
                 {
                     MessageBox.Show("El archivo que quiere importar no tiene el formato correcto");
@@ -186,13 +207,29 @@ namespace TuProductoOnline.Views.Users
         }
         private void btnExport_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveUsers= new SaveFileDialog();
-
-            saveUsers.FileName = "Usuarios.csv";
+            SaveFileDialog saveUser = new SaveFileDialog();
+            saveUser.FileName = "Usuarios";
             string origen = @"" + FileNames.Users;
 
-            if (saveUsers.ShowDialog() == DialogResult.OK)
-                myComputer.FileSystem.CopyFile(origen, saveUsers.FileName);
+            try
+            {
+                if (saveUser.ShowDialog() == DialogResult.OK)
+                {
+                    myComputer.FileSystem.CopyFile(origen, saveUser.FileName + ".csv");
+                    MessageBox.Show("Usuarios exportados con éxito");
+                }
+            }
+            catch (Exception)
+            {
+                DialogResult replace = MessageBox.Show("Ya existe un archivo con este nombre. ¿Desea reemplazarlo?", "Reemplazar", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+                if (replace == DialogResult.OK)
+                {
+                    myComputer.FileSystem.DeleteFile(saveUser.FileName + ".csv");
+                    myComputer.FileSystem.CopyFile(origen, saveUser.FileName + ".csv");
+                    MessageBox.Show("Usuarios exportados con éxito");
+                }
+            }
         }
         private void btnsiguiente_Click(object sender, EventArgs e)
         {
@@ -238,9 +275,6 @@ namespace TuProductoOnline.Views.Users
             btn2.Text = Convert.ToString(acum + 1);
             btn3.Text = Convert.ToString(acum + 2);
             btn4.Text = Convert.ToString(acum + 3);
-            btn2.Enabled = true;
-            btn3.Enabled = true;
-            btn4.Enabled = true;
             btnprimero.Enabled = false;
             btnantes.Enabled = false;
             btnultimo.Enabled = true;
@@ -439,6 +473,11 @@ namespace TuProductoOnline.Views.Users
             {
                 btnultimo.Enabled = false;
                 btnsiguiente.Enabled = false;
+            }
+            else 
+            {
+                btnultimo.Enabled = true;
+                btnsiguiente.Enabled = true;
             }
 
             RenderTable(Paginar(Convert.ToInt32(lblPag.Text), UsersFiltrados));

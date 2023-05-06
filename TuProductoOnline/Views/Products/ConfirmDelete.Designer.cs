@@ -29,62 +29,56 @@ namespace TuProductoOnline
         /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.WarningText = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.label2.Location = new System.Drawing.Point(95, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(312, 16);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "¿Seguro que desea Eliminar este Producto?";
             // 
             // btnDelete
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.Lime;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(326, 64);
+            this.btnDelete.Location = new System.Drawing.Point(378, 119);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(42, 33);
-            this.btnDelete.TabIndex = 12;
-            this.btnDelete.Text = "✓";
+            this.btnDelete.Size = new System.Drawing.Size(91, 27);
+            this.btnDelete.TabIndex = 15;
+            this.btnDelete.Text = "Aceptar";
             this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click_1);
             // 
             // btnExit
             // 
-            this.btnExit.BackColor = System.Drawing.Color.Red;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.BackColor = System.Drawing.Color.Firebrick;
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(116, 64);
+            this.btnExit.Location = new System.Drawing.Point(475, 119);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(42, 33);
-            this.btnExit.TabIndex = 14;
-            this.btnExit.Text = "X";
+            this.btnExit.Size = new System.Drawing.Size(91, 27);
+            this.btnExit.TabIndex = 16;
+            this.btnExit.Text = "Cancelar";
             this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click_1);
+            // 
+            // WarningText
+            // 
+            this.WarningText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.WarningText.AutoSize = true;
+            this.WarningText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WarningText.Location = new System.Drawing.Point(95, 55);
+            this.WarningText.Name = "WarningText";
+            this.WarningText.Size = new System.Drawing.Size(386, 20);
+            this.WarningText.TabIndex = 17;
+            this.WarningText.Text = "¿Estás seguro de querer borrar este producto?";
             // 
             // ConfirmDelete
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(496, 118);
+            this.ClientSize = new System.Drawing.Size(580, 155);
+            this.Controls.Add(this.WarningText);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.label2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ConfirmDelete";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ConfirmDelete";
@@ -94,9 +88,8 @@ namespace TuProductoOnline
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Label WarningText;
     }
 }

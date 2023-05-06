@@ -55,11 +55,11 @@
             this.AddressInput.AllowDrop = true;
             this.AddressInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.AddressInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AddressInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddressInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddressInput.Location = new System.Drawing.Point(32, 373);
             this.AddressInput.MaxLength = 250;
             this.AddressInput.Name = "AddressInput";
-            this.AddressInput.Size = new System.Drawing.Size(334, 26);
+            this.AddressInput.Size = new System.Drawing.Size(334, 22);
             this.AddressInput.TabIndex = 4;
             this.AddressInput.TextChanged += new System.EventHandler(this.AddressInput_TextChanged);
             this.AddressInput.Enter += new System.EventHandler(this.AddressInput_Enter);
@@ -71,11 +71,11 @@
             this.PhoneNumberInput.AllowDrop = true;
             this.PhoneNumberInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.PhoneNumberInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PhoneNumberInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PhoneNumberInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PhoneNumberInput.Location = new System.Drawing.Point(32, 299);
             this.PhoneNumberInput.MaxLength = 20;
             this.PhoneNumberInput.Name = "PhoneNumberInput";
-            this.PhoneNumberInput.Size = new System.Drawing.Size(334, 26);
+            this.PhoneNumberInput.Size = new System.Drawing.Size(334, 22);
             this.PhoneNumberInput.TabIndex = 3;
             this.PhoneNumberInput.TextChanged += new System.EventHandler(this.PhoneNumberInput_TextChanged);
             this.PhoneNumberInput.Enter += new System.EventHandler(this.PhoneNumberInput_Enter);
@@ -86,11 +86,11 @@
             // 
             this.LastNameInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.LastNameInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LastNameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LastNameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LastNameInput.Location = new System.Drawing.Point(32, 151);
             this.LastNameInput.MaxLength = 100;
             this.LastNameInput.Name = "LastNameInput";
-            this.LastNameInput.Size = new System.Drawing.Size(334, 26);
+            this.LastNameInput.Size = new System.Drawing.Size(334, 22);
             this.LastNameInput.TabIndex = 1;
             this.LastNameInput.TextChanged += new System.EventHandler(this.LastNameInput_TextChanged);
             this.LastNameInput.Enter += new System.EventHandler(this.LastNameInput_Enter);
@@ -102,11 +102,11 @@
             this.NameInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.NameInput.BackColor = System.Drawing.SystemColors.Window;
             this.NameInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameInput.Location = new System.Drawing.Point(32, 77);
             this.NameInput.MaxLength = 100;
             this.NameInput.Name = "NameInput";
-            this.NameInput.Size = new System.Drawing.Size(334, 26);
+            this.NameInput.Size = new System.Drawing.Size(334, 22);
             this.NameInput.TabIndex = 0;
             this.NameInput.TextChanged += new System.EventHandler(this.NameInput_TextChanged);
             this.NameInput.Enter += new System.EventHandler(this.NameInput_Enter);
@@ -165,11 +165,11 @@
             // 
             this.PasswordInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.PasswordInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PasswordInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PasswordInput.Location = new System.Drawing.Point(32, 447);
             this.PasswordInput.MaxLength = 50;
             this.PasswordInput.Name = "PasswordInput";
-            this.PasswordInput.Size = new System.Drawing.Size(334, 26);
+            this.PasswordInput.Size = new System.Drawing.Size(334, 22);
             this.PasswordInput.TabIndex = 5;
             this.PasswordInput.UseSystemPasswordChar = true;
             this.PasswordInput.TextChanged += new System.EventHandler(this.PasswordInput_TextChanged);
@@ -195,7 +195,7 @@
             this.AcceptButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.AcceptButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AcceptButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AcceptButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AcceptButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AcceptButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.AcceptButton.Location = new System.Drawing.Point(35, 514);
             this.AcceptButton.Name = "AcceptButton";
@@ -209,11 +209,11 @@
             // 
             this.EmailInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.EmailInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.EmailInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmailInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EmailInput.Location = new System.Drawing.Point(32, 225);
             this.EmailInput.MaxLength = 100;
             this.EmailInput.Name = "EmailInput";
-            this.EmailInput.Size = new System.Drawing.Size(334, 26);
+            this.EmailInput.Size = new System.Drawing.Size(334, 22);
             this.EmailInput.TabIndex = 2;
             this.EmailInput.TextChanged += new System.EventHandler(this.EmailInput_TextChanged);
             this.EmailInput.Enter += new System.EventHandler(this.EmailInput_Enter);
@@ -240,7 +240,7 @@
             this.NameErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.NameErrorlbl.Location = new System.Drawing.Point(32, 107);
             this.NameErrorlbl.Name = "NameErrorlbl";
-            this.NameErrorlbl.Size = new System.Drawing.Size(269, 16);
+            this.NameErrorlbl.Size = new System.Drawing.Size(270, 16);
             this.NameErrorlbl.TabIndex = 10;
             this.NameErrorlbl.Text = "Ingrese el Nombre (Maximo 100 Carácteres)";
             this.NameErrorlbl.Visible = false;
@@ -253,7 +253,7 @@
             this.LastNameErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.LastNameErrorlbl.Location = new System.Drawing.Point(32, 181);
             this.LastNameErrorlbl.Name = "LastNameErrorlbl";
-            this.LastNameErrorlbl.Size = new System.Drawing.Size(270, 16);
+            this.LastNameErrorlbl.Size = new System.Drawing.Size(271, 16);
             this.LastNameErrorlbl.TabIndex = 11;
             this.LastNameErrorlbl.Text = "Ingrese el Apellido (Maximo 100 Carácteres)";
             this.LastNameErrorlbl.Visible = false;
@@ -266,7 +266,7 @@
             this.EmailErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.EmailErrorlbl.Location = new System.Drawing.Point(32, 255);
             this.EmailErrorlbl.Name = "EmailErrorlbl";
-            this.EmailErrorlbl.Size = new System.Drawing.Size(261, 16);
+            this.EmailErrorlbl.Size = new System.Drawing.Size(262, 16);
             this.EmailErrorlbl.TabIndex = 12;
             this.EmailErrorlbl.Text = "Ingrese el Correo (Maximo 100 Carácteres)";
             this.EmailErrorlbl.Visible = false;
@@ -279,7 +279,7 @@
             this.PhoneNumberErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.PhoneNumberErrorlbl.Location = new System.Drawing.Point(32, 329);
             this.PhoneNumberErrorlbl.Name = "PhoneNumberErrorlbl";
-            this.PhoneNumberErrorlbl.Size = new System.Drawing.Size(267, 16);
+            this.PhoneNumberErrorlbl.Size = new System.Drawing.Size(268, 16);
             this.PhoneNumberErrorlbl.TabIndex = 13;
             this.PhoneNumberErrorlbl.Text = "Ingrese el Teléfono (Maximo 20 Carácteres)";
             this.PhoneNumberErrorlbl.Visible = false;
@@ -292,7 +292,7 @@
             this.AddressErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.AddressErrorlbl.Location = new System.Drawing.Point(32, 403);
             this.AddressErrorlbl.Name = "AddressErrorlbl";
-            this.AddressErrorlbl.Size = new System.Drawing.Size(277, 16);
+            this.AddressErrorlbl.Size = new System.Drawing.Size(278, 16);
             this.AddressErrorlbl.TabIndex = 14;
             this.AddressErrorlbl.Text = "Ingrese la Direccion (Maximo 250 Carácteres)";
             this.AddressErrorlbl.Visible = false;
@@ -305,7 +305,7 @@
             this.PasswordErrorlbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.PasswordErrorlbl.Location = new System.Drawing.Point(32, 477);
             this.PasswordErrorlbl.Name = "PasswordErrorlbl";
-            this.PasswordErrorlbl.Size = new System.Drawing.Size(282, 16);
+            this.PasswordErrorlbl.Size = new System.Drawing.Size(283, 16);
             this.PasswordErrorlbl.TabIndex = 15;
             this.PasswordErrorlbl.Text = "Ingrese la Contraseña (Maximo 50 Carácteres)";
             this.PasswordErrorlbl.Visible = false;
@@ -352,7 +352,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "UserModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AddUsers";
+            this.Text = "Add Users";
             this.Load += new System.EventHandler(this.AddUsers_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

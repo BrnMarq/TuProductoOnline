@@ -25,15 +25,15 @@ namespace TuProductoOnline
             
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        //Funcion que regresa al Form de Products si el boton de confirmar fue pulsado.
+        private void btnDelete_Click_1(object sender, EventArgs e)
         {
+            Clic = true;
             this.Close();
         }
 
-        //Funcion que regresa al Form de Products si el boton de confirmar fue pulsado.
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnExit_Click_1(object sender, EventArgs e)
         {
-            Clic = true;
             this.Close();
         }
     }

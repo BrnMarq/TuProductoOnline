@@ -40,7 +40,7 @@ namespace TuProductoOnline.Views.Customers
             this.btnAccept.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAccept.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnAccept.ForeColor = System.Drawing.Color.White;
-            this.btnAccept.Location = new System.Drawing.Point(475, 119);
+            this.btnAccept.Location = new System.Drawing.Point(378, 119);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(91, 27);
             this.btnAccept.TabIndex = 5;
@@ -54,7 +54,7 @@ namespace TuProductoOnline.Views.Customers
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(378, 119);
+            this.btnCancel.Location = new System.Drawing.Point(475, 119);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(91, 27);
             this.btnCancel.TabIndex = 6;
@@ -66,11 +66,11 @@ namespace TuProductoOnline.Views.Customers
             // 
             this.lblWarning.AutoSize = true;
             this.lblWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.lblWarning.Location = new System.Drawing.Point(42, 43);
+            this.lblWarning.Location = new System.Drawing.Point(26, 53);
             this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(343, 20);
+            this.lblWarning.Size = new System.Drawing.Size(353, 20);
             this.lblWarning.TabIndex = 7;
-            this.lblWarning.Text = "Estás seguro de querer borrar el usuario?";
+            this.lblWarning.Text = "¿Estás seguro de querer borrar el usuario?";
             // 
             // DeleteCustomer
             // 
