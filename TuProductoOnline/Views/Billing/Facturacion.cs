@@ -14,6 +14,7 @@ using System.Text;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static iTextSharp.text.pdf.hyphenation.TernaryTree;
 using System.Linq;
+using TuProductoOnline.Views.Billing;
 
 namespace TuProductoOnline.Views
 {
@@ -41,6 +42,7 @@ namespace TuProductoOnline.Views
             //Crear Json de registro si no existe.
             bool fileExists = File.Exists(FileNames.BillRegister);
             if (!fileExists) File.Create(FileNames.BillRegister).Close();
+            ProductosCarrito.Clear();
             GetPriceDollar();
             Refield();
 
@@ -64,59 +66,70 @@ namespace TuProductoOnline.Views
 
         private void btnFacturar_Click_1(object sender, EventArgs e)
         {
+            
 
-            if (ProducTable.Rows.Count == 0) {
+            if (ProducTable.Rows.Count == 0)
+            {
                 MessageBox.Show("Elcarrito esta vacio. Agregue algun producto");
-            }
-            else
-            {
+            } else {
 
+                FacturacionConfirm confirmar = new FacturacionConfirm();
+                confirmar.ShowDialog();
 
-            Bill factura = new Bill(User.ActiveUser.Id.ToString())
-            {
-                BillId = DbHandler.GetNewId(FileNames.BillId),
-                Fecha = DateTime.Now.ToString("dd/MM/yyyy. HH:mm:ss"),
-                FechaDeVencimiento = DateTime.Now.AddDays(15).ToString("dd/MM/yyyy."),
-                Divisa = DivisasBox.Text,
-                DivisaPrice = DivisaPrice,
-
-                    Cliente = ClienteSelect, 
-                    ListaProductos = ProductosCarrito
-
-            };
-
-                string fileName = FileNames.BillRegister;
-                string jsonString = File.ReadAllText(fileName);
-
-                List<Bill> BillsRegister = new List<Bill>();
-                try //adquirirfactura
-                {
-                    BillsRegister = JsonConvert.DeserializeObject<List<Bill>>(jsonString);
-                    BillsRegister.Add(factura);
+                if (confirmar.confirm == false) {
+                    
                 }
-                catch (Exception) //Capturar json vacio.
+                else
                 {
-                    //Crear y agregar primera dactura a la lista 
-                    BillsRegister = new List<Bill>();
-                    BillsRegister.Add(factura);
+
+
+                    Bill factura = new Bill(User.ActiveUser.Id.ToString())
+                    {
+                        BillId = DbHandler.GetNewId(FileNames.BillId),
+                        Fecha = DateTime.Now.ToString("dd/MM/yyyy. HH:mm:ss"),
+                        FechaDeVencimiento = DateTime.Now.AddDays(15).ToString("dd/MM/yyyy."),
+                        Divisa = DivisasBox.Text,
+                        DivisaPrice = DivisaPrice,
+
+                        Cliente = ClienteSelect, 
+                        ListaProductos = ProductosCarrito
+
+                     };
+
+                    string fileName = FileNames.BillRegister;
+                    string jsonString = File.ReadAllText(fileName);
+
+                    List<Bill> BillsRegister = new List<Bill>();
+                    try //adquirirfactura
+                    {
+                        BillsRegister = JsonConvert.DeserializeObject<List<Bill>>(jsonString);
+                        BillsRegister.Add(factura);
+                    }
+                    catch (Exception) //Capturar json vacio.
+                    {
+                        //Crear y agregar primera dactura a la lista 
+                        BillsRegister = new List<Bill>();
+                        BillsRegister.Add(factura);
+                        jsonString = JsonConvert.SerializeObject(BillsRegister);
+                        BillsRegister = JsonConvert.DeserializeObject<List<Bill>>(jsonString);
+                        File.WriteAllText(fileName, jsonString);
+                    }
+
+                    //guardar Json actualizado.
                     jsonString = JsonConvert.SerializeObject(BillsRegister);
-                    BillsRegister = JsonConvert.DeserializeObject<List<Bill>>(jsonString);
                     File.WriteAllText(fileName, jsonString);
+
+                    //Imprimir Pdf
+                    ToPdf(factura);
+
+                    //Reset del carrito, datagridview y contadores.
+                    ProductosCarrito.Clear();
+                    ProducTable.Rows.Clear();
+                    contador = 0;
+                    CantidadBox.Text = "0 Bs.S";
+                    CantidadBox.Text = "";
+
                 }
-                //guardar Json actualizado.
-                jsonString = JsonConvert.SerializeObject(BillsRegister);
-                File.WriteAllText(fileName, jsonString);
-
-                //Imprimir Pdf
-                ToPdf(factura);
-
-                //Reset del carrito, datagridview y contadores.
-                ProductosCarrito.Clear();
-                ProducTable.Rows.Clear();
-                contador = 0;
-                CantidadBox.Text = "0 Bs.S";
-                CantidadBox.Text = "";
-
             }
         }
 
@@ -173,6 +186,7 @@ namespace TuProductoOnline.Views
 
             else
             {
+
                 SetClient(TextBox.Text);
                 SetProduct(ProductBox2.Text, CantidadBox.Text);
                 try
@@ -198,10 +212,10 @@ namespace TuProductoOnline.Views
 
                 } else {
 
-                //Agregar al DataGridView
-
+                        //Agregar al DataGridView
+                
                 ProducTable.Rows.Add(ProductosCarrito[contador].Id, ProductosCarrito[contador].Name, Math.Round(ProductosCarrito[contador].Price/DivisaPrice, 2).ToString() + DivisasBox.Text, ProductosCarrito[contador].Amount);
-
+               
                 contador++;
                 actualizarPrecio();
                 CantidadBox.Text = "";
@@ -232,7 +246,7 @@ namespace TuProductoOnline.Views
                 
             }
 
-            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index && i != -1)
+            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index && i != -1 && e.RowIndex == -1)
             {
                 ProducTable.Rows.Remove(ProducTable.CurrentRow);
                 ProductosCarrito.RemoveAt(i);
@@ -242,7 +256,7 @@ namespace TuProductoOnline.Views
             }
 
 
-            if (e.ColumnIndex == ProducTable.Columns["Cantidad"].Index && i != -1)
+            if (e.ColumnIndex == ProducTable.Columns["Cantidad"].Index && i != -1 && e.RowIndex == -1)
             {
                 //Asignar cantidad a variable.
                 string cantidad = Microsoft.VisualBasic.Interaction.InputBox("Ingresa cantidad", "Cambio de monto", "1");
@@ -672,18 +686,21 @@ namespace TuProductoOnline.Views
 
             }
 
-            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index && i != -1)
+            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index && e.RowIndex != -1 && i != -1)
             {
-
-                ProducTable.Rows.Remove(ProducTable.CurrentRow);
-                ProductosCarrito.RemoveAt(i);
-                contador--;
-                MessageBox.Show("Producto eliminado con exito");
-                actualizarPrecio();
+                ShowDeleteProduct(ref ProducTable, i);
+                /*if (ProductDelete._eliminated == true)
+                {
+                    //ProducTable.Rows.Remove(ProducTable.CurrentRow);
+                    ProductosCarrito.RemoveAt(i);
+                    contador--;
+                    //MessageBox.Show("Producto eliminado con exito");
+                    actualizarPrecio();
+                }*/
             }
 
 
-            if (e.ColumnIndex == ProducTable.Columns["Cantidad"].Index && i != -1)
+            if (e.ColumnIndex == ProducTable.Columns["Cantidad"].Index && e.RowIndex != -1)
             {
                 //Asignar cantidad a variable.
                 string cantidad = Microsoft.VisualBasic.Interaction.InputBox("Ingresa cantidad", "Cambio de monto", "1");
@@ -715,6 +732,17 @@ namespace TuProductoOnline.Views
                     //Modificar cantidad en la lista de listas.
                     ProductosCarrito[e.RowIndex].Amount = cantidad;
                 }
+            }
+        }
+
+        private void ShowDeleteProduct(ref DataGridView dgv, int index) 
+        {
+            new ProductDelete(ref dgv).Show();
+            if (ProductDelete._eliminated == true)
+            {i
+                ProductosCarrito.RemoveAt(index);
+                contador--;
+                actualizarPrecio();
             }
         }
     }
