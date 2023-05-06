@@ -202,12 +202,6 @@
     <Compile Include="Views\Users\Users.Designer.cs">
       <DependentUpon>Users.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Billing\WarningDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Billing\WarningDialog.Designer.cs">
-      <DependentUpon>WarningDialog.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Views\Products\Add.resx">
       <DependentUpon>Add.cs</DependentUpon>
     </EmbeddedResource>
@@ -260,9 +254,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Users\Users.resx">
       <DependentUpon>Users.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Billing\WarningDialog.resx">
-      <DependentUpon>WarningDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\Debug\TuProductoOnline.exe.config" />
     <None Include="bin\Debug\users.csv" />

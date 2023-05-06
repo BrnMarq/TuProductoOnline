@@ -43,8 +43,14 @@ namespace TuProductoOnline.Views
             if (!fileExists) File.Create(FileNames.BillRegister).Close();
             GetPriceDollar();
             Refield();
-            DivisasBox.Text = " Bs.S";
 
+            //Rellenar combobox divisas.
+            DivisasBox.Items.Add(" Bs.S");
+            DivisasBox.Items.Add(" .USD");
+            DivisasBox.Items.Add(" .EUR");
+            DivisasBox.Items.Add(" .COP");
+
+            DivisasBox.Text = " Bs.S";
 
         }
 
@@ -59,7 +65,12 @@ namespace TuProductoOnline.Views
         private void btnFacturar_Click_1(object sender, EventArgs e)
         {
 
-            if (ProducTable.Rows.Count == 0) return;
+            if (ProducTable.Rows.Count == 0) {
+                MessageBox.Show("Elcarrito esta vacio. Agregue algun producto");
+            }
+            else
+            {
+
 
             Bill factura = new Bill(User.ActiveUser.Id.ToString())
             {
@@ -105,7 +116,8 @@ namespace TuProductoOnline.Views
                 contador = 0;
                 CantidadBox.Text = "0 Bs.S";
                 CantidadBox.Text = "";
-            
+
+            }
         }
 
         private void ClientBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -332,13 +344,6 @@ namespace TuProductoOnline.Views
             ProductBox2.AutoCompleteMode = AutoCompleteMode.Suggest;
             ProductBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-            //Rellenar combobox divisas.
-
-            DivisasBox.Items.Add(" Bs.S");
-            DivisasBox.Items.Add(" .USD"); 
-            DivisasBox.Items.Add(" .EUR");
-            DivisasBox.Items.Add(" .COP");
-
         }
         
         public void actualizarPrecio()
@@ -354,42 +359,11 @@ namespace TuProductoOnline.Views
             txtSubTotal.Text = Math.Round(Precio / DivisaPrice, 2).ToString() + DivisasBox.Text;
 
             double PrecioIva = 16 * Precio / 100;
-            /*int Verificadorfalse = 0;
-            int iterador = -1;
-            int posicion = 0;
-            foreach (List<string> item in Clientes)
-            {
-                iterador++;
-                if (Clientes[iterador][8] == "true") { Verificadorfalse++; }
-                if (ClientBox1.SelectedIndex == iterador - Verificadorfalse && Clientes[iterador][8] == "false"){ posicion = iterador; }
-            }*/
 
             if (ClienteSelect.Type == "Contribuyente especial") { PrecioFinal = (PrecioIva * 75 / 100) + Precio; } else { PrecioFinal = PrecioIva + Precio;}
             
             txtTotal.Text = Math.Round(PrecioFinal / DivisaPrice, 2).ToString() + DivisasBox.Text;
         }
-        
-
-       /* public List<Product> TransformarCarritoAProducto(List<List<string>> list)
-        {
-            List<Product> ListaProductos = new List<Product>();
-            int i = 0;
-            foreach (var producto in list)
-            {
-                ListaProductos.Add(new Product() { Id = int.Parse(list[i][0]), Price = double.Parse(list[i][2]), Amount = list[i][7], Name = list[i][1], Description = list[i][4] });
-                i++;
-
-            }
-
-            return ListaProductos;
-        }
-
-        public Customer TransformarSeleccionACliente(List<string> List)
-        {
-            Customer Cliente = new Customer() { Code = int.Parse(List[0]), Name = List[1], LastName = List[2], Document = List[3], PhoneNumber = List[4], Address = List[5], Email = List[6], Type = List[7]};
-            
-            return Cliente;
-         }*/
 
 
         void ToPdf(Bill factura)
@@ -682,6 +656,66 @@ namespace TuProductoOnline.Views
             
             actualizarPrecio();
            
+        }
+
+
+        private void ProducTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int i;
+            try
+            {
+                i = ProducTable.CurrentCell.RowIndex;
+            }
+            catch (NullReferenceException)
+            {
+                i = -1;
+
+            }
+
+            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index && i != -1)
+            {
+
+                ProducTable.Rows.Remove(ProducTable.CurrentRow);
+                ProductosCarrito.RemoveAt(i);
+                contador--;
+                MessageBox.Show("Producto eliminado con exito");
+                actualizarPrecio();
+            }
+
+
+            if (e.ColumnIndex == ProducTable.Columns["Cantidad"].Index && i != -1)
+            {
+                //Asignar cantidad a variable.
+                string cantidad = Microsoft.VisualBasic.Interaction.InputBox("Ingresa cantidad", "Cambio de monto", "1");
+                bool validacion = false;
+                bool pass = true;
+                i = 0;
+                foreach (char item in cantidad)
+                {
+
+                    if (item == '0' && i == 0) { pass = false; }
+                    else if (item < '0' || item > '9') { pass = false; }
+                    if (pass == true)
+                    {
+                        validacion = true;
+                    }
+
+                    i++;
+
+                }
+
+                if (validacion == false)
+                {
+                    MessageBox.Show("Error Valor Invalido: Ingrese numeros mayores a 0 y Naturales");
+                }
+                else if (validacion == true)
+                {
+                    //Modificar cantidad en DataGridView.
+                    ProducTable.Rows[e.RowIndex].Cells[3].Value = cantidad;
+                    //Modificar cantidad en la lista de listas.
+                    ProductosCarrito[e.RowIndex].Amount = cantidad;
+                }
+            }
         }
     }
 

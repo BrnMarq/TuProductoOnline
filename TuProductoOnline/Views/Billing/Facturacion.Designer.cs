@@ -28,14 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ClientBox = new System.Windows.Forms.GroupBox();
+            this.TextBox = new System.Windows.Forms.TextBox();
             this.btnAñadirClient = new System.Windows.Forms.Button();
             this.ProductBox = new System.Windows.Forms.GroupBox();
+            this.ProductBox2 = new System.Windows.Forms.TextBox();
             this.btnAgregarAlCarrito = new System.Windows.Forms.Button();
             this.txtCantidad = new System.Windows.Forms.Label();
             this.CantidadBox = new System.Windows.Forms.TextBox();
@@ -55,11 +57,9 @@
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeleteCell = new System.Windows.Forms.DataGridViewImageColumn();
             this.DivisaGroup = new System.Windows.Forms.GroupBox();
-            this.DivisasBox = new System.Windows.Forms.ComboBox();
-            this.TextBox = new System.Windows.Forms.TextBox();
-            this.TituloAlCambio = new System.Windows.Forms.Label();
             this.AlCambio = new System.Windows.Forms.Label();
-            this.ProductBox2 = new System.Windows.Forms.TextBox();
+            this.TituloAlCambio = new System.Windows.Forms.Label();
+            this.DivisasBox = new System.Windows.Forms.ComboBox();
             this.ClientBox.SuspendLayout();
             this.ProductBox.SuspendLayout();
             this.groupBoxSubtotal.SuspendLayout();
@@ -78,6 +78,15 @@
             this.ClientBox.TabIndex = 3;
             this.ClientBox.TabStop = false;
             this.ClientBox.Text = "Cliente";
+            // 
+            // TextBox
+            // 
+            this.TextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.TextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.TextBox.Location = new System.Drawing.Point(6, 43);
+            this.TextBox.Name = "TextBox";
+            this.TextBox.Size = new System.Drawing.Size(165, 20);
+            this.TextBox.TabIndex = 15;
             // 
             // btnAñadirClient
             // 
@@ -106,6 +115,15 @@
             this.ProductBox.TabIndex = 4;
             this.ProductBox.TabStop = false;
             this.ProductBox.Text = "Producto";
+            // 
+            // ProductBox2
+            // 
+            this.ProductBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ProductBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.ProductBox2.Location = new System.Drawing.Point(9, 16);
+            this.ProductBox2.Name = "ProductBox2";
+            this.ProductBox2.Size = new System.Drawing.Size(133, 20);
+            this.ProductBox2.TabIndex = 17;
             // 
             // btnAgregarAlCarrito
             // 
@@ -208,7 +226,7 @@
             this.txtSubTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSubTotal.AutoSize = true;
             this.txtSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSubTotal.Location = new System.Drawing.Point(91, 10);
+            this.txtSubTotal.Location = new System.Drawing.Point(95, 10);
             this.txtSubTotal.Name = "txtSubTotal";
             this.txtSubTotal.Size = new System.Drawing.Size(19, 20);
             this.txtSubTotal.TabIndex = 20;
@@ -232,7 +250,7 @@
             this.groupBoxSubtotal.Controls.Add(this.txtSubTotal);
             this.groupBoxSubtotal.Location = new System.Drawing.Point(12, 369);
             this.groupBoxSubtotal.Name = "groupBoxSubtotal";
-            this.groupBoxSubtotal.Size = new System.Drawing.Size(220, 37);
+            this.groupBoxSubtotal.Size = new System.Drawing.Size(224, 37);
             this.groupBoxSubtotal.TabIndex = 22;
             this.groupBoxSubtotal.TabStop = false;
             // 
@@ -260,15 +278,15 @@
             this.ProducTable.BackgroundColor = System.Drawing.Color.White;
             this.ProducTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ProducTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle31.NullValue = "System.Drawing.Bitmap";
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProducTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.NullValue = "System.Drawing.Bitmap";
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProducTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.ProducTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProducTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -282,29 +300,29 @@
             this.ProducTable.Name = "ProducTable";
             this.ProducTable.ReadOnly = true;
             this.ProducTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle34.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle34.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProducTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProducTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.ProducTable.RowHeadersVisible = false;
-            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle35.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.Color.White;
-            this.ProducTable.RowsDefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            this.ProducTable.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.ProducTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ProducTable.Size = new System.Drawing.Size(584, 236);
             this.ProducTable.TabIndex = 23;
-            this.ProducTable.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProducTable_CellDoubleClick);
+            this.ProducTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProducTable_CellClick);
             // 
             // ID
             // 
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ID.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ID.DefaultCellStyle = dataGridViewCellStyle7;
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
@@ -333,9 +351,9 @@
             // 
             // DeleteCell
             // 
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle33.NullValue = "-1";
-            this.DeleteCell.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.NullValue = "-1";
+            this.DeleteCell.DefaultCellStyle = dataGridViewCellStyle8;
             this.DeleteCell.HeaderText = "Eliminar";
             this.DeleteCell.Image = global::TuProductoOnline.Properties.Resources.deleteIcon1;
             this.DeleteCell.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
@@ -349,41 +367,12 @@
             this.DivisaGroup.Controls.Add(this.AlCambio);
             this.DivisaGroup.Controls.Add(this.TituloAlCambio);
             this.DivisaGroup.Controls.Add(this.DivisasBox);
-            this.DivisaGroup.Location = new System.Drawing.Point(474, 14);
+            this.DivisaGroup.Location = new System.Drawing.Point(468, 14);
             this.DivisaGroup.Name = "DivisaGroup";
-            this.DivisaGroup.Size = new System.Drawing.Size(128, 80);
+            this.DivisaGroup.Size = new System.Drawing.Size(134, 80);
             this.DivisaGroup.TabIndex = 24;
             this.DivisaGroup.TabStop = false;
             this.DivisaGroup.Text = "Tipo de Divisa";
-            // 
-            // DivisasBox
-            // 
-            this.DivisasBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.DivisasBox.FormattingEnabled = true;
-            this.DivisasBox.Location = new System.Drawing.Point(6, 18);
-            this.DivisasBox.Name = "DivisasBox";
-            this.DivisasBox.Size = new System.Drawing.Size(112, 21);
-            this.DivisasBox.TabIndex = 0;
-            this.DivisasBox.SelectedIndexChanged += new System.EventHandler(this.DivisasBox_SelectedIndexChanged);
-            // 
-            // TextBox
-            // 
-            this.TextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.TextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.TextBox.Location = new System.Drawing.Point(6, 43);
-            this.TextBox.Name = "TextBox";
-            this.TextBox.Size = new System.Drawing.Size(165, 20);
-            this.TextBox.TabIndex = 15;
-            // 
-            // TituloAlCambio
-            // 
-            this.TituloAlCambio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.TituloAlCambio.AutoSize = true;
-            this.TituloAlCambio.Location = new System.Drawing.Point(-3, 50);
-            this.TituloAlCambio.Name = "TituloAlCambio";
-            this.TituloAlCambio.Size = new System.Drawing.Size(57, 13);
-            this.TituloAlCambio.TabIndex = 1;
-            this.TituloAlCambio.Text = "Al Cambio:";
             // 
             // AlCambio
             // 
@@ -396,14 +385,25 @@
             this.AlCambio.Text = "1";
             this.AlCambio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ProductBox2
+            // TituloAlCambio
             // 
-            this.ProductBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.ProductBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.ProductBox2.Location = new System.Drawing.Point(9, 16);
-            this.ProductBox2.Name = "ProductBox2";
-            this.ProductBox2.Size = new System.Drawing.Size(133, 20);
-            this.ProductBox2.TabIndex = 17;
+            this.TituloAlCambio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.TituloAlCambio.AutoSize = true;
+            this.TituloAlCambio.Location = new System.Drawing.Point(-3, 50);
+            this.TituloAlCambio.Name = "TituloAlCambio";
+            this.TituloAlCambio.Size = new System.Drawing.Size(57, 13);
+            this.TituloAlCambio.TabIndex = 1;
+            this.TituloAlCambio.Text = "Al Cambio:";
+            // 
+            // DivisasBox
+            // 
+            this.DivisasBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DivisasBox.FormattingEnabled = true;
+            this.DivisasBox.Location = new System.Drawing.Point(6, 18);
+            this.DivisasBox.Name = "DivisasBox";
+            this.DivisasBox.Size = new System.Drawing.Size(112, 21);
+            this.DivisasBox.TabIndex = 0;
+            this.DivisasBox.SelectedIndexChanged += new System.EventHandler(this.DivisasBox_SelectedIndexChanged);
             // 
             // Facturacion
             // 

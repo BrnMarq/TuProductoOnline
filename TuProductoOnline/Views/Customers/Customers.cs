@@ -319,24 +319,29 @@ namespace TuProductoOnline.Views
         }
         private void btnprimero_Click(object sender, EventArgs e)
         {
-
             lblPageNum.Text = "1";
             acum = 1;
             btn1.Text = Convert.ToString(acum);
             btn2.Text = Convert.ToString(acum + 1);
             btn3.Text = Convert.ToString(acum + 2);
             btn4.Text = Convert.ToString(acum + 3);
-            btn2.Enabled = true;
-            btn3.Enabled = true;
-            btn4.Enabled = true;
             btnprimero.Enabled = false;
             btnantes.Enabled = false;
-            btnultimo.Enabled = true;
-            btnsiguiente.Enabled = true;
+
             if (!Buscar)
+            {
+                botones(acum + 1, btn2, GlobalCustomers);
+                botones(acum + 2, btn3, GlobalCustomers);
+                botones(acum + 3, btn4, GlobalCustomers);
                 RenderTable(Paginar(acum, GlobalCustomers));
+            }
             else
+            {
+                botones(acum + 1, btn2, CustomersFiltrados);
+                botones(acum + 2, btn3, CustomersFiltrados);
+                botones(acum + 3, btn4, CustomersFiltrados);
                 RenderTable(Paginar(acum, CustomersFiltrados));
+            }
         }
         private void btnantes_Click(object sender, EventArgs e)
         {
@@ -381,20 +386,30 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (acum == LastPage(GlobalCustomers)) 
+
+            if (!Buscar)
             {
-                btn2.Enabled = false;
-                btnultimo.Enabled = false;
-                btnsiguiente.Enabled = false;
-            }
-            if (!Buscar) 
-            {
+                if (acum == LastPage(GlobalCustomers))
+                {
+                    btn2.Enabled = false;
+                    btnultimo.Enabled = false;
+                    btnsiguiente.Enabled = false;
+                }
+
                 RenderTable(Paginar(acum, GlobalCustomers));
                 botones(acum + 2, btn3, GlobalCustomers);
                 botones(acum + 3, btn4, GlobalCustomers);
             }
+            
             else 
             {
+                if (acum == LastPage(CustomersFiltrados))
+                {
+                    btn2.Enabled = false;
+                    btnultimo.Enabled = false;
+                    btnsiguiente.Enabled = false;
+                }
+
                 RenderTable(Paginar(acum, CustomersFiltrados));
                 botones(acum + 2, btn3, CustomersFiltrados);
                 botones(acum + 3, btn4, CustomersFiltrados);   
