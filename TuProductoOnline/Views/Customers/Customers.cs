@@ -228,7 +228,7 @@ namespace TuProductoOnline.Views
             {
                 if (saveCustomer.ShowDialog() == DialogResult.OK)
                 {
-                    myComputer.FileSystem.CopyFile(origen, saveCustomer.FileName + ".csv", true);
+                    myComputer.FileSystem.CopyFile(origen, saveCustomer.FileName + ".csv");
                     MessageBox.Show("Clientes exportados con éxito");
                 }
             }
@@ -310,6 +310,10 @@ namespace TuProductoOnline.Views
                 
             var filtrado = GlobalCustomers.Where(i => i.Deleted != true && i.Name.ToLower().StartsWith(pattern) || i.Code.ToString().ToLower().StartsWith(pattern)).ToList();
             CustomersFiltrados = filtrado;
+
+            botones(acum + 1, btn2, CustomersFiltrados);
+            botones(acum + 2, btn3, CustomersFiltrados);
+            botones(acum + 3, btn4, CustomersFiltrados);
 
             RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), CustomersFiltrados));
         }
@@ -468,10 +472,18 @@ namespace TuProductoOnline.Views
         private void btnultimo_Click(object sender, EventArgs e)
         {
             int lastPage;
-            if (!Buscar) { lastPage = LastPage(GlobalCustomers);} 
-            else {lastPage = LastPage(CustomersFiltrados);}
-            acum = lastPage;
-            RenderTable(Paginar(lastPage, GlobalCustomers));
+            if (!Buscar)
+            {
+                lastPage = LastPage(GlobalCustomers);
+                RenderTable(Paginar(lastPage, GlobalCustomers));
+            }
+            else
+            {
+                lastPage = LastPage(CustomersFiltrados);
+                RenderTable(Paginar(lastPage, CustomersFiltrados));
+            }
+
+            acum = lastPage; 
             lblPageNum.Text = lastPage.ToString();
             btnultimo.Enabled = false;
             btnsiguiente.Enabled = false;
@@ -480,10 +492,20 @@ namespace TuProductoOnline.Views
             btn4.Enabled = false;
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            btn1.Text = Convert.ToString(LastPage(GlobalCustomers));
-            btn2.Text = Convert.ToString(LastPage(GlobalCustomers)+1);
-            btn3.Text = Convert.ToString(LastPage(GlobalCustomers)+2);
-            btn4.Text = Convert.ToString(LastPage(GlobalCustomers)+3);
+            if (!Buscar)
+            {
+                btn1.Text = Convert.ToString(LastPage(GlobalCustomers));
+                btn2.Text = Convert.ToString(LastPage(GlobalCustomers)+1);
+                btn3.Text = Convert.ToString(LastPage(GlobalCustomers)+2);
+                btn4.Text = Convert.ToString(LastPage(GlobalCustomers)+3);
+            }
+            else
+            {
+                btn1.Text = Convert.ToString(LastPage(CustomersFiltrados));
+                btn2.Text = Convert.ToString(LastPage(CustomersFiltrados) + 1);
+                btn3.Text = Convert.ToString(LastPage(CustomersFiltrados) + 2);
+                btn4.Text = Convert.ToString(LastPage(CustomersFiltrados) + 3);
+            }
         }
         public void botones(int acum, Button btn, List <Customer> customers) 
         {
