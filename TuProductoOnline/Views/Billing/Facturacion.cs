@@ -14,6 +14,7 @@ using System.Text;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static iTextSharp.text.pdf.hyphenation.TernaryTree;
 using System.Linq;
+using TuProductoOnline.Views.Billing;
 
 namespace TuProductoOnline.Views
 {
@@ -676,12 +677,15 @@ namespace TuProductoOnline.Views
 
             if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index && e.RowIndex != -1 && i != -1)
             {
-
-                ProducTable.Rows.Remove(ProducTable.CurrentRow);
-                ProductosCarrito.RemoveAt(i);
-                contador--;
-                MessageBox.Show("Producto eliminado con exito");
-                actualizarPrecio();
+                ShowDeleteProduct(ref ProducTable, i);
+                /*if (ProductDelete._eliminated == true)
+                {
+                    //ProducTable.Rows.Remove(ProducTable.CurrentRow);
+                    ProductosCarrito.RemoveAt(i);
+                    contador--;
+                    //MessageBox.Show("Producto eliminado con exito");
+                    actualizarPrecio();
+                }*/
             }
 
 
@@ -717,6 +721,17 @@ namespace TuProductoOnline.Views
                     //Modificar cantidad en la lista de listas.
                     ProductosCarrito[e.RowIndex].Amount = cantidad;
                 }
+            }
+        }
+
+        private void ShowDeleteProduct(ref DataGridView dgv, int index) 
+        {
+            new ProductDelete(ref dgv).Show();
+            if (ProductDelete._eliminated == true)
+            {
+                ProductosCarrito.RemoveAt(index);
+                contador--;
+                actualizarPrecio();
             }
         }
     }
