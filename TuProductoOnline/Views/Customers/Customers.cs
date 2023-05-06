@@ -379,20 +379,7 @@ namespace TuProductoOnline.Views
             btnultimo.Enabled = true;
             btnsiguiente.Enabled = true;
 
-            if (!Buscar)
-            {
-                botones(acum + 1, btn2, GlobalCustomers);
-                botones(acum + 2, btn3, GlobalCustomers);
-                botones(acum + 3, btn4, GlobalCustomers);
-                RenderTable(Paginar(acum, GlobalCustomers));
-            }
-            else
-            {
-                botones(acum + 1, btn2, CustomersFiltrados);
-                botones(acum + 2, btn3, CustomersFiltrados);
-                botones(acum + 3, btn4, CustomersFiltrados);
-                RenderTable(Paginar(acum, CustomersFiltrados));
-            }
+            SumarBotones();
         }
         private void btnantes_Click(object sender, EventArgs e)
         {
@@ -404,27 +391,14 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnultimo.Enabled = true;
             btnsiguiente.Enabled = true;
-            //btn3.Enabled = true;
-            //btn4.Enabled = true;
+
             if (acum == 1)
             {
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
             }
-            if (!Buscar) 
-            {
-                RenderTable(Paginar(acum, GlobalCustomers));
-                botones(acum + 1, btn2, GlobalCustomers);
-                botones(acum + 2, btn3, GlobalCustomers);
-                botones(acum + 3, btn4, GlobalCustomers);
-            }
-            else 
-            {
-                RenderTable(Paginar(acum, CustomersFiltrados));
-                botones(acum + 1, btn2, CustomersFiltrados);
-                botones(acum + 2, btn3, CustomersFiltrados);
-                botones(acum + 3, btn4, CustomersFiltrados);
-            }
+
+            SumarBotones();
 
         }
         private void btnsiguiente_Click(object sender, EventArgs e)
@@ -437,6 +411,7 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
+
             if (!Buscar)
             {
                 if (acum == LastPage(GlobalCustomers))
@@ -477,20 +452,9 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!Buscar) 
-            {
-                RenderTable(Paginar(acum, GlobalCustomers));
-                botones(acum + 1, btn2, GlobalCustomers);
-                botones(acum + 2, btn3, GlobalCustomers);
-                botones(acum + 3, btn4, GlobalCustomers);
-            }
-            else 
-            {
-                RenderTable(Paginar(acum, CustomersFiltrados));
-                botones(acum + 1, btn2, CustomersFiltrados);
-                botones(acum + 2, btn3, CustomersFiltrados);
-                botones(acum + 3, btn4, CustomersFiltrados);
-            }
+
+            SumarBotones();
+
             if (btn2.Enabled == false) 
             {
                 btnsiguiente.Enabled = false;
@@ -507,21 +471,8 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!Buscar) 
-            {
-                RenderTable(Paginar(acum, GlobalCustomers));
-                botones(acum + 1, btn2,GlobalCustomers);
-                botones(acum + 2, btn3,GlobalCustomers);
-                botones(acum + 3, btn4,GlobalCustomers);
-            }
-            else 
-            {
-                RenderTable(Paginar(acum, CustomersFiltrados));
-                botones(acum + 1, btn2, CustomersFiltrados);
-                botones(acum + 2, btn3, CustomersFiltrados);
-                botones(acum + 3, btn4, CustomersFiltrados);
-            }
 
+            SumarBotones();
         }
         private int LastPage(List<Customer> customers)
         {
@@ -580,7 +531,23 @@ namespace TuProductoOnline.Views
                 btn.Enabled = true;
             }
         }
-
+        public void SumarBotones()
+        {
+            if (!Buscar)
+            {
+                RenderTable(Paginar(acum, GlobalCustomers));
+                botones(acum + 1, btn2, GlobalCustomers);
+                botones(acum + 2, btn3, GlobalCustomers);
+                botones(acum + 3, btn4, GlobalCustomers);
+            }
+            else
+            {
+                RenderTable(Paginar(acum, CustomersFiltrados));
+                botones(acum + 1, btn2, CustomersFiltrados);
+                botones(acum + 2, btn3, CustomersFiltrados);
+                botones(acum + 3, btn4, CustomersFiltrados);
+            }
+        }
     }
 }
 

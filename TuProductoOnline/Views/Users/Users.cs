@@ -96,7 +96,8 @@ namespace TuProductoOnline.Views.Users
                     ShowEditModal(id);
                 if (e.ColumnIndex == UsersTable.Columns["DeleteCell"].Index)
                     ShowDeleteModal(id);
-            } catch 
+            } 
+            catch (ArgumentOutOfRangeException)
             {
             }
         }
