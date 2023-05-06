@@ -21,7 +21,9 @@ namespace TuProductoOnline.Views.Users
         int acum = 1;
         Computer myComputer = new Computer();
         private readonly List<User> GlobalUsers = User.GetUsers();
-        private bool BuscarClick = false;
+        private List<User> UsersFiltrados;
+        private bool Buscar = false;
+        private int UserForPage = 25;
 
         public Users()
         {
@@ -39,7 +41,7 @@ namespace TuProductoOnline.Views.Users
         }
         private List<User> Paginar(int num, List<User> users)
         {
-            var lista = users.Where(i => i.Deleted != true).Skip((num - 1) * 25).Take(25).ToList();
+            var lista = users.Where(i => i.Deleted != true).Skip((num - 1) * UserForPage).Take(UserForPage).ToList();
 
             return lista;
         }
@@ -159,9 +161,14 @@ namespace TuProductoOnline.Views.Users
                             user[7].ToString()
                             );
                     }
-                    if (!BuscarClick) 
+                    if (!Buscar) 
                     {
                         RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
+                    }
+                    else 
+                    {
+                    RenderTable(Paginar(Convert.ToInt32(lblPag.Text), UsersFiltrados));
+
                     }
 
                 } catch (Exception)
@@ -196,8 +203,10 @@ namespace TuProductoOnline.Views.Users
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!BuscarClick)
+            if (!Buscar)
                 RenderTable(Paginar(acum, GlobalUsers));
+            else 
+                RenderTable(Paginar(acum, UsersFiltrados));
 
         }
 
@@ -211,8 +220,10 @@ namespace TuProductoOnline.Views.Users
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = false;
             btnantes.Enabled = false;
-            if (!BuscarClick)
+            if (!Buscar)
                 RenderTable(Paginar(acum, GlobalUsers));
+            else
+                RenderTable(Paginar(acum, UsersFiltrados));
         }
 
         private void btnantes_Click(object sender, EventArgs e)
@@ -228,8 +239,10 @@ namespace TuProductoOnline.Views.Users
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
             }
-            if (!BuscarClick)
+            if (!Buscar)
                 RenderTable(Paginar(acum, GlobalUsers));
+            else
+                RenderTable(Paginar(acum, UsersFiltrados));
         }
 
         private void btn2_Click(object sender, EventArgs e)
@@ -247,8 +260,10 @@ namespace TuProductoOnline.Views.Users
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!BuscarClick)
+            if (!Buscar)
                 RenderTable(Paginar(acum, GlobalUsers));
+            else
+                RenderTable(Paginar(acum, UsersFiltrados));
         }
 
         private void btn4_Click(object sender, EventArgs e)
@@ -261,8 +276,25 @@ namespace TuProductoOnline.Views.Users
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!BuscarClick)
+            if (!Buscar)
                 RenderTable(Paginar(acum, GlobalUsers));
+            else
+                RenderTable(Paginar(acum, UsersFiltrados));
+        }
+        private int LastPage(List<User> users)
+        {
+            var numUsuario= (float)(users.Where(i => i.Deleted != true).ToList().Count) / UserForPage;
+            double numPaginas = Math.Ceiling(numUsuario);
+            if (numPaginas < numUsuario)
+                numPaginas++;
+
+            return (int)numPaginas;
+        }
+        private void btnultimo_Click(object sender, EventArgs e)
+        {
+            int lastPage = LastPage(GlobalUsers);
+            RenderTable(Paginar(lastPage, GlobalUsers));
+            lblPag.Text = lastPage.ToString();
         }
     }
 }
