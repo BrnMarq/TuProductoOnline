@@ -192,11 +192,17 @@ namespace TuProductoOnline.Views.Users
                     }
                     if (!Buscar) 
                     {
+                        botones(acum + 1, btn2, GlobalUsers);
+                        botones(acum + 2, btn3, GlobalUsers);
+                        botones(acum + 3, btn4, GlobalUsers);
                         RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
                     }
                     else 
                     {
-                    RenderTable(Paginar(Convert.ToInt32(lblPag.Text), UsersFiltrados));
+                        botones(acum + 1, btn2, UsersFiltrados);
+                        botones(acum + 2, btn3, UsersFiltrados);
+                        botones(acum + 3, btn4, UsersFiltrados);
+                        RenderTable(Paginar(Convert.ToInt32(lblPag.Text), UsersFiltrados));
 
                     }
 
@@ -264,9 +270,6 @@ namespace TuProductoOnline.Views.Users
             btn2.Text = Convert.ToString(acum + 1);
             btn3.Text = Convert.ToString(acum + 2);
             btn4.Text = Convert.ToString(acum + 3);
-            btn2.Enabled = true;
-            btn3.Enabled = true;
-            btn4.Enabled = true;
             btnprimero.Enabled = false;
             btnantes.Enabled = false;
             btnultimo.Enabled = true;
