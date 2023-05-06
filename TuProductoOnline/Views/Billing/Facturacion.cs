@@ -320,9 +320,16 @@ namespace TuProductoOnline.Views
                 if (Clientes[iterador][8] == "true") { Verificadorfalse++; }
                 if (ClientBox1.SelectedIndex == iterador - Verificadorfalse && Clientes[iterador][8] == "false"){ posicion = iterador; }
             }
-            
-            if (Clientes[posicion][7] == "Contribuyente especial") { PrecioFinal = (PrecioIva * 75 / 100) + Precio; } else { PrecioFinal = PrecioIva + Precio;}
-            
+
+            try
+            {
+                if (Clientes[posicion][7] == "Contribuyente especial") { PrecioFinal = (PrecioIva * 75 / 100) + Precio; } else { PrecioFinal = PrecioIva + Precio; }
+            } 
+            catch (ArgumentOutOfRangeException)
+            {
+                PrecioFinal = 0;
+            }
+
             txtTotal.Text = Math.Round(PrecioFinal / DivisaPrice, 2).ToString() + DivisasBox.Text;
         }
         
