@@ -45,7 +45,6 @@ namespace TuProductoOnline.Views
                 btnImport.Visible = false;
                 btnExport.Visible = false;
             }
-
         }
         private void VerifyButtons()
         {
@@ -223,19 +222,16 @@ namespace TuProductoOnline.Views
         }
         private void btnImport_Click(object sender, EventArgs e)
         {
-
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string pathCSV = openFileDialog1.FileName;
                 List<List<string>> clientesImportados = DbHandler.LeerCSV(pathCSV);
-
                 for(int i = 1; i < clientesImportados.Count; i++)
                     if(clientesImportados[i].Count < 9)
                     {
                         MessageBox.Show("El archivo que quiere importar no tiene el formato correcto");
                         return;
                     }                
-                
                 for (int i = 1; i < clientesImportados.Count; i++)
                 {
                     if (clientesImportados[i][8] == "true") continue;
@@ -251,7 +247,6 @@ namespace TuProductoOnline.Views
                 }
 
                 MessageBox.Show("Clientes importados con éxito");
-
                 VerifyButtons();       
             }
 

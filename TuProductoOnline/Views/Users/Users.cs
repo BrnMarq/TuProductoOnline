@@ -33,8 +33,12 @@ namespace TuProductoOnline.Views.Users
         }
         private void Users_Load(object sender, EventArgs e)
         {
+            VerifyButtons();
+        }
+        public void VerifyButtons() 
+        {
             int lastPage;
-            if(acum == 1) 
+            if (acum == 1)
             {
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
@@ -75,7 +79,6 @@ namespace TuProductoOnline.Views.Users
                     btnsiguiente.Enabled = true;
                 }
             }
-
         }
         private List<User> Paginar(int num, List<User> users)
         {
@@ -174,7 +177,6 @@ namespace TuProductoOnline.Views.Users
             {
                 string pathCSV = openFileDialog2.FileName;
                 List<List<string>> usuariosImportados = DbHandler.LeerCSV(pathCSV);
-
                 try
                 {
                     foreach (List<string> user in usuariosImportados)
@@ -190,22 +192,8 @@ namespace TuProductoOnline.Views.Users
                             user[7].ToString()
                             );
                     }
-                    if (!Buscar) 
-                    {
-                        botones(acum + 1, btn2, GlobalUsers);
-                        botones(acum + 2, btn3, GlobalUsers);
-                        botones(acum + 3, btn4, GlobalUsers);
-                        RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
-                    }
-                    else 
-                    {
-                        botones(acum + 1, btn2, UsersFiltrados);
-                        botones(acum + 2, btn3, UsersFiltrados);
-                        botones(acum + 3, btn4, UsersFiltrados);
-                        RenderTable(Paginar(Convert.ToInt32(lblPag.Text), UsersFiltrados));
-
-                    }
-
+                    MessageBox.Show("Usuarios importados con éxito");
+                    VerifyButtons();
                 } catch (Exception)
                 {
                     MessageBox.Show("El archivo que quiere importar no tiene el formato correcto");
