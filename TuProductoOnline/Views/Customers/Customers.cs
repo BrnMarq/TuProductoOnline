@@ -215,6 +215,7 @@ namespace TuProductoOnline.Views
             };
             Customer.UpdateCustomer(customer.Code, values);
             MessageBox.Show("Cliente editado con exito");
+            txtSearch.Text = "";
             Renderizar();
         }
         public void DeleteCustomer(int id)
@@ -235,7 +236,7 @@ namespace TuProductoOnline.Views
             MessageBox.Show("Cliente borrado con exito");
 
             VerifyButtons();
-
+            
             Renderizar(); 
         }
         private void btnImport_Click(object sender, EventArgs e)
