@@ -15,7 +15,6 @@ namespace TuProductoOnline
         int acum = 1;
         private List<Product> GlobalProducts = Product.GetProducts();
         private List<Product> ProductsFiltrados;
-        public int maxId = 0;
         public int num_page = 0;
         private int ProductsForPage = 25;
         private List<Product> Ordenado;
@@ -27,14 +26,13 @@ namespace TuProductoOnline
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            int lastpage = GlobalProducts.Where(i => i.Deleted != true).ToList().Count;
-            Add add = new Add(lastpage + 1);
+            int numProduc = GlobalProducts.Where(i => i.Deleted != true).ToList().Count;
+            Add add = new Add(numProduc + 1);
             add.ShowDialog();
             if (add.Id != 0)
             {
                 new Product(add.Alias, add.Price, add.Brand, add.Description, add.Type);
-                Renderizar();
-                maxId++;
+                VerifyButtons();
             }
         }
         private void Products_Load(object sender, EventArgs e)
@@ -49,6 +47,8 @@ namespace TuProductoOnline
             dgvProducts.Size = new Size(678, 422);
             dgvProducts.Columns["Edit"].Visible = false;
             dgvProducts.Columns["Eliminar"].Visible = false;
+
+
         }
         private void btnExport_Click(object sender, EventArgs e)
         {
@@ -119,8 +119,13 @@ namespace TuProductoOnline
                     };
                         Product.UpdateProduct(int.Parse(id), productValues);
                         MessageBox.Show("Producto borrado con exito");
+                        btnprimero_Click(sender, e);
+                        VerifyButtons();
+                      
                     }
-                    Renderizar();
+                    
+
+
                 }
                 if (dgvProducts.Columns[e.ColumnIndex].Name == "Edit")
                 {
@@ -408,7 +413,7 @@ namespace TuProductoOnline
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
             }
-            var filtrado = GlobalProducts.Where(i => i.Deleted != true && i.Name.ToLower().StartsWith(pattern) || i.Id.ToString().ToLower().Contains(pattern) || i.Description.ToString().ToLower().StartsWith(pattern)).ToList();
+            var filtrado = GlobalProducts.Where(i => i.Deleted != true && i.Name.ToLower().StartsWith(pattern) || i.Id.ToString().ToLower().Contains(pattern) || i.Description.ToString().ToLower().Contains(pattern)).ToList();
             ProductsFiltrados = filtrado;
             botones(acum + 1, btn2, ProductsFiltrados);
             botones(acum + 2, btn3, ProductsFiltrados);
