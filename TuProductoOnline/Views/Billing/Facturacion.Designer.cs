@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ClientBox = new System.Windows.Forms.GroupBox();
             this.TextBox = new System.Windows.Forms.TextBox();
             this.btnAñadirClient = new System.Windows.Forms.Button();
@@ -51,15 +51,18 @@
             this.groupBoxSubtotal = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ProducTable = new System.Windows.Forms.DataGridView();
-            this.DivisaGroup = new System.Windows.Forms.GroupBox();
-            this.AlCambio = new System.Windows.Forms.Label();
-            this.TituloAlCambio = new System.Windows.Forms.Label();
-            this.DivisasBox = new System.Windows.Forms.ComboBox();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeleteCell = new System.Windows.Forms.DataGridViewImageColumn();
+            this.DivisaGroup = new System.Windows.Forms.GroupBox();
+            this.AlCambio = new System.Windows.Forms.Label();
+            this.TituloAlCambio = new System.Windows.Forms.Label();
+            this.DivisasBox = new System.Windows.Forms.ComboBox();
+            this.RefreshAPIButton = new System.Windows.Forms.Button();
+            this.Statuslbl = new System.Windows.Forms.Label();
+            this.APIstatus = new System.Windows.Forms.Label();
             this.ClientBox.SuspendLayout();
             this.ProductBox.SuspendLayout();
             this.groupBoxSubtotal.SuspendLayout();
@@ -111,7 +114,7 @@
             this.ProductBox.Controls.Add(this.CantidadBox);
             this.ProductBox.Location = new System.Drawing.Point(202, 14);
             this.ProductBox.Name = "ProductBox";
-            this.ProductBox.Size = new System.Drawing.Size(270, 80);
+            this.ProductBox.Size = new System.Drawing.Size(245, 80);
             this.ProductBox.TabIndex = 4;
             this.ProductBox.TabStop = false;
             this.ProductBox.Text = "Producto";
@@ -120,7 +123,7 @@
             // 
             this.ProductBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.ProductBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.ProductBox2.Location = new System.Drawing.Point(9, 16);
+            this.ProductBox2.Location = new System.Drawing.Point(0, 16);
             this.ProductBox2.Name = "ProductBox2";
             this.ProductBox2.Size = new System.Drawing.Size(133, 20);
             this.ProductBox2.TabIndex = 17;
@@ -134,9 +137,9 @@
             this.btnAgregarAlCarrito.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarAlCarrito.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarAlCarrito.ForeColor = System.Drawing.Color.White;
-            this.btnAgregarAlCarrito.Location = new System.Drawing.Point(79, 42);
+            this.btnAgregarAlCarrito.Location = new System.Drawing.Point(87, 42);
             this.btnAgregarAlCarrito.Name = "btnAgregarAlCarrito";
-            this.btnAgregarAlCarrito.Size = new System.Drawing.Size(177, 23);
+            this.btnAgregarAlCarrito.Size = new System.Drawing.Size(152, 23);
             this.btnAgregarAlCarrito.TabIndex = 16;
             this.btnAgregarAlCarrito.Text = "Agregar Producto Al Carrito";
             this.btnAgregarAlCarrito.UseVisualStyleBackColor = false;
@@ -145,7 +148,7 @@
             // txtCantidad
             // 
             this.txtCantidad.AutoSize = true;
-            this.txtCantidad.Location = new System.Drawing.Point(177, 0);
+            this.txtCantidad.Location = new System.Drawing.Point(164, 0);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(52, 13);
             this.txtCantidad.TabIndex = 6;
@@ -153,10 +156,10 @@
             // 
             // CantidadBox
             // 
-            this.CantidadBox.Location = new System.Drawing.Point(148, 16);
+            this.CantidadBox.Location = new System.Drawing.Point(139, 16);
             this.CantidadBox.MaxLength = 8;
             this.CantidadBox.Name = "CantidadBox";
-            this.CantidadBox.Size = new System.Drawing.Size(108, 20);
+            this.CantidadBox.Size = new System.Drawing.Size(100, 20);
             this.CantidadBox.TabIndex = 3;
             this.CantidadBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CantidadBox_KeyPress);
             // 
@@ -278,15 +281,15 @@
             this.ProducTable.BackgroundColor = System.Drawing.Color.White;
             this.ProducTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ProducTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.NullValue = "System.Drawing.Bitmap";
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProducTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.NullValue = "System.Drawing.Bitmap";
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProducTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.ProducTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProducTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -300,73 +303,29 @@
             this.ProducTable.Name = "ProducTable";
             this.ProducTable.ReadOnly = true;
             this.ProducTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProducTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProducTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.ProducTable.RowHeadersVisible = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            this.ProducTable.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            this.ProducTable.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.ProducTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ProducTable.Size = new System.Drawing.Size(584, 236);
             this.ProducTable.TabIndex = 23;
             this.ProducTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProducTable_CellClick);
             // 
-            // DivisaGroup
-            // 
-            this.DivisaGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.DivisaGroup.Controls.Add(this.AlCambio);
-            this.DivisaGroup.Controls.Add(this.TituloAlCambio);
-            this.DivisaGroup.Controls.Add(this.DivisasBox);
-            this.DivisaGroup.Location = new System.Drawing.Point(468, 14);
-            this.DivisaGroup.Name = "DivisaGroup";
-            this.DivisaGroup.Size = new System.Drawing.Size(134, 80);
-            this.DivisaGroup.TabIndex = 24;
-            this.DivisaGroup.TabStop = false;
-            this.DivisaGroup.Text = "Tipo de Divisa";
-            // 
-            // AlCambio
-            // 
-            this.AlCambio.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.AlCambio.AutoSize = true;
-            this.AlCambio.Location = new System.Drawing.Point(60, 52);
-            this.AlCambio.Name = "AlCambio";
-            this.AlCambio.Size = new System.Drawing.Size(13, 13);
-            this.AlCambio.TabIndex = 2;
-            this.AlCambio.Text = "1";
-            this.AlCambio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TituloAlCambio
-            // 
-            this.TituloAlCambio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.TituloAlCambio.AutoSize = true;
-            this.TituloAlCambio.Location = new System.Drawing.Point(-3, 50);
-            this.TituloAlCambio.Name = "TituloAlCambio";
-            this.TituloAlCambio.Size = new System.Drawing.Size(57, 13);
-            this.TituloAlCambio.TabIndex = 1;
-            this.TituloAlCambio.Text = "Al Cambio:";
-            // 
-            // DivisasBox
-            // 
-            this.DivisasBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.DivisasBox.FormattingEnabled = true;
-            this.DivisasBox.Location = new System.Drawing.Point(6, 18);
-            this.DivisasBox.Name = "DivisasBox";
-            this.DivisasBox.Size = new System.Drawing.Size(112, 21);
-            this.DivisasBox.TabIndex = 0;
-            this.DivisasBox.SelectedIndexChanged += new System.EventHandler(this.DivisasBox_SelectedIndexChanged);
-            // 
             // ID
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ID.DefaultCellStyle = dataGridViewCellStyle7;
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
@@ -399,15 +358,98 @@
             // 
             // DeleteCell
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.NullValue = "-1";
-            this.DeleteCell.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.NullValue = "-1";
+            this.DeleteCell.DefaultCellStyle = dataGridViewCellStyle8;
             this.DeleteCell.HeaderText = "Eliminar";
             this.DeleteCell.Image = global::TuProductoOnline.Properties.Resources.deleteIcon1;
             this.DeleteCell.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.DeleteCell.Name = "DeleteCell";
             this.DeleteCell.ReadOnly = true;
             this.DeleteCell.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // DivisaGroup
+            // 
+            this.DivisaGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DivisaGroup.Controls.Add(this.APIstatus);
+            this.DivisaGroup.Controls.Add(this.Statuslbl);
+            this.DivisaGroup.Controls.Add(this.RefreshAPIButton);
+            this.DivisaGroup.Controls.Add(this.AlCambio);
+            this.DivisaGroup.Controls.Add(this.TituloAlCambio);
+            this.DivisaGroup.Controls.Add(this.DivisasBox);
+            this.DivisaGroup.Location = new System.Drawing.Point(453, 14);
+            this.DivisaGroup.Name = "DivisaGroup";
+            this.DivisaGroup.Size = new System.Drawing.Size(149, 90);
+            this.DivisaGroup.TabIndex = 24;
+            this.DivisaGroup.TabStop = false;
+            this.DivisaGroup.Text = "Tipo de Divisa";
+            // 
+            // AlCambio
+            // 
+            this.AlCambio.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AlCambio.AutoSize = true;
+            this.AlCambio.Location = new System.Drawing.Point(60, 53);
+            this.AlCambio.Name = "AlCambio";
+            this.AlCambio.Size = new System.Drawing.Size(13, 13);
+            this.AlCambio.TabIndex = 2;
+            this.AlCambio.Text = "1";
+            this.AlCambio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TituloAlCambio
+            // 
+            this.TituloAlCambio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.TituloAlCambio.AutoSize = true;
+            this.TituloAlCambio.Location = new System.Drawing.Point(-3, 53);
+            this.TituloAlCambio.Name = "TituloAlCambio";
+            this.TituloAlCambio.Size = new System.Drawing.Size(57, 13);
+            this.TituloAlCambio.TabIndex = 1;
+            this.TituloAlCambio.Text = "Al Cambio:";
+            // 
+            // DivisasBox
+            // 
+            this.DivisasBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DivisasBox.FormattingEnabled = true;
+            this.DivisasBox.Location = new System.Drawing.Point(6, 18);
+            this.DivisasBox.Name = "DivisasBox";
+            this.DivisasBox.Size = new System.Drawing.Size(70, 21);
+            this.DivisasBox.TabIndex = 0;
+            this.DivisasBox.SelectedIndexChanged += new System.EventHandler(this.DivisasBox_SelectedIndexChanged);
+            // 
+            // RefreshAPIButton
+            // 
+            this.RefreshAPIButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.RefreshAPIButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RefreshAPIButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RefreshAPIButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RefreshAPIButton.ForeColor = System.Drawing.Color.White;
+            this.RefreshAPIButton.Location = new System.Drawing.Point(82, 16);
+            this.RefreshAPIButton.Name = "RefreshAPIButton";
+            this.RefreshAPIButton.Size = new System.Drawing.Size(61, 23);
+            this.RefreshAPIButton.TabIndex = 15;
+            this.RefreshAPIButton.Text = "Update";
+            this.RefreshAPIButton.UseVisualStyleBackColor = false;
+            this.RefreshAPIButton.Click += new System.EventHandler(this.RefreshAPIButton_Click);
+            // 
+            // Statuslbl
+            // 
+            this.Statuslbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Statuslbl.AutoSize = true;
+            this.Statuslbl.Location = new System.Drawing.Point(-3, 74);
+            this.Statuslbl.Name = "Statuslbl";
+            this.Statuslbl.Size = new System.Drawing.Size(27, 13);
+            this.Statuslbl.TabIndex = 16;
+            this.Statuslbl.Text = "API:";
+            // 
+            // APIstatus
+            // 
+            this.APIstatus.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.APIstatus.AutoSize = true;
+            this.APIstatus.Location = new System.Drawing.Point(21, 74);
+            this.APIstatus.Name = "APIstatus";
+            this.APIstatus.Size = new System.Drawing.Size(77, 13);
+            this.APIstatus.TabIndex = 17;
+            this.APIstatus.Text = "Desconectado";
+            this.APIstatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Facturacion
             // 
@@ -417,11 +459,11 @@
             this.ClientSize = new System.Drawing.Size(614, 411);
             this.Controls.Add(this.DivisaGroup);
             this.Controls.Add(this.ProducTable);
+            this.Controls.Add(this.ProductBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxSubtotal);
             this.Controls.Add(this.btnFacturar);
             this.Controls.Add(this.txtDgv);
-            this.Controls.Add(this.ProductBox);
             this.Controls.Add(this.ClientBox);
             this.Name = "Facturacion";
             this.Text = "Facturacion";
@@ -469,5 +511,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewImageColumn DeleteCell;
+        private System.Windows.Forms.Button RefreshAPIButton;
+        private System.Windows.Forms.Label APIstatus;
+        private System.Windows.Forms.Label Statuslbl;
     }
 }
