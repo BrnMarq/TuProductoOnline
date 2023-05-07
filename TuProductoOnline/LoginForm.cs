@@ -140,9 +140,24 @@ namespace TuProductoOnline
 
         private void AccessButton_Click(object sender, EventArgs e)
         {
-            List<User> users = User.GetUsers();
             string username = UsernameInput.Text;
             string password = PasswordInput.Text;
+
+            User superUser = User.GetSuperUser();
+            bool isSuperUser = 
+                superUser.FirstName == username &&
+                superUser.Password == password;
+
+            if (isSuperUser)
+            {
+                User.Login(superUser);
+                OpenApp();
+                this.Close();
+                return;
+            }
+
+            List<User> users = User.GetUsers();
+
             User user = users.Find(targetUser => 
                 targetUser.FirstName == username &&
                 targetUser.Password == password &&

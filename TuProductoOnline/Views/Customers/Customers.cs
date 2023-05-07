@@ -34,6 +34,7 @@ namespace TuProductoOnline.Views
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             new CustomerProperties(CreateCustomer).ShowDialog();
+            VerifyButtons();
         }
         private void Customers_Load(object sender, EventArgs e)
         {
@@ -150,6 +151,8 @@ namespace TuProductoOnline.Views
                 if (e.ColumnIndex == dgvCustomers.Columns["Delete"].Index)
                 {
                     ShowDeleteCustomer(id);
+                    btnprimero_Click(sender, e);
+                    VerifyButtons();
                 }
                 if (e.ColumnIndex == dgvCustomers.Columns["Consultar"].Index)
                     ConsultarCliente();
@@ -212,7 +215,6 @@ namespace TuProductoOnline.Views
             };
             Customer.UpdateCustomer(customer.Code, values);
             MessageBox.Show("Cliente editado con exito");
-
             Renderizar();
         }
         public void DeleteCustomer(int id)
@@ -402,13 +404,11 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnultimo.Enabled = true;
             btnsiguiente.Enabled = true;
-
             if (acum == 1)
             {
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
             }
-
             SumarBotones();
             if (btn2.Enabled == false)
             {
@@ -472,9 +472,7 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-
             SumarBotones();
-
             if (btn2.Enabled == false) 
             {
                 btnsiguiente.Enabled = false;
@@ -491,7 +489,6 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-
             SumarBotones();
         }
         private int LastPage(List<Customer> customers)
