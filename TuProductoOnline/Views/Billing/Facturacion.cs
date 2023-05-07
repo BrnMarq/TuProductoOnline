@@ -25,6 +25,7 @@ namespace TuProductoOnline.Views
         List<Product> Productos = new List<Product>();
         List<Product> ProductosCarrito = new List<Product>();
         Customer ClienteSelect = new Customer();
+        bool ApiStatus = false;
 
         DolarToDay DolarToDayAPI = new DolarToDay()
         {
@@ -45,12 +46,8 @@ namespace TuProductoOnline.Views
             ProductosCarrito.Clear();
             GetPriceDollar();
             Refield();
-
             //Rellenar combobox divisas.
-            DivisasBox.Items.Add(" Bs.S");
-            DivisasBox.Items.Add(" .USD");
-            DivisasBox.Items.Add(" .EUR");
-            DivisasBox.Items.Add(" .COP");
+            RellenarBoxDivisas();
 
             DivisasBox.Text = " Bs.S";
 
@@ -68,9 +65,18 @@ namespace TuProductoOnline.Views
         {
 
 
-            if (ProducTable.Rows.Count == 0)
+            if (ProducTable.Rows.Count == 0 || ClienteSelect.Document == null)
             {
-                MessageBox.Show("Elcarrito esta vacio. Agregue algun producto");
+                if (ProducTable.Rows.Count == 0)
+                {
+                    MessageBox.Show("Elcarrito esta vacio. Agregue algun producto");
+                }
+                else
+                {
+                    MessageBox.Show("Cliente Invalido");
+                }
+
+                
             } else {
 
                 FacturacionConfirm confirmar = new FacturacionConfirm();
@@ -167,6 +173,7 @@ namespace TuProductoOnline.Views
 
                     MessageBox.Show("Por favor selecciona un cliente valido.");
 
+
                 }
                 //campo de seleccion de producto vacio.
                 else if (ProductBox2.Text == string.Empty)
@@ -186,7 +193,7 @@ namespace TuProductoOnline.Views
 
             else
             {
-
+                ClienteSelect.Document = null;
                 SetClient(TextBox.Text);
                 SetProduct(ProductBox2.Text, CantidadBox.Text);
                 try
@@ -201,13 +208,16 @@ namespace TuProductoOnline.Views
                         {
 
                             MessageBox.Show("El cliente ingresado no existe.");
+                            ProductosCarrito.RemoveAt(contador);
+                            TextBox.Text = "";
+
 
                         }
                         else
                         {
 
                             MessageBox.Show("El producto ingresado no existe.");
-
+                            ProductBox2.Text = "";
                         }
 
                     } else {
@@ -219,6 +229,7 @@ namespace TuProductoOnline.Views
                         contador++;
                         actualizarPrecio();
                         CantidadBox.Text = "";
+                        ProductBox2.Text = "";
                     }
                 }
                 catch (Exception)
@@ -226,13 +237,13 @@ namespace TuProductoOnline.Views
                     MessageBox.Show("El producto ingresado no existe.");
                     // throw;
                 }
-                ProductBox2.Text = "";
+                
             }
 
 
         }
 
-        // Eliminar producto del data gridview y el carrito al clickear en el simbolo.
+        // Eliminar producto del data gridview y el carrito al clickear en el simbolo/Cambiar cantidad.
         private void ProducTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int i;
@@ -251,7 +262,6 @@ namespace TuProductoOnline.Views
                 ProducTable.Rows.Remove(ProducTable.CurrentRow);
                 ProductosCarrito.RemoveAt(i);
                 contador--;
-                MessageBox.Show("Producto eliminado con exito");
                 actualizarPrecio();
             }
 
@@ -287,15 +297,12 @@ namespace TuProductoOnline.Views
                     ProducTable.Rows[e.RowIndex].Cells[3].Value = cantidad;
                     //Modificar cantidad en la lista de listas.
                     ProductosCarrito[e.RowIndex].Amount = cantidad;
+                    actualizarPrecio(); 
                 }
             }
 
         }
-        private void bntAñadirProduct_Click(object sender, EventArgs e)
-        {
-
-        }
-
+     
         public void Refield()
         {
             List<List<string>> CsvClientes = new List<List<string>>(DbHandler.LeerCSV(FileNames.Customers));
@@ -440,21 +447,33 @@ namespace TuProductoOnline.Views
 
         public void GetPriceDollar()
         {
+            // Añadir modo desconectado
 
-            using (var client = new HttpClient())
+            try
             {
-                string url = "https://s3.amazonaws.com/dolartoday/data.json";
+                using (var client = new HttpClient())
+                {
+                    string url = "https://s3.amazonaws.com/dolartoday/data.json";
 
-                client.DefaultRequestHeaders.Clear();
+                    client.DefaultRequestHeaders.Clear();
 
-                var response = client.GetAsync(url).Result;
+                    var response = client.GetAsync(url).Result;
 
-                var res = response.Content.ReadAsStringAsync().Result;
-                dynamic r = JObject.Parse(res);
+                    var res = response.Content.ReadAsStringAsync().Result;
+                    dynamic r = JObject.Parse(res);
 
-                DolarToDayAPI.Dolar.sicad2 = r.USD.sicad2;
-                DolarToDayAPI.Euro.sicad2 = r.EUR.sicad2;
-                DolarToDayAPI.PesosCol.compra = r.COL.compra;
+                    DolarToDayAPI.Dolar.sicad2 = r.USD.sicad2;
+                    DolarToDayAPI.Euro.sicad2 = r.EUR.sicad2;
+                    DolarToDayAPI.PesosCol.compra = r.COL.compra;
+                    ApiStatus = true;
+                    APIstatus.Text = "Conectado";
+                }
+            }
+            catch (Exception)
+            {
+                ApiStatus = false;
+                APIstatus.Text = "Desconectado";
+                
             }
 
         }
@@ -464,7 +483,7 @@ namespace TuProductoOnline.Views
 
 
             var search = from s in Clientes
-                         where s.Document.ToLower() == text.ToLower() || s.Name.ToLower() == text.ToLower()
+                         where s.Document.ToLower().Trim() == text.ToLower().Trim() || s.Name.ToLower().Trim() == text.ToLower().Trim()
                          select new { s.Document, s.PhoneNumber, s.Address, s.Name, s.Type, s.LastName };
 
             try
@@ -491,7 +510,7 @@ namespace TuProductoOnline.Views
         {
 
             var search = from s in Productos
-                         where s.Name.ToLower() == text.ToLower()
+                         where s.Name.ToLower().Trim() == text.ToLower().Trim()
                          select new { s.Name, s.Price, s.Description, s.Id };
 
             try
@@ -529,6 +548,7 @@ namespace TuProductoOnline.Views
         {
             double precio = 1;
 
+
             if (DivisasBox.Text == " Bs.S")
             {
                 precio = 1;
@@ -546,23 +566,7 @@ namespace TuProductoOnline.Views
             }
 
 
-            ProducTable.Rows.Clear();
-            try
-            {
-                int i = 0;
-                foreach (var item in ProductosCarrito)
-                {
-                    ProducTable.Rows.Add(item.Id, item.Name, Math.Round(item.Price / precio, 2).ToString() + DivisasBox.Text, item.Amount);
-                    i++;
-                }
-
-                DivisaPrice = precio;
-            }
-            catch (Exception)
-            {
-                throw;
-
-            }
+            RecargarDG(precio);
 
             AlCambio.Text = DivisaPrice.ToString() + " Bs.S";
 
@@ -629,6 +633,9 @@ namespace TuProductoOnline.Views
                     ProducTable.Rows[e.RowIndex].Cells[3].Value = cantidad;
                     //Modificar cantidad en la lista de listas.
                     ProductosCarrito[e.RowIndex].Amount = cantidad;
+
+                    RecargarDG(DivisaPrice);
+                    actualizarPrecio();
                 }
             }
         }
@@ -766,8 +773,46 @@ namespace TuProductoOnline.Views
                 table.AddCell(cell);
             }
 
+        }
 
+        public void RecargarDG(double precio)
+        {
+            ProducTable.Rows.Clear();
+            try
+            {
+                int i = 0;
+                foreach (var item in ProductosCarrito)
+                {
+                    ProducTable.Rows.Add(item.Id, item.Name, Math.Round(item.Price / precio, 2).ToString() + DivisasBox.Text, item.Amount);
+                    i++;
+                }
 
+                DivisaPrice = precio;
+            }
+            catch (Exception)
+            {
+                throw;
+
+            }
+        }
+
+        private void RefreshAPIButton_Click(object sender, EventArgs e)
+        {
+            GetPriceDollar();
+            RellenarBoxDivisas();
+        }
+
+        public void RellenarBoxDivisas(){
+
+            if (ApiStatus == true)
+            {
+                DivisasBox.Items.Clear();
+                DivisasBox.Items.Add(" Bs.S");
+                DivisasBox.Items.Add(" .USD");
+                DivisasBox.Items.Add(" .EUR");
+                DivisasBox.Items.Add(" .COP");
+            }
+            else { DivisasBox.Items.Clear(); DivisasBox.Items.Add(" Bs.S"); }
         }
     }
 
