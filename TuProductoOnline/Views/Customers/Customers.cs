@@ -34,6 +34,7 @@ namespace TuProductoOnline.Views
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             new CustomerProperties(CreateCustomer).ShowDialog();
+            VerifyButtons();
         }
         private void Customers_Load(object sender, EventArgs e)
         {
@@ -150,6 +151,8 @@ namespace TuProductoOnline.Views
                 if (e.ColumnIndex == dgvCustomers.Columns["Delete"].Index)
                 {
                     ShowDeleteCustomer(id);
+                    btnprimero_Click(sender, e);
+                    VerifyButtons();
                 }
                 if (e.ColumnIndex == dgvCustomers.Columns["Consultar"].Index)
                     ConsultarCliente();

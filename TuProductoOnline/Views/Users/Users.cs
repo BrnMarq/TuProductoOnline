@@ -87,16 +87,24 @@ namespace TuProductoOnline.Views.Users
         private void btnAddUsers_Click(object sender, EventArgs e)
         {
             new UserModal(CreateUser).ShowDialog();
+            VerifyButtons();
         }
         private void UsersTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 string id = UsersTable.Rows[e.RowIndex].Cells[0].Value.ToString();
-                if (e.ColumnIndex == UsersTable.Columns["EditCell"].Index)
+                if (e.ColumnIndex == UsersTable.Columns["EditCell"].Index) 
+                {
                     ShowEditModal(id);
-                if (e.ColumnIndex == UsersTable.Columns["DeleteCell"].Index)
+                }
+
+                if (e.ColumnIndex == UsersTable.Columns["DeleteCell"].Index) 
+                {
                     ShowDeleteModal(id);
+                    btnprimero_Click(sender, e);
+                    VerifyButtons();
+                }
             } 
             catch (ArgumentOutOfRangeException)
             {
@@ -106,10 +114,12 @@ namespace TuProductoOnline.Views.Users
         {
             User user = User.GetUserById(int.Parse(id));
             new UserModal(EditUser, user).ShowDialog();
+
         }
         public void ShowDeleteModal(string id)
         {
             new DeleteModal(int.Parse(id), DeleteUser).ShowDialog();
+
         }
         public void CreateUser(List<string> userValues)
         {
@@ -158,7 +168,6 @@ namespace TuProductoOnline.Views.Users
             };
             User.UpdateUser(user.Id, values);
             MessageBox.Show("Usuario Borrado con exito");
-            Renderizar();
         }
         public void RenderTable(List<User>users)
         {
