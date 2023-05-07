@@ -737,13 +737,13 @@ namespace TuProductoOnline.Views
 
         private void ShowDeleteProduct(ref DataGridView dgv, int index) 
         {
-            new ProductDelete(ref dgv).Show();
+            /*new ProductDelete(ref dgv).Show();
             if (ProductDelete._eliminated == true)
-            {i
+            {
                 ProductosCarrito.RemoveAt(index);
                 contador--;
                 actualizarPrecio();
-            }
+            }*/
         }
     }
 

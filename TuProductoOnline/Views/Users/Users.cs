@@ -444,7 +444,7 @@ namespace TuProductoOnline.Views.Users
         }
         public object Searcher(User users, string searchParam)
         {
-            return users.GetType().GetProperty(searchParam).GetValue(users, null);
+            return users.GetType().GetProperty(searchParam).GetValue(users,null);
         }
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
@@ -486,7 +486,7 @@ namespace TuProductoOnline.Views.Users
         {
             if (e.ColumnIndex < 0 || e.ColumnIndex > 5) return;
 
-            List<string> searchParams = new List<string> { "Id", "Name", "LastName", "Email", "Phonenumber", "Direction" };
+            List<string> searchParams = new List<string> { "Id", "FirstName", "LastName", "Email", "Phone", "Address"};
             string searchParam = searchParams[e.ColumnIndex];
             int pageNum = Convert.ToInt32(lblPag.Text);
 
@@ -499,7 +499,7 @@ namespace TuProductoOnline.Views.Users
         public void OrdenarGridDescendente(DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex < 0 || e.ColumnIndex > 5) return;
-            List<string> searchParams = new List<string> { "Id", "Name", "LastName", "Email", "Phonenumber", "Direction" };
+            List<string> searchParams = new List<string> { "Id", "FirstName", "LastName", "Email", "Phone", "Address" };
             string searchParam = searchParams[e.ColumnIndex];
             int pageNum = Convert.ToInt32(lblPag.Text);
             List<User> paginated = Paginar(pageNum, GlobalUsers);
