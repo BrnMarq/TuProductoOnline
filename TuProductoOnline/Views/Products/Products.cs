@@ -407,7 +407,7 @@ namespace TuProductoOnline
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
             }
-            var filtrado = GlobalProducts.Where(i => i.Deleted != true && i.Name.ToLower().StartsWith(pattern) || i.Id.ToString().ToLower().Contains(pattern)).ToList();
+            var filtrado = GlobalProducts.Where(i => i.Deleted != true && i.Name.ToLower().StartsWith(pattern) || i.Id.ToString().ToLower().Contains(pattern) || i.Description.ToString().ToLower().StartsWith(pattern)).ToList();
             ProductsFiltrados = filtrado;
             botones(acum + 1, btn2, ProductsFiltrados);
             botones(acum + 2, btn3, ProductsFiltrados);
