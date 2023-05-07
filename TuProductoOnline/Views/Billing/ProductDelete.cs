@@ -12,8 +12,9 @@ namespace TuProductoOnline.Views.Billing
 {
     public partial class ProductDelete : Form
     {
+        
         private DataGridView _dgv;
-        public static bool _eliminated;
+        public bool _eliminated;
         public ProductDelete(ref DataGridView dgv)
         {
             _dgv = dgv;
