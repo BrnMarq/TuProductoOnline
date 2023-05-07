@@ -733,14 +733,18 @@ namespace TuProductoOnline.Views
 
                 double PrecioFinal = (TotalSinIVA + TotalDelIVA) - MontoExentoDelIVA;
 
+                string aux = Math.Round(MontoExentoDelIVA / factura.DivisaPrice, 2).ToString() + factura.Divisa;
+                string aux1 = Math.Round(TotalSinIVA / factura.DivisaPrice, 2).ToString() + factura.Divisa;
+                string aux2 = Math.Round(PrecioFinal / factura.DivisaPrice, 2).ToString() + factura.Divisa;
+
                 addCellColor(TablaTotal, "Monto Total Exento o Exonerado del IVA:", 1);
-                addCell(TablaTotal, Math.Round(MontoExentoDelIVA / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
+                addCell(TablaTotal, aux, 1);
 
                 addCellColor(TablaTotal, "Monto Total de la Base Imponible según Alicuota 16,00%:", 1);
-                addCell(TablaTotal, Math.Round(TotalSinIVA / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
+                addCell(TablaTotal, aux1, 1);
 
                 addCellColor(TablaTotal, "Monto Total del Impuesto según Alicuota 16, 00 %:", 1);
-                addCell(TablaTotal, Math.Round(PrecioFinal / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
+                addCell(TablaTotal, aux2, 1);
 
 
                 facturaPdf.Add(TablaTotal);
