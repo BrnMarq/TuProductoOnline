@@ -34,6 +34,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAddUsers = new System.Windows.Forms.Button();
             this.UsersTable = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Direction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EditCell = new System.Windows.Forms.DataGridViewImageColumn();
+            this.DeleteCell = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnExport = new System.Windows.Forms.Button();
@@ -52,14 +60,6 @@
             this.btnprimero = new System.Windows.Forms.Button();
             this.lbl = new System.Windows.Forms.Label();
             this.lblInfo = new System.Windows.Forms.Label();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Direction = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EditCell = new System.Windows.Forms.DataGridViewImageColumn();
-            this.DeleteCell = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.UsersTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,6 +86,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UsersTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.UsersTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.UsersTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.UsersTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.UsersTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -122,7 +123,7 @@
             this.UsersTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.UsersTable.RowHeadersVisible = false;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.UsersTable.RowsDefaultCellStyle = dataGridViewCellStyle4;
@@ -131,6 +132,67 @@
             this.UsersTable.TabIndex = 5;
             this.UsersTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsersTable_CellClick);
             this.UsersTable.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.UsersTable_ColumnHeaderMouseClick);
+            // 
+            // ID
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Nombre";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // LastName
+            // 
+            this.LastName.HeaderText = "Apellido";
+            this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
+            this.LastName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Email
+            // 
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // PhoneNumber
+            // 
+            this.PhoneNumber.HeaderText = "Teléfono";
+            this.PhoneNumber.Name = "PhoneNumber";
+            this.PhoneNumber.ReadOnly = true;
+            this.PhoneNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Direction
+            // 
+            this.Direction.HeaderText = "Dirección";
+            this.Direction.Name = "Direction";
+            this.Direction.ReadOnly = true;
+            this.Direction.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // EditCell
+            // 
+            this.EditCell.HeaderText = "Editar";
+            this.EditCell.Image = global::TuProductoOnline.Properties.Resources.editIcon;
+            this.EditCell.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.EditCell.Name = "EditCell";
+            this.EditCell.ReadOnly = true;
+            this.EditCell.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // DeleteCell
+            // 
+            this.DeleteCell.HeaderText = "Eliminar";
+            this.DeleteCell.Image = global::TuProductoOnline.Properties.Resources.deleteIcon1;
+            this.DeleteCell.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.DeleteCell.Name = "DeleteCell";
+            this.DeleteCell.ReadOnly = true;
+            this.DeleteCell.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // dataGridViewImageColumn1
             // 
@@ -288,7 +350,7 @@
             this.btnultimo.Name = "btnultimo";
             this.btnultimo.Size = new System.Drawing.Size(75, 23);
             this.btnultimo.TabIndex = 29;
-            this.btnultimo.Text = "Ultimo";
+            this.btnultimo.Text = "Último";
             this.btnultimo.UseVisualStyleBackColor = true;
             this.btnultimo.Click += new System.EventHandler(this.btnultimo_Click);
             // 
@@ -312,7 +374,7 @@
             this.lbl.Name = "lbl";
             this.lbl.Size = new System.Drawing.Size(108, 18);
             this.lbl.TabIndex = 31;
-            this.lbl.Text = "Pagina actual : ";
+            this.lbl.Text = "Página actual : ";
             // 
             // lblInfo
             // 
@@ -321,70 +383,9 @@
             this.lblInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfo.Location = new System.Drawing.Point(442, 13);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(176, 15);
+            this.lblInfo.Size = new System.Drawing.Size(181, 15);
             this.lblInfo.TabIndex = 32;
-            this.lblInfo.Text = "Buscar cliente por ID o nombre";
-            // 
-            // ID
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Nombre";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            this.name.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // LastName
-            // 
-            this.LastName.HeaderText = "Apellido";
-            this.LastName.Name = "LastName";
-            this.LastName.ReadOnly = true;
-            this.LastName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Email
-            // 
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            // 
-            // PhoneNumber
-            // 
-            this.PhoneNumber.HeaderText = "Teléfono";
-            this.PhoneNumber.Name = "PhoneNumber";
-            this.PhoneNumber.ReadOnly = true;
-            this.PhoneNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Direction
-            // 
-            this.Direction.HeaderText = "Dirección";
-            this.Direction.Name = "Direction";
-            this.Direction.ReadOnly = true;
-            this.Direction.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // EditCell
-            // 
-            this.EditCell.HeaderText = "Editar";
-            this.EditCell.Image = global::TuProductoOnline.Properties.Resources.editIcon;
-            this.EditCell.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.EditCell.Name = "EditCell";
-            this.EditCell.ReadOnly = true;
-            this.EditCell.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // DeleteCell
-            // 
-            this.DeleteCell.HeaderText = "Eliminar";
-            this.DeleteCell.Image = global::TuProductoOnline.Properties.Resources.deleteIcon1;
-            this.DeleteCell.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.DeleteCell.Name = "DeleteCell";
-            this.DeleteCell.ReadOnly = true;
-            this.DeleteCell.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.lblInfo.Text = "Buscar usuario por ID o nombre";
             // 
             // Users
             // 
