@@ -438,7 +438,7 @@ namespace TuProductoOnline
         {
             if (e.ColumnIndex < 0 || e.ColumnIndex == 1 || e.ColumnIndex > 5) return;
 
-            List<string> searchParams = new List<string> { "Id", "Name", "Brand", "Description", "Type", "Price" };
+            List<string> searchParams = new List<string> { "Id", "Type", "Name", "Brand","Description", "Price" };
             string searchParam = searchParams[e.ColumnIndex];
             int pageNum = Convert.ToInt32(lblPag.Text);
             List<Product> paginated = Paginar(pageNum, GlobalProducts);
@@ -448,7 +448,7 @@ namespace TuProductoOnline
         public void OrdenarGridDescendente(DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex < 0 || e.ColumnIndex ==1 || e.ColumnIndex > 5) return;
-            List<string> searchParams = new List<string> { "Id", "Name", "Brand", "Description", "Type", "Price" };
+            List<string> searchParams = new List<string> { "Id", "Type", "Name", "Brand", "Description", "Price" };
             string searchParam = searchParams[e.ColumnIndex];
             int pageNum = Convert.ToInt32(lblPag.Text);
             List<Product> paginated = Paginar(pageNum, GlobalProducts);
