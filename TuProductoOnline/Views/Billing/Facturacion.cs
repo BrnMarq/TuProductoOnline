@@ -134,6 +134,8 @@ namespace TuProductoOnline.Views
                     contador = 0;
                     CantidadBox.Text = "0 Bs.S";
                     CantidadBox.Text = "";
+                    actualizarPrecio();
+                    TextBox.Text = "";
 
                 }
             }
@@ -390,7 +392,7 @@ namespace TuProductoOnline.Views
         void ToPdf(Bill factura)
         {
             SaveFileDialog guardarFactura = new SaveFileDialog();
-            guardarFactura.FileName = DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";
+            guardarFactura.FileName = DateTime.Now.ToString("ddMMyyyyHHmmss");
 
             //Leer plantilla y pasar a string.
             string FacturaHeader_Texto = Properties.Resources.Header.ToString();
@@ -413,7 +415,7 @@ namespace TuProductoOnline.Views
             //Cliente
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@IDENTIDAD", factura.Cliente.Document.ToString());
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@CONDICION", factura.Cliente.Type);
-            FacturaHeader_Texto = FacturaHeader_Texto.Replace("@REASON", factura.Cliente.Name);
+            FacturaHeader_Texto = FacturaHeader_Texto.Replace("@REASON", factura.Cliente.Name + "" + factura.Cliente.LastName);
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@ADDRES", factura.Cliente.Address);
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@PHONE", factura.Cliente.PhoneNumber);
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@IVA", "16 %");
@@ -424,6 +426,7 @@ namespace TuProductoOnline.Views
 
                 if (guardarFactura.ShowDialog() == DialogResult.OK)
                 {
+                    guardarFactura.FileName += ".pdf";
                     if (File.Exists(guardarFactura.FileName))
                     {
                         File.Delete(guardarFactura.FileName);
@@ -431,6 +434,7 @@ namespace TuProductoOnline.Views
                     }
                     else
                     {
+                        
                         EscribirArchivoPdf(guardarFactura, FacturaHeader_Texto, factura);
                     }
 
@@ -688,16 +692,17 @@ namespace TuProductoOnline.Views
 
                 foreach (var item in factura.ListaProductos)
                 {
-
                     double priceProduct = 0;
                     priceProduct = item.Price * double.Parse(item.Amount);
+                    string PrecioUnitario = Math.Round(item.Price / factura.DivisaPrice, 2).ToString() + factura.Divisa;
+                    string PrecioSumado = Math.Round(priceProduct / factura.DivisaPrice, 2).ToString() + factura.Divisa;
 
                     addCell(TablaBody, item.Amount, 1);
                     addCell(TablaBody, item.Name, 1);
                     addCell(TablaBody, item.Description, 1);
                     addCell(TablaBody, iva.ToString(), 1);
-                    addCell(TablaBody, Math.Round(item.Price / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
-                    addCell(TablaBody, Math.Round(priceProduct / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
+                    addCell(TablaBody, PrecioUnitario, 1);
+                    addCell(TablaBody, PrecioSumado, 1);
 
                     Total += priceProduct;
                     TotalSinIVA += item.Price * double.Parse(item.Amount);
