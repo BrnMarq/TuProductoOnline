@@ -27,7 +27,8 @@ namespace TuProductoOnline
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Add add = new Add(maxId + 1);
+            int lastpage = GlobalProducts.Where(i => i.Deleted != true).ToList().Count;
+            Add add = new Add(lastpage + 1);
             add.ShowDialog();
             if (add.Id != 0)
             {
