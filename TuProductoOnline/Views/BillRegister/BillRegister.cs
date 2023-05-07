@@ -16,13 +16,19 @@ using TuProductoOnline.Utils;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
 using iTextSharp.tool.xml;
+using System.Runtime.InteropServices;
 
 namespace TuProductoOnline.Views.BillRegister
 {
     public partial class BillingRegistercs : Form
     {
-        private List<Bill> register = null;
-
+        int acum = 1;
+        private bool Buscar = false;
+        private bool Ascendente = true;
+        private List<Bill> globalRegister = new List<Bill>();
+        private List<Bill> filterRegister;
+        private List<Bill> Ordenado;
+        private int registerForPage = 25;
         public BillingRegistercs()
         {
             InitializeComponent();
@@ -36,23 +42,10 @@ namespace TuProductoOnline.Views.BillRegister
 
         private void BillingRegistercs_Load(object sender, EventArgs e)
         {
-            try
-            {
-                string jsonString = File.ReadAllText(FileNames.BillRegister);
-                try
-                {
-                    register = JsonSerializer.Deserialize<List<Bill>>(jsonString);
-                }
-                catch (JsonException)
-                {
-                    ;
-                }
-            }
-            catch (FileNotFoundException)
-            {
-                ;
-            }
-            renderTable();
+            lblPageNum.Text = "1";
+            fillRegisters();
+            VerifyButtons();
+            //renderTable(Paginar(acum, globalRegister));
         }
 
         private void renderTable()
@@ -60,12 +53,23 @@ namespace TuProductoOnline.Views.BillRegister
             hideImportExportButton();
             dgvBillRegister.Rows.Clear();
             dgvBillRegister.Refresh();
-            if (register != null)
+            if (globalRegister != null)
             {
-                foreach (Bill billn in register)
+                foreach (Bill billn in globalRegister)
                 {
                     dgvBillRegister.Rows.Add(billn.BillId, billn.Fecha, billn.Cajero, sumProducts(billn.ListaProductos, billn.Cliente));
                 }
+            }
+        }
+
+        public void renderTable(List<Bill> registersN)
+        {
+            hideImportExportButton();
+            dgvBillRegister.Rows.Clear();
+            dgvBillRegister.Refresh();
+            foreach (Bill r in registersN)
+            {
+                dgvBillRegister.Rows.Add(r.BillId, r.Fecha, r.Cajero, sumProducts(r.ListaProductos, r.Cliente));
             }
         }
 
@@ -97,7 +101,7 @@ namespace TuProductoOnline.Views.BillRegister
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            JsonHandler.saveJsonFile(register);
+            JsonHandler.saveJsonFile(globalRegister);
         }
 
         //"T" means to.
@@ -105,15 +109,15 @@ namespace TuProductoOnline.Views.BillRegister
         {
             if (listOfBills != null) 
             {
-                if (register == null)
+                if (globalRegister == null)
                 {
-                    register = listOfBills;
+                    globalRegister = listOfBills;
                 }
                 else
                 {
                     foreach (Bill nBill in listOfBills)
                     {
-                        register.Add(nBill);
+                        globalRegister.Add(nBill);
                     }
                 }
             }
@@ -122,7 +126,7 @@ namespace TuProductoOnline.Views.BillRegister
         //Oculta y/o muestra los botones de importar y exportar, dependiendo de si hay datos en register o no.
         public void hideImportExportButton()
         {
-            if (register == null)
+            if (globalRegister == null)
             {
                 btnExport.Visible = false;
                 btnImport.Visible = true;
@@ -136,16 +140,19 @@ namespace TuProductoOnline.Views.BillRegister
 
         private void dgvBillRegister_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
+            if (e.ColumnIndex == dgvBillRegister.Columns["print"].Index && e.RowIndex != -1)
             {
-                if (e.ColumnIndex == dgvBillRegister.Columns["print"].Index)
+                try
                 {
-                    ToPdf(register[dgvBillRegister.CurrentCell.RowIndex]);
+                    if (e.ColumnIndex == dgvBillRegister.Columns["print"].Index)
+                    {
+                        ToPdf(globalRegister[dgvBillRegister.CurrentCell.RowIndex]);
+                    }
                 }
-            }
-            catch (ArgumentOutOfRangeException)
-            {
+                catch (ArgumentOutOfRangeException)
+                {
 
+                }
             }
         }
 
@@ -153,7 +160,7 @@ namespace TuProductoOnline.Views.BillRegister
         public void saveDataBase()
         {
             string fileName = FileNames.BillRegister;
-            string jsonString = JsonSerializer.Serialize(register);
+            string jsonString = JsonSerializer.Serialize(globalRegister);
             File.WriteAllText(fileName, jsonString);
         }
 
@@ -315,6 +322,361 @@ namespace TuProductoOnline.Views.BillRegister
             }
 
 
+        }
+
+        public void OrdenarGridAscendente(DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex < 0 || e.ColumnIndex > 2) return;
+
+            List<string> searchParams = new List<string> { "BillId", "Fecha", "Cajero" };
+            string searchParam = searchParams[e.ColumnIndex];
+            int pageNum = Convert.ToInt32(lblPageNum.Text);
+
+            List<Bill> paginated = Paginar(pageNum, globalRegister);
+
+            Ordenado = paginated.OrderBy(l => Searcher(l, searchParam)).ToList();
+
+            renderTable(Ordenado);
+        }
+        public void OrdenarGridDescendente(DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex < 0 || e.ColumnIndex > 2) return;
+
+            List<string> searchParams = new List<string> { "BillId", "Fecha", "Cajero" };
+            string searchParam = searchParams[e.ColumnIndex];
+            int pageNum = Convert.ToInt32(lblPageNum.Text);
+
+            List<Bill> paginated = Paginar(pageNum, globalRegister);
+
+            Ordenado = paginated.OrderByDescending(l => Searcher(l, searchParam)).ToList();
+
+            renderTable(Ordenado);
+
+        }
+
+        private List<Bill> Paginar(int num, List<Bill> registersN)
+        {
+            var lista = registersN.Skip((num - 1) * registerForPage).Take(registerForPage).ToList();
+
+            return lista;
+        }
+
+        public object Searcher(Bill registerN, string searchParam)
+        {
+            return registerN.GetType().GetProperty(searchParam).GetValue(registerN, null);
+        }
+
+        private void VerifyButtons()
+        {
+            int lastPage;
+            if (acum == 1)
+            {
+                btnprimero.Enabled = false;
+                btnantes.Enabled = false;
+            }
+            if (!Buscar)
+            {
+                botones(acum + 1, btn2, globalRegister);
+                botones(acum + 2, btn3, globalRegister);
+                botones(acum + 3, btn4, globalRegister);
+                lastPage = LastPage(globalRegister);
+                renderTable(Paginar(acum, globalRegister));
+                if (btn2.Enabled == false)
+                {
+                    btnultimo.Enabled = false;
+                    btnsiguiente.Enabled = false;
+                }
+                else
+                {
+                    btnultimo.Enabled = true;
+                    btnsiguiente.Enabled = true;
+                }
+            }
+            else
+            {
+                botones(acum + 1, btn2, filterRegister);
+                botones(acum + 2, btn3, filterRegister);
+                botones(acum + 3, btn4, filterRegister);
+                lastPage = LastPage(filterRegister);
+                renderTable(Paginar(acum, filterRegister));
+                if (btn2.Enabled == false)
+                {
+                    btnultimo.Enabled = false;
+                    btnsiguiente.Enabled = false;
+                }
+                else
+                {
+                    btnultimo.Enabled = true;
+                    btnsiguiente.Enabled = true;
+                }
+            }
+        }
+
+        public void botones(int acum, Button btn, List<Bill> registersN)
+        {
+            int block = LastPage(registersN);
+            if (acum > block)
+            {
+                btn.Enabled = false;
+            }
+            else
+            {
+                btn.Enabled = true;
+            }
+        }
+
+        private int LastPage(List<Bill> billN)
+        {
+            float numClientes;
+            numClientes = (float)(billN.ToList().Count) / registerForPage;
+
+            double numPaginas = Math.Ceiling(numClientes);
+            if (numPaginas < numClientes)
+                numPaginas++;
+            return (int)numPaginas;
+        }
+
+        private void fillRegisters()
+        {
+            try
+            {
+                string jsonString = File.ReadAllText(FileNames.BillRegister);
+                try
+                {
+                    globalRegister = JsonSerializer.Deserialize<List<Bill>>(jsonString);
+                }
+                catch (JsonException)
+                {
+                    ;
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                ;
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string pattern = txtSearch.Text.ToLower();
+            Buscar = true;
+
+            if (pattern.Length != 0)
+            {
+                lblPageNum.Text = "1";
+                acum = 1;
+                btn1.Text = Convert.ToString(acum);
+                btn2.Text = Convert.ToString(acum + 1);
+                btn3.Text = Convert.ToString(acum + 2);
+                btn4.Text = Convert.ToString(acum + 3);
+                btnprimero.Enabled = false;
+                btnantes.Enabled = false;
+            }
+
+            var filtrado = globalRegister.Where(i => i.BillId.ToString().StartsWith(pattern) || i.BillId.ToString().Contains(pattern)).ToList();
+            filterRegister = filtrado;
+
+            botones(acum + 1, btn2, filterRegister);
+            botones(acum + 2, btn3, filterRegister);
+            botones(acum + 3, btn4, filterRegister);
+
+            if (btn2.Enabled == false)
+            {
+                btnultimo.Enabled = false;
+                btnsiguiente.Enabled = false;
+            }
+            else
+            {
+                btnultimo.Enabled = true;
+                btnsiguiente.Enabled = true;
+            }
+
+            renderTable(Paginar(Convert.ToInt32(lblPageNum.Text), filterRegister));
+        }
+
+        private void btnantes_Click(object sender, EventArgs e)
+        {
+            acum -= 1;
+            lblPageNum.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnultimo.Enabled = true;
+            btnsiguiente.Enabled = true;
+
+            if (acum == 1)
+            {
+                btnprimero.Enabled = false;
+                btnantes.Enabled = false;
+            }
+
+            SumarBotones();
+            if (btn2.Enabled == false)
+            {
+                btnultimo.Enabled = false;
+                btnsiguiente.Enabled = false;
+            }
+            else
+            {
+                btnultimo.Enabled = true;
+                btnsiguiente.Enabled = true;
+            }
+        }
+        private void btnsiguiente_Click(object sender, EventArgs e)
+        {
+            acum += 1;
+            lblPageNum.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+
+            if (!Buscar)
+            {
+                if (acum == LastPage(globalRegister))
+                {
+                    btn2.Enabled = false;
+                    btnultimo.Enabled = false;
+                    btnsiguiente.Enabled = false;
+                }
+                renderTable(Paginar(acum, globalRegister));
+                botones(acum + 2, btn3, globalRegister);
+                botones(acum + 3, btn4, globalRegister);
+            }
+            else
+            {
+                if (acum == LastPage(filterRegister))
+                {
+                    btn2.Enabled = false;
+                    btnultimo.Enabled = false;
+                    btnsiguiente.Enabled = false;
+                }
+                renderTable(Paginar(acum, filterRegister));
+                botones(acum + 2, btn3, filterRegister);
+                botones(acum + 3, btn4, filterRegister);
+            }
+
+        }
+
+        public void SumarBotones()
+        {
+            if (!Buscar)
+            {
+                renderTable(Paginar(acum, globalRegister));
+                botones(acum + 1, btn2, globalRegister);
+                botones(acum + 2, btn3, globalRegister);
+                botones(acum + 3, btn4, globalRegister);
+            }
+            else
+            {
+                renderTable(Paginar(acum, filterRegister));
+                botones(acum + 1, btn2, filterRegister);
+                botones(acum + 2, btn3, filterRegister);
+                botones(acum + 3, btn4, filterRegister);
+            }
+        }
+
+        private void btn2_Click(object sender, EventArgs e)
+        {
+            btnsiguiente_Click(sender, e);
+        }
+        private void btn3_Click(object sender, EventArgs e)
+        {
+            acum += 2;
+            lblPageNum.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+
+            SumarBotones();
+
+            if (btn2.Enabled == false)
+            {
+                btnsiguiente.Enabled = false;
+                btnultimo.Enabled = false;
+            }
+        }
+        private void btn4_Click(object sender, EventArgs e)
+        {
+            acum += 3;
+            lblPageNum.Text = Convert.ToString(acum);
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+
+            SumarBotones();
+        }
+
+        private void btnprimero_Click(object sender, EventArgs e)
+        {
+            lblPageNum.Text = "1";
+            acum = 1;
+            btn1.Text = Convert.ToString(acum);
+            btn2.Text = Convert.ToString(acum + 1);
+            btn3.Text = Convert.ToString(acum + 2);
+            btn4.Text = Convert.ToString(acum + 3);
+            btnprimero.Enabled = false;
+            btnantes.Enabled = false;
+            btnultimo.Enabled = true;
+            btnsiguiente.Enabled = true;
+
+            SumarBotones();
+        }
+
+        private void btnultimo_Click(object sender, EventArgs e)
+        {
+            int lastPage;
+            if (!Buscar)
+            {
+                lastPage = LastPage(globalRegister);
+                renderTable(Paginar(lastPage, globalRegister));
+            }
+            else
+            {
+                lastPage = LastPage(filterRegister);
+                renderTable(Paginar(lastPage, filterRegister));
+            }
+            acum = lastPage;
+            lblPageNum.Text = lastPage.ToString();
+            btnultimo.Enabled = false;
+            btnsiguiente.Enabled = false;
+            btn2.Enabled = false;
+            btn3.Enabled = false;
+            btn4.Enabled = false;
+            btnprimero.Enabled = true;
+            btnantes.Enabled = true;
+            if (!Buscar)
+            {
+                btn1.Text = Convert.ToString(LastPage(globalRegister));
+                btn2.Text = Convert.ToString(LastPage(globalRegister) + 1);
+                btn3.Text = Convert.ToString(LastPage(globalRegister) + 2);
+                btn4.Text = Convert.ToString(LastPage(globalRegister) + 3);
+            }
+            else
+            {
+                btn1.Text = Convert.ToString(LastPage(filterRegister));
+                btn2.Text = Convert.ToString(LastPage(filterRegister) + 1);
+                btn3.Text = Convert.ToString(LastPage(filterRegister) + 2);
+                btn4.Text = Convert.ToString(LastPage(filterRegister) + 3);
+            }
+        }
+
+        private void dgvCustomers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (Ascendente)
+                OrdenarGridDescendente(e);
+            else
+                OrdenarGridAscendente(e);
+            Ascendente = !Ascendente;
         }
     }
 }

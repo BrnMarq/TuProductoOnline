@@ -67,9 +67,10 @@
             this.btnAddCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnAddCustomer.Location = new System.Drawing.Point(12, 38);
+            this.btnAddCustomer.Location = new System.Drawing.Point(16, 47);
+            this.btnAddCustomer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Size = new System.Drawing.Size(100, 30);
+            this.btnAddCustomer.Size = new System.Drawing.Size(133, 37);
             this.btnAddCustomer.TabIndex = 3;
             this.btnAddCustomer.Text = "Agregar";
             this.btnAddCustomer.UseVisualStyleBackColor = false;
@@ -82,9 +83,10 @@
             this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImport.ForeColor = System.Drawing.Color.White;
-            this.btnImport.Location = new System.Drawing.Point(119, 38);
+            this.btnImport.Location = new System.Drawing.Point(159, 47);
+            this.btnImport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(100, 30);
+            this.btnImport.Size = new System.Drawing.Size(133, 37);
             this.btnImport.TabIndex = 6;
             this.btnImport.Text = "Importar";
             this.btnImport.UseVisualStyleBackColor = false;
@@ -97,9 +99,10 @@
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExport.ForeColor = System.Drawing.Color.White;
-            this.btnExport.Location = new System.Drawing.Point(229, 38);
+            this.btnExport.Location = new System.Drawing.Point(305, 47);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(100, 30);
+            this.btnExport.Size = new System.Drawing.Size(133, 37);
             this.btnExport.TabIndex = 7;
             this.btnExport.Text = "Exportar";
             this.btnExport.UseVisualStyleBackColor = false;
@@ -140,7 +143,8 @@
             this.Delete,
             this.Consultar});
             this.dgvCustomers.EnableHeadersVisualStyles = false;
-            this.dgvCustomers.Location = new System.Drawing.Point(12, 99);
+            this.dgvCustomers.Location = new System.Drawing.Point(16, 122);
+            this.dgvCustomers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvCustomers.Name = "dgvCustomers";
             this.dgvCustomers.ReadOnly = true;
             this.dgvCustomers.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -153,13 +157,14 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvCustomers.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCustomers.RowHeadersVisible = false;
+            this.dgvCustomers.RowHeadersWidth = 51;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.dgvCustomers.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCustomers.Size = new System.Drawing.Size(677, 290);
+            this.dgvCustomers.Size = new System.Drawing.Size(903, 357);
             this.dgvCustomers.TabIndex = 8;
             this.dgvCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellClick);
             this.dgvCustomers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCustomers_ColumnHeaderMouseClick);
@@ -167,24 +172,28 @@
             // Code
             // 
             this.Code.HeaderText = "Código";
+            this.Code.MinimumWidth = 6;
             this.Code.Name = "Code";
             this.Code.ReadOnly = true;
             // 
             // Nombre
             // 
             this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
             // 
             // PhoneNumber
             // 
             this.PhoneNumber.HeaderText = "Teléfono";
+            this.PhoneNumber.MinimumWidth = 6;
             this.PhoneNumber.Name = "PhoneNumber";
             this.PhoneNumber.ReadOnly = true;
             // 
             // Address
             // 
             this.Address.HeaderText = "Dirección";
+            this.Address.MinimumWidth = 6;
             this.Address.Name = "Address";
             this.Address.ReadOnly = true;
             // 
@@ -192,6 +201,7 @@
             // 
             this.Edit.HeaderText = "Editar";
             this.Edit.Image = global::TuProductoOnline.Properties.Resources.editIcon1;
+            this.Edit.MinimumWidth = 6;
             this.Edit.Name = "Edit";
             this.Edit.ReadOnly = true;
             // 
@@ -199,6 +209,7 @@
             // 
             this.Delete.HeaderText = "Eliminar";
             this.Delete.Image = global::TuProductoOnline.Properties.Resources.deleteIcon1;
+            this.Delete.MinimumWidth = 6;
             this.Delete.Name = "Delete";
             this.Delete.ReadOnly = true;
             // 
@@ -206,6 +217,7 @@
             // 
             this.Consultar.HeaderText = "Consultar";
             this.Consultar.Image = global::TuProductoOnline.Properties.Resources.lupa__1_;
+            this.Consultar.MinimumWidth = 6;
             this.Consultar.Name = "Consultar";
             this.Consultar.ReadOnly = true;
             // 
@@ -213,9 +225,10 @@
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(429, 42);
+            this.txtSearch.Location = new System.Drawing.Point(572, 52);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(208, 26);
+            this.txtSearch.Size = new System.Drawing.Size(276, 30);
             this.txtSearch.TabIndex = 9;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -224,9 +237,10 @@
             this.lblPageNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPageNum.AutoSize = true;
             this.lblPageNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPageNum.Location = new System.Drawing.Point(646, 414);
+            this.lblPageNum.Location = new System.Drawing.Point(861, 510);
+            this.lblPageNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPageNum.Name = "lblPageNum";
-            this.lblPageNum.Size = new System.Drawing.Size(18, 20);
+            this.lblPageNum.Size = new System.Drawing.Size(23, 25);
             this.lblPageNum.TabIndex = 15;
             this.lblPageNum.Text = "1";
             // 
@@ -235,9 +249,10 @@
             this.lblInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblInfo.AutoSize = true;
             this.lblInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfo.Location = new System.Drawing.Point(442, 13);
+            this.lblInfo.Location = new System.Drawing.Point(589, 16);
+            this.lblInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(176, 15);
+            this.lblInfo.Size = new System.Drawing.Size(213, 18);
             this.lblInfo.TabIndex = 16;
             this.lblInfo.Text = "Buscar cliente por ID o nombre";
             // 
@@ -246,18 +261,20 @@
             this.lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl.AutoSize = true;
             this.lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.lbl.Location = new System.Drawing.Point(535, 414);
+            this.lbl.Location = new System.Drawing.Point(713, 510);
+            this.lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(108, 18);
+            this.lbl.Size = new System.Drawing.Size(137, 24);
             this.lbl.TabIndex = 32;
             this.lbl.Text = "Página actual : ";
             // 
             // btnprimero
             // 
             this.btnprimero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnprimero.Location = new System.Drawing.Point(28, 414);
+            this.btnprimero.Location = new System.Drawing.Point(37, 510);
+            this.btnprimero.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnprimero.Name = "btnprimero";
-            this.btnprimero.Size = new System.Drawing.Size(75, 23);
+            this.btnprimero.Size = new System.Drawing.Size(100, 28);
             this.btnprimero.TabIndex = 40;
             this.btnprimero.Text = "Primero";
             this.btnprimero.UseVisualStyleBackColor = true;
@@ -266,9 +283,10 @@
             // btnultimo
             // 
             this.btnultimo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnultimo.Location = new System.Drawing.Point(431, 414);
+            this.btnultimo.Location = new System.Drawing.Point(575, 510);
+            this.btnultimo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnultimo.Name = "btnultimo";
-            this.btnultimo.Size = new System.Drawing.Size(75, 23);
+            this.btnultimo.Size = new System.Drawing.Size(100, 28);
             this.btnultimo.TabIndex = 39;
             this.btnultimo.Text = "Último";
             this.btnultimo.UseVisualStyleBackColor = true;
@@ -277,9 +295,10 @@
             // btnsiguiente
             // 
             this.btnsiguiente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnsiguiente.Location = new System.Drawing.Point(350, 414);
+            this.btnsiguiente.Location = new System.Drawing.Point(467, 510);
+            this.btnsiguiente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnsiguiente.Name = "btnsiguiente";
-            this.btnsiguiente.Size = new System.Drawing.Size(75, 23);
+            this.btnsiguiente.Size = new System.Drawing.Size(100, 28);
             this.btnsiguiente.TabIndex = 38;
             this.btnsiguiente.Text = "Siguiente";
             this.btnsiguiente.UseVisualStyleBackColor = true;
@@ -288,9 +307,10 @@
             // btn4
             // 
             this.btn4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn4.Location = new System.Drawing.Point(310, 414);
+            this.btn4.Location = new System.Drawing.Point(413, 510);
+            this.btn4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn4.Name = "btn4";
-            this.btn4.Size = new System.Drawing.Size(35, 23);
+            this.btn4.Size = new System.Drawing.Size(47, 28);
             this.btn4.TabIndex = 37;
             this.btn4.Text = "4";
             this.btn4.UseVisualStyleBackColor = true;
@@ -299,9 +319,10 @@
             // btn3
             // 
             this.btn3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn3.Location = new System.Drawing.Point(270, 414);
+            this.btn3.Location = new System.Drawing.Point(360, 510);
+            this.btn3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn3.Name = "btn3";
-            this.btn3.Size = new System.Drawing.Size(35, 23);
+            this.btn3.Size = new System.Drawing.Size(47, 28);
             this.btn3.TabIndex = 36;
             this.btn3.Text = "3";
             this.btn3.UseVisualStyleBackColor = true;
@@ -310,9 +331,10 @@
             // btn2
             // 
             this.btn2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn2.Location = new System.Drawing.Point(230, 414);
+            this.btn2.Location = new System.Drawing.Point(307, 510);
+            this.btn2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn2.Name = "btn2";
-            this.btn2.Size = new System.Drawing.Size(35, 23);
+            this.btn2.Size = new System.Drawing.Size(47, 28);
             this.btn2.TabIndex = 35;
             this.btn2.Text = "2";
             this.btn2.UseVisualStyleBackColor = true;
@@ -321,9 +343,10 @@
             // btn1
             // 
             this.btn1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn1.Location = new System.Drawing.Point(190, 414);
+            this.btn1.Location = new System.Drawing.Point(253, 510);
+            this.btn1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn1.Name = "btn1";
-            this.btn1.Size = new System.Drawing.Size(35, 23);
+            this.btn1.Size = new System.Drawing.Size(47, 28);
             this.btn1.TabIndex = 34;
             this.btn1.Text = "1";
             this.btn1.UseVisualStyleBackColor = true;
@@ -331,9 +354,10 @@
             // btnantes
             // 
             this.btnantes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnantes.Location = new System.Drawing.Point(109, 414);
+            this.btnantes.Location = new System.Drawing.Point(145, 510);
+            this.btnantes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnantes.Name = "btnantes";
-            this.btnantes.Size = new System.Drawing.Size(75, 23);
+            this.btnantes.Size = new System.Drawing.Size(100, 28);
             this.btnantes.TabIndex = 33;
             this.btnantes.Text = "Anterior";
             this.btnantes.UseVisualStyleBackColor = true;
@@ -341,10 +365,10 @@
             // 
             // CustomersView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(701, 480);
+            this.ClientSize = new System.Drawing.Size(935, 591);
             this.Controls.Add(this.btnprimero);
             this.Controls.Add(this.btnultimo);
             this.Controls.Add(this.btnsiguiente);
@@ -362,6 +386,7 @@
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnAddCustomer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CustomersView";
             this.Text = "Customers";
             this.Load += new System.EventHandler(this.Customers_Load);
