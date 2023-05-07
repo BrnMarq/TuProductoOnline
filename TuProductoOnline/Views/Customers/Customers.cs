@@ -212,7 +212,6 @@ namespace TuProductoOnline.Views
             };
             Customer.UpdateCustomer(customer.Code, values);
             MessageBox.Show("Cliente editado con exito");
-
             Renderizar();
         }
         public void DeleteCustomer(int id)

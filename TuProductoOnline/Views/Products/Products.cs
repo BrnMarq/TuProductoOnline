@@ -32,7 +32,7 @@ namespace TuProductoOnline
             if (add.Id != 0)
             {
                 new Product(add.Alias, add.Price, add.Brand, add.Description, add.Type);
-                RenderTable(Paginar(num_page, ProductsFiltrados));
+                Renderizar();
                 maxId++;
             }
         }
@@ -119,14 +119,7 @@ namespace TuProductoOnline
                         Product.UpdateProduct(int.Parse(id), productValues);
                         MessageBox.Show("Producto borrado con exito");
                     }
-                    if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
-                    {
-                        RenderTable(Paginar(acum, GlobalProducts));
-                    }
-                    else
-                    {
-                        RenderTable(Paginar(Convert.ToInt32(lblPag.Text), ProductsFiltrados));
-                    }
+                    Renderizar();
                 }
                 if (dgvProducts.Columns[e.ColumnIndex].Name == "Edit")
                 {
@@ -149,14 +142,7 @@ namespace TuProductoOnline
                         MessageBox.Show("Producto editado con exito");
                         txtSearch.Clear();
                     }
-                    if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
-                    {
-                        RenderTable(Paginar(acum, GlobalProducts));
-                    }
-                    else
-                    {
-                        RenderTable(Paginar(Convert.ToInt32(lblPag.Text), ProductsFiltrados));
-                    }
+                    Renderizar();
                 }
                 if (dgvProducts.Columns[e.ColumnIndex].Name == "Consultar")
                 {
@@ -507,6 +493,13 @@ namespace TuProductoOnline
             if (numPaginas < numUsuario)
                 numPaginas++;
             return (int)numPaginas;
+        }
+        public void Renderizar()
+        {
+            if (!Buscar)
+                RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalProducts));
+            else
+                RenderTable(Paginar(Convert.ToInt32(lblPag.Text), ProductsFiltrados));
         }
     }
 }

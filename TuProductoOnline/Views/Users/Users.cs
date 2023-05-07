@@ -122,7 +122,7 @@ namespace TuProductoOnline.Views.Users
                 userValues[5],
                 userValues[6]
             );
-            RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
+            Renderizar();
         }
         public void EditUser(List<string> userValues)
         { 
@@ -140,7 +140,7 @@ namespace TuProductoOnline.Views.Users
             };
             User.UpdateUser(user.Id, values);
             MessageBox.Show("Usuario editado con exito");
-            RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
+            Renderizar();
         }
         public void DeleteUser(int id)
         {
@@ -158,7 +158,7 @@ namespace TuProductoOnline.Views.Users
             };
             User.UpdateUser(user.Id, values);
             MessageBox.Show("Usuario Borrado con exito");
-            RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
+            Renderizar();
         }
         public void RenderTable(List<User>users)
         {
@@ -470,6 +470,13 @@ namespace TuProductoOnline.Views.Users
             else
                 OrdenarGridAscendente(e);
             Ascendente = !Ascendente;
+        }
+        public void Renderizar()
+        {
+            if (!Buscar)
+                RenderTable(Paginar(Convert.ToInt32(lblPag.Text), GlobalUsers));
+            else
+                RenderTable(Paginar(Convert.ToInt32(lblPag.Text), UsersFiltrados));
         }
     }
 }
