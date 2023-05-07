@@ -393,7 +393,7 @@ namespace TuProductoOnline.Views
         {
             SaveFileDialog guardarFactura = new SaveFileDialog();
             guardarFactura.FileName = DateTime.Now.ToString("ddMMyyyyHHmmss");
-
+            guardarFactura.DefaultExt = ".pdf";
             //Leer plantilla y pasar a string.
             string FacturaHeader_Texto = Properties.Resources.Header.ToString();
 
@@ -415,20 +415,21 @@ namespace TuProductoOnline.Views
             //Cliente
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@IDENTIDAD", factura.Cliente.Document.ToString());
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@CONDICION", factura.Cliente.Type);
-            FacturaHeader_Texto = FacturaHeader_Texto.Replace("@REASON", factura.Cliente.Name + "" + factura.Cliente.LastName);
+            FacturaHeader_Texto = FacturaHeader_Texto.Replace("@REASON", factura.Cliente.Name + " " + factura.Cliente.LastName);
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@ADDRES", factura.Cliente.Address);
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@PHONE", factura.Cliente.PhoneNumber);
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@IVA", "16 %");
 
             try
             {
-
-
+                
+                
                 if (guardarFactura.ShowDialog() == DialogResult.OK)
                 {
-                    guardarFactura.FileName += ".pdf";
+                    
                     if (File.Exists(guardarFactura.FileName))
                     {
+                        
                         File.Delete(guardarFactura.FileName);
                         EscribirArchivoPdf(guardarFactura, FacturaHeader_Texto, factura);
                     }
@@ -471,6 +472,7 @@ namespace TuProductoOnline.Views
                     DolarToDayAPI.PesosCol.compra = r.COL.compra;
                     ApiStatus = true;
                     APIstatus.Text = "Conectado";
+                    
                 }
             }
             catch (Exception)
@@ -822,6 +824,8 @@ namespace TuProductoOnline.Views
                 DivisasBox.Items.Add(" .COP");
             }
             else { DivisasBox.Items.Clear(); DivisasBox.Items.Add(" Bs.S"); }
+
+            DivisasBox.Text = " Bs.S";
         }
     }
 
