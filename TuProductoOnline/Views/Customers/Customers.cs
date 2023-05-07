@@ -386,13 +386,11 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnultimo.Enabled = true;
             btnsiguiente.Enabled = true;
-
             if (acum == 1)
             {
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
             }
-
             SumarBotones();
 
         }
@@ -447,9 +445,7 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-
             SumarBotones();
-
             if (btn2.Enabled == false) 
             {
                 btnsiguiente.Enabled = false;
@@ -466,7 +462,6 @@ namespace TuProductoOnline.Views
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-
             SumarBotones();
         }
         private int LastPage(List<Customer> customers)

@@ -26,7 +26,6 @@ namespace TuProductoOnline.Views.Users
         private int UserForPage = 25;
         private List<User> Ordenado;
         private bool Ascendente = true;
-
         public Users()
         {
             InitializeComponent();
@@ -83,7 +82,6 @@ namespace TuProductoOnline.Views.Users
         private List<User> Paginar(int num, List<User> users)
         {
             var lista = users.Where(i => i.Deleted != true).Skip((num - 1) * UserForPage).Take(UserForPage).ToList();
-
             return lista;
         }
         private void btnAddUsers_Click(object sender, EventArgs e)
@@ -265,7 +263,6 @@ namespace TuProductoOnline.Views.Users
                 botones(acum + 2, btn3, UsersFiltrados);
                 botones(acum + 3, btn4, UsersFiltrados);
             }
-
         }
         private void btnprimero_Click(object sender, EventArgs e)
         {
@@ -279,21 +276,7 @@ namespace TuProductoOnline.Views.Users
             btnantes.Enabled = false;
             btnultimo.Enabled = true;
             btnsiguiente.Enabled = true;
-            if (!Buscar) 
-            {
-                botones(acum + 1, btn2, GlobalUsers);
-                botones(acum + 2, btn3, GlobalUsers);
-                botones(acum + 3, btn4, GlobalUsers);
-                RenderTable(Paginar(acum, GlobalUsers));   
-            }
-            else 
-            {
-                botones(acum + 1, btn2, UsersFiltrados);
-                botones(acum + 2, btn3, UsersFiltrados);
-                botones(acum + 3, btn4, UsersFiltrados);
-                RenderTable(Paginar(acum, UsersFiltrados));
-            
-            }
+            SumarBotones();
         }
         private void btnantes_Click(object sender, EventArgs e)
         {
@@ -310,20 +293,7 @@ namespace TuProductoOnline.Views.Users
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
             }
-            if (!Buscar)
-            {
-                RenderTable(Paginar(acum, GlobalUsers));
-                botones(acum + 1, btn2, GlobalUsers);
-                botones(acum + 2, btn3, GlobalUsers);
-                botones(acum + 3, btn4, GlobalUsers);
-            }
-            else
-            {
-                RenderTable(Paginar(acum, UsersFiltrados));
-                botones(acum + 1, btn2, UsersFiltrados);
-                botones(acum + 2, btn3, UsersFiltrados);
-                botones(acum + 3, btn4, UsersFiltrados);
-            }
+            SumarBotones();
         }
         private void btn2_Click(object sender, EventArgs e)
         {
@@ -339,20 +309,7 @@ namespace TuProductoOnline.Views.Users
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!Buscar)
-            {
-                RenderTable(Paginar(acum, GlobalUsers));
-                botones(acum + 1, btn2, GlobalUsers);
-                botones(acum + 2, btn3, GlobalUsers);
-                botones(acum + 3, btn4, GlobalUsers);
-            }
-            else
-            {
-                RenderTable(Paginar(acum, UsersFiltrados));
-                botones(acum + 1, btn2, UsersFiltrados);
-                botones(acum + 2, btn3, UsersFiltrados);
-                botones(acum + 3, btn4, UsersFiltrados);
-            }
+            SumarBotones();
             if (btn2.Enabled == false)
             {
                 btnsiguiente.Enabled = false;
@@ -369,29 +326,7 @@ namespace TuProductoOnline.Views.Users
             btn4.Text = Convert.ToString(acum + 3);
             btnprimero.Enabled = true;
             btnantes.Enabled = true;
-            if (!Buscar)
-            {
-                RenderTable(Paginar(acum, GlobalUsers));
-                botones(acum + 1, btn2, GlobalUsers);
-                botones(acum + 2, btn3, GlobalUsers);
-                botones(acum + 3, btn4, GlobalUsers);
-            }
-            else
-            {
-                RenderTable(Paginar(acum, UsersFiltrados));
-                botones(acum + 1, btn2, UsersFiltrados);
-                botones(acum + 2, btn3, UsersFiltrados);
-                botones(acum + 3, btn4, UsersFiltrados);
-            }
-        }
-        private int LastPage(List<User> users)
-        {
-            var numUsuario= (float)(users.Where(i => i.Deleted != true).ToList().Count) / UserForPage;
-            double numPaginas = Math.Ceiling(numUsuario);
-            if (numPaginas < numUsuario)
-                numPaginas++;
-
-            return (int)numPaginas;
+            SumarBotones();
         }
         private void btnultimo_Click(object sender, EventArgs e)
         {
@@ -442,6 +377,32 @@ namespace TuProductoOnline.Views.Users
                 btn.Enabled = true;
             }
         }
+        public void SumarBotones()
+        {
+            if (!Buscar)
+            {
+                RenderTable(Paginar(acum, GlobalUsers));
+                botones(acum + 1, btn2, GlobalUsers);
+                botones(acum + 2, btn3, GlobalUsers);
+                botones(acum + 3, btn4, GlobalUsers);
+            }
+            else
+            {
+                RenderTable(Paginar(acum, UsersFiltrados));
+                botones(acum + 1, btn2, UsersFiltrados);
+                botones(acum + 2, btn3, UsersFiltrados);
+                botones(acum + 3, btn4, UsersFiltrados);
+            }
+        }
+        private int LastPage(List<User> users)
+        {
+            var numUsuario= (float)(users.Where(i => i.Deleted != true).ToList().Count) / UserForPage;
+            double numPaginas = Math.Ceiling(numUsuario);
+            if (numPaginas < numUsuario)
+                numPaginas++;
+
+            return (int)numPaginas;
+        }
         public object Searcher(User users, string searchParam)
         {
             return users.GetType().GetProperty(searchParam).GetValue(users, null);
@@ -450,7 +411,6 @@ namespace TuProductoOnline.Views.Users
         {
             string pattern = txtSearch.Text.ToLower();
             Buscar = true;
-
             if (pattern.Length != 0)
             {
                 lblPag.Text = "1";
@@ -462,10 +422,8 @@ namespace TuProductoOnline.Views.Users
                 btnprimero.Enabled = false;
                 btnantes.Enabled = false;
             }
-
             var filtrado = GlobalUsers.Where(i => i.Deleted != true && i.FirstName.ToLower().StartsWith(pattern) || i.Id.ToString().ToLower().Contains(pattern)).ToList();
             UsersFiltrados = filtrado;
-
             botones(acum + 1, btn2, UsersFiltrados);
             botones(acum + 2, btn3, UsersFiltrados);
             botones(acum + 3, btn4, UsersFiltrados);
@@ -479,7 +437,6 @@ namespace TuProductoOnline.Views.Users
                 btnultimo.Enabled = true;
                 btnsiguiente.Enabled = true;
             }
-
             RenderTable(Paginar(Convert.ToInt32(lblPag.Text), UsersFiltrados));
         }
         public void OrdenarGridAscendente(DataGridViewCellMouseEventArgs e)
