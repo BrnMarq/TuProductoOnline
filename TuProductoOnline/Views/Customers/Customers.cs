@@ -181,7 +181,20 @@ namespace TuProductoOnline.Views
                 customerValues[6],
                 customerValues[7]
                 );
-            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
+
+            SumarBotones();
+            if (btn2.Enabled == true)
+            {
+                btnsiguiente.Enabled = true;
+                btnultimo.Enabled = true;
+            }
+            else
+            {
+                btnsiguiente.Enabled = false;
+                btnultimo.Enabled = false;
+            }
+
+            Renderizar();
         }
         public void EditCustomer(List<string> customerValues)
         {
@@ -199,7 +212,8 @@ namespace TuProductoOnline.Views
             };
             Customer.UpdateCustomer(customer.Code, values);
             MessageBox.Show("Cliente editado con exito");
-            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
+
+            Renderizar();
         }
         public void DeleteCustomer(int id)
         {
@@ -218,7 +232,9 @@ namespace TuProductoOnline.Views
             Customer.UpdateCustomer(customer.Code, values);
             MessageBox.Show("Cliente borrado con exito");
 
-            RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text),GlobalCustomers));
+            VerifyButtons();
+
+            Renderizar(); 
         }
         private void btnImport_Click(object sender, EventArgs e)
         {
@@ -392,7 +408,16 @@ namespace TuProductoOnline.Views
                 btnantes.Enabled = false;
             }
             SumarBotones();
-
+            if (btn2.Enabled == false)
+            {
+                btnultimo.Enabled = false;
+                btnsiguiente.Enabled = false;
+            }
+            else
+            {
+                btnultimo.Enabled = true;
+                btnsiguiente.Enabled = true;
+            }
         }
         private void btnsiguiente_Click(object sender, EventArgs e)
         {
@@ -537,6 +562,13 @@ namespace TuProductoOnline.Views
                 botones(acum + 2, btn3, CustomersFiltrados);
                 botones(acum + 3, btn4, CustomersFiltrados);
             }
+        }
+        public void Renderizar()
+        {
+            if (!Buscar)
+                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), GlobalCustomers));
+            else
+                RenderTable(Paginar(Convert.ToInt32(lblPageNum.Text), CustomersFiltrados));
         }
     }
 }

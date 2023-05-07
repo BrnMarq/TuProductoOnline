@@ -89,8 +89,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\Billing\FacturacionConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Billing\FacturacionConfirm.Designer.cs">
+      <DependentUpon>FacturacionConfirm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\DolarToDay.cs" />
     <Compile Include="Views\Billing\PageEventHelper.cs" />
+    <Compile Include="Views\Billing\ProductDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Billing\ProductDelete.Designer.cs">
+      <DependentUpon>ProductDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Products\ConfirmDelete.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +214,12 @@
     <Compile Include="Views\Users\Users.Designer.cs">
       <DependentUpon>Users.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Billing\FacturacionConfirm.resx">
+      <DependentUpon>FacturacionConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Billing\ProductDelete.resx">
+      <DependentUpon>ProductDelete.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Products\Add.resx">
       <DependentUpon>Add.cs</DependentUpon>
     </EmbeddedResource>

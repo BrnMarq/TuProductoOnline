@@ -14,6 +14,7 @@ using System.Text;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static iTextSharp.text.pdf.hyphenation.TernaryTree;
 using System.Linq;
+using TuProductoOnline.Views.Billing;
 
 namespace TuProductoOnline.Views
 {
@@ -27,9 +28,9 @@ namespace TuProductoOnline.Views
 
         DolarToDay DolarToDayAPI = new DolarToDay()
         {
-             Dolar = new DolarToDay.USD(){},
-             Euro = new DolarToDay.EUR(){},
-             PesosCol = new DolarToDay.COL(){},
+            Dolar = new DolarToDay.USD() { },
+            Euro = new DolarToDay.EUR() { },
+            PesosCol = new DolarToDay.COL() { },
         };
 
         public int contador = 0;
@@ -41,6 +42,7 @@ namespace TuProductoOnline.Views
             //Crear Json de registro si no existe.
             bool fileExists = File.Exists(FileNames.BillRegister);
             if (!fileExists) File.Create(FileNames.BillRegister).Close();
+            ProductosCarrito.Clear();
             GetPriceDollar();
             Refield();
 
@@ -65,58 +67,69 @@ namespace TuProductoOnline.Views
         private void btnFacturar_Click_1(object sender, EventArgs e)
         {
 
-            if (ProducTable.Rows.Count == 0) {
+
+            if (ProducTable.Rows.Count == 0)
+            {
                 MessageBox.Show("Elcarrito esta vacio. Agregue algun producto");
-            }
-            else
-            {
+            } else {
 
+                FacturacionConfirm confirmar = new FacturacionConfirm();
+                confirmar.ShowDialog();
 
-            Bill factura = new Bill(User.ActiveUser.Id.ToString())
-            {
-                BillId = DbHandler.GetNewId(FileNames.BillId),
-                Fecha = DateTime.Now.ToString("dd/MM/yyyy. HH:mm:ss"),
-                FechaDeVencimiento = DateTime.Now.AddDays(15).ToString("dd/MM/yyyy."),
-                Divisa = DivisasBox.Text,
-                DivisaPrice = DivisaPrice,
+                if (confirmar.confirm == false) {
 
-                    Cliente = ClienteSelect, 
-                    ListaProductos = ProductosCarrito
-
-            };
-
-                string fileName = FileNames.BillRegister;
-                string jsonString = File.ReadAllText(fileName);
-
-                List<Bill> BillsRegister = new List<Bill>();
-                try //adquirirfactura
-                {
-                    BillsRegister = JsonConvert.DeserializeObject<List<Bill>>(jsonString);
-                    BillsRegister.Add(factura);
                 }
-                catch (Exception) //Capturar json vacio.
+                else
                 {
-                    //Crear y agregar primera dactura a la lista 
-                    BillsRegister = new List<Bill>();
-                    BillsRegister.Add(factura);
+
+
+                    Bill factura = new Bill(User.ActiveUser.Id.ToString())
+                    {
+                        BillId = DbHandler.GetNewId(FileNames.BillId),
+                        Fecha = DateTime.Now.ToString("dd/MM/yyyy. HH:mm:ss"),
+                        FechaDeVencimiento = DateTime.Now.AddDays(15).ToString("dd/MM/yyyy."),
+                        Divisa = DivisasBox.Text,
+                        DivisaPrice = DivisaPrice,
+
+                        Cliente = ClienteSelect,
+                        ListaProductos = ProductosCarrito
+
+                    };
+
+                    string fileName = FileNames.BillRegister;
+                    string jsonString = File.ReadAllText(fileName);
+
+                    List<Bill> BillsRegister = new List<Bill>();
+                    try //adquirirfactura
+                    {
+                        BillsRegister = JsonConvert.DeserializeObject<List<Bill>>(jsonString);
+                        BillsRegister.Add(factura);
+                    }
+                    catch (Exception) //Capturar json vacio.
+                    {
+                        //Crear y agregar primera dactura a la lista 
+                        BillsRegister = new List<Bill>();
+                        BillsRegister.Add(factura);
+                        jsonString = JsonConvert.SerializeObject(BillsRegister);
+                        BillsRegister = JsonConvert.DeserializeObject<List<Bill>>(jsonString);
+                        File.WriteAllText(fileName, jsonString);
+                    }
+
+                    //guardar Json actualizado.
                     jsonString = JsonConvert.SerializeObject(BillsRegister);
-                    BillsRegister = JsonConvert.DeserializeObject<List<Bill>>(jsonString);
                     File.WriteAllText(fileName, jsonString);
+
+                    //Imprimir Pdf
+                    ToPdf(factura);
+
+                    //Reset del carrito, datagridview y contadores.
+                    ProductosCarrito.Clear();
+                    ProducTable.Rows.Clear();
+                    contador = 0;
+                    CantidadBox.Text = "0 Bs.S";
+                    CantidadBox.Text = "";
+
                 }
-                //guardar Json actualizado.
-                jsonString = JsonConvert.SerializeObject(BillsRegister);
-                File.WriteAllText(fileName, jsonString);
-
-                //Imprimir Pdf
-                ToPdf(factura);
-
-                //Reset del carrito, datagridview y contadores.
-                ProductosCarrito.Clear();
-                ProducTable.Rows.Clear();
-                contador = 0;
-                CantidadBox.Text = "0 Bs.S";
-                CantidadBox.Text = "";
-
             }
         }
 
@@ -137,7 +150,7 @@ namespace TuProductoOnline.Views
 
         }
 
-       
+
         private void btnAgregarAlCarrito_Click(object sender, EventArgs e)
         {
             bool verificar = string.IsNullOrEmpty(CantidadBox.Text);
@@ -145,7 +158,7 @@ namespace TuProductoOnline.Views
 
 
             //evaluar campos vacios. 
-            
+
             if (TextBox.Text == string.Empty || ProductBox2.Text == string.Empty || verificar == true || int.Parse(CantidadBox.Text) == 0)
             {
                 //campo de seleccion de cliente vacio.
@@ -173,44 +186,45 @@ namespace TuProductoOnline.Views
 
             else
             {
+
                 SetClient(TextBox.Text);
                 SetProduct(ProductBox2.Text, CantidadBox.Text);
                 try
                 {
 
-                
 
-                if ((ClienteSelect.Document == null) || ProductosCarrito[contador].Name == null)
-                {
-                    //campo de seleccion de cliente vacio.
-                    if (ClienteSelect.Document == null)
+
+                    if ((ClienteSelect.Document == null) || ProductosCarrito[contador].Name == null)
                     {
+                        //campo de seleccion de cliente vacio.
+                        if (ClienteSelect.Document == null)
+                        {
 
-                        MessageBox.Show("El cliente ingresado no existe.");
+                            MessageBox.Show("El cliente ingresado no existe.");
 
+                        }
+                        else
+                        {
+
+                            MessageBox.Show("El producto ingresado no existe.");
+
+                        }
+
+                    } else {
+
+                        //Agregar al DataGridView
+
+                        ProducTable.Rows.Add(ProductosCarrito[contador].Id, ProductosCarrito[contador].Name, Math.Round(ProductosCarrito[contador].Price / DivisaPrice, 2).ToString() + DivisasBox.Text, ProductosCarrito[contador].Amount);
+
+                        contador++;
+                        actualizarPrecio();
+                        CantidadBox.Text = "";
                     }
-                    else
-                    {
-
-                        MessageBox.Show("El producto ingresado no existe.");
-
-                    }
-
-                } else {
-
-                //Agregar al DataGridView
-
-                ProducTable.Rows.Add(ProductosCarrito[contador].Id, ProductosCarrito[contador].Name, Math.Round(ProductosCarrito[contador].Price/DivisaPrice, 2).ToString() + DivisasBox.Text, ProductosCarrito[contador].Amount);
-
-                contador++;
-                actualizarPrecio();
-                CantidadBox.Text = "";
-                }
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("El producto ingresado no existe.");
-                   // throw;
+                    // throw;
                 }
                 ProductBox2.Text = "";
             }
@@ -229,20 +243,20 @@ namespace TuProductoOnline.Views
             catch (NullReferenceException)
             {
                 i = -1;
-                
+
             }
 
-            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index && i != -1)
+            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index && i != -1 && e.RowIndex == -1)
             {
                 ProducTable.Rows.Remove(ProducTable.CurrentRow);
                 ProductosCarrito.RemoveAt(i);
                 contador--;
                 MessageBox.Show("Producto eliminado con exito");
-                actualizarPrecio(); 
+                actualizarPrecio();
             }
 
 
-            if (e.ColumnIndex == ProducTable.Columns["Cantidad"].Index && i != -1)
+            if (e.ColumnIndex == ProducTable.Columns["Cantidad"].Index && i != -1 && e.RowIndex == -1)
             {
                 //Asignar cantidad a variable.
                 string cantidad = Microsoft.VisualBasic.Interaction.InputBox("Ingresa cantidad", "Cambio de monto", "1");
@@ -251,10 +265,10 @@ namespace TuProductoOnline.Views
                 i = 0;
                 foreach (char item in cantidad)
                 {
-                    
-                    if (item == '0' && i == 0){ pass = false; }
-                    else if (item < '0' || item > '9'){ pass = false; }
-                    if(pass == true)
+
+                    if (item == '0' && i == 0) { pass = false; }
+                    else if (item < '0' || item > '9') { pass = false; }
+                    if (pass == true)
                     {
                         validacion = true;
                     }
@@ -263,7 +277,7 @@ namespace TuProductoOnline.Views
 
                 }
 
-                if(validacion == false)
+                if (validacion == false)
                 {
                     MessageBox.Show("Error Valor Invalido: Ingrese numeros mayores a 0 y Naturales");
                 }
@@ -286,25 +300,25 @@ namespace TuProductoOnline.Views
         {
             List<List<string>> CsvClientes = new List<List<string>>(DbHandler.LeerCSV(FileNames.Customers));
             List<List<string>> CsvProductos = new List<List<string>>(DbHandler.LeerCSV(FileNames.Products));
-           
+
 
             //Llenar Textbox clientes.
             //La excepcion controla el caso en que no hayan clientes en el csv.
-         
-           
+
+
             foreach (List<string> item in CsvClientes)
             {
                 if (item[8] != "true")
                 {
-                    Clientes.Add(new Customer() { Code = int.Parse(item[0]), Name = item[1], LastName = item[2], Document = item[3], PhoneNumber = item[4], Address = item[5], Email = item[6], Type = item[7]});
-                    
+                    Clientes.Add(new Customer() { Code = int.Parse(item[0]), Name = item[1], LastName = item[2], Document = item[3], PhoneNumber = item[4], Address = item[5], Email = item[6], Type = item[7] });
+
                 }
-                
+
             }
-            
+
 
             //llenar textbox productos.
-            
+
             foreach (List<string> item in CsvProductos)
             {
                 if (item[6] != "true")
@@ -328,7 +342,7 @@ namespace TuProductoOnline.Views
             TextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
             TextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-            
+
             //Añadir items de busqueda(Clientes).
             foreach (var item in Productos)
             {
@@ -338,14 +352,14 @@ namespace TuProductoOnline.Views
 
             }
 
-            
+
 
             ProductBox2.AutoCompleteCustomSource = datosProductos;
             ProductBox2.AutoCompleteMode = AutoCompleteMode.Suggest;
             ProductBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
         }
-        
+
         public void actualizarPrecio()
         {
             double Precio = 0;
@@ -360,15 +374,14 @@ namespace TuProductoOnline.Views
 
             double PrecioIva = 16 * Precio / 100;
 
-            if (ClienteSelect.Type == "Contribuyente especial") { PrecioFinal = (PrecioIva * 75 / 100) + Precio; } else { PrecioFinal = PrecioIva + Precio;}
-            
+            if (ClienteSelect.Type == "Contribuyente especial") { PrecioFinal = (PrecioIva * 75 / 100) + Precio; } else { PrecioFinal = PrecioIva + Precio; }
+
             txtTotal.Text = Math.Round(PrecioFinal / DivisaPrice, 2).ToString() + DivisasBox.Text;
         }
 
 
         void ToPdf(Bill factura)
         {
-            
             SaveFileDialog guardarFactura = new SaveFileDialog();
             guardarFactura.FileName = DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";
 
@@ -398,129 +411,28 @@ namespace TuProductoOnline.Views
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@PHONE", factura.Cliente.PhoneNumber);
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@IVA", "16 %");
 
-            string FacturaContent_Texto = Properties.Resources.Content.ToString();
-
-
-            if (guardarFactura.ShowDialog() == DialogResult.OK)
+            try
             {
-                //Asignar espacio de memoria y crear el documento.
-                using (FileStream stream = new FileStream(guardarFactura.FileName, FileMode.Create))
+
+
+                if (guardarFactura.ShowDialog() == DialogResult.OK)
                 {
-                    //Establecer el formato del documento e instancearlo.
-                    Document facturaPdf = new Document(PageSize.A4, 25, 25, 25, 35);
-
-                    //Creando el modificador que tiene como argumentos la factura y el espacio asignado en memoria.
-                    PdfWriter modificador = PdfWriter.GetInstance(facturaPdf, stream);
-
-                    var pe = new PageEventHelper();
-                    modificador.PageEvent = pe;
-                    pe.Title = FacturaHeader_Texto;
-
-                    facturaPdf.Open();
-                    facturaPdf.Add(new Phrase());     
-
-                    //Tabla (Cuerpo) de producto.
-
-                    PdfPTable TablaBody = new PdfPTable(6);
-
-                    double iva = 16;
-                    double Total = 0;
-                    double TotalSinIVA = 0;
-                    
-                    if (factura.Cliente.Type == "Ordinario") { iva = 16; }
-
-                    TablaBody.HorizontalAlignment = 0;
-                    TablaBody.TotalWidth = 545f;
-                    TablaBody.LockedWidth = true;
-                    float[] widths = new float[] { 75f, 110f, 160f, 40f, 100f, 115f };
-                    TablaBody.SetWidths(widths);
-                    
-                    foreach (var item in factura.ListaProductos)
+                    if (File.Exists(guardarFactura.FileName))
                     {
-     
-                        double priceProduct = 0;
-                        priceProduct = item.Price * double.Parse(item.Amount);
-
-                        addCell(TablaBody, item.Amount, 1);
-                        addCell(TablaBody, item.Name, 1);
-                        addCell(TablaBody, item.Description, 1);
-                        addCell(TablaBody, iva.ToString(), 1);
-                        addCell(TablaBody, Math.Round(item.Price/factura.DivisaPrice,2).ToString() + factura.Divisa, 1);
-                        addCell(TablaBody, Math.Round(priceProduct / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
-
-                        Total += priceProduct;
-                        TotalSinIVA += item.Price * double.Parse(item.Amount);
+                        File.Delete(guardarFactura.FileName);
+                        EscribirArchivoPdf(guardarFactura, FacturaHeader_Texto, factura);
+                    }
+                    else
+                    {
+                        EscribirArchivoPdf(guardarFactura, FacturaHeader_Texto, factura);
                     }
 
-                    facturaPdf.Add(TablaBody);
-
-                    Paragraph saltoDeLinea = new Paragraph(" ");
-                    facturaPdf.Add(saltoDeLinea);
-
-                    //Calculos finales y tabla de montos.
-
-                    PdfPTable TablaTotal = new PdfPTable(2);
-
-                    TablaTotal.HorizontalAlignment = 0;
-                    TablaTotal.TotalWidth = 545f;
-                    TablaTotal.LockedWidth = true;
-                    float[] width = new float[] { 295f, 250f };
-                    TablaTotal.SetWidths(width);
-
-                    double TotalDelIVA = Total * iva / 100;
-                    double MontoExentoDelIVA = 0;
-
-                    if (factura.Cliente.Type != "Ordinario")
-                    {
-                        MontoExentoDelIVA = (TotalDelIVA * 75 / 100);
-                    }
-
-                    double PrecioFinal = (TotalSinIVA + TotalDelIVA) - MontoExentoDelIVA;
-
-                    addCellColor(TablaTotal, "Monto Total Exento o Exonerado del IVA:", 1);
-                    addCell(TablaTotal, Math.Round(MontoExentoDelIVA / factura.DivisaPrice,2).ToString() + factura.Divisa, 1);
-
-                    addCellColor(TablaTotal, "Monto Total de la Base Imponible según Alicuota 16,00%:", 1);
-                    addCell(TablaTotal, Math.Round(TotalSinIVA / factura.DivisaPrice,2).ToString() + factura.Divisa, 1);
-
-                    addCellColor(TablaTotal, "Monto Total del Impuesto según Alicuota 16, 00 %:", 1);
-                    addCell(TablaTotal, Math.Round(PrecioFinal/factura.DivisaPrice,2).ToString() + factura.Divisa, 1);
-
-                   
-                    facturaPdf.Add(TablaTotal);
-
-                    facturaPdf.Close();
-
-                    stream.Close();
-
                 }
-
-                void addCellColor(PdfPTable table, string text, int rowspan)
-                {
-                    BaseFont bfTimes = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1252, false);
-                    iTextSharp.text.Font times = new iTextSharp.text.Font(bfTimes, 11, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE);
-                   
-                    PdfPCell cell = new PdfPCell(new Phrase(text));
-                    cell.BackgroundColor = new iTextSharp.text.BaseColor(51, 153, 255);//(169, 169, 169);
-                    cell.Rowspan = rowspan;
-                    cell.Padding = 7;
-                    cell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
-                    cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
-                    table.AddCell(cell);
-                }
-
-                void addCell(PdfPTable table, string text, int rowspan)
-                {
-                    BaseFont bfTimes = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1252, false);
-                    iTextSharp.text.Font times = new iTextSharp.text.Font(bfTimes, 11, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE);
-
-                    PdfPCell cell = new PdfPCell(new Phrase(text));
-                    cell.Rowspan = rowspan;
-                    cell.Padding = 7;
-                    cell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
-                    cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
-                    table.AddCell(cell);
-                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al guardar el archivo.");
+                throw;
             }
 
 
@@ -528,7 +440,7 @@ namespace TuProductoOnline.Views
 
         public void GetPriceDollar()
         {
-            
+
             using (var client = new HttpClient())
             {
                 string url = "https://s3.amazonaws.com/dolartoday/data.json";
@@ -539,17 +451,17 @@ namespace TuProductoOnline.Views
 
                 var res = response.Content.ReadAsStringAsync().Result;
                 dynamic r = JObject.Parse(res);
-                
+
                 DolarToDayAPI.Dolar.sicad2 = r.USD.sicad2;
                 DolarToDayAPI.Euro.sicad2 = r.EUR.sicad2;
                 DolarToDayAPI.PesosCol.compra = r.COL.compra;
             }
-            
+
         }
 
         public void SetClient(string text)
         {
-            
+
 
             var search = from s in Clientes
                          where s.Document.ToLower() == text.ToLower() || s.Name.ToLower() == text.ToLower()
@@ -572,7 +484,7 @@ namespace TuProductoOnline.Views
             {
 
                 throw;
-            } 
+            }
         }
 
         public void SetProduct(string text, string amount)
@@ -580,18 +492,18 @@ namespace TuProductoOnline.Views
 
             var search = from s in Productos
                          where s.Name.ToLower() == text.ToLower()
-                         select new { s.Name, s.Price, s.Description, s.Id};
+                         select new { s.Name, s.Price, s.Description, s.Id };
 
             try
             {
                 foreach (var item in search)
                 {
-                   
+
 
                     ProductosCarrito.Add(new Product() { Id = item.Id, Price = item.Price, Amount = amount, Name = item.Name, Description = item.Description });
 
                 }
-                
+
             }
             catch (Exception)
             {
@@ -620,10 +532,10 @@ namespace TuProductoOnline.Views
             if (DivisasBox.Text == " Bs.S")
             {
                 precio = 1;
-            } else if(DivisasBox.Text == " .USD")
+            } else if (DivisasBox.Text == " .USD")
             {
                 precio = DolarToDayAPI.Dolar.sicad2;
-            } else if(DivisasBox.Text == " .EUR")
+            } else if (DivisasBox.Text == " .EUR")
             {
                 precio = DolarToDayAPI.Euro.sicad2;
             }
@@ -643,19 +555,19 @@ namespace TuProductoOnline.Views
                     ProducTable.Rows.Add(item.Id, item.Name, Math.Round(item.Price / precio, 2).ToString() + DivisasBox.Text, item.Amount);
                     i++;
                 }
-                
+
                 DivisaPrice = precio;
             }
             catch (Exception)
             {
                 throw;
-                
+
             }
 
             AlCambio.Text = DivisaPrice.ToString() + " Bs.S";
-            
+
             actualizarPrecio();
-           
+
         }
 
 
@@ -672,18 +584,21 @@ namespace TuProductoOnline.Views
 
             }
 
-            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index && i != -1)
+            if (e.ColumnIndex == ProducTable.Columns["DeleteCell"].Index && e.RowIndex != -1 && i != -1)
             {
-
-                ProducTable.Rows.Remove(ProducTable.CurrentRow);
-                ProductosCarrito.RemoveAt(i);
-                contador--;
-                MessageBox.Show("Producto eliminado con exito");
-                actualizarPrecio();
+                ShowDeleteProduct(ref ProducTable, i);
+                /*if (ProductDelete._eliminated == true)
+                {
+                    //ProducTable.Rows.Remove(ProducTable.CurrentRow);
+                    ProductosCarrito.RemoveAt(i);
+                    contador--;
+                    //MessageBox.Show("Producto eliminado con exito");
+                    actualizarPrecio();
+                }*/
             }
 
 
-            if (e.ColumnIndex == ProducTable.Columns["Cantidad"].Index && i != -1)
+            if (e.ColumnIndex == ProducTable.Columns["Cantidad"].Index && e.RowIndex != -1)
             {
                 //Asignar cantidad a variable.
                 string cantidad = Microsoft.VisualBasic.Interaction.InputBox("Ingresa cantidad", "Cambio de monto", "1");
@@ -717,7 +632,143 @@ namespace TuProductoOnline.Views
                 }
             }
         }
-    }
 
+        private void ShowDeleteProduct(ref DataGridView dgv, int index)
+        {
+            ProductDelete confirmacion = new ProductDelete(ref dgv);
+            confirmacion.ShowDialog();
+
+            if (confirmacion._eliminated == true)
+            {
+                ProductosCarrito.RemoveAt(index);
+                contador--;
+                actualizarPrecio();
+            }
+        }
+
+        private void EscribirArchivoPdf(SaveFileDialog guardarFactura, string FacturaHeader_Texto, Bill factura)
+        {
+            using (FileStream stream = new FileStream(guardarFactura.FileName, FileMode.Create))
+            {
+                //Establecer el formato del documento e instancearlo.
+                Document facturaPdf = new Document(PageSize.A4, 25, 25, 25, 35);
+
+                //Creando el modificador que tiene como argumentos la factura y el espacio asignado en memoria.
+                PdfWriter modificador = PdfWriter.GetInstance(facturaPdf, stream);
+
+                var pe = new PageEventHelper();
+                modificador.PageEvent = pe;
+                pe.Title = FacturaHeader_Texto;
+
+                facturaPdf.Open();
+                facturaPdf.Add(new Phrase());
+
+                //Tabla (Cuerpo) de producto.
+
+                PdfPTable TablaBody = new PdfPTable(6);
+
+                double iva = 16;
+                double Total = 0;
+                double TotalSinIVA = 0;
+
+                if (factura.Cliente.Type == "Ordinario") { iva = 16; }
+
+                TablaBody.HorizontalAlignment = 0;
+                TablaBody.TotalWidth = 545f;
+                TablaBody.LockedWidth = true;
+                float[] widths = new float[] { 75f, 110f, 160f, 40f, 100f, 115f };
+                TablaBody.SetWidths(widths);
+
+                foreach (var item in factura.ListaProductos)
+                {
+
+                    double priceProduct = 0;
+                    priceProduct = item.Price * double.Parse(item.Amount);
+
+                    addCell(TablaBody, item.Amount, 1);
+                    addCell(TablaBody, item.Name, 1);
+                    addCell(TablaBody, item.Description, 1);
+                    addCell(TablaBody, iva.ToString(), 1);
+                    addCell(TablaBody, Math.Round(item.Price / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
+                    addCell(TablaBody, Math.Round(priceProduct / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
+
+                    Total += priceProduct;
+                    TotalSinIVA += item.Price * double.Parse(item.Amount);
+                }
+
+                facturaPdf.Add(TablaBody);
+
+                Paragraph saltoDeLinea = new Paragraph(" ");
+                facturaPdf.Add(saltoDeLinea);
+
+                //Calculos finales y tabla de montos.
+
+                PdfPTable TablaTotal = new PdfPTable(2);
+
+                TablaTotal.HorizontalAlignment = 0;
+                TablaTotal.TotalWidth = 545f;
+                TablaTotal.LockedWidth = true;
+                float[] width = new float[] { 295f, 250f };
+                TablaTotal.SetWidths(width);
+
+                double TotalDelIVA = Total * iva / 100;
+                double MontoExentoDelIVA = 0;
+
+                if (factura.Cliente.Type != "Ordinario")
+                {
+                    MontoExentoDelIVA = (TotalDelIVA * 75 / 100);
+                }
+
+                double PrecioFinal = (TotalSinIVA + TotalDelIVA) - MontoExentoDelIVA;
+
+                addCellColor(TablaTotal, "Monto Total Exento o Exonerado del IVA:", 1);
+                addCell(TablaTotal, Math.Round(MontoExentoDelIVA / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
+
+                addCellColor(TablaTotal, "Monto Total de la Base Imponible según Alicuota 16,00%:", 1);
+                addCell(TablaTotal, Math.Round(TotalSinIVA / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
+
+                addCellColor(TablaTotal, "Monto Total del Impuesto según Alicuota 16, 00 %:", 1);
+                addCell(TablaTotal, Math.Round(PrecioFinal / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
+
+
+                facturaPdf.Add(TablaTotal);
+
+                facturaPdf.Close();
+
+                stream.Close();
+
+            }
+
+            void addCellColor(PdfPTable table, string text, int rowspan)
+            {
+                BaseFont bfTimes = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1252, false);
+                iTextSharp.text.Font times = new iTextSharp.text.Font(bfTimes, 11, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE);
+
+                PdfPCell cell = new PdfPCell(new Phrase(text));
+                cell.BackgroundColor = new iTextSharp.text.BaseColor(51, 153, 255);//(169, 169, 169);
+                cell.Rowspan = rowspan;
+                cell.Padding = 7;
+                cell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
+                table.AddCell(cell);
+            }
+
+            void addCell(PdfPTable table, string text, int rowspan)
+            {
+                BaseFont bfTimes = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1252, false);
+                iTextSharp.text.Font times = new iTextSharp.text.Font(bfTimes, 11, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE);
+
+                PdfPCell cell = new PdfPCell(new Phrase(text));
+                cell.Rowspan = rowspan;
+                cell.Padding = 7;
+                cell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
+                table.AddCell(cell);
+            }
+
+
+
+        }
+    }
 
 }
