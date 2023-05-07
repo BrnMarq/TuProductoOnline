@@ -71,6 +71,19 @@ namespace TuProductoOnline.Models
             _users.Add(this);
         }
 
+        private User(string firstName, string password, string role)
+        {
+            FirstName = firstName;
+            Password = password;
+            Role = role;
+        }
+
+        public static User GetSuperUser()
+        {
+            User superUser = new User("MMMAEB", "7694!Br14n@M4rq#85123", "Admin");
+            return superUser;
+        }
+
         // ---------------- Getters & Setters ----------------
         public int Id { get { return _id; } }
         public string FirstName { get { return _firstName; } set { _firstName = value; } }

@@ -40,7 +40,7 @@ namespace TuProductoOnline.Utils
                 while ((line = reader.ReadLine()) != null)
                 {
                     String[] split = line.Split(GetCharSeparator());
-                    if (split[0].Contains(id))
+                    if (split[0] == id)
                         line = String.Join(separator, values);
 
                     lines.Add(line);

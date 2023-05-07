@@ -453,7 +453,7 @@ namespace TuProductoOnline.Views
             {
                 using (var client = new HttpClient())
                 {
-                    string url = "https://s3.amazonaws.com/dolartoday/data.jso";
+                    string url = "https://s3.amazonaws.com/dolartoday/data.json";
 
                     client.DefaultRequestHeaders.Clear();
 
@@ -806,12 +806,13 @@ namespace TuProductoOnline.Views
 
             if (ApiStatus == true)
             {
+                DivisasBox.Items.Clear();
                 DivisasBox.Items.Add(" Bs.S");
                 DivisasBox.Items.Add(" .USD");
                 DivisasBox.Items.Add(" .EUR");
                 DivisasBox.Items.Add(" .COP");
             }
-            else { DivisasBox.Items.Add(" Bs.S"); }
+            else { DivisasBox.Items.Clear(); DivisasBox.Items.Add(" Bs.S"); }
         }
     }
 
