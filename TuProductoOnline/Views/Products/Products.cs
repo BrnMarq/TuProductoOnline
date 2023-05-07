@@ -32,7 +32,7 @@ namespace TuProductoOnline
             if (add.Id != 0)
             {
                 new Product(add.Alias, add.Price, add.Brand, add.Description, add.Type);
-                Renderizar();
+                VerifyButtons();
             }
         }
         private void Products_Load(object sender, EventArgs e)
@@ -47,7 +47,7 @@ namespace TuProductoOnline
             dgvProducts.Size = new Size(678, 422);
             dgvProducts.Columns["Edit"].Visible = false;
             dgvProducts.Columns["Eliminar"].Visible = false;
-            RenderTable(Paginar(acum, GlobalProducts));
+
 
         }
         private void btnExport_Click(object sender, EventArgs e)
@@ -119,8 +119,13 @@ namespace TuProductoOnline
                     };
                         Product.UpdateProduct(int.Parse(id), productValues);
                         MessageBox.Show("Producto borrado con exito");
+                        btnprimero_Click(sender, e);
+                        VerifyButtons();
+                      
                     }
-                    Renderizar();
+                    
+
+
                 }
                 if (dgvProducts.Columns[e.ColumnIndex].Name == "Edit")
                 {
