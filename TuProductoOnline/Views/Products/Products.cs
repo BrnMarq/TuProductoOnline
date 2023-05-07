@@ -47,6 +47,8 @@ namespace TuProductoOnline
             dgvProducts.Size = new Size(678, 422);
             dgvProducts.Columns["Edit"].Visible = false;
             dgvProducts.Columns["Eliminar"].Visible = false;
+            RenderTable(Paginar(acum, GlobalProducts));
+
         }
         private void btnExport_Click(object sender, EventArgs e)
         {
