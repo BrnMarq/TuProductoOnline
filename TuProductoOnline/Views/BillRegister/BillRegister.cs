@@ -45,7 +45,7 @@ namespace TuProductoOnline.Views.BillRegister
             lblPageNum.Text = "1";
             fillRegisters();
             VerifyButtons();
-            //renderTable(Paginar(acum, globalRegister));
+            //renderTable();
         }
 
         private void renderTable()
@@ -96,7 +96,8 @@ namespace TuProductoOnline.Views.BillRegister
             List<Bill> billFAdd = JsonHandler.openJsonFile();
             addBillsTRegister(billFAdd);
             saveDataBase();
-            renderTable();
+            VerifyButtons();
+            //renderTable(Paginar(acum, billFAdd));
         }
 
         private void btnExport_Click(object sender, EventArgs e)
@@ -126,7 +127,7 @@ namespace TuProductoOnline.Views.BillRegister
         //Oculta y/o muestra los botones de importar y exportar, dependiendo de si hay datos en register o no.
         public void hideImportExportButton()
         {
-            if (globalRegister == null)
+            if (globalRegister.Count == 0)
             {
                 btnExport.Visible = false;
                 btnImport.Visible = true;
@@ -166,10 +167,9 @@ namespace TuProductoOnline.Views.BillRegister
 
         void ToPdf(Bill factura)
         {
-
             SaveFileDialog guardarFactura = new SaveFileDialog();
-            guardarFactura.FileName = DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";
-
+            guardarFactura.FileName = DateTime.Now.ToString("ddMMyyyyHHmmss");
+            guardarFactura.DefaultExt = ".pdf";
             //Leer plantilla y pasar a string.
             string FacturaHeader_Texto = Properties.Resources.Header.ToString();
 
@@ -191,136 +191,165 @@ namespace TuProductoOnline.Views.BillRegister
             //Cliente
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@IDENTIDAD", factura.Cliente.Document.ToString());
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@CONDICION", factura.Cliente.Type);
-            FacturaHeader_Texto = FacturaHeader_Texto.Replace("@REASON", factura.Cliente.Name);
+            FacturaHeader_Texto = FacturaHeader_Texto.Replace("@REASON", factura.Cliente.Name + " " + factura.Cliente.LastName);
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@ADDRES", factura.Cliente.Address);
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@PHONE", factura.Cliente.PhoneNumber);
             FacturaHeader_Texto = FacturaHeader_Texto.Replace("@IVA", "16 %");
 
-            string FacturaContent_Texto = Properties.Resources.Content.ToString();
-
-
-            if (guardarFactura.ShowDialog() == DialogResult.OK)
+            try
             {
-                //Asignar espacio de memoria y crear el documento.
-                using (FileStream stream = new FileStream(guardarFactura.FileName, FileMode.Create))
+
+
+                if (guardarFactura.ShowDialog() == DialogResult.OK)
                 {
-                    //Establecer el formato del documento e instancearlo.
-                    Document facturaPdf = new Document(PageSize.A4, 25, 25, 25, 35);
 
-                    //Creando el modificador que tiene como argumentos la factura y el espacio asignado en memoria.
-                    PdfWriter modificador = PdfWriter.GetInstance(facturaPdf, stream);
-
-                    var pe = new PageEventHelper();
-                    modificador.PageEvent = pe;
-                    pe.Title = FacturaHeader_Texto;
-
-                    facturaPdf.Open();
-                    facturaPdf.Add(new Phrase());
-
-                    //Tabla (Cuerpo) de producto.
-
-                    PdfPTable TablaBody = new PdfPTable(6);
-
-                    double iva = 16;
-                    double Total = 0;
-                    double TotalSinIVA = 0;
-
-                    if (factura.Cliente.Type == "Ordinario") { iva = 16; }
-
-                    TablaBody.HorizontalAlignment = 0;
-                    TablaBody.TotalWidth = 545f;
-                    TablaBody.LockedWidth = true;
-                    float[] widths = new float[] { 75f, 110f, 160f, 40f, 100f, 115f };
-                    TablaBody.SetWidths(widths);
-
-                    foreach (var item in factura.ListaProductos)
+                    if (File.Exists(guardarFactura.FileName))
                     {
 
-                        double priceProduct = 0;
-                        priceProduct = item.Price * double.Parse(item.Amount);
-
-                        addCell(TablaBody, item.Amount, 1);
-                        addCell(TablaBody, item.Name, 1);
-                        addCell(TablaBody, item.Description, 1);
-                        addCell(TablaBody, iva.ToString(), 1);
-                        addCell(TablaBody, Math.Round(item.Price / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
-                        addCell(TablaBody, priceProduct.ToString() + factura.Divisa, 1);
-
-                        Total += priceProduct;
-                        TotalSinIVA += item.Price * double.Parse(item.Amount);
+                        File.Delete(guardarFactura.FileName);
+                        EscribirArchivoPdf(guardarFactura, FacturaHeader_Texto, factura);
                     }
-
-                    facturaPdf.Add(TablaBody);
-
-                    Paragraph saltoDeLinea = new Paragraph(" ");
-                    facturaPdf.Add(saltoDeLinea);
-
-                    //Calculos finales y tabla de montos.
-
-                    PdfPTable TablaTotal = new PdfPTable(2);
-
-                    TablaTotal.HorizontalAlignment = 0;
-                    TablaTotal.TotalWidth = 545f;
-                    TablaTotal.LockedWidth = true;
-                    float[] width = new float[] { 295f, 250f };
-                    TablaTotal.SetWidths(width);
-
-                    double TotalDelIVA = Total * iva / 100;
-                    double MontoExentoDelIVA = 0;
-
-                    if (factura.Cliente.Type != "Ordinario")
+                    else
                     {
-                        MontoExentoDelIVA = (TotalDelIVA * 75 / 100);
+
+                        EscribirArchivoPdf(guardarFactura, FacturaHeader_Texto, factura);
                     }
 
-                    double PrecioFinal = (TotalSinIVA + TotalDelIVA) - MontoExentoDelIVA;
-
-                    addCellColor(TablaTotal, "Monto Total Exento o Exonerado del IVA:", 1);
-                    addCell(TablaTotal, Math.Round(MontoExentoDelIVA / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
-
-                    addCellColor(TablaTotal, "Monto Total de la Base Imponible según Alicuota 16,00%:", 1);
-                    addCell(TablaTotal, Math.Round(TotalSinIVA / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
-
-                    addCellColor(TablaTotal, "Monto Total del Impuesto según Alicuota 16, 00 %:", 1);
-                    addCell(TablaTotal, Math.Round(PrecioFinal / factura.DivisaPrice, 2).ToString() + factura.Divisa, 1);
-
-
-                    facturaPdf.Add(TablaTotal);
-
-                    facturaPdf.Close();
-
-                    stream.Close();
-
-                }
-
-                void addCellColor(PdfPTable table, string text, int rowspan)
-                {
-                    BaseFont bfTimes = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1252, false);
-                    iTextSharp.text.Font times = new iTextSharp.text.Font(bfTimes, 11, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE);
-
-                    PdfPCell cell = new PdfPCell(new Phrase(text));
-                    cell.BackgroundColor = new iTextSharp.text.BaseColor(51, 153, 255);//(169, 169, 169);
-                    cell.Rowspan = rowspan;
-                    cell.Padding = 7;
-                    cell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
-                    cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
-                    table.AddCell(cell);
-                }
-
-                void addCell(PdfPTable table, string text, int rowspan)
-                {
-                    BaseFont bfTimes = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1252, false);
-                    iTextSharp.text.Font times = new iTextSharp.text.Font(bfTimes, 11, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE);
-
-                    PdfPCell cell = new PdfPCell(new Phrase(text));
-                    cell.Rowspan = rowspan;
-                    cell.Padding = 7;
-                    cell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
-                    cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
-                    table.AddCell(cell);
                 }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al guardar el archivo.");
+                throw;
+            }
 
+
+        }
+
+        private void EscribirArchivoPdf(SaveFileDialog guardarFactura, string FacturaHeader_Texto, Bill factura)
+        {
+            using (FileStream stream = new FileStream(guardarFactura.FileName, FileMode.Create))
+            {
+                //Establecer el formato del documento e instancearlo.
+                Document facturaPdf = new Document(PageSize.A4, 25, 25, 25, 35);
+
+                //Creando el modificador que tiene como argumentos la factura y el espacio asignado en memoria.
+                PdfWriter modificador = PdfWriter.GetInstance(facturaPdf, stream);
+
+                var pe = new PageEventHelper();
+                modificador.PageEvent = pe;
+                pe.Title = FacturaHeader_Texto;
+
+                facturaPdf.Open();
+                facturaPdf.Add(new Phrase());
+
+                //Tabla (Cuerpo) de producto.
+
+                PdfPTable TablaBody = new PdfPTable(6);
+
+                double iva = 16;
+                double Total = 0;
+                double TotalSinIVA = 0;
+
+                if (factura.Cliente.Type == "Ordinario") { iva = 16; }
+
+                TablaBody.HorizontalAlignment = 0;
+                TablaBody.TotalWidth = 545f;
+                TablaBody.LockedWidth = true;
+                float[] widths = new float[] { 75f, 110f, 160f, 40f, 100f, 115f };
+                TablaBody.SetWidths(widths);
+
+                foreach (var item in factura.ListaProductos)
+                {
+                    double priceProduct = 0;
+                    priceProduct = item.Price * double.Parse(item.Amount);
+                    string PrecioUnitario = Math.Round(item.Price / factura.DivisaPrice, 2).ToString() + factura.Divisa;
+                    string PrecioSumado = Math.Round(priceProduct / factura.DivisaPrice, 2).ToString() + factura.Divisa;
+
+                    addCell(TablaBody, item.Amount, 1);
+                    addCell(TablaBody, item.Name, 1);
+                    addCell(TablaBody, item.Description, 1);
+                    addCell(TablaBody, iva.ToString(), 1);
+                    addCell(TablaBody, PrecioUnitario, 1);
+                    addCell(TablaBody, PrecioSumado, 1);
+
+                    Total += priceProduct;
+                    TotalSinIVA += item.Price * double.Parse(item.Amount);
+                }
+
+                facturaPdf.Add(TablaBody);
+
+                Paragraph saltoDeLinea = new Paragraph(" ");
+                facturaPdf.Add(saltoDeLinea);
+
+                //Calculos finales y tabla de montos.
+
+                PdfPTable TablaTotal = new PdfPTable(2);
+
+                TablaTotal.HorizontalAlignment = 0;
+                TablaTotal.TotalWidth = 545f;
+                TablaTotal.LockedWidth = true;
+                float[] width = new float[] { 295f, 250f };
+                TablaTotal.SetWidths(width);
+
+                double TotalDelIVA = Total * iva / 100;
+                double MontoExentoDelIVA = 0;
+
+                if (factura.Cliente.Type != "Ordinario")
+                {
+                    MontoExentoDelIVA = (TotalDelIVA * 75 / 100);
+                }
+
+                double PrecioFinal = (TotalSinIVA + TotalDelIVA) - MontoExentoDelIVA;
+
+                string aux = Math.Round(MontoExentoDelIVA / factura.DivisaPrice, 2).ToString() + factura.Divisa;
+                string aux1 = Math.Round(TotalSinIVA / factura.DivisaPrice, 2).ToString() + factura.Divisa;
+                string aux2 = Math.Round(PrecioFinal / factura.DivisaPrice, 2).ToString() + factura.Divisa;
+
+                addCellColor(TablaTotal, "Monto Total Exento o Exonerado del IVA:", 1);
+                addCell(TablaTotal, aux, 1);
+
+                addCellColor(TablaTotal, "Monto Total de la Base Imponible según Alicuota 16,00%:", 1);
+                addCell(TablaTotal, aux1, 1);
+
+                addCellColor(TablaTotal, "Monto Total del Impuesto según Alicuota 16, 00 %:", 1);
+                addCell(TablaTotal, aux2, 1);
+
+
+                facturaPdf.Add(TablaTotal);
+
+                facturaPdf.Close();
+
+                stream.Close();
+
+            }
+
+            void addCellColor(PdfPTable table, string text, int rowspan)
+            {
+                BaseFont bfTimes = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1252, false);
+                iTextSharp.text.Font times = new iTextSharp.text.Font(bfTimes, 11, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE);
+
+                PdfPCell cell = new PdfPCell(new Phrase(text));
+                cell.BackgroundColor = new iTextSharp.text.BaseColor(51, 153, 255);//(169, 169, 169);
+                cell.Rowspan = rowspan;
+                cell.Padding = 7;
+                cell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
+                table.AddCell(cell);
+            }
+
+            void addCell(PdfPTable table, string text, int rowspan)
+            {
+                BaseFont bfTimes = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1252, false);
+                iTextSharp.text.Font times = new iTextSharp.text.Font(bfTimes, 11, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE);
+
+                PdfPCell cell = new PdfPCell(new Phrase(text));
+                cell.Rowspan = rowspan;
+                cell.Padding = 7;
+                cell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
+                table.AddCell(cell);
+            }
 
         }
 

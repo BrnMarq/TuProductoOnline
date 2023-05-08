@@ -90,7 +90,7 @@ namespace TuProductoOnline
             this.dgvProducts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -123,7 +123,7 @@ namespace TuProductoOnline
             this.dgvProducts.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvProducts.RowHeadersVisible = false;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.dgvProducts.RowsDefaultCellStyle = dataGridViewCellStyle4;
@@ -132,6 +132,7 @@ namespace TuProductoOnline
             this.dgvProducts.Size = new System.Drawing.Size(677, 290);
             this.dgvProducts.TabIndex = 15;
             this.dgvProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellClick);
+            this.dgvProducts.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCustomers_ColumnHeaderMouseClick);
             // 
             // GridCode
             // 
@@ -226,7 +227,7 @@ namespace TuProductoOnline
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(375, 42);
+            this.txtSearch.Location = new System.Drawing.Point(384, 42);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(208, 26);
             this.txtSearch.TabIndex = 21;
@@ -241,7 +242,7 @@ namespace TuProductoOnline
             this.lbl.Name = "lbl";
             this.lbl.Size = new System.Drawing.Size(108, 18);
             this.lbl.TabIndex = 42;
-            this.lbl.Text = "Pagina actual : ";
+            this.lbl.Text = "Página actual : ";
             // 
             // btnprimero
             // 
@@ -261,8 +262,9 @@ namespace TuProductoOnline
             this.btnultimo.Name = "btnultimo";
             this.btnultimo.Size = new System.Drawing.Size(75, 23);
             this.btnultimo.TabIndex = 40;
-            this.btnultimo.Text = "Ultimo";
+            this.btnultimo.Text = "Último";
             this.btnultimo.UseVisualStyleBackColor = true;
+            this.btnultimo.Click += new System.EventHandler(this.btnultimo_Click);
             // 
             // btnsiguiente
             // 
@@ -356,9 +358,9 @@ namespace TuProductoOnline
             this.lblInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfo.Location = new System.Drawing.Point(363, 9);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(259, 15);
+            this.lblInfo.Size = new System.Drawing.Size(262, 15);
             this.lblInfo.TabIndex = 43;
-            this.lblInfo.Text = "Buscar Producto por ID, Nombre o Descrpción";
+            this.lblInfo.Text = "Buscar Producto por ID, Nombre o Descripción";
             // 
             // Products
             // 
